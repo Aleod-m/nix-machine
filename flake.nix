@@ -10,7 +10,7 @@
   outputs = { nixpkgs, home-manager, ... }:
   let
     system = "x86_64-linux";
-    pkgs = import nipkgs {
+    pkgs = import nixpkgs {
       inherit system;
       config = { allowUnfree = true; };
     };
