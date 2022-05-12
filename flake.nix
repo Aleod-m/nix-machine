@@ -16,6 +16,19 @@
     };
     lib = nixpkgs.lib;
   in {
+    homeManagerConfigurations = {
+      adml = home-manager.lib.homeManagerConfiguration {
+        inherit system pkgs;
+        username = "adml";
+        homeDirectory = "/home/adml";
+        configuration = {
+          imports = [
+            ./users/adml/home.nix
+          ];
+        };
+      };
+    };
+
     nixosConfigurations = {
       nixos-pc = lib.nixosSystem {
         inherit system;
