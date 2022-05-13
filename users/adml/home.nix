@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ config, pkgs, ... }: {
   home.pkgs = with pkgs; [
     gnumake
     bison
@@ -26,9 +26,9 @@
     gimp
   ];
   home.username = "adml";
-  home.homeDirectory = "/home/adml";$
+  home.homeDirectory = "/home/adml";
   home.stateVersion = "21.03";
-  programs {
+  programs = {
     home-manager.enable = true;
     bash = {
       enable = true;

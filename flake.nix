@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "nixpkgs/nixos-21.11";
-    home-manager.url = "github:nix-community/home-manager/release-21.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
@@ -17,14 +17,12 @@
     lib = nixpkgs.lib;
   in {
     homeManagerConfigurations = {
-      adml = home-manager.lib.homeManagerConfiguration {
+        adml = home-manager.lib.homeManagerConfiguration { 
         inherit system pkgs;
         username = "adml";
-        homeDirectory = "/home/adml";
+        homeDirectory = "/home/adml"; 
         configuration = {
-          imports = [
-            ./users/adml/home.nix
-          ];
+          imports = [ ./users/adml/home.nix ];
         };
       };
     };
@@ -32,7 +30,8 @@
     nixosConfigurations = {
       nixos-pc = lib.nixosSystem {
         inherit system;
-        modules = [
+        modules = [ 
+          home-manager.nixosModules.home-manager
           ./system/configuration.nix
         ];
       };
