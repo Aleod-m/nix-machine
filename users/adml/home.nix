@@ -27,7 +27,7 @@
   ];
   home.username = "adml";
   home.homeDirectory = "/home/adml";
-  home.stateVersion = "21.03";
+  home.stateVersion = "21.11";
   programs = {
     home-manager.enable = true;
     bash = {
