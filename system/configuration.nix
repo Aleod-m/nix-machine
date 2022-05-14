@@ -47,24 +47,24 @@
   # Enable the X11 windowing system.
   services.xserver.enable = true;
   #services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
+  #hardware.opengl.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm = {
+  services.xserver.displayManager.sddm = {
     enable = true;
-    wayland = false;
+#    wayland = false;
   };
-  services.xserver.desktopManager.gnome.enable = true;
-  environment.gnome.excludePackages = with pkgs.gnome; [
-    geary
-    gedit
-    epiphany
-    yelp
-    totem
-    cheese
-    gnome-terminal
+  services.xserver.desktopManager.plasma5.enable = true;
+  #environment.gnome.excludePackages = with pkgs.gnome; [
+  #  geary
+  #  gedit
+  #  epiphany
+  #  yelp
+  #  totem
+  #  cheese
+  #  gnome-terminal
     #gnome-text-editor
-  ];
+  #];
 
   # Configure keymap in X11
   services.xserver.layout = "fr";
