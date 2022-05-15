@@ -2,9 +2,12 @@
   description = "AdrienDML nixos config";
 
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-21.11";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOs/nixpkgs/nixos-21.11";
+    nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixos-unstable";
+    home-manager = { 
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { nixpkgs, home-manager, ... }:
