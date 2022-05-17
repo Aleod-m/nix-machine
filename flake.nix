@@ -24,7 +24,7 @@
         inherit system pkgs;
         username = "adml";
         homeDirectory = "/home/adml"; 
-        configuration = ./users/adml/home.nix;
+        configuration = {imports = [./users/adml/home.nix];};
       };
     };
 
