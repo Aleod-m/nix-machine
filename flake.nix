@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-21.11";
-    nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixos-unstable";
+    # nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixos-unstable";
     home-manager = { 
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -24,7 +24,7 @@
         inherit system pkgs;
         username = "adml";
         homeDirectory = "/home/adml"; 
-        configuration = {imports = [./users/adml/home.nix];};
+        configuration = import ./users/adml/home.nix;
       };
     };
 

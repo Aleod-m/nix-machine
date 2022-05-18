@@ -1,28 +1,19 @@
 { pkgs, ... }: {
-  home.pkgs = with pkgs; [
-    gnumake
-    bison
-    jdk8
-    jdk17
-    maven
-    unzip
-    wget
-    gnupg
-    vlc
-    htop
+  home.packages = with pkgs; [
+    bat
     exa
     zoxide
+    starship
+
     vscode
-    gradle
-    gcc
-    gdb
-    inkscape
-    firefox
-    spotify
-    discord
-    python3
-    rustup
+
+    unzip
+    wget
+    vlc
+    htop
+    
     gimp
+    inkscape
   ];
   home.username = "adml";
   home.homeDirectory = "/home/adml";
@@ -30,6 +21,8 @@
     home-manager.enable = true;
     bash = {
       enable = true;
+      shellAliases = import ./shellAliases.nix {inherit pkgs;};
+      
     };
     git = {
       enable = true;
