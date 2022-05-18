@@ -1,13 +1,13 @@
 {pkgs, ...}:
 let
-  exa = "${pkgs.exa}/bin/exa "
-  git = "${pkgs.git}/bin/git "
+  exa = "${pkgs.exa}/bin/exa ";
+  git = "${pkgs.git}/bin/git ";
 in {
   # ls replacement
   ls = exa;
   ld = exa + "-d";
   la = exa + "-a -l";
-  lg = exa + "-l --git --header"
+  lg = exa + "-l --git --header";
   lga = exa +"-a -l --git --header";
   # TODO l.
 
