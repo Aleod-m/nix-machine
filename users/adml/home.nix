@@ -40,5 +40,5 @@
     };
   };
 
-  services.xserver.layout = ;
+  #services.xserver.layout = ;
 }
