@@ -2,13 +2,11 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, home-manager, ... }:
+{ config, pkgs, home-manager, ... }: {
 
-{
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use Nix Flakes
   nix.package = pkgs.nixFlakes;
@@ -46,25 +44,24 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  #services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
   #hardware.opengl.enable = true;
 
   # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.sddm = {
+  services.xserver.displayManager.gdm = {
     enable = true;
-#    wayland = false;
+    wayland = false;
   };
-  services.xserver.desktopManager.plasma5.enable = true;
-  #environment.gnome.excludePackages = with pkgs.gnome; [
-  #  geary
-  #  gedit
-  #  epiphany
-  #  yelp
-  #  totem
-  #  cheese
-  #  gnome-terminal
-    #gnome-text-editor
-  #];
+  services.xserver.desktopManager.gnome.enable = true;
+  environment.gnome.excludePackages = with pkgs.gnome; [
+    geary
+    gedit
+    epiphany
+    yelp
+    totem
+    cheese
+    gnome-terminal
+  ];
 
   # Configure keymap in X11
   services.xserver.layout = "fr";
@@ -90,22 +87,11 @@
   # $ nix search wget
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
-    wget
     firefox
     curl
-    neovim
+    nano
     kitty
-    starship
-    zsh
-    zoxide
-    gimp
-    inkscape
-    rustup
-    discord
-    spotify
     git
-    binutils
-    gcc
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
