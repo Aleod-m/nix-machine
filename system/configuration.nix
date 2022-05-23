@@ -44,9 +44,9 @@
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.opengl.enable = true;
-  hardware.nvidia.modesetting.enable = true;
+  #services.xserver.videoDrivers = [ "nvidia" ];
+  #hardware.opengl.enable = true;
+  #hardware.nvidia.modesetting.enable = true;
   
 
   # Enable the GNOME Desktop Environment.
