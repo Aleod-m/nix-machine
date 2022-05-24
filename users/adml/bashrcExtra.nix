@@ -1,5 +1,5 @@
 {}: {
-    ''
+    bashrcExtra = ''
         up() {
             local d=""
             limit=$1    
