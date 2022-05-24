@@ -3,18 +3,21 @@
 
   inputs = {
     nixpkgs.url = "github:NixOs/nixpkgs/nixos-21.11";
-    # nixpkgs-unstable.url = "github:NixOs/nixpkgs/nixos-unstable";
     home-manager = { 
       url = "github:nix-community/home-manager/release-21.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, ... }:
+  outputs = { nixpkgs, home-manager, ... }@inputs:
   let
     system = "x86_64-linux";
+    overlays = [
+      inputs.neovim-nightly-overlay.overlay
+    ];
     pkgs = import nixpkgs {
-      inherit system;
+      inherit system overlays;
       config = { allowUnfree = true; };
     };
     lib = nixpkgs.lib;

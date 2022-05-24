@@ -1,44 +1,59 @@
 { pkgs, ... }: {
-  home.packages = with pkgs; [
-    discord
-    spotify
+  home = {
+    username = "adml";
+    homeDirectory = "/home/adml";
 
-    bat
-    exa
-    zoxide
-    starship
+    packages = with pkgs; [
+      discord
+      spotify
 
-    vscode
+      bat
+      exa
+      zoxide
+      starship
 
-    unzip
-    wget
-    htop
-
-    vlc
-    obs-studio
+      vscode
     
-    gimp
-    inkscape
+      unzip
+      wget
+      htop
 
-    multimc
-  ];
-  home.username = "adml";
-  home.homeDirectory = "/home/adml";
+      vlc
+      obs-studio
+    
+      gimp
+      inkscape
 
-  programs = {
-    home-manager.enable = true;
-    bash = {
-      enable = true;
-      shellAliases = import ./shellAliases.nix {inherit pkgs;};
-      
-    };
-
-    git = {
-      enable = true;
-      userName = "AdrienDML";
-      userEmail = "adriendml99@gmail.com";
-    };
+      minecraft 
+    ];
   };
 
-  #services.xserver.layout = ;
+  programs = {
+
+    home-manager.enable = true;
+    bash = {
+      enable       = true;
+      shellAliases = import ./shellAliases.nix {inherit pkgs;};
+    };
+
+    starship = {
+      enable               = true;
+    };
+    
+    git = {
+      enable    = true;
+      userName  = "AdrienDML";
+      userEmail = "adriendml99@gmail.com";
+    };
+
+    neovim = {
+      enable   = true;
+      package  = pkgs.neovim-nightly;
+      withRuby = false;
+    };
+  };
+  
+  services = {
+    network-manager-applet.enable = true;
+  };
 }
