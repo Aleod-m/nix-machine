@@ -23,6 +23,11 @@
       fsType = "vfat";
     };
 
+  fileSystems."/media/Drive2" =
+    { device = "/dev/sdb1";
+      fsType = "ext4";
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-label/swap"; }
     ];
