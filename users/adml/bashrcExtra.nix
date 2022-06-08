@@ -1,4 +1,4 @@
-{}: {
+{pkgs, ...}: {
     bashrcExtra = ''
         up() {
             local d=""

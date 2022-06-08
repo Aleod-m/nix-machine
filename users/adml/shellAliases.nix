@@ -10,7 +10,7 @@ in {
   lg = exa + "-l --git --header";
   lga = exa +"-a -l --git --header";
   # TODO l.
-
+  
   # git
   ga = git + "add";
   gA = git + "add --all";
