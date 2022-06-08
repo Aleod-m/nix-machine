@@ -48,7 +48,7 @@ xkb_symbols "fr-workman-p" {
     key <AC10> { [     i,          I,    idiqeresis,       Idiqeresis ] };
     key <AC11> {	[ apostrophe,	quotedbl	]	};
 
-    key <LSGT> { [  less,    greater, lessthanequal, greaterthanequal ] }; // < > ≤ ≥
+    key <LSGT> { [  less,    greater, lessthanequal, greaterthanequal ] };
     key <AB01> { [     z,          Z,            ae,               AE ] };
     key <AB02> { [     x,          X,            oe,               OE ] };
     key <AB03> { [     c,          C,      ccedilla,         Ccedilla ] };
@@ -62,8 +62,6 @@ xkb_symbols "fr-workman-p" {
 
     key <BKSL> { [ backslash, bar ]	};
     // End alphanumeric section
-
-    // key <CAPS> { [ BackSpace, Escape,     BackSpace,        BackSpace ] };
 
     include "level3(ralt_switch)"
 };

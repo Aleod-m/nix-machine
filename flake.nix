@@ -10,7 +10,7 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { nixpkgs, home-manager, ... }@inputs:
+  outputs = { nixpkgs, home-manager, self, ... }@inputs:
   let
     system = "x86_64-linux";
     overlays = [
@@ -34,6 +34,7 @@
     nixosConfigurations = {
       nixos-pc = lib.nixosSystem {
         inherit system;
+        specialArgs = {inherit inputs self;};
         modules = [ 
           home-manager.nixosModules.home-manager
           ./system/configuration.nix
