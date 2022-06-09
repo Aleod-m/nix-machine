@@ -61,6 +61,9 @@ in {
     services = {
         printing.enable = true;
         openssh.enable  = true;
+        picom = {
+            enable = true;
+        };
         xserver = {
             enable                        = true;
             videoDrivers                  = [ "nvidia" ];
