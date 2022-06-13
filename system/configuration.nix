@@ -57,6 +57,7 @@ in {
             nvidiaBusId = "PCI:1:0:0";
             intelBusId = "PCI:0:2:0";
         };
+        bluetooth.enable = true;
     };
     services = {
         printing.enable = true;
@@ -64,6 +65,7 @@ in {
         picom = {
             enable = true;
         };
+        blueman.enable = true;
         xserver = {
             enable                        = true;
             videoDrivers                  = [ "nvidia" ];
