@@ -26,7 +26,7 @@ in {
                 minecraft
                 gcc
                 pavucontrol
-                backlight
+                xorg.xbacklight
                 ];
     };
 
