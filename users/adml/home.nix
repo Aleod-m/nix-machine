@@ -27,6 +27,7 @@ in {
                 gcc
                 pavucontrol
                 xorg.xbacklight
+                xclip
                 ];
     };
 
