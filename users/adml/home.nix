@@ -5,40 +5,44 @@ in {
     home = {
         username = "adml";
         homeDirectory = "/home/adml";
-
         packages = with pkgs; [
             discord
-                spotify
-                bat
-                exa
-                zoxide
-                starship
-                vscode
-                unzip
-                wget
-                htop
-                tuxguitar
-                vlc
-                obs-studio
-                peek
-                gimp
-                inkscape
-                minecraft
-                gcc
-                pavucontrol
-                xorg.xbacklight
-                xclip
-                ];
+            spotify
+            graphviz
+            bat
+            exa
+            zoxide
+            ripgrep
+            starship
+            vscode
+            unzip
+            rar
+            wget
+            htop
+            tuxguitar
+            vlc
+            evince
+            obs-studio
+            peek
+            gimp
+            inkscape
+            blender
+            minecraft
+            gcc
+            pavucontrol
+            xorg.xbacklight
+            xclip
+            vcv-rack
+        ];
     };
 
     programs = {
-
         home-manager.enable = true;
-        bash = {
-            enable       = true;
-            shellAliases = import ./shellAliases.nix {inherit pkgs;};
-            inherit bashrcExtra;
-        };
+        #bash = {
+        #    enable       = true;
+        #    shellAliases = import ./shellAliases.nix {inherit pkgs;};
+        #    inherit bashrcExtra;
+        #};
 
         starship = {
             enable = true;
@@ -54,6 +58,7 @@ in {
             enable   = true;
             package  = pkgs.neovim-nightly;
             withRuby = false;
+
         };
     };
 

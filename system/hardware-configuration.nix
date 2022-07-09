@@ -24,7 +24,7 @@
     };
 
   fileSystems."/media/Drive2" =
-    { device = "/dev/sdb1";
+    { device = "/dev/disk/by-uuid/b614af56-193e-4174-9ec8-3e6e73d886f8";
       fsType = "ext4";
     };
 

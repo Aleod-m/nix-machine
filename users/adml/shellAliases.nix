@@ -23,4 +23,5 @@ in {
   gp = git + "pull";
   gd = git + "diff";
   # archives
+  fix-kbd = "setxkbmap fr-workman-p -option caps:swapescape";
 }
