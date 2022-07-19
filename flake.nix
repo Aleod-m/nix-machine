@@ -53,6 +53,7 @@
           name = "nixos-pc";
           userName = "adml";
           sysModules = [
+            "workman"
           ];
       };
     };

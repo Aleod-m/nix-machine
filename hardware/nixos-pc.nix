@@ -81,13 +81,7 @@ in {
                         luadbi-mysql
                 ];
             };
-
-            extraLayouts.fr-workman-p ={
-                description = "Fench variation on the workman-p layout";
-                languages = [ "fr" ];
-                symbolsFile = "${self}/system/fr-workman-p.xkb";
-            };
-        };
+       };
 
         pipewire = {
             enable                = true;
