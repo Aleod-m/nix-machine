@@ -29,6 +29,12 @@
         homeDirectory = "/home/adml"; 
         configuration = import ./users/adml/home.nix;
       };
+      AdrienDML = home-manager.lib.homeManagerConfiguration { 
+        inherit system pkgs;
+        username = "AdrienDML";
+        homeDirectory = "/home/AdrienDML"; 
+        configuration = import ./users/AdrienDML/home.nix;
+      };
     };
 
     nixosConfigurations = {

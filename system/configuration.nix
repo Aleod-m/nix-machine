@@ -103,6 +103,12 @@ in {
         extraGroups = [ "wheel" "input" "video" "uinput" "networkmanager" ];
     };
 
+    users.users.AdrienDML = {
+        isNormalUser = true;
+        extraGroups = [ "wheel" "input" "video" "uinput" "networkmanager" ];
+    };
+
+
     environment.systemPackages = with pkgs; [
         nvidia-offload 
             firefox
