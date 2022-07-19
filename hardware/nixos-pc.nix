@@ -3,36 +3,23 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 
-{ config, pkgs, home-manager, self, ... }: 
-let 
-nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
-export __NV_PRIME_RENDER_OFFLOAD=1
-export __NV_PRIME_RENDER_OFFLOAD_PROVIDER=NVIDIA-G0
-export __GLX_VENDOR_LIBRARY_NAME=nvidia
-export __VK_LAYER_NV_optimus=NVIDIA_only
-exec -a "$0" "$@"
-'';
-in {
+{ config, pkgs, home-manager, self, ... }: {
 
     imports             = [ ./hardware-configuration.nix ];
     sound.enable        = true;
     system.stateVersion = "21.11";
     time.timeZone       = "Europe/Paris";
     i18n.defaultLocale  = "en_US.UTF-8";
-
     fonts.fonts = with pkgs; [
         nerdfonts
     ];
-
     nix.package                = pkgs.nixFlakes;
     nix.extraOptions           = '' experimental-features = nix-command flakes '';
     nixpkgs.config.allowUnfree = true;
-
     boot.loader = {
         systemd-boot.enable      = true;
         efi.canTouchEfiVariables = true;
     };
-
     networking = {
         hostName                         = "nixos-pc";
         networkmanager.enable            = true;
@@ -51,14 +38,9 @@ in {
 
 
     hardware = {
-        opengl.enable = true;
-        nvidia.prime = {
-            offload.enable = true;
-            nvidiaBusId = "PCI:1:0:0";
-            intelBusId = "PCI:0:2:0";
-        };
         bluetooth.enable = true;
     };
+
     services = {
         printing.enable = true;
         openssh.enable  = true;
@@ -72,8 +54,6 @@ in {
             libinput.enable               = true;
             displayManager.lightdm.enable = true;
             layout                        = "fr";
-
-
             windowManager.awesome = {
                 enable     = true;
                 luaModules = with pkgs.luaPackages; [
@@ -82,7 +62,6 @@ in {
                 ];
             };
        };
-
         pipewire = {
             enable                = true;
             alsa.enable           = true;
@@ -105,7 +84,6 @@ in {
 
 
     environment.systemPackages = with pkgs; [
-        nvidia-offload 
             firefox
             xfce.thunar
             curl

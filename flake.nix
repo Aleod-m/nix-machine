@@ -50,11 +50,12 @@
 
     nixosConfigurations = {
       nixos-pc = mkComputer {
-          name = "nixos-pc";
-          userName = "adml";
-          sysModules = [
-            "workman"
-          ];
+        name = "nixos-pc";
+        userName = "adml";
+        sysModules = [
+          "workman"
+          "nvidia"
+        ];
       };
     };
   };
