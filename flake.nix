@@ -21,6 +21,17 @@
       config = { allowUnfree = true; };
     };
     lib = nixpkgs.lib;
+    mkComputer = { name, userName, sysModules }:  
+    let 
+      sysMods = map (moduleName: ./modules/. + "/${moduleName}") sysModules; 
+    in lib.nixosSystem {
+      inherit system;
+      specialArgs = {inherit inputs self;};
+      modules = [
+        home-manager.nixosModules.home-manager
+        (./. + "/hardware/${name}.nix")
+      ] ++ sysMods ;
+    };
   in {
     homeManagerConfigurations = {
       adml = home-manager.lib.homeManagerConfiguration { 
@@ -38,15 +49,12 @@
     };
 
     nixosConfigurations = {
-      nixos-pc = lib.nixosSystem {
-        inherit system;
-        specialArgs = {inherit inputs self;};
-        modules = [ 
-          home-manager.nixosModules.home-manager
-          ./system/configuration.nix
-        ];
+      nixos-pc = mkComputer {
+          name = "nixos-pc";
+          userName = "adml";
+          sysModules = [
+          ];
       };
     };
-  
   };
 }

@@ -5,7 +5,7 @@ let
 in {
   # ls replacement
   ls = exa;
-  ld = exa + "-d";
+  lsd = exa + "-d";
   la = exa + "-a -l";
   lg = exa + "-l --git --header";
   lga = exa +"-a -l --git --header";

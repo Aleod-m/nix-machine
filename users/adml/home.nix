@@ -38,11 +38,11 @@ in {
 
     programs = {
         home-manager.enable = true;
-        #bash = {
-        #    enable       = true;
-        #    shellAliases = import ./shellAliases.nix {inherit pkgs;};
-        #    inherit bashrcExtra;
-        #};
+        bash = {
+            enable       = true;
+            shellAliases = import ./shellAliases.nix {inherit pkgs;};
+            inherit bashrcExtra;
+        };
 
         starship = {
             enable = true;
