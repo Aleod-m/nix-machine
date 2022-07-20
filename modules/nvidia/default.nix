@@ -16,6 +16,7 @@ in {
         intelBusId = "PCI:0:2:0";
     };
   };
+  services.xserver.videoDrivers = [ "nvidia" ];
   environment.systemPackages = [
     nvidia-offload 
   ];
