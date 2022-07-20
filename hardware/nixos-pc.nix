@@ -69,7 +69,6 @@
         keyMap = "fr";
     };
 
-
     services = {
         printing.enable = true;
         picom = {
@@ -91,18 +90,6 @@
        };
     };
 
-    users.users.adml = {
-        isNormalUser = true;
-        shell = pkgs.nushell;
-        extraGroups = [ "wheel" "input" "video" "uinput" "networkmanager" ];
-    };
-
-    users.users.AdrienDML = {
-        isNormalUser = true;
-        shell = pkgs.nushell;
-        extraGroups = [ "wheel" "input" "video" "uinput" "networkmanager" ];
-    };
-
     environment.systemPackages = with pkgs; [
       firefox
       xfce.thunar
@@ -114,4 +101,3 @@
 
     programs.mtr.enable  = true;
 }
-
