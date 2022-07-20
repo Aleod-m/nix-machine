@@ -8,6 +8,10 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  system.stateVersion = "21.11";
+  time.timeZone       = "Europe/Paris";
+  i18n.defaultLocale  = "en_US.UTF-8";
+
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -41,10 +45,6 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-    sound.enable        = true;
-    system.stateVersion = "21.11";
-    time.timeZone       = "Europe/Paris";
-    i18n.defaultLocale  = "en_US.UTF-8";
     fonts.fonts = with pkgs; [
         nerdfonts
     ];
@@ -52,6 +52,7 @@
         systemd-boot.enable      = true;
         efi.canTouchEfiVariables = true;
     };
+
     networking = {
         hostName                         = "nixos-pc";
         networkmanager.enable            = true;
@@ -62,6 +63,7 @@
             wlp3s0.useDHCP = true;
         };
     };  
+
     console = {
         font   = "Lat2-Terminus16";
         keyMap = "fr";
@@ -92,13 +94,6 @@
                 ];
             };
        };
-        pipewire = {
-            enable                = true;
-            alsa.enable           = true;
-            pulse.enable          = true;
-            jack.enable           = true;
-            alsa.support32Bit     = true;
-        };
     };
 
     users.users.adml = {

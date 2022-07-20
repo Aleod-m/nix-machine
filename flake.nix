@@ -55,6 +55,7 @@
         userName = "adml";
         sysModules = [
           "workman"
+          "sound"
           "nvidia"
         ];
       };
