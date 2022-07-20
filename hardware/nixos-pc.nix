@@ -75,7 +75,6 @@
 
     services = {
         printing.enable = true;
-        openssh.enable  = true;
         picom = {
             enable = true;
         };
@@ -109,18 +108,14 @@
     };
 
     environment.systemPackages = with pkgs; [
-            firefox
-            xfce.thunar
-            curl
-            nano
-            kitty
-            git
+      firefox
+      xfce.thunar
+      curl
+      nano
+      kitty
+      git
     ];
 
     programs.mtr.enable  = true;
-    programs.gnupg.agent = {
-        enable           = true;
-        enableSSHSupport = true;
-    };
 }
 

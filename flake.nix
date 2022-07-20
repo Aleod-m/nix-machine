@@ -56,6 +56,7 @@
         sysModules = [
           "workman"
           "sound"
+          "ssh"
           "nvidia"
         ];
       };
