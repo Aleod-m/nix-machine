@@ -57,6 +57,7 @@
           "workman"
           "sound"
           "ssh"
+          "bluetooth"
           "nvidia"
         ];
       };

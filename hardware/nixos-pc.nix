@@ -69,16 +69,12 @@
         keyMap = "fr";
     };
 
-    hardware = {
-        bluetooth.enable = true;
-    };
 
     services = {
         printing.enable = true;
         picom = {
             enable = true;
         };
-        blueman.enable = true;
         xserver = {
             enable                        = true;
             videoDrivers                  = [ "nvidia" ];
