@@ -30,6 +30,7 @@
       modules = [
         home-manager.nixosModules.home-manager
         (./. + "/hardware/${name}.nix")
+        ./modules/nixdefaults
       ] ++ sysMods ;
     };
   in {

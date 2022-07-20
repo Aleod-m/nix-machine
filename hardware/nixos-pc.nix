@@ -13,9 +13,6 @@
     fonts.fonts = with pkgs; [
         nerdfonts
     ];
-    nix.package                = pkgs.nixFlakes;
-    nix.extraOptions           = '' experimental-features = nix-command flakes '';
-    nixpkgs.config.allowUnfree = true;
     boot.loader = {
         systemd-boot.enable      = true;
         efi.canTouchEfiVariables = true;
