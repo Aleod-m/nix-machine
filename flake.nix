@@ -13,14 +13,18 @@
   outputs = { nixpkgs, home-manager, self, ... }@inputs:
   let
     system = "x86_64-linux";
+
     overlays = [
       inputs.neovim-nightly-overlay.overlay
     ];
+
     pkgs = import nixpkgs {
       inherit system overlays;
       config = { allowUnfree = true; };
     };
+
     lib = nixpkgs.lib;
+
     mkComputer = { name, users, sysModules }:  
     let 
       sysMods = map (moduleName: ./modules/. + "/${moduleName}") sysModules; 
@@ -34,20 +38,18 @@
         (./. + "/hardware/${name}.nix")
       ] ++ sysMods ++ userMods;
     };
+
+    mkUser = userName: home-manager.lib.homeManagerConfiguration { 
+        inherit system pkgs;
+        username = userName;
+        homeDirectory = "/home/${userName}"; 
+        configuration = import (./. + "/users/${userName}/home.nix");
+    };
+
   in {
     homeManagerConfigurations = {
-      adml = home-manager.lib.homeManagerConfiguration { 
-        inherit system pkgs;
-        username = "adml";
-        homeDirectory = "/home/adml"; 
-        configuration = import ./users/adml/home.nix;
-      };
-      AdrienDML = home-manager.lib.homeManagerConfiguration { 
-        inherit system pkgs;
-        username = "AdrienDML";
-        homeDirectory = "/home/AdrienDML"; 
-        configuration = import ./users/AdrienDML/home.nix;
-      };
+      adml = mkUser "adml";
+      AdrienDML = mkUser "AdrienDML";
     };
 
     nixosConfigurations = {
