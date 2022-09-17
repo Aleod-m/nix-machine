@@ -1,73 +1,76 @@
-{ pkgs, ... }:
+_: { pkgs, ... }:
 let
-bashrcExtra = (import ./bashrcExtra.nix { inherit pkgs; }).bashrcExtra;
-in {
-    home = {
-        username = "adml";
-        homeDirectory = "/home/adml";
-        packages = with pkgs; [
-            discord
-            spotify
-            graphviz
-            bat
-            exa
-            zoxide
-            ripgrep
-            starship
-            vscode
-            unzip
-            rar
-            wget
-            htop
-            tuxguitar
-            vlc
-            evince
-            obs-studio
-            peek
-            gimp
-            inkscape
-            blender
-            minecraft
-            gcc
-            pavucontrol
-            xorg.xbacklight
-            xclip
-            vcv-rack
-        ];
-    };
+  bashrcExtra = (import ./bashrcExtra.nix { inherit pkgs; }).bashrcExtra;
+in { 
+  config = {
+    nix.allowedUnfreePkgs = [
+      "discord"
+      "spotify"
+      "spotify-unwrapped"
+      "vscode"
+      "vcv-rack"
+    ];
+
+    home.packages = with pkgs; [
+      gparted
+      discord
+      spotify
+      graphviz
+      bat
+      exa
+      zoxide
+      ripgrep
+      starship
+      vscode
+      unzip
+      wget
+      htop
+      tuxguitar
+      vlc
+      evince
+      peek
+      gimp
+      inkscape
+      blender
+      gcc
+      pavucontrol
+      polymc
+      godot
+      python3
+      xclip
+      xorg.xbacklight
+    ];
 
     programs = {
-        home-manager.enable = true;
-        bash = {
-            enable       = true;
-            shellAliases = import ./shellAliases.nix {inherit pkgs;};
-            inherit bashrcExtra;
-        };
+      home-manager.enable = true;
+      obs-studio.enable = true;
 
-        starship = {
-            enable = true;
-        };
+      bash = {
+        enable       = true;
+        shellAliases = import ./shellAliases.nix {inherit pkgs;};
+        inherit bashrcExtra;
+      };
 
-        git = {
-            enable    = true;
-            userName  = "AdrienDML";
-            userEmail = "adriendml99@gmail.com";
-        };
-
-        neovim = {
-            enable   = true;
-            package  = pkgs.neovim-nightly;
-            withRuby = false;
-
-        };
-    };
-
-    services = {
-        network-manager-applet.enable = true;
-    };
-
-    xsession = {
+      starship = {
         enable = true;
-        initExtra = "setxkbmap fr-workman-p -option caps:swapescape";
+      };
+      git = {
+        enable    = true;
+        userName  = "AdrienDML";
+        userEmail = "adriendml99@gmail.com";
+      };
+      neovim = {
+        enable   = true;
+        #package  = pkgs.neovim-nightly;
+        withRuby = false;
+      };
     };
+    services = {
+      network-manager-applet.enable = true;
+    };
+    xsession = {
+      enable = true;
+      initExtra = "setxkbmap fr-workman-p -option caps:swapescape";
+    };
+  };
 }

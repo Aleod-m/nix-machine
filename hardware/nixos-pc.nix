@@ -4,9 +4,6 @@
 
 
 { config, lib, pkgs, modulesPath, ... }: {
-  imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
-  ];
 
   system.stateVersion = "21.11";
   time.timeZone       = "Europe/Paris";
@@ -19,6 +16,7 @@
     "sd_mod"
     "rtsx_usb_sdmmc"
   ];
+
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
@@ -45,59 +43,59 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
-    fonts.fonts = with pkgs; [
-        nerdfonts
-    ];
-    boot.loader = {
-        systemd-boot.enable      = true;
-        efi.canTouchEfiVariables = true;
-    };
+  fonts.fonts = with pkgs; [
+      nerdfonts
+  ];
+  boot.loader = {
+      systemd-boot.enable      = true;
+      efi.canTouchEfiVariables = true;
+  };
 
-    networking = {
-        hostName                         = "nixos-pc";
-        networkmanager.enable            = true;
-        resolvconf.dnsExtensionMechanism = false;
-        firewall.enable                  = false;
-        interfaces = {
-            enp4s0.useDHCP = true;
-            wlp3s0.useDHCP = true;
-        };
-    };  
+  networking = {
+      hostName                         = "nixos-pc";
+      networkmanager.enable            = true;
+      resolvconf.dnsExtensionMechanism = false;
+      firewall.enable                  = false;
+      interfaces = {
+          enp4s0.useDHCP = true;
+          wlp3s0.useDHCP = true;
+      };
+  };  
 
-    console = {
-        font   = "Lat2-Terminus16";
-        keyMap = "fr";
-    };
+  console = {
+      font   = "Lat2-Terminus16";
+      keyMap = "fr";
+  };
 
-    services = {
-        printing.enable = true;
-        picom = {
-            enable = true;
-        };
-        xserver = {
-            enable                        = true;
-            videoDrivers                  = [ "nvidia" ];
-            libinput.enable               = true;
-            displayManager.lightdm.enable = true;
-            layout                        = "fr";
-            windowManager.awesome = {
-                enable     = true;
-                luaModules = with pkgs.luaPackages; [
-                    luarocks
-                        luadbi-mysql
-                ];
-            };
-       };
-    };
+  services = {
+      printing.enable = true;
+      picom = {
+          enable = true;
+      };
+      xserver = {
+          enable                        = true;
+          videoDrivers                  = [ "nvidia" ];
+          libinput.enable               = true;
+          displayManager.lightdm.enable = true;
+          layout                        = "fr";
+          windowManager.awesome = {
+              enable     = true;
+              luaModules = with pkgs.luaPackages; [
+                  luarocks
+                      luadbi-mysql
+              ];
+          };
+     };
+  };
 
-    environment.systemPackages = with pkgs; [
-      firefox
-      xfce.thunar
-      curl
-      nano
-      kitty
-      git
-    ];
+  environment.systemPackages = with pkgs; [
+    firefox
+    xfce.thunar
+    curl
+    nano
+    kitty
+    git
+  ];
 
-    programs.mtr.enable  = true;
+  programs.mtr.enable  = true;
 }

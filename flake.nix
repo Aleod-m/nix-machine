@@ -2,67 +2,49 @@
   description = "AdrienDML nixos config";
 
   inputs = {
-    nixpkgs.url = "github:NixOs/nixpkgs/nixos-22.05";
+    nixpkgs-2205.url = "github:NixOs/nixpkgs/nixos-22.05";
+    nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = { 
-      url = "github:nix-community/home-manager/release-22.05";
-      inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
+    hyprland = {
+      url = "github:hyprwm/Hyprland";
+      # build with your own instance of nixpkgs
+      inputs.nixpkgs.follows = "nixpkgs-2205";
+    };
   };
 
-  outputs = { nixpkgs, home-manager, self, ... }@inputs:
+  outputs = { self, ... } @ inputs:
   let
     system = "x86_64-linux";
-
-    overlays = [
-      inputs.neovim-nightly-overlay.overlay
-    ];
-
-    pkgs = import nixpkgs {
-      inherit system overlays;
-      config = { allowUnfree = true; };
-    };
-
-    lib = nixpkgs.lib;
-
-    mkComputer = { name, users, sysModules }:  
-    let 
-      sysMods = map (moduleName: ./modules/. + "/${moduleName}") sysModules; 
-      userMods = map (name: ./. + "/users/${name}") users;
-    in lib.nixosSystem {
-      inherit system;
-      specialArgs = {inherit inputs self;};
-      modules = [
-        home-manager.nixosModules.home-manager
-        ./modules/nixdefaults
-        (./. + "/hardware/${name}.nix")
-      ] ++ sysMods ++ userMods;
-    };
-
-    mkUser = userName: home-manager.lib.homeManagerConfiguration { 
-        inherit system pkgs;
-        username = userName;
-        homeDirectory = "/home/${userName}"; 
-        configuration = import (./. + "/users/${userName}/home.nix");
-    };
-
   in {
-    homeManagerConfigurations = {
-      adml = mkUser "adml";
-      AdrienDML = mkUser "AdrienDML";
+
+    lib = import ./lib inputs;
+
+    # Modules authored. 
+    nixosModules = import ./modules/system inputs;
+    homeModules = import ./modules/home inputs;
+
+    # Packages with the neovim-nightly overlay.
+    pakages.x86_64-linux = import inputs.nixpkgs {
+      inherit system;
+      config = { allowUnfree = true; };
+      overlays = [
+        inputs.neovim-nightly-overlay.overlay
+      ];
+    };
+
+    homeConfigurations = {
+      adml = self.lib.mkUser "adml" system inputs.nixpkgs-unstable;
     };
 
     nixosConfigurations = {
-      nixos-pc = mkComputer {
+      nixos-pc = self.lib.mkComputer {
         name = "nixos-pc";
-        users = [ "adml" "AdrienDML" ];
-        sysModules = [
-          "workman"
-          "sound"
-          "ssh"
-          "bluetooth"
-          "nvidia"
-        ];
+        users = [ "adml" ];
+        inherit system;
       };
     };
   };
