@@ -9,5 +9,5 @@ in home-manager.lib.homeManagerConfiguration {
   modules = [
     homeConfig
     { config.home = { inherit username homeDirectory; stateVersion = "22.11";}; }
-  ] ++ __attrValues self.homeModules;
+  ] ++ builtins.attrValues self.homeModules;
 }

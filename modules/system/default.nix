@@ -7,5 +7,4 @@ inputs: inputs.self.lib.modules.importAndPropagateInputs inputs ./. [
   "nvidia"
   "desktopBase"
   "awesome"
-  #"hyprland"
 ]

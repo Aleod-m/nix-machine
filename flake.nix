@@ -2,18 +2,13 @@
   description = "AdrienDML nixos config";
 
   inputs = {
-    nixpkgs-2205.url = "github:NixOs/nixpkgs/nixos-22.05";
+    nixpkgs-2205.url = "github:nixos/nixpkgs/nixos-22.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager = { 
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    hyprland = {
-      url = "github:hyprwm/Hyprland";
-      # build with your own instance of nixpkgs
-      inputs.nixpkgs.follows = "nixpkgs-2205";
-    };
   };
 
   outputs = { self, ... } @ inputs:
@@ -42,9 +37,10 @@
 
     nixosConfigurations = {
       nixos-pc = self.lib.mkComputer {
+        inherit system;
+        pkgs = inputs.nixpkgs-2205;
         name = "nixos-pc";
         users = [ "adml" ];
-        inherit system;
       };
     };
   };
