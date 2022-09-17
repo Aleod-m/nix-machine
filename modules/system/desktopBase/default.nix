@@ -2,6 +2,7 @@
 _: { config, lib, pkgs, ... }: with lib;
 let
   cfg = config.de;
+  apps = config.de.applications;
   captur = pkgs.writeShellScriptBin "capture" ''grim -g "$(slurp)"'';
 in {
   options = {
@@ -17,6 +18,49 @@ in {
           description = "Wether to not include the default applications.";
           default = false;
       };
+
+      applications = {
+        terminal = mkOption {
+            type = types.nullOr types.package;
+            description = ''The terminal emulator to use.'';
+            default = null;
+        };
+        browser = mkOption {
+            type = types.nullOr types.package;
+            description = ''The browser to use.'';
+            default = null;
+        };
+        documentViewer = mkOption {
+            type = types.nullOr types.package;
+            description = ''The document viewer to use.'';
+            default = null;
+        };
+        mediaReader = mkOption {
+            type = types.nullOr types.package;
+            description = ''The media reader to use'';
+            default = null;
+        };
+        textEditor = mkOption {
+            type = types.nullOr types.package;
+            description = ''The text editor to use.'';
+            default = null;
+        };
+        emailClient = mkOption {
+            type = types.nullOr types.package;
+            description = ''The email client to use'';
+            default = null;
+        };
+        imageViewer = mkOption {
+            type = types.nullOr types.package;
+            description = ''The image viewer to use'';
+            default = null;
+        };
+        fileExplorer = mkOption {
+            type = types.nullOr types.package;
+            description = ''The file explorer to use'';
+            default = null;
+        };
+      };
     };
   };
 
@@ -25,13 +69,15 @@ in {
       de.sound.enable = true;
       services.printing.enable = true;
       services.xserver.libinput.enable = true;
-      environment.systemPackages = with pkgs; [
-        firefox
-        curl
-        nano
-        kitty
-        git
-        peek
+      environment.systemPackages = [
+        (mkIf (apps.terminal != null) apps.terminal)
+        (mkIf (apps.browser != null) apps.browser)
+        (mkIf (apps.documentViewer != null) apps.documentViewer)
+        (mkIf (apps.mediaReader != null) apps.mediaReader)
+        (mkIf (apps.textEditor != null) apps.textEditor)
+        (mkIf (apps.emailClient != null) apps.emailClient)
+        (mkIf (apps.imageViewer != null) apps.imageViewer)
+        (mkIf (apps.fileExplorer != null) apps.fileExplorer)
       ];
     }
     (mkIf (cfg.displayProtocol == "x11") {
