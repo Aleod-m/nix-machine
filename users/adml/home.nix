@@ -53,6 +53,7 @@ in {
       starship = {
         enable = true;
       };
+
       git = {
         enable    = true;
         userName  = "AdrienDML";
@@ -66,10 +67,11 @@ in {
     };
     services = {
       network-manager-applet.enable = true;
+      xserver.xkbVariant = "fr-workman-p";
+      xserver.xkbOption = "caps:swapescape";
     };
     xsession = {
       enable = true;
-      initExtra = "setxkbmap fr-workman-p -option caps:swapescape";
     };
   };
 }
