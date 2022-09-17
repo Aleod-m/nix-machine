@@ -1,10 +1,5 @@
 # NixOs pc hardware config
-{ config, lib, pkgs, modulesPath, ... }: {
-
-  system.stateVersion = "21.11";
-  time.timeZone       = "Europe/Paris";
-  i18n.defaultLocale  = "en_US.UTF-8";
-
+{ config, lib, pkgs, ... }: {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -48,8 +43,6 @@
   };
 
   networking = {
-      hostName                         = "nixos-pc";
-      networkmanager.enable            = true;
       resolvconf.dnsExtensionMechanism = false;
       firewall.enable                  = false;
       interfaces = {
@@ -62,36 +55,4 @@
       font   = "Lat2-Terminus16";
       keyMap = "fr";
   };
-
-  services = {
-      printing.enable = true;
-      picom = {
-          enable = true;
-      };
-      xserver = {
-          enable                        = true;
-          videoDrivers                  = [ "nvidia" ];
-          libinput.enable               = true;
-          displayManager.lightdm.enable = true;
-          layout                        = "fr";
-          windowManager.awesome = {
-              enable     = true;
-              luaModules = with pkgs.luaPackages; [
-                  luarocks
-                      luadbi-mysql
-              ];
-          };
-     };
-  };
-
-  environment.systemPackages = with pkgs; [
-    firefox
-    xfce.thunar
-    curl
-    nano
-    kitty
-    git
-  ];
-
-  programs.mtr.enable  = true;
 }
