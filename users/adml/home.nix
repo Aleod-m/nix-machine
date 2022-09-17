@@ -3,7 +3,7 @@ let
   bashrcExtra = (import ./bashrcExtra.nix { inherit pkgs; }).bashrcExtra;
 in { 
   config = {
-    nix.allowedUnfreePkgs = [
+    nix.allowedUnfree = [
       "discord"
       "spotify"
       "spotify-unwrapped"
@@ -12,7 +12,6 @@ in {
     ];
 
     home.packages = with pkgs; [
-      gparted
       discord
       spotify
       graphviz
