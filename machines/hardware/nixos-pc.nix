@@ -33,7 +33,10 @@ _:
   ];
 
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware={
+      cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+      bluetooth.enable = true;
+  };
 
   fonts.fonts = with pkgs; [
       nerdfonts
@@ -51,9 +54,4 @@ _:
           wlp3s0.useDHCP = true;
       };
   };  
-
-  console = {
-      font   = "Lat2-Terminus16";
-      keyMap = "fr";
-  };
 }
