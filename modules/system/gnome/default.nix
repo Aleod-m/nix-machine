@@ -27,7 +27,7 @@ in {
     environement.gnome.excludePackages = (with pkgs; [
       gnome-photos
       gnome-tour
-    ]) ++ mkIf !cfg.includeGnomeGames (with pkgs.gnome;[
+    ]) ++ mkIf (!cfg.includeGnomeGames) (with pkgs.gnome;[
       cheese
       totem
       tali

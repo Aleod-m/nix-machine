@@ -1,7 +1,7 @@
-_: { config, ...}:
+_: { config, lib, ...}:
 let
-  cfg = de.keyboard.workman-p;
-in {
+  cfg = config.de.keyboard.workman-p;
+in with lib; {
   options = {
     de.workman-p.enable = mkEnableOption "workman-p keyboard layout."; 
   };
