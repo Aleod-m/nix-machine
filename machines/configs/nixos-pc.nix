@@ -16,7 +16,12 @@ _:
 
   # desktop environement setup.
   de = {
-    keyboard.workman-p.enable = true;
+    keyboard = {
+      workman-p.enable = true;
+      layout = "fr";
+      variant = "fr-workmap-p";
+      options = "caps:swapescape";
+    };
 
     lightdm.enable = true;
 

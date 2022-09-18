@@ -1,7 +1,6 @@
 inputs: inputs.self.lib.modules.importAndPropagateInputs inputs ./. [
-  "workman"
+  "keyboard"
   "nixDefaults"
-  #"bluetooth"
   "ssh"
   "sound"
   "nvidia"
