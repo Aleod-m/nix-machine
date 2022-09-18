@@ -1,4 +1,5 @@
 # NixOs pc hardware config
+_:
 { config, lib, pkgs, ... }: {
   boot.initrd.availableKernelModules = [
     "xhci_pci"

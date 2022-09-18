@@ -67,8 +67,6 @@ in {
     };
     services = {
       network-manager-applet.enable = true;
-      xserver.xkbVariant = "fr-workman-p";
-      xserver.xkbOption = "caps:swapescape";
     };
     xsession = {
       enable = true;

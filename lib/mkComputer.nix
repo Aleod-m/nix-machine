@@ -2,8 +2,8 @@
 { name, users, system, pkgs ? import <nixpkgs>}: 
 let 
   userDefs = map (name: import "${self}/users/${name}" inputs) users;
-  config = import "${self}/machines/configs/${name}";
-  hardware= import "${self}/machines/hardware/${name}";
+  config = import "${self}/machines/configs/${name}" inputs;
+  hardware= import "${self}/machines/hardware/${name}" inputs;
 in pkgs.lib.nixosSystem {
   inherit system pkgs;
   specialArgs = {inherit inputs self;};

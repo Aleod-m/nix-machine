@@ -1,4 +1,5 @@
 # NixOs pc hardware config
+_:
 { config, lib, pkgs, ... }: {
 
   time.timeZone       = "Europe/Paris";
@@ -15,12 +16,15 @@
 
   # desktop environement setup.
   de = {
+    workman-p.enable = "true";
+
     gnome = {
       enable = true;
       extentions = with pkgs.gnomeExtensions; [
         pop-shell
       ];
     };
+
     # Default applications to use accross the system.
     applications = with pkgs; {
       terminal = kitty;
