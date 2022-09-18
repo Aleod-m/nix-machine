@@ -8,4 +8,5 @@ inputs: inputs.self.lib.modules.importAndPropagateInputs inputs ./. [
   "desktopBase"
   "awesome"
   "gnome"
+  "lightdm"
 ]
