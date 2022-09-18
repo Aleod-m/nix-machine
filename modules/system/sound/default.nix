@@ -7,7 +7,7 @@ in {
     de.sound = {
       enable = mkEnableOption "sound";
       sound-applet = mkOption {
-          type = type.nullOr types.pkg;
+          type = types.nullOr types.package;
           description = "The gui to use for sound controls.";
           default = pkgs.pavucontrol;
       };
@@ -24,8 +24,9 @@ in {
         alsa.support32Bit     = true;
       };
     };
-    environement.systemsPackage = mkIf [
+    environment.systemPackages = mkIf (cfg.sound-applet != null) [
       cfg.sound-applet
     ];
+    hardware.pulseaudio.enable = false;
   };
 }

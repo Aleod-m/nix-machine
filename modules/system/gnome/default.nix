@@ -8,7 +8,7 @@ in {
   options.de.gnome = {
     enable = mkEnableOption "gnome";
     includeGnomeGames = mkOption {
-        type = types.boolean;
+        type = types.bool;
         description = ''If the games gnome provides should be included. By default they are not.'';
         default = false;
     };
@@ -24,22 +24,28 @@ in {
       xserver.desktopManager.gnome.enable = true;
     };
 
-    environement.gnome.excludePackages = (with pkgs; [
+    environment.gnome.excludePackages = 
+    let
+      games = if (!cfg.includeGnomeGames) then with pkgs.gnome; [
+        cheese
+        totem
+        tali
+        iagno
+        hitori
+        atomix
+      ] else [];
+      default-apps =  with pkgs.gnome; [
+        (mkIf (apps.terminal != null) gnome-terminal)
+        (mkIf (apps.browser != null) epiphany)
+        (mkIf (apps.emailClient != null) geary)
+        (mkIf (apps.documentViewer != null) evince)
+        (mkIf (apps.mediaPlayer != null) totem)
+    ];
+    in
+    with pkgs; [
       gnome-photos
       gnome-tour
-    ]) ++ mkIf (!cfg.includeGnomeGames) (with pkgs.gnome;[
-      cheese
-      totem
-      tali
-      iagno
-      hitori
-      atomix
-    ]) ++ (with pkgs.gnome;[
-      (mkIf (apps.terminal != null) gnome-teminal)
-      (mkIf (apps.browser != null) epiphany)
-      (mkIf (apps.emailClient != null) geary)
-      (mkIf (apps.documentViewer != null) evince)
-      (mkIf (apps.mediaPlayer != null) totem)
-    ]); 
+    ] ++ games
+      ++ default-apps; 
   };
 }

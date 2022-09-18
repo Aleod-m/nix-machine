@@ -1,11 +1,11 @@
 { self, ... } @ inputs:
-{ name, users, system, pkgs ? import <nixpkgs>}: 
+{ name, users, system, pkgs }: 
 let 
   userDefs = map (name: import "${self}/users/${name}" inputs) users;
   config = import "${self}/machines/configs/${name}.nix" inputs;
   hardware= import "${self}/machines/hardware/${name}.nix" inputs;
 in pkgs.lib.nixosSystem {
-  inherit system pkgs;
+  inherit system;
   specialArgs = {inherit inputs self;};
   modules = [
     {

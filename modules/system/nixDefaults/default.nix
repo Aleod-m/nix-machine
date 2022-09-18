@@ -11,16 +11,16 @@ in {
         description = ''
           Allows for  unfree packages by their name.
         '';
-      };
+         };
       flakes.enable = lib.mkOption {
-        type = types.boolean;
+        type = types.bool;
         default = true;
         description = ''
           Enable nix flakes.
         '';
       };
       gc.enable = lib.mkEnableOption {
-        type = types.boolean;
+        type = types.bool;
         default = true;
         description = ''
           Enable nix flakes.

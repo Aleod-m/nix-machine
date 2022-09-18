@@ -16,12 +16,20 @@ _:
 
   # desktop environement setup.
   de = {
-    workman-p.enable = "true";
+    keyboard.workman-p.enable = true;
+
+    lightdm.enable = true;
 
     gnome = {
       enable = true;
       extentions = with pkgs.gnomeExtensions; [
         pop-shell
+        extension-list
+        blur-my-shell
+        clear-top-bar
+        workspaces-bar
+        tray-icons-reloaded
+
       ];
     };
 
@@ -30,7 +38,7 @@ _:
       terminal = kitty;
       browser = firefox;
       documentViewer = evince;
-      mediaReader = vlc;
+      mediaPlayer = vlc;
       textEditor = nano;
       emailClient = thunderbird;
       imageViewer = feh;

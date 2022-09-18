@@ -3,7 +3,7 @@ let
   cfg = config.de.keyboard.workman-p;
 in with lib; {
   options = {
-    de.workman-p.enable = mkEnableOption "workman-p keyboard layout."; 
+    de.keyboard.workman-p.enable = mkEnableOption "workman-p keyboard layout."; 
   };
 
   config = mkIf cfg.enable {

@@ -35,9 +35,9 @@ in {
             description = ''The document viewer to use.'';
             default = null;
         };
-        mediaReader = mkOption {
+        mediaPlayer = mkOption {
             type = types.nullOr types.package;
-            description = ''The media reader to use'';
+            description = ''The media player to use'';
             default = null;
         };
         textEditor = mkOption {
@@ -73,7 +73,7 @@ in {
         (mkIf (apps.terminal != null) apps.terminal)
         (mkIf (apps.browser != null) apps.browser)
         (mkIf (apps.documentViewer != null) apps.documentViewer)
-        (mkIf (apps.mediaReader != null) apps.mediaReader)
+        (mkIf (apps.mediaPlayer != null) apps.mediaPlayer)
         (mkIf (apps.textEditor != null) apps.textEditor)
         (mkIf (apps.emailClient != null) apps.emailClient)
         (mkIf (apps.imageViewer != null) apps.imageViewer)
