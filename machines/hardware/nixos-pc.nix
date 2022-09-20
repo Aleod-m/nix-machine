@@ -31,9 +31,9 @@ _:
   swapDevices = [
     { device = "/dev/disk/by-label/swap"; }
   ];
-
+  hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
-  hardware={
+  hardware = {
       cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
       bluetooth.enable = true;
   };
@@ -49,9 +49,11 @@ _:
   networking = {
       resolvconf.dnsExtensionMechanism = false;
       firewall.enable                  = false;
+      networkmanager.enable            = true;
+      dhcpcd.enable = false;
       interfaces = {
-          enp4s0.useDHCP = true;
-          wlp3s0.useDHCP = true;
+          enp4s0.useDHCP = false;
+          wlp3s0.useDHCP = false;
       };
   };  
 }
