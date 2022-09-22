@@ -1,6 +1,9 @@
-_: { config, lib, ...}:
+_: { config, lib, pkgs, ...}:
 let
   cfg = config.de.keyboard;
+  workman-p = pkgs.runCommand "keyboard-layout" {} ''
+  ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${./. + "/workman-p.xkb"} $out
+'';
 in with lib; {
   options = {
     de.keyboard = {
@@ -16,18 +19,14 @@ in with lib; {
       };
       options = mkOption {
         type = types.str;
-        description = "A string with all the options to use separated by commas."
+        description = "A string with all the options to use separated by commas.";
       };
     };
   };
 
   config = mkIf cfg.enable {
     services.xserver = {
-      extraLayouts.fr-workman-p = mkIf cfg.workman-p.enable {
-        description = "Fench variation of the workman-p layout";
-        languages = [ "fr" ];
-        symbolsFile = ./. + "/fr-workman-p.xkb";
-      };
+      displayManager.sessionCommands = mkIf cfg.workman-p.enable "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${workman-p} $DISPLAY";
       layout = cfg.layout;
       xkbVariant = cfg.variant;
       xkbOptions = cfg.options;

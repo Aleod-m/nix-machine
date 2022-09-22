@@ -27,7 +27,6 @@ in {
     environment.gnome.excludePackages = 
     let
       games = if (!cfg.includeGnomeGames) then with pkgs.gnome; [
-        cheese
         totem
         tali
         iagno
@@ -40,6 +39,7 @@ in {
         (mkIf (apps.emailClient != null) geary)
         (mkIf (apps.documentViewer != null) evince)
         (mkIf (apps.mediaPlayer != null) totem)
+        cheese
     ];
     in
     with pkgs; [

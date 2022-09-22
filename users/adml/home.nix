@@ -40,6 +40,8 @@ in {
       xorg.xbacklight
     ];
 
+    home.keyboard = null;
+
     programs = {
       home-manager.enable = true;
       obs-studio.enable = true;

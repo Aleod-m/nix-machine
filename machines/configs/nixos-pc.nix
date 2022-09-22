@@ -18,9 +18,6 @@ _:
   de = {
     keyboard = {
       workman-p.enable = true;
-      layout = "fr";
-      variant = "fr-workmap-p";
-      options = "caps:swapescape";
     };
 
     lightdm.enable = true;
@@ -34,13 +31,12 @@ _:
         clear-top-bar
         workspaces-bar
         tray-icons-reloaded
-
       ];
     };
 
     # Default applications to use accross the system.
-    applications = with pkgs; {
-      terminal = kitty;
+    applications = with pkgs; { 
+      terminal = kitty; 
       browser = firefox;
       documentViewer = evince;
       mediaPlayer = vlc;
