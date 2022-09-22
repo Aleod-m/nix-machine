@@ -12,14 +12,17 @@ in with lib; {
       layout = mkOption {
         type = types.str;
         description = "A string containing all the layouts to use separated by commas.";
+        default = "us";
       };
       variant = mkOption {
-          type = types.str;
+        type = types.str;
         description = "A string containing all the variants to corresponding layouts separated by commas. If on of the layout don't use any variants leave it empty.";
+        default = "";
       };
       options = mkOption {
         type = types.str;
         description = "A string with all the options to use separated by commas.";
+        default = "";
       };
     };
   };

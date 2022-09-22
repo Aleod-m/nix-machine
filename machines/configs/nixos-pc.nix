@@ -16,9 +16,8 @@ _:
 
   # desktop environement setup.
   de = {
-    keyboard = {
-      workman-p.enable = true;
-    };
+    # enable my keyboard layout.
+    keyboard.workman-p.enable = true;
 
     lightdm.enable = true;
 
