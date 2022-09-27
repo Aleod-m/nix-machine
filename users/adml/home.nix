@@ -10,6 +10,7 @@ in {
       "vscode"
       "vcv-rack"
       "steam"
+      "steam-original"
     ];
 
     home.packages = with pkgs; [
