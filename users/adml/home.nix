@@ -13,6 +13,7 @@ in {
 
     home.packages = with pkgs; [
       discord
+      steam
       spotify
       graphviz
       bat
@@ -38,6 +39,7 @@ in {
       python3
       xclip
       xorg.xbacklight
+      xorg.xkbcomp
     ];
 
     home.keyboard = null;
