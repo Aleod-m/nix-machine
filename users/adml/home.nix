@@ -9,6 +9,7 @@ in {
       "spotify-unwrapped"
       "vscode"
       "vcv-rack"
+      "steam"
     ];
 
     home.packages = with pkgs; [
