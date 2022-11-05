@@ -14,6 +14,8 @@ in {
     ];
 
     home.packages = with pkgs; [
+      wezterm
+      helix
       discord
       steam
       spotify
@@ -21,6 +23,7 @@ in {
       bat
       exa
       zoxide
+      neovim
       ripgrep
       starship
       vscode
@@ -44,7 +47,7 @@ in {
       xorg.xkbcomp
     ];
 
-    home.keyboard = null;
+    #home.keyboard = null;
 
     programs = {
       home-manager.enable = true;
@@ -64,18 +67,32 @@ in {
         enable    = true;
         userName  = "AdrienDML";
         userEmail = "adriendml99@gmail.com";
+        ignores = [".envrc" ".direnv"];
       };
-      neovim = {
-        enable   = true;
-        #package  = pkgs.neovim-nightly;
-        withRuby = false;
+      direnv = {
+        enable = true;
+        nix-direnv.enable = true;
       };
     };
+
     services = {
       network-manager-applet.enable = true;
     };
+
     xsession = {
       enable = true;
+    };
+    xdg = {
+      configFile = {
+        nvim = {
+          source = ./config/nvim;
+          recursive = true;
+        };
+        devshells = {
+          source = ./config/devshells;
+          recursive = true;
+        };
+      };
     };
   };
 }
