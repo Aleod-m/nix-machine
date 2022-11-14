@@ -1,5 +1,5 @@
 # Nushell Config File
-
+ 
 module completions {
   # Custom completions for external commands (those outside of Nushell)
   # Each completions has two parts: the form of the external command, including its flags and parameters
@@ -178,6 +178,7 @@ let default_theme = {
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
+  show_banner: false
   filesize_metric: false
   table_mode: rounded # basic, compact, compact_double, light, thin, with_love, rounded, reinforced, heavy, none, other
   use_ls_colors: true
@@ -188,7 +189,6 @@ let-env config = {
   quick_completions: true  # set this to false to prevent auto-selecting completions when only one remains
   partial_completions: true  # set this to false to prevent partial filling of the prompt
   completion_algorithm: "prefix"  # prefix, fuzzy
-  animate_prompt: false # redraw the prompt every second
   float_precision: 2
   buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctr+e
   use_ansi_coloring: true
@@ -198,6 +198,15 @@ let-env config = {
   sync_history_on_enter: true # Enable to share the history between multiple sessions, else you have to close the session to persist history to file
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
   disable_table_indexes: false # set to true to remove the index column from tables
+  hooks: {
+    pre_prompt: [{
+      code: "
+        let direnv = (direnv exprort json | from json)
+        let direnv = if ($direnv | length) == 1 {$direnv} else {{}}
+        $direnv | load-env
+      "
+    }]
+  }
   menus: [
       # Configuration for default nushell menus
       # Note the lack of souce parameter
@@ -317,6 +326,7 @@ let-env config = {
         }
       }
   ]
+
   keybindings: [
     {
       name: completion_menu
@@ -389,3 +399,4 @@ let-env config = {
 source ~/.config/nushell/starship/init.nu
 source ~/.config/nushell/zoxide/zoxide.nu
 source ~/.config/nushell/functions.nu
+source ~/.config/nushell/nuFetch.nu

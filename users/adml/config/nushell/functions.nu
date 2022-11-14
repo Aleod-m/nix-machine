@@ -1,14 +1,14 @@
 def-env up [nb: int = 1] {
-    let path = (1..$nb | each {|_| ".."} | reduce {|it, acc| $acc + "/" + $it})
+    let path = ( 1..$nb | each { |_| ".." } | reduce { |it, acc| $acc + "/" + $it } )
     cd $path 
 }
 
 def-env mkcd [name: path] {
-    cd (mkdir $name -s | first)
+    cd ( mkdir $name -s | first )
 }
 
 def-env fix-kbd [] {
-    setxkbmap fr-workman-p -option caps:swapescape
+    setxkbmap -layout us -variant workman -option caps:swapescape
 }
 
 def set-screen [side: string = "right"] {
@@ -24,6 +24,7 @@ def set-screen [side: string = "right"] {
 def nixDev [] {
     nix develop -c $env.SHELL
 }
+
 def nixDevi [] {
     nix develop --impure -c $env.SHELL
 }
@@ -38,7 +39,11 @@ def gcm [message: string] {
 
 alias gs = git status
 
-def loc [p: path] {
+def gco [branch] {
+    git checkout $branch
+}
+
+def loc [p: path = .] {
     ls ($p + /**/*) | where type == file | get name | each {|it| open $it | lines | length } | reduce {|a, b| $a + $b}
 }
 

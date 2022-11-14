@@ -7,7 +7,7 @@ def host-name [] {
 def print-logo [] {
     let c1 = "cyan"
     let c2 = "blue"
-    let c3 = "green"
+    let c3 = "purple"
     print $"
                            (ansi ($c1))▁▁                   (ansi ($c2))▁▁▁▁▁▁                ▁▁▁▁
                           (ansi ($c1))╱##╲                  (ansi ($c2))╲#####╲              ╱####╲
