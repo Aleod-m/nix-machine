@@ -31,7 +31,11 @@ in {
   config = lib.mkMerge [
     (lib.mkIf cfg.flakes.enable {
       nix.package                = pkgs.nixFlakes;
-      nix.extraOptions           = '' experimental-features = nix-command flakes '';
+      nix.extraOptions           = ''
+        experimental-features = nix-command flakes
+        keep-outputs = true
+        keep-derivations = true
+      '';
     })
     (lib.mkIf cfg.gc.enable {
       nix.autoOptimiseStore = true;

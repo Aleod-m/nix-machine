@@ -1,4 +1,4 @@
-_: { config, lib, ... }: with lib;
+_: { config, lib, pkgs, ... }: with lib;
 let 
 nvidia-offload = pkgs.writeShellScriptBin "nvidia-offload" ''
 export __NV_PRIME_RENDER_OFFLOAD=1
@@ -13,6 +13,9 @@ in {
   };
 
   config = mkIf config.driver.nvidia.enable {
+    nix.allowedUnfree = [
+        "nvidia-x11"
+    ];
     hardware = {
       opengl.enable = true;
       nvidia.prime = {
