@@ -8,6 +8,7 @@ local leader = km.leader
 km.mapleader " "
 km.maplleader ","
 
+
 km.set_keymaps {
     -- H/L to jump to the start/end of a line
     { mode="n", keymap="H", action="^" },

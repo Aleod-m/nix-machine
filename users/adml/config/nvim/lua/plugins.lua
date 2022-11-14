@@ -52,7 +52,7 @@ return packer.startup(function ()
     use("neovim/nvim-lspconfig")
 
     -- Git
-    -- use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
+    use { 'TimUntersberger/neogit', requires = 'nvim-lua/plenary.nvim' }
     use { 'lewis6991/gitsigns.nvim' }
 
     -- Terminal
@@ -100,8 +100,11 @@ return packer.startup(function ()
     use ('kyazdani42/nvim-web-devicons')
 
     -- Style
-    use{
+    use {
         'nvim-lualine/lualine.nvim',
+        'https://gitlab.com/__tpb/monokai-pro.nvim',
+        'rktjmp/lush.nvim',
+        'AdrienDML/konokai',
         'seblj/nvim-tabline',
         'sainnhe/sonokai',
         'glepnir/dashboard-nvim',

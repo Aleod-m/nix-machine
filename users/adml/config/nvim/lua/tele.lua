@@ -21,8 +21,9 @@ km.set("n", "<leader>gb", builtin.git_branches)
 -- buffers
     -- switch
 km.set("n", "<leader>fb", builtin.buffers)
-    -- search in current
---keymap.set("n", "<leader>s", builtin.current_buffer_fuzzy_find)
+
+-- search in project
+km.set("n", "<leader>gs", builtin.live_grep)
 
 -- Diagnostics
 km.set("n", "<leader>dl", builtin.diagnostics)
