@@ -30,9 +30,13 @@ let-env NU_PLUGIN_DIRS = [
 ]
 
 # Starship
-mkdir ~/.config/nushell/starship/
-starship init nu | save ~/.config/nushell/starship/init.nu
+if not '~/.config/nushell/starship/init.nu' | path exists {
+    mkdir ~/.config/nushell/starship/
+    starship init nu | save ~/.config/nushell/starship/init.nu
+}
 
 # Zoxide
-mkdir ~/.config/nushell/zoxide
-zoxide init nushell --hook prompt | save ~/.config/nushell/zoxide/zoxide.nu
+if not '~/.config/nushell/zoxide/zoxide.nu' | path exists {
+    mkdir ~/.config/nushell/zoxide
+    zoxide init nushell --hook prompt | save ~/.config/nushell/zoxide/zoxide.nu
+}

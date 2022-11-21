@@ -5,6 +5,9 @@ inputs: {
   # Automates the user home environnement creation
   mkUser = import ./mkUser.nix inputs;
 
+  # Keyboard helper functions.
+  Keyboard = import ./keyboard inputs;
+
   # Create an attribute set that inport all the modules in the mods argument and pass the inputs in the ins argument to it.
   modules.importAndPropagateInputs = ins: basePath: mods: 
     builtins.listToAttrs (

@@ -7,7 +7,6 @@ xkb_symbols "workman-p" {
     name[Group1]= "French (Workman-P)";
 
     include "fr(nodeadkeys)"
-    include "level3(ralt_switch)"
 
     // Alphanumeric section
     // First row.

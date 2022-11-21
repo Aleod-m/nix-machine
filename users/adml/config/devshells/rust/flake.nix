@@ -22,7 +22,7 @@
             inherit system ovelays;
         };
       in {
-        devShell = pkgs.mkShell {
+        devShell.default = pkgs.mkShell {
           buildInputs =  with pkgs; [
             # rust compilator
             rustc

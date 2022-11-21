@@ -14,10 +14,11 @@ _:
       keyMap = "fr";
   };
 
+  driver.nvidia.enable = true;
   # desktop environement setup.
   de = {
     # enable my keyboard layout.
-    keyboard.workman-p.enable = true;
+    # keyboard.workman-p.enable = true;
 
     lightdm.enable = true;
 
@@ -43,5 +44,15 @@ _:
       emailClient = thunderbird;
       imageViewer = feh;
     };
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 443 ];
+    allowedTCPPortRanges = [ { from = 8000; to = 9000; } ];
+    allowedUDPPortRanges = [
+      { from = 4000; to = 4007; }
+      { from = 8000; to = 8010; }
+    ];
   };
 }

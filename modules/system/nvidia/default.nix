@@ -17,7 +17,10 @@ in {
         "nvidia-x11"
     ];
     hardware = {
-      opengl.enable = true;
+      opengl = {
+        enable = true;
+        driSupport32Bit = true;
+      };
       nvidia.prime = {
           offload.enable = true;
           nvidiaBusId = "PCI:1:0:0";

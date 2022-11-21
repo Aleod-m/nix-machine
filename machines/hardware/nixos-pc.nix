@@ -48,7 +48,6 @@ _:
 
   networking = {
       resolvconf.dnsExtensionMechanism = false;
-      firewall.enable                  = false;
       networkmanager.enable            = true;
       dhcpcd.enable = false;
       interfaces = {

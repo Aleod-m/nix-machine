@@ -1,5 +1,5 @@
 { home-manager, self, ... } @ inputs : 
-username: system: pkgs:
+{ username, system, pkgs, overlays ? []}:
 let
   args = inputs;
   homeConfig = import "${self}/users/${username}/home.nix" inputs;
@@ -8,6 +8,11 @@ in home-manager.lib.homeManagerConfiguration {
   pkgs = pkgs.legacyPackages.${system};
   modules = [
     homeConfig
-    { config.home = { inherit username homeDirectory; stateVersion = "22.11";}; }
+    {
+      config = {
+          nixpkgs.overlays = overlays;
+          home = { inherit username homeDirectory; stateVersion = "22.11";};
+      };
+    }
   ] ++ builtins.attrValues self.homeModules;
 }

@@ -10,11 +10,17 @@ in {
       "vscode"
       "vcv-rack"
       "steam"
+      "steam-run"
       "steam-original"
+      "obsidian"
     ];
 
     home.packages = with pkgs; [
-      wezterm
+      bottles
+      tiled
+      pciutils
+      gh
+      obsidian
       helix
       discord
       steam
@@ -39,25 +45,19 @@ in {
       blender
       gcc
       pavucontrol
-      polymc
       godot
       python3
       xclip
       xorg.xbacklight
       xorg.xkbcomp
+      prismlauncher
+      emacs
+      nushell
     ];
-
-    #home.keyboard = null;
 
     programs = {
       home-manager.enable = true;
       obs-studio.enable = true;
-
-      bash = {
-        enable       = true;
-        shellAliases = import ./shellAliases.nix {inherit pkgs;};
-        inherit bashrcExtra;
-      };
 
       starship = {
         enable = true;
@@ -69,6 +69,7 @@ in {
         userEmail = "adriendml99@gmail.com";
         ignores = [".envrc" ".direnv"];
       };
+
       direnv = {
         enable = true;
         nix-direnv.enable = true;
@@ -82,6 +83,7 @@ in {
     xsession = {
       enable = true;
     };
+    # Non nix configfiles.
     xdg = {
       configFile = {
         nvim = {
@@ -92,7 +94,13 @@ in {
           source = ./config/devshells;
           recursive = true;
         };
+        nushell = {
+          source = ./config/nushell;
+          recursive = true;
+        };
       };
     };
   };
+
+  
 }

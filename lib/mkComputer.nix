@@ -6,7 +6,7 @@ let
   hardware= import "${self}/machines/hardware/${name}.nix" inputs;
 in pkgs.lib.nixosSystem {
   inherit system;
-  specialArgs = {inherit inputs self;};
+  specialArgs = { inherit self; };
   modules = [
     {
       system.stateVersion = "21.11";
