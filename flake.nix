@@ -2,10 +2,10 @@
   description = "AdrienDML nixos config";
 
   inputs = {
-    nixpkgs-2205.url = "github:nixos/nixpkgs/nixos-22.05";
+    nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-colors.url = "github:Misterio77/nix-colors";
-    home-manager = { 
+    home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
@@ -14,43 +14,28 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, ... } @ inputs:
-  let
+  outputs = {self, ...} @ inputs: let
     system = "x86_64-linux";
+    devPkgs = (import inputs.nixpkgs-unstable) {inherit system;};
   in {
     lib = import ./lib inputs;
 
-    # Modules authored. 
+    # Modules authored.
     nixosModules = import ./modules/system inputs;
     homeModules = import ./modules/home inputs;
 
-    devShells = {
-      packages = with inputs.nixpkgs-unstable; [
+    devShells.${system}.default = devPkgs.mkShell {
+      packages = with devPkgs; [
         alejandra
         git
+        rnix-lsp
       ];
     };
 
-    # Packages with the neovim-nightly overlay.
-    pkgs.x86_64-linux = import inputs.nixpkgs {
-      overlays = [
-        inputs.neovim-nightly-overlay.overlay
-      ];
-    };
-
-    upkgs.x86_64-linux = import inputs.nixpkgs-unstable {
-        inherit system;
-        overlays = [
-          inputs.neovim-nightly-overlay.overlay
-          inputs.prism.overlay
-        ];
-    };
-
-    homeConfigurations = 
-    let 
+    homeConfigurations = let
       overlays = with inputs; [
-        prism.overlay 
-        neovim-nightly-overlay.overlay 
+        prism.overlay
+        neovim-nightly-overlay.overlay
       ];
     in {
       adml = self.lib.mkUser {
@@ -63,9 +48,9 @@
     nixosConfigurations = {
       nixos-pc = self.lib.mkComputer {
         inherit system;
-        pkgs = inputs.nixpkgs-2205;
+        pkgs = inputs.nixpkgs-2211;
         name = "nixos-pc";
-        users = [ "adml" ];
+        users = ["adml"];
       };
     };
   };

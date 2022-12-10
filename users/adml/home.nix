@@ -1,7 +1,6 @@
-_: { pkgs, ... }:
-let
-  bashrcExtra = (import ./bashrcExtra.nix { inherit pkgs; }).bashrcExtra;
-in { 
+_: {pkgs, ...}: let
+  bashrcExtra = (import ./bashrcExtra.nix {inherit pkgs;}).bashrcExtra;
+in {
   config = {
     nix.allowedUnfree = [
       "discord"
@@ -16,6 +15,7 @@ in {
     ];
 
     home.packages = with pkgs; [
+      libreoffice
       bottles
       tiled
       pciutils
@@ -64,8 +64,8 @@ in {
       };
 
       git = {
-        enable    = true;
-        userName  = "AdrienDML";
+        enable = true;
+        userName = "AdrienDML";
         userEmail = "adriendml99@gmail.com";
         ignores = [".envrc" ".direnv"];
       };
@@ -101,6 +101,4 @@ in {
       };
     };
   };
-
-  
 }

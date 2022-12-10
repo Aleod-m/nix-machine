@@ -1,6 +1,10 @@
 # NixOs pc hardware config
-_:
-{ config, lib, pkgs, ... }: {
+_: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   boot.initrd.availableKernelModules = [
     "xhci_pci"
     "ahci"
@@ -9,9 +13,9 @@ _:
     "rtsx_usb_sdmmc"
   ];
 
-  boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
-  boot.extraModulePackages = [ ];
+  boot.initrd.kernelModules = [];
+  boot.kernelModules = ["kvm-intel"];
+  boot.extraModulePackages = [];
 
   fileSystems."/" = {
     device = "/dev/disk/by-label/nixos";
@@ -29,30 +33,30 @@ _:
   };
 
   swapDevices = [
-    { device = "/dev/disk/by-label/swap"; }
+    {device = "/dev/disk/by-label/swap";}
   ];
   hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {
-      cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-      bluetooth.enable = true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    bluetooth.enable = true;
   };
 
   fonts.fonts = with pkgs; [
-      nerdfonts
+    nerdfonts
   ];
   boot.loader = {
-      systemd-boot.enable      = true;
-      efi.canTouchEfiVariables = true;
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 
   networking = {
-      resolvconf.dnsExtensionMechanism = false;
-      networkmanager.enable            = true;
-      dhcpcd.enable = false;
-      interfaces = {
-          enp4s0.useDHCP = false;
-          wlp3s0.useDHCP = false;
-      };
-  };  
+    resolvconf.dnsExtensionMechanism = false;
+    networkmanager.enable = true;
+    dhcpcd.enable = false;
+    interfaces = {
+      enp4s0.useDHCP = false;
+      wlp3s0.useDHCP = false;
+    };
+  };
 }

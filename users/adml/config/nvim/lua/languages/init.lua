@@ -10,6 +10,7 @@ local languages = {
     elm    = require("languages.settings.elm"),
     svelte = require("languages.settings.svelte"),
     wgsl   = require("languages.settings.wgsl"),
+    nix    = require("languages.settings.nix"),
 }
 
 for _, settings in pairs(languages) do

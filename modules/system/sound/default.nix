@@ -1,15 +1,19 @@
-_: { config, lib, pkgs, ... }: with lib;
-let
+_: {
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+with lib; let
   cfg = config.de.sound;
 in {
-
   options = {
     de.sound = {
       enable = mkEnableOption "sound";
       sound-applet = mkOption {
-          type = types.nullOr types.package;
-          description = "The gui to use for sound controls.";
-          default = pkgs.pavucontrol;
+        type = types.nullOr types.package;
+        description = "The gui to use for sound controls.";
+        default = pkgs.pavucontrol;
       };
     };
   };
@@ -17,11 +21,11 @@ in {
   config = mkIf cfg.enable {
     services = {
       pipewire = {
-        enable                = true;
-        alsa.enable           = true;
-        pulse.enable          = true;
-        jack.enable           = true;
-        alsa.support32Bit     = true;
+        enable = true;
+        alsa.enable = true;
+        pulse.enable = true;
+        jack.enable = true;
+        alsa.support32Bit = true;
       };
     };
     environment.systemPackages = mkIf (cfg.sound-applet != null) [

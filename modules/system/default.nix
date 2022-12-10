@@ -1,4 +1,5 @@
-inputs: inputs.self.lib.modules.importAndPropagateInputs inputs ./. [
+inputs:
+inputs.self.lib.modules.importAndPropagateInputs inputs ./. [
   "keyboard"
   "nixDefaults"
   "ssh"

@@ -1,8 +1,11 @@
-_: { pkgs, lib, ... }: with lib;
-let
+_: {
+  pkgs,
+  lib,
+  ...
+}:
+with lib; let
   cfg = config.programs.rustUtils;
 in {
-
   options = {
     programs.rustUtils = {
       enableDefaultAliases = mkOption {
@@ -22,8 +25,8 @@ in {
 
       starship.settings = {
         add_newline = mkOption {
-            type = types.bool;
-            default = true;
+          type = types.bool;
+          default = true;
         };
       };
     };
@@ -40,5 +43,4 @@ in {
       ];
     };
   };
-
 }

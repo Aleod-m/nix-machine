@@ -1,5 +1,9 @@
-_: { pkgs, lib, config, ... }: 
-let
+_: {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.nix;
 in {
   options = {
@@ -12,6 +16,9 @@ in {
     };
   };
   config = {
-    nixpkgs.config.allowUnfreePredicate = if (cfg.allowedUnfree == []) then (_: false)  else (pkg: builtins.elem (lib.getName pkg) cfg.allowedUnfree);
+    nixpkgs.config.allowUnfreePredicate =
+      if (cfg.allowedUnfree == [])
+      then (_: false)
+      else (pkg: builtins.elem (lib.getName pkg) cfg.allowedUnfree);
   };
 }

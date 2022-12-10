@@ -1,5 +1,4 @@
-{pkgs, ...}:
-let
+{pkgs, ...}: let
   exa = "${pkgs.exa}/bin/exa ";
   git = "${pkgs.git}/bin/git ";
 in {
@@ -8,9 +7,9 @@ in {
   ld = exa + "-d";
   la = exa + "-a -l";
   lg = exa + "-l --git --header";
-  lga = exa +"-a -l --git --header";
+  lga = exa + "-a -l --git --header";
   # TODO l.
-  
+
   # git
   ga = git + "add";
   gA = git + "add --all";

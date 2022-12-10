@@ -1,17 +1,20 @@
 # NixOs pc hardware config
-_:
-{ config, lib, pkgs, ... }: {
-
-  time.timeZone       = "Europe/Paris";
-  i18n.defaultLocale  = "en_US.UTF-8";
+_: {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  time.timeZone = "Europe/Paris";
+  i18n.defaultLocale = "en_US.UTF-8";
 
   fonts.fonts = with pkgs; [
-      nerdfonts
+    nerdfonts
   ];
 
   console = {
-      font   = "Lat2-Terminus16";
-      keyMap = "fr";
+    font = "Lat2-Terminus16";
+    keyMap = "fr";
   };
 
   driver.nvidia.enable = true;
@@ -35,8 +38,8 @@ _:
     };
 
     # Default applications to use accross the system.
-    applications = with pkgs; { 
-      terminal = kitty; 
+    applications = with pkgs; {
+      terminal = kitty;
       browser = firefox;
       documentViewer = evince;
       mediaPlayer = vlc;
@@ -48,11 +51,22 @@ _:
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 443 ];
-    allowedTCPPortRanges = [ { from = 8000; to = 9000; } ];
+    allowedTCPPorts = [80 443];
+    allowedTCPPortRanges = [
+      {
+        from = 8000;
+        to = 9000;
+      }
+    ];
     allowedUDPPortRanges = [
-      { from = 4000; to = 4007; }
-      { from = 8000; to = 8010; }
+      {
+        from = 4000;
+        to = 4007;
+      }
+      {
+        from = 8000;
+        to = 8010;
+      }
     ];
   };
 }

@@ -1,5 +1,9 @@
-_: { pkgs, lib, config, ... }: 
-let
+_: {
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
   cfg = config.nix;
   types = lib.types;
 in {
@@ -11,7 +15,7 @@ in {
         description = ''
           Allows for  unfree packages by their name.
         '';
-         };
+      };
       flakes.enable = lib.mkOption {
         type = types.bool;
         default = true;
@@ -30,8 +34,8 @@ in {
   };
   config = lib.mkMerge [
     (lib.mkIf cfg.flakes.enable {
-      nix.package                = pkgs.nixFlakes;
-      nix.extraOptions           = ''
+      nix.package = pkgs.nixFlakes;
+      nix.extraOptions = ''
         experimental-features = nix-command flakes
         keep-outputs = true
         keep-derivations = true

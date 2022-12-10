@@ -1,5 +1,6 @@
 local options = { 
     undofile=true,
+    autoread=true,
     mouse='a',
     tabstop=4,
     shiftwidth=4,
