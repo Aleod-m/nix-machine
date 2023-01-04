@@ -35,13 +35,6 @@ packer.init {
   },
 }
 
--- Sync plugins on save of this file
-vim.cmd [[
-    augroup packer_cfg
-        autocmd!
-        autocmd BufWritePost plugins.lua source <afile> | PackerSync
-    augroup end
-]]
 
 local use = packer.use
 return packer.startup(function ()

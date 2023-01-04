@@ -4,37 +4,40 @@ _: {
   pkgs,
   ...
 }: let
+  l = lib;
+  t = lib.types;
   cfg = config.de.keyboard;
-  workman-p = pkgs.runCommand "keyboard-layout" {} ''
-    ${pkgs.xorg.xkbcomp}/bin/xkbcomp ${./. + "/workman-p.xkb"} $out
-  '';
 in
-  with lib; {
+  {
     options = {
       de.keyboard = {
-        enable = mkEnableOption "keyboard configuration";
-        workman-p.enable = mkEnableOption "workman-p keyboard layout.";
-        layout = mkOption {
-          type = types.str;
+        enable = l.mkEnableOption "keyboard configuration";
+        workman-p.enable = l.mkEnableOption "workman-p keyboard layout.";
+        layout = l.mkOption {
+          type = t.str;
           description = "A string containing all the layouts to use separated by commas.";
           default = "us";
         };
-        variant = mkOption {
-          type = types.str;
+        variant = l.mkOption {
+          type = t.str;
           description = "A string containing all the variants to corresponding layouts separated by commas. If on of the layout don't use any variants leave it empty.";
           default = "";
         };
-        options = mkOption {
-          type = types.str;
+        options = l.mkOption {
+          type = t.str;
           description = "A string with all the options to use separated by commas.";
           default = "";
         };
       };
+      de.kmonad = {
+        enable = l.mkEnableOption "";
+      };
     };
 
-    config = mkIf cfg.enable {
+
+    config = l.mkIf cfg.enable {
       services.xserver = {
-        displayManager.sessionCommands = mkIf cfg.workman-p.enable "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${workman-p} $DISPLAY";
+        #   displayManager.sessionCommands = l.mkIf cfg.workman-p.enable "${pkgs.xorg.xkbcomp}/bin/xkbcomp ${workman-p} $DISPLAY";
         layout = cfg.layout;
         xkbVariant = cfg.variant;
         xkbOptions = cfg.options;

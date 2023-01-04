@@ -12,6 +12,10 @@
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     prism.url = "github:PrismLauncher/PrismLauncher";
     flake-utils.url = "github:numtide/flake-utils";
+    kmonad = {
+      url = "github:kmonad/kmonad?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = {self, ...} @ inputs: let
