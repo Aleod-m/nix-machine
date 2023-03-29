@@ -43,7 +43,7 @@ let-env config = {
       case_sensitive: false
       algorithm: "fuzzy"
   }
-  color_config: default_theme
+  color_config: (colors default)
   use_grid_icons: true
   footer_mode: "25" # always, never, number_of_rows, auto
   float_precision: 2
