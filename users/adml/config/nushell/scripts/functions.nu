@@ -5,13 +5,14 @@ export def-env up [nb: int = 1] {
 }
 
 export def-env mkcd [name: path] {
-    cd ( mkdir $name | first )
+    mkdir $name; cd $name; $name
 }
 
-
-# Fix my keyboard layout. TODO: remove once kmonad is set up.
-export def-env fix-kbd [] {
-    (setxkbmap -layout us -variant workman -option caps:swapescape)
+# ssh
+export def-env ssh-init [] {
+    let agentvars = (ssh-agent -c | lines | first 2 |parse "{cmd} {name} {value};" | reject cmd);
+    let-env $agentvars.0.name = $agentvars.0.value;
+    let-env $agentvars.1.name = $agentvars.1.value;
 }
 
 export def set-screen [side: string = "right"] {
@@ -26,16 +27,20 @@ export def set-screen [side: string = "right"] {
 
 # nix utilities. used to develop using nu as the shell.
 export def nixDev [] {
-    nix develop -c $env.SHELL
+    nix develop -c nu
 }
 
 export def nixDevi [] {
-    nix develop --impure -c $env.SHELL
+    nix develop --impure -c nu
 }
 
 
 export def loc [p: path = .] {
-    ls ($p + /**/*) | where type == file | get name | each {|it| open $it | lines | length } | reduce {|a, b| $a + $b}
+    ls ($p + /**/*) 
+        | where type == file 
+        | get name 
+        | each {|it| open $it | lines | length } 
+        | reduce {|a, b| $a + $b}
 }
 
 export def mkmod [p:path] {

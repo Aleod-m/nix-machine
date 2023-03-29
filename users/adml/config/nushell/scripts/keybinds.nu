@@ -1,5 +1,5 @@
 
-export alias keybinds = [
+export alias keybinds_ = [
     {
         name: completion_menu
         modifier: none

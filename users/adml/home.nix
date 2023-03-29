@@ -12,22 +12,21 @@ in {
       "steam-run"
       "steam-original"
       "obsidian"
+      "VCV-Rack"
     ];
 
     home.packages = with pkgs; [
+      socat
+      vcv-rack
       libreoffice
-      bottles
       tiled
       pciutils
       gh
       obsidian
-      helix
       discord
       steam
       spotify
-      graphviz
       bat
-      exa
       zoxide
       neovim
       ripgrep
@@ -39,20 +38,31 @@ in {
       tuxguitar
       vlc
       evince
-      peek
       gimp
       inkscape
       blender
       gcc
       pavucontrol
-      godot
-      python3
-      xclip
-      xorg.xbacklight
-      xorg.xkbcomp
+      godot_4
       prismlauncher
-      emacs
       nushell
+      jetbrains.idea-community
+      rofi
+      waybar
+      wlogout
+      eww-wayland
+      dunst
+      wlsunset
+      brightnessctl
+      wl-clipboard
+      wlr-randr
+      blueman
+      pamixer
+      pulseaudio
+      slurp
+      grim
+      helvum
+      gnupg
     ];
 
     programs = {
@@ -83,6 +93,7 @@ in {
     xsession = {
       enable = true;
     };
+
     # Non nix configfiles.
     xdg = {
       configFile = {

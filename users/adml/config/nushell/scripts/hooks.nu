@@ -1,4 +1,4 @@
-export alias hooks = {
+export alias hooks_ = {
     pre_prompt: [{
       code: "
         let direnv = (direnv export json | from json)

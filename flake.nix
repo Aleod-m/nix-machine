@@ -9,13 +9,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
-    prism.url = "github:PrismLauncher/PrismLauncher";
     flake-utils.url = "github:numtide/flake-utils";
-    kmonad = {
-      url = "github:kmonad/kmonad?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    hyprland.url = "github:hyprwm/Hyprland";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -27,23 +22,19 @@
     # Modules authored.
     nixosModules = import ./modules/system inputs;
     homeModules = import ./modules/home inputs;
+    mixedModules = import ./modules/mixed inputs;
 
+    
     devShells.${system}.default = devPkgs.mkShell {
       packages = with devPkgs; [
-        alejandra
         git
         rnix-lsp
       ];
     };
 
-    homeConfigurations = let
-      overlays = with inputs; [
-        prism.overlay
-        neovim-nightly-overlay.overlay
-      ];
-    in {
+    homeConfigurations = {
       adml = self.lib.mkUser {
-        inherit system overlays;
+        inherit system;
         username = "adml";
         pkgs = inputs.nixpkgs-unstable;
       };

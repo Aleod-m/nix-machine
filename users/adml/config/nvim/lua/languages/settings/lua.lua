@@ -5,7 +5,7 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 local M = {}
-M.lsp_name = "sumneko_lua"
+M.lsp_name = "lua_ls"
 M.lsp_setup = {
     capabilities = require'languages.lsp.capabilities',
     on_attach = function()
@@ -24,8 +24,6 @@ M.lsp_setup = {
             runtime = {
                 -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
                 version = 'LuaJIT',
-                -- Setup your lua path
-                path = runtime_path,
             },
             diagnostics = {
                 -- Get the language server to recognize the `vim` global

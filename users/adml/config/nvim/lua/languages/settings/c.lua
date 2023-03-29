@@ -1,7 +1,7 @@
 local km = require"utils.keymaps"
 local M = {}
 -- Lsp Setup 
-M.lsp_name = "clangd"
+M.lsp_name = "ccls"
 M.lsp_setup = {
     capabilities = require'languages.lsp.capabilities',
     on_attach = function()
@@ -12,5 +12,8 @@ M.lsp_setup = {
         km.set("n", "<leader>ca", vim.lsp.buf.code_action, {buffer = 0})
         km.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
     end,
+    init_options = {
+        compilationDatabaseDirectory = "build";
+    },
 }
 return M

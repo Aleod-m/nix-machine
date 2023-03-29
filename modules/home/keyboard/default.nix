@@ -69,12 +69,12 @@ inputs: {
   * Type:
   *   keyboard -> file
   */
-  mkConfigFile = keyboard:
+  mkConfigFile = (keyboard:
     let 
     defcfg = ''
       (defcfg
         input (device-file "${keyboard.device}")
-        output (uinput-sink "cutom-${keyboard.name}")
+        input (uinput-sink "cutom-${keyboard.name}")
     '' + (l.optionalString (keyboard.composeKey != null) ''
       cmp-seq ${keyboard.composeKey}
     '') + ''
@@ -86,15 +86,16 @@ inputs: {
     in pkgs.writeTextFile {
       name = "kmonad-${keyboard.name}.cfg";
       text = defcfg + "\n" + config;
-      checkPhase = "${cfg.custom.kmonad-package}/bin/kmonad -d $out";
-    };
+      checkPhase = "${cfg.custom.package}/bin/kmonad -d $out";
+    }
+  );
 
   /* Function for generating the systemd service.
   */
   mkService = keyboard:
   let
     cmd = [
-      "${cfg.custom.kmonad-package}/bin/kmonad"
+      "${cfg.custom.package}/bin/kmonad"
       "--input"
       ''device-file "${keyboard.device}"''
     ] ++ [
@@ -160,7 +161,7 @@ in {
       xkbOptions = cfg.options;
     };
   } // l.mkIf cfg.custom.enable {
-    environment.systemPackages = [ keyd ];
+    environment.systemPackages = [ cfg.custom.kmonad-package ];
     users.extraGroups = {
       uinput = {};
       kmonad = {};

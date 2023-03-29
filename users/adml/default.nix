@@ -4,7 +4,7 @@ inputs: {
   pkgs,
   ...
 }: {
-  users.users.adml = {
+  users.extraUsers.adml = {
     isNormalUser = true;
     shell = pkgs.bash;
     extraGroups = ["wheel" "input" "video" "uinput" "networkmanager"];

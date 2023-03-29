@@ -17,9 +17,11 @@ in
           system.stateVersion = "21.11";
           networking.hostName = name;
         } # Configure the hostName from the provided name.
+        inputs.kmonad.nixosModules.default
         hardware # Add the hardware config for this machine.
         config # Add the configuration for this machine.
       ]
       ++ builtins.attrValues self.nixosModules # Add my own modules.
       ++ userDefs; # Add the users.
+      
   }

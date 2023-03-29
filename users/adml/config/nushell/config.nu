@@ -1,3 +1,8 @@
+#      ____ ____     ___  ___ _
+#     / _  |  __ \  /   |/   | |  AdrienDML
+#    / /_| | |  \ \/ /| | /| | |  https://github.com/AdrienDML
+#   / ___  | |__/ / / |  / | | |___
+#  /_/   |_|_____/_/  |_/  |_|____/
 # Nushell Config File
 
 # Get just the extern definitions without the custom completion commands
@@ -48,9 +53,9 @@ let-env config = {
   filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
   edit_mode: vi # emacs, vi
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
-  hooks: (hooks)
-  menus: (menus)
-  keybindings: (keybinds)
+  hooks: (hooks_)
+  menus: (menus_)
+  keybindings: (keybinds_)
 }
 
 source aliases.nu

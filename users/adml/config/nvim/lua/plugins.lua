@@ -121,6 +121,7 @@ return packer.startup(function ()
         }
     }
 
+    -- Nushell plugins
     use {
         'LhKipp/nvim-nu',
         run = ":TSInstall nu"

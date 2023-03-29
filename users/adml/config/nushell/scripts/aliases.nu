@@ -4,7 +4,7 @@ alias vim = nvim
 
 alias la = ls -a
 alias ll = ls -l
-alias ld = ls -du
+alias ld = ls --du
 
 # be more verbose
 alias cp = cp --verbose
@@ -28,5 +28,5 @@ def ga [...path: string] {
 }
 
 def gA [] {
-
+    git add --all
 }

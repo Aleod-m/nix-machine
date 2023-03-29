@@ -1,5 +1,6 @@
 # NixOs pc hardware config
 _: {
+  self,
   config,
   lib,
   pkgs,
@@ -28,14 +29,14 @@ _: {
     gnome = {
       enable = true;
       extentions = with pkgs.gnomeExtensions; [
-        pop-shell
         extension-list
         blur-my-shell
-        clear-top-bar
         workspaces-bar
         tray-icons-reloaded
       ];
     };
+
+    hyprland.enable = true;
 
     # Default applications to use accross the system.
     applications = with pkgs; {
@@ -47,6 +48,31 @@ _: {
       emailClient = thunderbird;
       imageViewer = feh;
     };
+
+    # keyboard = {
+    #   enable = true;
+    #   # custom = {
+    #   #   enable = true;
+    #   #   keyboards = {
+    #   #     tkl = {
+    #   #       name = "tkl";
+    #   #       device = "/dev/input/by-id/usb-SONiX_USB_DEVICE-event-kbd";
+    #   #       composeKey = "ralt";
+    #   #       fallthrough = true;
+    #   #       allowCommands = false;
+    #   #       config = ./workman_tkl.kbd;
+    #   #     };
+    #   #     internal = {
+    #   #       name = "internal";
+    #   #       device = "/dev/input/by-path/platform-i8042-serio-0-event-kbd";
+    #   #       composeKey = "ralt";
+    #   #       fallthrough = true;
+    #   #       allowCommands = false;
+    #   #       config = ./workman_laptop.kbd;
+    #   #     };
+    #   #   };
+    #   # };
+    # };
   };
 
   networking.firewall = {

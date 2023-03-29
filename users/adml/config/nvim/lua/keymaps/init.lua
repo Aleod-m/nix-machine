@@ -68,6 +68,7 @@ km.set_keymaps {
     -- Diagnostic
     { mode="n", keymap= leader "dn", action=vim.diagnostic.goto_next},
     { mode="n", keymap= leader "dp", action=vim.diagnostic.goto_prev},
+    { mode="n", keymap= leader "e",  action=vim.diagnostic.open_float},
 }
 
 -- Modes added

@@ -11,11 +11,12 @@ with lib; let
 in {
   options.de.gnome = {
     enable = mkEnableOption "gnome";
-    includeGnomeGames = mkOption {
+    includeGames = mkOption {
       type = types.bool;
       description = ''If the games gnome provides should be included. By default they are not.'';
       default = false;
     };
+    terminal = mkEnableOption "Gnome Terminal";
     extentions = mkOption {
       type = types.listOf types.packages;
       description = ''List of gnome extentions to install'';
@@ -24,13 +25,16 @@ in {
   };
 
   config = mkIf cfg.enable {
+    programs.dconf.enable = true;
+
     services = {
       xserver.desktopManager.gnome.enable = true;
+      gnome.games.enable = cfg.includeGames; 
     };
 
     environment.gnome.excludePackages = let
       games =
-        if (!cfg.includeGnomeGames)
+        if (!cfg.includeGames)
         then
           with pkgs.gnome; [
             totem

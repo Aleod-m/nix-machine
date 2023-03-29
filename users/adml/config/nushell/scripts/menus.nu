@@ -1,5 +1,5 @@
 
-export alias menus = [
+export alias menus_ = [
     # Configuration for default nushell menus
     # Note the lack of souce parameter
     {

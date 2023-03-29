@@ -1,6 +1,6 @@
-inputs:
-inputs.self.lib.modules.importAndPropagateInputs inputs ./. [
-  "keyboard"
+{self, ...} @ inputs:
+self.lib.modules.importAndPropagateInputs inputs ./. [
+  # "keyboard"
   "nixDefaults"
   "ssh"
   "sound"
