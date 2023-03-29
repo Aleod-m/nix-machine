@@ -7,16 +7,15 @@
 
 # Get just the extern definitions without the custom completion commands
 use completions.nu *
-use hooks.nu *
-use menus.nu *
-use keybinds.nu *
+use hooks.nu
+use menus.nu 
+use keybinds.nu 
 use colors.nu *
 
 use functions.nu *
 use job.nu
 # for more information on themes see
 # https://www.nushell.sh/book/coloring_and_theming.html
-
 
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
@@ -44,7 +43,7 @@ let-env config = {
       case_sensitive: false
       algorithm: "fuzzy"
   }
-  color_config: (default_theme)
+  color_config: default_theme
   use_grid_icons: true
   footer_mode: "25" # always, never, number_of_rows, auto
   float_precision: 2
@@ -53,9 +52,9 @@ let-env config = {
   filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
   edit_mode: vi # emacs, vi
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
-  hooks: (hooks_)
-  menus: (menus_)
-  keybindings: (keybinds_)
+  hooks: (hooks)
+  menus: (menus)
+  keybindings: (keybinds)
 }
 
 source aliases.nu

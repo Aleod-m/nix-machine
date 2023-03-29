@@ -1,5 +1,6 @@
 
-export alias menus_ = [
+export def main [] {
+  [
     # Configuration for default nushell menus
     # Note the lack of souce parameter
     {
@@ -117,4 +118,5 @@ export alias menus_ = [
           | each { |it| {value: $it.command description: $it.usage} }
       }
     }
-]
+  ]
+}

@@ -1,4 +1,5 @@
-export alias hooks_ = {
+export def main [] { 
+  {
     pre_prompt: [{
       code: "
         let direnv = (direnv export json | from json)
@@ -6,4 +7,5 @@ export alias hooks_ = {
         $direnv | load-env
       "
     }]
+  }
 }

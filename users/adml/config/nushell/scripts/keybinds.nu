@@ -1,5 +1,6 @@
 
-export alias keybinds_ = [
+export def main [] {
+  [
     {
         name: completion_menu
         modifier: none
@@ -66,3 +67,4 @@ export alias keybinds_ = [
       event: { send: menu name: commands_with_description }
     }
   ]
+}

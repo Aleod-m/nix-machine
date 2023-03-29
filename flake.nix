@@ -15,7 +15,6 @@
 
   outputs = {self, ...} @ inputs: let
     system = "x86_64-linux";
-    devPkgs = (import inputs.nixpkgs-unstable) {inherit system;};
   in {
     lib = import ./lib inputs;
 
@@ -25,19 +24,20 @@
     mixedModules = import ./modules/mixed inputs;
 
     
-    devShells.${system}.default = devPkgs.mkShell {
+    devShells.${system}.default =
+    let 
+        devPkgs = (import inputs.nixpkgs-unstable) {inherit system;};
+    in devPkgs.mkShell {
       packages = with devPkgs; [
         git
         rnix-lsp
       ];
     };
 
-    homeConfigurations = {
-      adml = self.lib.mkUser {
-        inherit system;
-        username = "adml";
-        pkgs = inputs.nixpkgs-unstable;
-      };
+    homeConfigurations.adml = self.lib.mkUser {
+      inherit system;
+      username = "adml";
+      pkgs = inputs.nixpkgs-unstable;
     };
 
     nixosConfigurations = {

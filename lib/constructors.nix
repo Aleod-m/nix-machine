@@ -1,5 +1,5 @@
 {self, home-manager, ...} @ inputs: {
-  /* Funciton collecting all the informations for building the nixos system.
+  /* Function collecting all the informations for building the nixos system.
    */
   mkComputer = {
     name,
@@ -18,7 +18,6 @@
         system.stateVersion = "21.11";
         networking.hostName = name;
       } # Configure the hostName from the provided name.
-      inputs.kmonad.nixosModules.default
       hardware # Add the hardware config for this machine.
       config # Add the configuration for this machine.
     ] ++ builtins.attrValues self.nixosModules # Add my own modules.
