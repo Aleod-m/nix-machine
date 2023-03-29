@@ -1,4 +1,4 @@
-export def default[] {
+export def default [] {
   {
     # color for nushell primitives
     separator: white
