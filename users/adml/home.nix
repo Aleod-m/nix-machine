@@ -16,6 +16,9 @@ in {
     ];
 
     home.packages = with pkgs; [
+      fontforge-gtk
+      fontforge
+      tenacity
       socat
       vcv-rack
       libreoffice
