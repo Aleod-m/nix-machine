@@ -1,9 +1,17 @@
-local ss = require('smart-splits')
 local cmd = require('utils.cmd')
-local Hydra = require('hydra')
 
-Hydra({
-    name = "Splits",
+local plugins = require('utils.plugins')
+local mode = require('utils.mode')
+
+plugins.add(
+    'mrjones2014/smart-splits.nvim'
+)
+
+    --─ │ ├ ┼ ┤┌ └ ┘ ┐ ┬ ┴
+    --╭ ╮ ╯ ╰
+--- Window mode
+mode.add({
+    name = "Window",
     mode = "n", 
     body = "<Space>s",
     config = {
@@ -14,8 +22,6 @@ Hydra({
             position = 'middle'
         }
     },
-    --─ │ ├ ┼ ┤┌ └ ┘ ┐ ┬ ┴
-    --╭ ╮ ╯ ╰
     hint = [[
     Window, Splits, and Tabs management.
 ╭^^────────────^^┬^^───────────^^┬^──────────────────^┬^──────────────────^^╮
@@ -46,10 +52,10 @@ Hydra({
         { "L"    , cmd "WinShift right" },
 
         -- Resize splits
-        { '<C-h>', function() ss.resize_left(2)  end },
-        { '<C-k>', function() ss.resize_down(2)  end },
-        { '<C-t>', function() ss.resize_up(2)    end },
-        { '<C-l>', function() ss.resize_right(2) end },
+        { '<C-h>', function() require("smart-splits").resize_left(2)  end },
+        { '<C-k>', function() require("smart-splits").resize_down(2)  end },
+        { '<C-t>', function() require("smart-splits").resize_up(2)    end },
+        { '<C-l>', function() require("smart-splits").resize_right(2) end },
         { '='    , '<C-w>=', { desc = 'equalize'} },
 
        -- Create and close splits
@@ -72,38 +78,3 @@ Hydra({
 
     },
 })
-
-
-
-require("nvim-tree").setup { -- BEGIN_DEFAULT_OPTS
-    disable_netrw = true,
-    sort_by = "extension",
-    view = {
-        adaptive_size = true,
-        mappings = {
-            custom_only = true,
-            list = {
-                { key = "e", action = "edit" },
-                { key = "o", action = "edit" },
-                { key = "E", action = "edit_in_place" },
-                { key = "s", action = "split" },
-                { key = "v", action = "vsplit" },
-                { key = "et", action = "tabnew" },
-
-                { key = "T", action = "parent_node" },
-                { key = "go", action = "cd" },
-                { key = "c", action = "close_node" },
-
-                -- cut copy and paste
-                { key = "y", action = "copy" },
-                { key = "p", action = "paste" },
-                { key = "d", action = "cut" },
-                { key = "r", action = "rename" },
-                { key = "a", action = "create" },
-
-                { key = "f", action = "live_filter" },
-                { key = "q", action = "close" },
-            },
-        },
-    },
-} -- END_DEFAULT_OP

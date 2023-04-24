@@ -1,8 +1,10 @@
-local km = require "utils.keymaps"
 local M = {}
+
+M.ts_lang = "nix"
 M.lsp_name = "rnix"
 M.lsp_setup = {
     on_attach = function()
+        local km = require "utils.keymaps"
         km.set("n", "K", vim.lsp.buf.hover, {buffer = 0})
         km.set("n", "gd", vim.lsp.buf.definition, {buffer = 0})
         km.set("n", "gT", vim.lsp.buf.type_definition, {buffer = 0})
@@ -14,4 +16,5 @@ M.lsp_setup = {
         km.set("n", "<leader>r", vim.lsp.buf.rename, {buffer = 0})
     end
 }
+
 return M

@@ -64,6 +64,8 @@ km.set_keymaps {
     { mode="v", keymap= leader "y", action="\"+y" },
     { mode="n", keymap= leader "p", action="\"+p" },
     { mode="n", keymap= leader "P", action="\"+P" },
+    { mode="n", keymap= leader "gp", action="'[v']" },
+
 
     -- Diagnostic
     { mode="n", keymap= leader "dn", action=vim.diagnostic.goto_next},
@@ -73,4 +75,3 @@ km.set_keymaps {
 
 -- Modes added
 require("keymaps.splits")
--- require("keymaps.move")

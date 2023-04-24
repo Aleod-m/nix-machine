@@ -10,7 +10,7 @@ use completions.nu *
 use hooks.nu
 use menus.nu 
 use keybinds.nu 
-use colors.nu *
+use colors.nu
 
 use functions.nu *
 use job.nu

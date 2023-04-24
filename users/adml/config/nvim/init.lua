@@ -1,14 +1,16 @@
---      ____ ____     ___  ___ _
---     / _  |  __ \  /   |/   | |  AdrienDML
---    / /_| | |  \ \/ /| | /| | |  https://github.com/AdrienDML
---   / ___  | |__/ / / |  / | | |___
---  /_/   |_|_____/_/  |_/  |_|____/
+--  ╭────┬╮╭──────╮╭───────╮╭─╮ 
+--  │ ╭╮ │││ ╭─╮  ││ ╭╮ ╭╮ ││ │ AdrienDML's Neovim config
+--  │ ╰╯ │││ │ ╰╮ ││ ││ ││ ││ │ https://github.com/AdrienDML
+--  │ ╭╮ │││ │ ╭╯ ││ ││ ││ ││ │ 
+--  │ ││ │││ ╰─╯  ││ ││ ││ ││ ╰───╮
+--  ╰─╯╰──╯╰──────╯╰─╯╰─╯╰─╯╰─────╯
  
 require('utils.globals')
-require('plugins')
 require('options')
-require('style')
 require('keymaps')
+require('modes')
+require('plugins')
+require('style')
 require('terminal')
 require('complete')
 require('git')

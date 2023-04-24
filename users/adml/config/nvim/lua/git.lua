@@ -1,12 +1,22 @@
-local neogit = require('neogit')
-local km = require('utils.keymaps')
+local plugins = require("utils.plugins")
 
-km.set("n", "<leader>gi", neogit.open)
-
-neogit.setup{}
-
-require ('gitsigns').setup {
-    numhl = true,
-    on_attach = function(bufnb)
+plugins.add({
+    'TimUntersberger/neogit',
+    dependencies = 'nvim-lua/plenary.nvim',
+    keys = km.leader "gi" ,
+    config = function()
+        local neogit = require('neogit')
+        local km = require('utils.keymaps')
+        km.set("n",  km.leader "gi", neogit.open)
     end,
-}
+})
+
+pluins.add({
+    'lewis6991/gitsigns.nvim',
+    event = "BufRead",
+    config = {
+        numhl = true,
+        on_attach = function(bufnb)
+        end,
+    }
+})

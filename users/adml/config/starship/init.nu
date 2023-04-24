@@ -6,7 +6,7 @@ let-env PROMPT_MULTILINE_INDICATOR = (^/nix/store/kicdvz4dh0f4ddhfbvrx9xzhwqg6kz
 # TODO: Also Use starship vi mode indicators?
 let-env PROMPT_INDICATOR = ""
 
-let-env PROMPT_COMMAND = {
+let-env PROMPT_COMMAND = {||
     # jobs are not supported
     let width = (term size -c | get columns | into string)
     ^/nix/store/kicdvz4dh0f4ddhfbvrx9xzhwqg6kzz9-starship-1.9.1/bin/starship prompt $"--cmd-duration=($env.CMD_DURATION_MS)" $"--status=($env.LAST_EXIT_CODE)" $"--terminal-width=($width)"

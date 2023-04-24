@@ -1,3 +1,10 @@
+local plugins = require("utils.plugins")
+
+plugins.add(
+    "L3MON4D3/LuaSnip",
+
+)
+
 local M = {}
 local km = require("utils.keymaps")
 local ls = require("luasnip")

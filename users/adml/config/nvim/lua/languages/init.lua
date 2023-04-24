@@ -1,11 +1,40 @@
-local _ = require("languages.TS")
+local plugins = require("utils.plugins")
+
+plugins.add({
+    "folke/trouble.nvim",
+    dependencies = {"nvim-tree/nvim-web-devicons"},
+})
+
+plugins.add(
+    "jose-elias-alvarez/null-ls.nvim"
+)
+
+plugins.add({
+    'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate'
+    config = function()
+        local configs = require("nvim-treesitter.configs")
+        configs.setup({
+            ensure_installed = "all",
+            sync_install = false,
+            ingore_install = {""},
+            highlight = {
+                enable = true,
+                disable = {""},
+                additional_vim_regex_highligthing = true,
+            },
+            indent = {
+                enable = true,
+            },
+        })
+    end
+})
 
 local languages = {
     rust   = require("languages.settings.rust"),
+    nu     = require("languages.settings.nu"),
     c      = require("languages.settings.c"),
     latex  = require("languages.settings.latex"),
-    java   = require("languages.settings.java"),
-    vue    = require("languages.settings.vue"),
     lua    = require("languages.settings.lua"),
     elm    = require("languages.settings.elm"),
     svelte = require("languages.settings.svelte"),
@@ -14,5 +43,6 @@ local languages = {
 }
 
 for _, settings in pairs(languages) do
+    
     require'languages.lsp'.setup(settings)
 end
