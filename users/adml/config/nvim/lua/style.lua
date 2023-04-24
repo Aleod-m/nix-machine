@@ -67,7 +67,7 @@ plugins.add({
     'nvimdev/dashboard-nvim',
     event = 'VimEnter',
     config = {
-        theme = 'Doom',
+        theme = 'doom',
         config = {
             header = {
                 '',
@@ -79,9 +79,22 @@ plugins.add({
                 '   ╰─╯╰──╯ ╰────╯ ╰────╯  ╰──╯  ╰────╯ ╰─╯╰─╯╰─╯',
                 '',
                 ' [ TIP: To exit Neovim, just power off your computer. ] ',
+                '',
+                '',
+                '',
+                '',
             },
-            center = {},
+            center = {
+                {
+                    icon ='',
+                    desc = " find files",
+                    key = '<Leader>ff',
+                }
+            },
             footer = { 
+                '',
+                '',
+                '',
                 '',
                 '🎉 If I\'m not using Neovim, then my Neovim config must be broken!'
             },

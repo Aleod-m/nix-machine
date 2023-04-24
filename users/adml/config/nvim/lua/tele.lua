@@ -48,6 +48,5 @@ plugins.add({
         -- Diagnostics
         km.set("n", "<leader>dl", builtin.diagnostics)
         telescope.load_extension("ui-select")
-        telescope.load_extension("telescope-file-browser")
     end
 })

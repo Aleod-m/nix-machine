@@ -5,7 +5,7 @@ plugins.add( {
     requires = {
         'kyazdani42/nvim-web-devicons', -- optional, for file icons
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    tag = 'nightly', -- optional, updated every week. (see issue #1193)
     config = {
         disable_netrw = true,
         sort_by = "extension",

@@ -12,7 +12,7 @@ plugins.add({
 
 plugins.add({
     'simrat39/rust-tools.nvim',
-    denpendencies = "neovim/lsp-config",
+    denpendencies = "neovim/nvim-lspconfig",
     ft = "rust",
     config = {
         tools = {
@@ -21,8 +21,8 @@ plugins.add({
             }
         },
         server = {
-            on_attach = require('languages.lsp').on_attach_fn 
-            capabilities = require 'languages.lsp.capabilities',
+            on_attach = require('languages.lsp').on_attach_fn,
+            capabilities = require('languages.lsp.capabilities'),
         }
     },
 })

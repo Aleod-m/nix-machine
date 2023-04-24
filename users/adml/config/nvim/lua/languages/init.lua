@@ -11,11 +11,11 @@ plugins.add(
 
 plugins.add({
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate'
+    build = ':TSUpdate',
     config = function()
         local configs = require("nvim-treesitter.configs")
         configs.setup({
-            ensure_installed = "all",
+            ensure_installed = {"lua", "rust"},
             sync_install = false,
             ingore_install = {""},
             highlight = {
@@ -32,17 +32,12 @@ plugins.add({
 
 local languages = {
     rust   = require("languages.settings.rust"),
-    nu     = require("languages.settings.nu"),
-    c      = require("languages.settings.c"),
-    latex  = require("languages.settings.latex"),
-    lua    = require("languages.settings.lua"),
-    elm    = require("languages.settings.elm"),
-    svelte = require("languages.settings.svelte"),
-    wgsl   = require("languages.settings.wgsl"),
-    nix    = require("languages.settings.nix"),
+    --nu     = require("languages.settings.nu"),
+    --c      = require("languages.settings.c"),
+    --latex  = require("languages.settings.latex"),
+    --lua    = require("languages.settings.lua"),
+    --elm    = require("languages.settings.elm"),
+    --svelte = require("languages.settings.svelte"),
+    --wgsl   = require("languages.settings.wgsl"),
+    --nix    = require("languages.settings.nix"),
 }
-
-for _, settings in pairs(languages) do
-    
-    require'languages.lsp'.setup(settings)
-end

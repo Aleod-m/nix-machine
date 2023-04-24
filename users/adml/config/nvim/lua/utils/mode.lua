@@ -8,15 +8,13 @@ plugins.add({
 })
 
 local M = {}
-
-local mnames = {
-    "n" = "Normal",
-    "v" = "Visual",
-    "V" = "Visual-Line",
-    "i" = "Insert",
-    "t" = "Terminal",
-    "CTRL-V" = "Visual-Block",
-}
+local mnames = {}
+mnames["n"] = "Normal"
+mnames["v"] = "Visual"
+mnames["V"] = "Visual-Line"
+mnames["i"] = "Insert"
+mnames["t"] = "Terminal"
+mnames["CTRL-V"] = "Visual-Block"
 
 function M.active()
     local status = require("hydra.statusline")

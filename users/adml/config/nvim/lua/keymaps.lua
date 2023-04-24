@@ -72,6 +72,3 @@ km.set_keymaps {
     { mode="n", keymap= leader "dp", action=vim.diagnostic.goto_prev},
     { mode="n", keymap= leader "e",  action=vim.diagnostic.open_float},
 }
-
--- Modes added
-require("keymaps.splits")

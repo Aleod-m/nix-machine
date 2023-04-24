@@ -20,7 +20,7 @@ end
 
 function M.finalize(opts)
     options = opts or M.default_opts
-    require("lazy").setup(plugins, options)
+    require("lazy").setup(M.plugins, options)
 end
 
 M.default_opts = {}

@@ -1,16 +1,15 @@
 local cmd = require('utils.cmd')
 
 local plugins = require('utils.plugins')
-local mode = require('utils.mode')
+local Mode = require('utils.mode')
 
-plugins.add(
-    'mrjones2014/smart-splits.nvim'
-)
+plugins.add('mrjones2014/smart-splits.nvim')
 
-    --─ │ ├ ┼ ┤┌ └ ┘ ┐ ┬ ┴
-    --╭ ╮ ╯ ╰
+
+--─ │ ├ ┼ ┤┌ └ ┘ ┐ ┬ ┴
+--╭ ╮ ╯ ╰
 --- Window mode
-mode.add({
+Mode.add({
     name = "Window",
     mode = "n", 
     body = "<Space>s",
@@ -58,7 +57,7 @@ mode.add({
         { '<C-l>', function() require("smart-splits").resize_right(2) end },
         { '='    , '<C-w>=', { desc = 'equalize'} },
 
-       -- Create and close splits
+        -- Create and close splits
         { 's'    , '<C-w>s' },
         { 'v'    , '<C-w>v' },
         { "q"    , cmd.try 'close' },

@@ -2,7 +2,7 @@ local plugins = require("utils.plugins")
 local lspconf = require"lspconfig"
 
 plugins.add(
-    "neovim/lsp-config"
+    "neovim/nvim-lspconfig"
 )
 
 

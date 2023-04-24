@@ -1,7 +1,7 @@
 local plugins = require("utils.plugins")
 
 plugins.add({
-    "echasovski/mini.nvim",
+    "echasnovski/mini.nvim",
     version = "*", -- Stable release.
     config = function() 
         modules = {
