@@ -1,11 +1,10 @@
-
 export def main [] {
   [
     {
         name: completion_menu
         modifier: none
         keycode: tab
-        mode: emacs # Options: emacs vi_normal vi_insert
+        mode: vi_normal # Options: emacs vi_normal vi_insert
         event: {
             until: [
                 { send: menu name: completion_menu }

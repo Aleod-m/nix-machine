@@ -20,10 +20,14 @@ use job.nu
 # The default config record. This is where much of your global configuration is setup.
 let-env config = {
   show_banner: false
-  filesize_metric: false
   table: {
       mode: rounded
       index_mode: always
+      trim: {
+          methodology: wrapping
+          wrapping_try_keep_words: true
+          truncating_suffix: "..."
+      }
   }
   ls: {
     use_ls_colors: true
@@ -42,14 +46,21 @@ let-env config = {
       partial: true
       case_sensitive: false
       algorithm: "fuzzy"
+      external: {
+          enable: true
+          completer: null
+      }
   }
   color_config: (colors default)
+  filesize: {
+      metric: true
+      format: "auto"
+  }
   use_grid_icons: true
   footer_mode: "25" # always, never, number_of_rows, auto
   float_precision: 2
   buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctr+e
   use_ansi_coloring: true
-  filesize_format: "auto" # b, kb, kib, mb, mib, gb, gib, tb, tib, pb, pib, eb, eib, zb, zib, auto
   edit_mode: vi # emacs, vi
   shell_integration: true # enables terminal markers and a workaround to arrow keys stop working issue
   hooks: (hooks)
