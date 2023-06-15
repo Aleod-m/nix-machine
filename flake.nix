@@ -32,8 +32,6 @@
         # nix related.
         git
         rnix-lsp
-        # For my keyboard config devloppement.
-        qmk
       ];
     };
 

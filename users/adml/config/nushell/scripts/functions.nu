@@ -1,6 +1,6 @@
 # Various directories helpers.
 export def-env up [nb: int = 1] {
-    let path = ( 1..$nb | each { |_| ".." } | reduce { |it, acc| $acc + "/" + $it } )
+    let path = ( 1..($nb) | each { |_| ".." } | reduce { |it, acc| $acc + "/" + $it } )
     cd $path 
 }
 
