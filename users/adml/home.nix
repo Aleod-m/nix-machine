@@ -13,9 +13,12 @@ in {
       "steam-original"
       "obsidian"
       "VCV-Rack"
+      "cudatoolkit"
     ];
 
     home.packages = with pkgs; [
+      wally-cli
+      nvtop
       fontforge-gtk
       fontforge
       tenacity
@@ -54,7 +57,7 @@ in {
       waybar
       wlogout
       eww-wayland
-      dunst
+      mako
       wlsunset
       brightnessctl
       wl-clipboard
@@ -87,10 +90,6 @@ in {
         enable = true;
         nix-direnv.enable = true;
       };
-    };
-
-    services = {
-      network-manager-applet.enable = true;
     };
 
     xsession = {

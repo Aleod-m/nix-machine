@@ -2,7 +2,7 @@
   description = "AdrienDML nixos config";
 
   inputs = {
-    nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-22.11";
+    nixpkgs-2211.url = "github:nixos/nixpkgs/nixos-23.05";
     nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nix-colors.url = "github:Misterio77/nix-colors";
     home-manager = {
@@ -10,7 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
     flake-utils.url = "github:numtide/flake-utils";
-    hyprland.url = "github:hyprwm/Hyprland";
+    hyprland.url = "github:hyprwm/Hyprland/v0.26.0";
   };
 
   outputs = {self, ...} @ inputs: let
@@ -29,8 +29,11 @@
         devPkgs = (import inputs.nixpkgs-unstable) {inherit system;};
     in devPkgs.mkShell {
       packages = with devPkgs; [
+        # nix related.
         git
         rnix-lsp
+        # For my keyboard config devloppement.
+        qmk
       ];
     };
 

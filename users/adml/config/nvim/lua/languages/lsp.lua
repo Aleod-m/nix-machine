@@ -1,18 +1,19 @@
 local plugins = require("utils.plugins")
 local lspconf = require"lspconfig"
 
-plugins.add(
-    "neovim/nvim-lspconfig"
-)
+plugins.add({
+    "neovim/nvim-lspconfig",
+    config = function()
+        local lsp = require'lspconfig'
+        local languages = require('languages')
+        for _, lang in ipairs(languages) do
+            lang.setup_lsp()
+        end
+    end
+})
 
 
 local M = {}
-
-function M.setup(settings) 
-    if settings.lsp_name ~= nil then
-        lspconf[settings.lsp_name].setup(settings.lsp_setup)
-    end
-end
 
 M.on_attach_fn = function()
     local km = require("utils.keymaps")

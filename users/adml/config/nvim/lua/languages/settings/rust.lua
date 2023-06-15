@@ -12,7 +12,7 @@ plugins.add({
 
 plugins.add({
     'simrat39/rust-tools.nvim',
-    denpendencies = "neovim/nvim-lspconfig",
+    dependencies = "neovim/nvim-lspconfig",
     ft = "rust",
     config = {
         tools = {
@@ -23,6 +23,23 @@ plugins.add({
         server = {
             on_attach = require('languages.lsp').on_attach_fn,
             capabilities = require('languages.lsp.capabilities'),
-        }
+            check = { command = "clippy" },
+            diagnostics = {
+                enable = true,
+                disabled = {"unresolved-proc-macro"},
+            },
+        },
     },
 })
+
+local M = {}
+
+-- Lsp for rust is managed by the rust-tools plugin.
+function M.setup_lsp() 
+end
+
+function M.setup_TS() 
+    return "rust"
+end
+
+return M

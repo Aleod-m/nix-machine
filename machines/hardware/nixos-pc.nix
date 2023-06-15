@@ -35,6 +35,8 @@ _: {
   swapDevices = [
     {device = "/dev/disk/by-label/swap";}
   ];
+
+  hardware.keyboard.zsa.enable = true;
   hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {

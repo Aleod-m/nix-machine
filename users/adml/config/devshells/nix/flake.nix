@@ -23,6 +23,7 @@
       devShells.default = pkgs.mkShell {
         buildInputs = [
           alejandra.defaultpackage.${system}
+          qmk
           rnix-lsp.defaultpackage.${system}
         ];
       };
