@@ -1,10 +1,13 @@
 
 alias nv = nvim
-alias vim = nvim
 
 alias la = ls -a
 alias ll = ls -l
 alias ld = ls --du
+
+# Nix aliases
+alias nf = nix flake
+alias ns = nix store 
 
 # be more verbose
 alias cp = cp --verbose
@@ -14,9 +17,15 @@ alias mv = mv --verbose
 
 # Git aliases.
 alias gs = git status
+alias gl = git log --oneline
+
 # Commit with message.
 def gcm [message: string] {
     git commit -m $message
+}
+
+def gca [message: string] {
+    git commit --amend -m $message
 }
 
 # Checkout to branch.

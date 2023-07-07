@@ -17,6 +17,23 @@ in {
     ];
 
     home.packages = with pkgs; [
+      ## Desktop deps.
+      playerctl
+      wlogout
+      eww-wayland
+      mako
+      waybar
+      wlsunset
+      rofi-wayland
+      brightnessctl
+      wl-clipboard
+      wlr-randr
+      blueman
+      pamixer
+      pulseaudio
+      slurp
+      grim
+      ## others
       wally-cli
       nvtop
       fontforge-gtk
@@ -52,25 +69,9 @@ in {
       godot_4
       prismlauncher
       nushell
-      jetbrains.idea-community
-      rofi
-      waybar
-      wlogout
-      eww-wayland
-      mako
-      wlsunset
-      brightnessctl
-      wl-clipboard
-      wlr-randr
-      blueman
-      pamixer
-      pulseaudio
-      slurp
-      grim
       helvum
       gnupg
     ];
-
     programs = {
       home-manager.enable = true;
       obs-studio.enable = true;
