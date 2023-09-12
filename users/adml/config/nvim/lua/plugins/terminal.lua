@@ -31,12 +31,13 @@ plugins.add({
                 auto_insert = true,
             },
         }
-        km.set("n", km.leader "tf", function() require("nvterm.terminal").toggle "float" end)
-        km.set("n", km.leader "th", function() require("nvterm.terminal").toggle "horizontal" end)
-        km.set("n", km.leader "tv", function() require("nvterm.terminal").toggle "vertical" end)
-        km.set("t", km.leader "tf", function() require("nvterm.terminal").toggle "float" end)
-        km.set("t", km.leader "th", function() require("nvterm.terminal").toggle "horizontal" end)
-        km.set("t", km.leader "tv", function() require("nvterm.terminal").toggle "vertical" end)
+        local T = require("nvterm.terminal")
+        km.set("n", km.leader "tf", function() T.toggle "float" end)
+        km.set("n", km.leader "th", function() T.toggle "horizontal" end)
+        km.set("n", km.leader "tv", function() T.toggle "vertical" end)
+        km.set("t", km.leader "tf", function() T.toggle "float" end)
+        km.set("t", km.leader "th", function() T.toggle "horizontal" end)
+        km.set("t", km.leader "tv", function() T.toggle "vertical" end)
     end,
 })
 

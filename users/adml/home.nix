@@ -14,8 +14,13 @@ in {
       "obsidian"
       "VCV-Rack"
       "cudatoolkit"
+      "aseprite"
     ];
 
+    nixpkgs.config.permittedInsecurePackages = [
+      "python-2.7.18.6" # needed for aseprite.
+    ];
+    
     home.packages = with pkgs; [
       ## Desktop deps.
       playerctl
@@ -34,6 +39,7 @@ in {
       slurp
       grim
       ## others
+      aseprite-unfree
       wally-cli
       nvtop
       fontforge-gtk

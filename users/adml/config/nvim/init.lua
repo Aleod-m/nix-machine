@@ -1,21 +1,15 @@
---  ╭────┬╮╭──────╮╭───────╮╭─╮ 
---  │ ╭╮ │││ ╭─╮  ││ ╭╮ ╭╮ ││ │ AdrienDML's Neovim config
---  │ ╰╯ │││ │ ╰╮ ││ ││ ││ ││ │ https://github.com/AdrienDML
---  │ ╭╮ │││ │ ╭╯ ││ ││ ││ ││ │ 
---  │ ││ │││ ╰─╯  ││ ││ ││ ││ ╰───╮
---  ╰─╯╰──╯╰──────╯╰─╯╰─╯╰─╯╰─────╯
+--  ╭────╮╭─╮    ╭────╮╭─────╮╭──────╮
+--  │ ╭╮ ││ │    │ ╭──╯│ ╭─╮ ││ ╭─╮  │  AdrienDML's Neovim config
+--  │ ╰╯ ││ │    │ ╰─╮ │ │ │ ││ │ ╰╮ │  https://github.com/AdrienDML
+--  │ ╭╮ ││ │    │ ╭─╯ │ │ │ ││ │ ╭╯ │
+--  │ ││ ││ ╰───╮│ ╰──╮│ ╰─╯ ││ ╰─╯  │
+--  ╰─╯╰─╯╰─────╯╰────╯╰─────╯╰──────╯
  
 require('utils.globals')
-require('options')
-require('keymaps')
-require('plugins')
-require('modes')
-require('style')
-require('terminal')
-require('complete')
-require('git')
-require('snip')
-require('tele')
-require('languages')
 
-require('utils.plugins').finalize()
+-- Load my options and keymaps.
+require('core.options')
+require('core.keymaps')
+
+-- Load my plugins.
+require('utils.plugins')

@@ -14,7 +14,7 @@ _: {
   ];
 
   boot.initrd.kernelModules = [];
-  boot.kernelModules = ["kvm-intel"];
+  boot.kernelModules = ["kvm-intel" "i2c-dev"];
   boot.extraModulePackages = [];
 
   fileSystems."/" = {

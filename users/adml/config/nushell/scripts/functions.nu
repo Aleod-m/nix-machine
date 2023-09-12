@@ -26,15 +26,6 @@ export def set-screen [side: string = "right"] {
 }
 
 # nix utilities. used to develop using nu as the shell.
-export def nixDev [] {
-    nix develop -c nu
-}
-
-export def nixDevi [] {
-    nix develop --impure -c nu
-}
-
-
 export def loc [p: path = .] {
     ls ($p + /**/*) 
         | where type == file 
@@ -44,6 +35,7 @@ export def loc [p: path = .] {
 }
 
 export def mkmod [p:path] {
-    cd (mkdir $p | first)
+    mkdir $p
+    cd $p
     touch mod.rs
 }

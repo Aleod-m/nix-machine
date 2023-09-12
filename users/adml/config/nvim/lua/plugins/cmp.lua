@@ -1,8 +1,6 @@
-local plugins = require("utils.plugins")
-local luasnip = require'luasnip'
-
-plugins.add({
+return {
     'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
     dependencies = {
         'hrsh7th/cmp-path',
         'hrsh7th/cmp-buffer',
@@ -36,8 +34,8 @@ plugins.add({
                 { name = 'nvim_lsp' },
                 { name = 'luasnip' }, -- For luasnip users.
             }, {
-                    { name = 'buffer' },
-                })
+                { name = 'buffer' },
+            })
         })
 
         cmp.setup.cmdline(':', {
@@ -52,4 +50,4 @@ plugins.add({
             }
         })
     end
-})
+}

@@ -10,20 +10,12 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 
-vim.opt.rtp:prepend(lazypath)
-local M = {}
-M.plugins = {}
-
-function M.add(plugin) 
-    M.plugins[#M.plugins + 1] = plugin
-end
-
-function M.finalize(opts)
-    options = opts or M.default_opts
-    require("lazy").setup(M.plugins, options)
-end
-
-M.default_opts = {}
-
-return M
-
+require("lazy").setup({ }, {
+    checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detecction = {
+        notify = false,
+    },
+})

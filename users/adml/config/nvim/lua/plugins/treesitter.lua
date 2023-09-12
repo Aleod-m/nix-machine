@@ -1,0 +1,57 @@
+return {
+    'nvim-treesitter/nvim-treesitter',
+    event = { "BufReadPre", "BufNewFile" },
+    build = ':TSUpdate',
+    config = function()
+        local configs = require("nvim-treesitter.configs")
+        configs.setup({
+            highlight = {
+                enable = true,
+                disable = {""},
+            },
+
+            indent = { enable = true, },
+            ensure_installed = {
+                -- Main languages.
+                "rust",
+                "nix",
+                "lua",
+                "Godot",
+
+                -- Secondary languages.
+                "c",
+                "cpp",
+                "bash",
+                "zig",
+                "python",
+                "sql",
+                "wgsl",
+                "wgsl_bevy",
+
+                -- Web.
+                "html",
+                "css",
+                "scss",
+                "javascript",
+
+               -- Data formats.
+                "toml",
+                "xml",
+                "json",
+                "yaml",
+            },
+            sync_install = false,
+            ingore_install = {""},
+        })
+
+        local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+        parser_config.nu = {
+              install_info = {
+                url = "https://github.com/nushell/tree-sitter-nu",
+                files = { "src/parser.c" },
+                branch = "main",
+            },
+            filetype = "nu",
+        }
+    end
+}

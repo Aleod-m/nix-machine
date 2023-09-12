@@ -18,7 +18,7 @@ use job.nu
 # https://www.nushell.sh/book/coloring_and_theming.html
 
 # The default config record. This is where much of your global configuration is setup.
-let-env config = {
+$env.config = {
   show_banner: false
   table: {
       mode: rounded

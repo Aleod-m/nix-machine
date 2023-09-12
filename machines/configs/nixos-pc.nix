@@ -50,6 +50,7 @@ _: {
     };
   };
 
+
   networking.firewall = {
     enable = true;
     allowedTCPPorts = [80 443];
@@ -71,5 +72,7 @@ _: {
     ];
   };
 
+  environment.systemPackages = [ pkgs.tailscale ];
   services.flatpak.enable = true;
+  services.tailscale.enable = true;
 }

@@ -1,6 +1,5 @@
+-- Module for Keymaps utilities.
 local opts = { noremap = true, silent = true }
-
-local keymap = vim.keymap.set
 
 local M = {}
 M.keymaps = {}
@@ -10,7 +9,7 @@ M.localleaderkey = vim.g.maploclalleader
 function M.set(mode, key, action, options)
     options = options or opts
     M.keymaps[#M.keymaps + 1] = {mode, key, action, options}
-    keymap(mode, key, action, options)
+    vim.keymap.set(mode, key, action, options)
 end
 
 function M.set_keymaps(keymaps)

@@ -1,7 +1,4 @@
--- Imports
-local plugins = require('utils.plugins')
-
-plugins.add({
+return {
     'nvim-telescope/telescope.nvim',
     dependencies = { 
         'nvim-lua/plenary.nvim',
@@ -27,26 +24,17 @@ plugins.add({
         })
         local builtin = require("telescope.builtin")
         local km = require'utils.keymaps'
+        local leader = km.leader
         -- find files using telescope
         --  by name
-        km.set("n", "<leader>ff", builtin.find_files)
-        --  by content
-        km.set("n", "<leader>fg", builtin.live_grep)
-        -- git pickers
-        -- files
-        km.set("n", "<leader>gf", builtin.git_files)
-        -- branches
-        km.set("n", "<leader>gb", builtin.git_branches)
-
-        -- buffers
-        -- switch
-        km.set("n", "<leader>fb", builtin.buffers)
-
-        -- search in project
-        km.set("n", "<leader>gs", builtin.live_grep)
-
-        -- Diagnostics
-        km.set("n", "<leader>dl", builtin.diagnostics)
+        km.set_keymaps({
+            {mode = "n", keymap = leader "ff", action = builtin.find_files}
+            {mode = "n", keymap = leader "gs", action = builtin.live_grep}
+            {mode = "n", keymap = leader "gf", action = builtin.git_files}
+            {mode = "n", keymap = leader "gb", action = builtin.git_branches}
+            {mode = "n", keymap = leader "fb", action = builtin.buffers}
+            {mode = "n", keymap = leader "dl", action = builtin.diagnostics}
+        })
         telescope.load_extension("ui-select")
     end
-})
+}
