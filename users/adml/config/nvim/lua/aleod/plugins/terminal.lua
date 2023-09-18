@@ -1,11 +1,13 @@
-local plugins = require("utils.plugins")
-local M = {}
-
-plugins.add({
+return {
     "NvChad/nvterm",
+    keys = {
+        "<Leader>tf",
+        "<Leader>th",
+        "<Leader>tv",
+    },
     config = function()
         local nvt = require('nvterm')
-        local km = require('utils.keymaps')
+        local km = require('core.keymaps')
         nvt.setup {
             terminals = {
                 shell = "nu",
@@ -39,6 +41,4 @@ plugins.add({
         km.set("t", km.leader "th", function() T.toggle "horizontal" end)
         km.set("t", km.leader "tv", function() T.toggle "vertical" end)
     end,
-})
-
-return M
+}

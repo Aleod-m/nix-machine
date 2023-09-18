@@ -16,7 +16,7 @@ return {
                 "rust",
                 "nix",
                 "lua",
-                "Godot",
+                --"Godot",
 
                 -- Secondary languages.
                 "c",
@@ -52,6 +52,13 @@ return {
                 branch = "main",
             },
             filetype = "nu",
+        }
+        parser_config.wgsl = {
+            install_info = {
+                url = "szebniok/tree-sitter-wgsl",
+                files = {"src/parser.c"}
+            },
+            filetype = "wgsl"
         }
     end
 }

@@ -4,7 +4,7 @@ return {
         "nvim-lua/plenary.nvim",
     },
     config = function()
-        local km = require('utils.keymaps')
+        local km = require('core.keymaps')
         local leader = km.leader
 
         km.set_keymaps({

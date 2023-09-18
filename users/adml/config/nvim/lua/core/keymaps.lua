@@ -1,76 +1,39 @@
-local km = require "utils.kemaps"
--- Set my leader to space
-km.mapleader " "
--- Set my local leader to comma 
-km.maplleader ","
+-- Module for Keymaps utilities.
+local opts = { noremap = true, silent = true }
 
-local ctrl = km.ctrl
-local leader = km.leader
+local M = {}
+M.keymaps = {}
+M.leaderkey = vim.g.mapleader 
+M.localleaderkey = vim.g.maploclalleader
 
-km.set_keymaps {
-    -- H/L to jump to the start/end of a line
-    { mode="n", keymap="H", action="^" },
-    { mode="v", keymap="H", action="^" },
-    { mode="n", keymap="L", action="$" },
-    { mode="v", keymap="L", action="$" },
+function M.set(mode, key, action, options)
+    options = options or opts
+    M.keymaps[#M.keymaps + 1] = {mode, key, action, options}
+    vim.keymap.set(mode, key, action, options)
+end
 
-    -- dH/dL to delete to the start/end of a line
-    { mode="n", keymap="dH", action="d^" },
-    { mode="v", keymap="dH", action="d^" },
-    { mode="n", keymap="dL", action="d$" },
-    { mode="v", keymap="dL", action="d$" },
+function M.set_keymaps(keymaps)
+    for _, map in ipairs(keymaps) do
+        M.set(map.mode, map.keymap, map.action, map.opt)
+    end
+end
 
-    -- yH/yL to yank to the start/end of a line
-    { mode="n", keymap="yH", action="y^" },
-    { mode="v", keymap="yH", action="y^" },
-    { mode="n", keymap="yL", action="y$" },
-    { mode="v", keymap="yL", action="y$" },
+function M.mapleader(key)
+    M.leaderkey = key
+    vim.g.mapleader = key
+end
 
-    -- cH/cL
-    { mode="n", keymap="yH", action="y^" },
-    { mode="v", keymap="yH", action="y^" },
-    { mode="n", keymap="yL", action="y$" },
-    { mode="v", keymap="yL", action="y$" },
+function M.maplleader(key)
+    M.localleaderkey = key
+    vim.g.maploclalleader = key
+end
 
-    -- Remove highlights 
-    { mode="n", keymap= leader "nh", action="<cmd>noh<C>" },
+function M.leader(keys)
+    return "<leader>" .. keys
+end
 
-    -- Remaps for my keyboard layout (workman-p)
-    -- also move cursor in the column
-    { mode="n", keymap="t", action="gk" },
-    { mode="v", keymap="t", action="gk" },
-    { mode="n", keymap="k", action="gj" },
-    { mode="v", keymap="k", action="gj" },
+function M.ctrl(key)
+    return "<C-" .. key .. ">"
+end
 
-    -- quick save
-    { mode="n", keymap= leader "w", action=":w<CR>zR" },
-
-    -- Nice feature to have for blocks languages
-    { mode="i", keymap="{<CR>", action="{<CR>}<ESC>O" },
-    { mode="i", keymap="[<CR>", action="[<CR>]<ESC>O" },
-    { mode="i", keymap="(<CR>", action="(<CR>)<ESC>O" },
-
-    -- Moving lines of text
-    -- Insert mode with the ctrl key
-    { mode="i", keymap= ctrl "k", action="<ESC>:m .+1<CR>==" },
-    { mode="i", keymap= ctrl "t", action="<ESC>:m .-2<CR>==" },
-    -- Normal mode with the ctrl key
-    { mode="n", keymap= ctrl "k", action=":m .+1<CR>==" },
-    { mode="n", keymap= ctrl "t", action=":m .-2<CR>==" },
-    -- In visual mode with ctrl key
-    { mode="v", keymap= ctrl "k", action=":m'>+<CR>gv=gv" },
-    { mode="v", keymap= ctrl "t", action=":m-2<CR>gv=gv" },
-
-    -- Clipboard integration
-    { mode="n", keymap= leader "y", action="\"+y" },
-    { mode="v", keymap= leader "y", action="\"+y" },
-    { mode="n", keymap= leader "p", action="\"+p" },
-    { mode="n", keymap= leader "P", action="\"+P" },
-    { mode="n", keymap= leader "gp", action="'[v']" },
-
-
-    -- Diagnostic
-    { mode="n", keymap= leader "dn", action = vim.diagnostic.goto_next},
-    { mode="n", keymap= leader "dp", action = vim.diagnostic.goto_prev},
-    { mode="n", keymap= leader "e",  action = vim.diagnostic.open_float},
-}
+return M

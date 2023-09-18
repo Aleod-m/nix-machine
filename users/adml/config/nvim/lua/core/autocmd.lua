@@ -1,5 +1,5 @@
 -- Help with setting autocmds
-local augroup = require'utils.augroup'
+local augroup = require'core.augroup'
 
 local M = {}
 --Create an autocmd.
