@@ -21,18 +21,13 @@ return {
     , opts = 
         { tools = { hover_actions = { auto_focus = true } }
         , server = 
-            { on_attach = vim.lsp.on_attach
-            , capabilities = vim.lsp.capabilities
-            , check = { command = "clippy" }
-            , diagnostics = 
-                { enable = true
-                , disabled = {"unresolved-proc-macro"}
-                }
+            { check = { command = "clippy" }
+            , diagnostics = { enable = true }
             }
         }
     , config = function(_, opts)
         local rt = require('rust-tools')
-        opts.server.on_attach = vim.lsp.on_attach
+        opts.server.on_attach = require('aleod.keymaps').lsp_keys
         opts.server.capabilities = vim.lsp.capabilities
         rt.setup(opts)
     end

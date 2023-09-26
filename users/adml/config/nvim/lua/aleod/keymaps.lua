@@ -17,21 +17,15 @@ km.set_keymaps
 
     -- dH/dL to delete to the start/end of a line
     , { mode="n", keymap="dH", action="d^" }
-    , { mode="v", keymap="dH", action="d^" }
     , { mode="n", keymap="dL", action="d$" }
-    , { mode="v", keymap="dL", action="d$" }
 
     -- yH/yL to yank to the start/end of a line
     , { mode="n", keymap="yH", action="y^" }
-    , { mode="v", keymap="yH", action="y^" }
     , { mode="n", keymap="yL", action="y$" }
-    , { mode="v", keymap="yL", action="y$" }
 
     -- cH/cL
-    , { mode="n", keymap="yH", action="y^" }
-    , { mode="v", keymap="yH", action="y^" }
-    , { mode="n", keymap="yL", action="y$" }
-    , { mode="v", keymap="yL", action="y$" }
+    , { mode="n", keymap="cH", action="c^" }
+    , { mode="n", keymap="cL", action="c$" }
 
     -- Remove highlights 
     , { mode="n", keymap= leader "nh", action="<cmd>noh<Cr>" }
@@ -53,14 +47,22 @@ km.set_keymaps
 
     -- Moving lines of text
     -- Insert mode with the ctrl key
-    , { mode="i", keymap= ctrl "k", action="<ESC>:m .+1<CR>==" }
-    , { mode="i", keymap= ctrl "t", action="<ESC>:m .-2<CR>==" }
+    , { mode="i", keymap= ctrl "h", action="<C-D>" }
+    , { mode="i", keymap= ctrl "l", action="<C-T>" }
+    , { mode="i", keymap= ctrl "k", action="<ESC><Cmd>m .+1<CR>i"}
+    , { mode="i", keymap= ctrl "t", action="<ESC><Cmd>m .-2<CR>i" }
+
     -- Normal mode with the ctrl key
-    , { mode="n", keymap= ctrl "k", action=":m .+1<CR>==" }
-    , { mode="n", keymap= ctrl "t", action=":m .-2<CR>==" }
+    , { mode="n", keymap= ctrl "k", action="<Cmd>m .+1<CR>" }
+    , { mode="n", keymap= ctrl "t", action="<Cmd>m .-2<CR>" }
+    , { mode="n", keymap= ctrl "h", action="<<" }
+    , { mode="n", keymap= ctrl "l", action=">>" }
+
     -- In visual mode with ctrl key
-    , { mode="v", keymap= ctrl "k", action=":m'>+<CR>gv=gv"}
-    , { mode="v", keymap= ctrl "t", action=":m-2<CR>gv=gv" }
+    , { mode="v", keymap= ctrl "k", action=":m'>+<CR>gv"}
+    , { mode="v", keymap= ctrl "t", action=":m-2<CR>gv" }
+    , { mode="v", keymap= ctrl "h", action="<" }
+    , { mode="v", keymap= ctrl "l", action=">" }
 
     -- Clipboard integration
     , { mode="n", keymap= leader "y",  action="\"+y" }
@@ -70,13 +72,15 @@ km.set_keymaps
     , { mode="n", keymap= leader "gp", action="'[v']" }
 
 
-    -- Diagnostic
-    , { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next}
-    , { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev}
-    , { mode="n", keymap= leader "e",  action= vim.diagnostic.open_float}
+    -- Diagnostics
+    , { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next  }
+    , { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev  }
+    , { mode="n", keymap= leader "dl",  action= vim.diagnostic.open_float }
     }
 
-vim.lsp.on_attach = function(client, bufnr)
+local M = {}
+
+M.lsp_keys = function(client, bufnr)
     local km = require("core.kemaps")
     local opts = 
         { noremap = true
@@ -94,3 +98,4 @@ vim.lsp.on_attach = function(client, bufnr)
     )
 end
 
+return M

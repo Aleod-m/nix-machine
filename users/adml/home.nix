@@ -27,7 +27,6 @@ in {
       wlogout
       eww-wayland
       mako
-      waybar
       wlsunset
       rofi-wayland
       brightnessctl
@@ -39,7 +38,6 @@ in {
       slurp
       grim
       ## others
-      aseprite-unfree
       wally-cli
       nvtop
       fontforge-gtk
@@ -50,7 +48,6 @@ in {
       libreoffice
       tiled
       pciutils
-      gh
       obsidian
       discord
       steam
@@ -63,7 +60,6 @@ in {
       vscode
       unzip
       wget
-      htop
       tuxguitar
       vlc
       evince
@@ -78,9 +74,18 @@ in {
       helvum
       gnupg
     ];
+
     programs = {
       home-manager.enable = true;
-      obs-studio.enable = true;
+      obs-studio = {
+        enable = true;
+        plugins = with pkgs.obs-studio-plugins; [
+          wlrobs
+          input-overlay
+          obs-pipewire-audio-capture
+        ];
+      };
+      htop.enable = true;
 
       starship = {
         enable = true;
@@ -108,10 +113,6 @@ in {
       configFile = {
         nvim = {
           source = ./config/nvim;
-          recursive = true;
-        };
-        devshells = {
-          source = ./config/devshells;
           recursive = true;
         };
         nushell = {

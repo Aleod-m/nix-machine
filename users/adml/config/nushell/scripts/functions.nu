@@ -9,11 +9,11 @@ export def-env mkcd [name: path] {
 }
 
 # nix utilities. used to develop using nu as the shell.
-export def loc [p: path = ., ext: string] {
+export def loc [ext: string, p: path = .] {
     ls ($p + /**/*) 
         | where type == file 
         | filter { $in | get name | str ends-with $ext }
         | get name 
-        | each { open $in | lines | length } 
+        | each { open $in | lines | length }
         | reduce {|a, b| $a + $b}
 }
