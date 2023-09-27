@@ -32,7 +32,7 @@ return {
 
         local lsp_conf = require'lspconfig'
         local capabilities = require("cmp_nvim_lsp").default_capabilities()
-        local server = 
+        local servers = 
             { "rnix"
             , "ccls"
             , "elmls"
@@ -40,7 +40,7 @@ return {
             , "wgsl_analyzer"
             , "zls"
             }
-        for lsp in servers do 
+        for _, lsp in ipairs(servers) do 
             lsp_conf[lsp].setup { capabilities = capabilities }
         end
         

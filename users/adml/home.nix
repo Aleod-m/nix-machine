@@ -119,6 +119,10 @@ in {
           source = ./config/nushell;
           recursive = true;
         };
+        kitty = {
+          source = ./config/kitty;
+          recursive = true;
+        };
       };
     };
   };
