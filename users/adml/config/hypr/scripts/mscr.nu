@@ -7,8 +7,9 @@ def main [] {
         | first
         | get workspaces
         | where active
-        | get name
+        | get id
         | first);
 
-    move_win_to_ws (active_window | get pid) $target_ws
+    move_active_window $target_ws
 }
+
