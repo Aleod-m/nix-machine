@@ -5,6 +5,7 @@
 }: 
 let cfg = config.nix
 ; types = lib.types
+; boolToString = b: if b then "true" else "false"
 ; in 
 { options = 
   { nix = 
@@ -45,10 +46,13 @@ let cfg = config.nix
 ; config = lib.mkMerge 
   [ (lib.mkIf cfg.flakes.enable 
       { nix.package = pkgs.nixFlakes
-      ; nix.extraOptions = ''
+      ; nix.extraOptions = let 
+        keep-outputs = boolToString cfg.flakes.keep-outputs;
+        keep-derivations = boolToString cfg.flakes.keep-derivations;
+      in ''
         experimental-features = nix-command flakes
-        keep-outputs = true
-        keep-derivations = true
+        keep-outputs = ${keep-outputs}
+        keep-derivations = ${keep-derivations}
       ''
       ; })
     (lib.mkIf cfg.gc.enable 
