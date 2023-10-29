@@ -1,7 +1,7 @@
 local M = {}
 
 function M.set(option, value)
-    vim.opt[option] = value
+    vim.o[option] = value
     M[option] = value
 end
 
@@ -10,7 +10,7 @@ M.set_options = function(options)
         return
     end
     for k, v in pairs(options) do
-        vim.opt[k] = v
+        vim.o[k] = v
         M[k] = v
     end
 end

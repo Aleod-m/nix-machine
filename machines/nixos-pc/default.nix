@@ -1,31 +1,24 @@
-# NixOs pc hardware config
-_: {
-  self,
-  config,
-  lib,
-  pkgs,
-  ...
-}:
-let 
-  enableSerivices = ss: 
-  let 
-    paths = map (s: ["services" s "enable"]) ss;
-  in __foldl' (attr: p: lib.attrsets.setAttrByPath p attr true) {} paths;
-in { 
+{ pkgs
+, lib
+, ...
+}: let 
+  ## Enable services without any other configuration needed.
+  enableServices = ss: 
+    let 
+      paths = map (s: lib.setAttrByPath ["services" s "enable"] true) ss;
+    in lib.lists.foldl lib.attrsets.recursiveUpdate {} paths
+
+; in 
   # Imports the hardware configuration
-  imports = [ ./hardware.nix ]; 
+{ imports = [ ./hardware.nix ]
 
-  fonts.fonts = with pkgs; [
-    nerdfonts
-  ];
+; fonts.fonts = with pkgs; [ nerdfonts ]
 
-  console = {
-    font = "Lat2-Terminus16";
-    keyMap = "fr";
-  };
-
-} // enableServices [
-    "flatpak"
-    "tailscale"
-    "playerctld"
+; console = 
+  { font = "Lat2-Terminus16"
+  ; keyMap = "us"
+  ; }
+; } // enableServices 
+[ "flatpak"
 ]
+

@@ -1,7 +1,6 @@
-{
+{...}: {
   networking = {
     firewall = {
-      trustedInterfaces = ["tailscale0"];
       checkReversePath = "loose";
       enable = true;
       allowedTCPPorts = [80 443];
@@ -23,10 +22,9 @@
       ];
     };
 
-    networkmanager = {
-        enable = true;
-        dns = "systemd-resolve";
-        wifi.powersave = true;
-    };
+    resolvconf.dnsExtensionMechanism = false;
+    dhcpcd.enable = false;
+    networkmanager.enable = true;
   };
+  programs.nm-applet.enable = true;
 }

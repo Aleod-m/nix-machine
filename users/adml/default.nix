@@ -1,12 +1,12 @@
-inputs: {
+{
   config,
   lib,
   pkgs,
   ...
 }: {
-  users.extraUsers.adml = {
+  users.users.adml = {
     isNormalUser = true;
     shell = pkgs.bash;
-    extraGroups = ["wheel" "input" "video" "uinput" "networkmanager"];
+    extraGroups = ["docker" "wheel" "input" "video" "uinput" "networkmanager"];
   };
 }

@@ -1,14 +1,13 @@
-inputs: {
-  # Keyboard helper functions.
-  # Keyboard = import ./keyboard inputs;
-
-  # Create an attribute set that inport all the modules in the mods argument and pass the inputs in the ins argument to it.
-  modules.importAndPropagateInputs = ins: basePath: mods:
-    builtins.listToAttrs (
-      map (moduleName: {
-        name = moduleName;
-        value = import (basePath + "/${moduleName}") ins;
-      })
-      mods
-    );
-} // (import ./constructors.nix inputs)
+{ self
+, ...
+} 
+@ inputs: 
+  let use = (module: (import module) inputs)
+  ; c = self.lib.combinator
+  ; in 
+  { inherit use
+  ; useall = 
+      basepath: 
+      c.apply_all modules [ (mod: (basepath ++ mod)) use ] 
+  ; combinator = import ./combinators.nix
+  ; } 

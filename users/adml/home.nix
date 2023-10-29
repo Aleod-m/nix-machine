@@ -1,9 +1,7 @@
-_: {pkgs, ...}: let
-  bashrcExtra = (import ./bashrcExtra.nix {inherit pkgs;}).bashrcExtra;
-in {
-  config = {
-    nix.allowedUnfree = [
-      "discord"
+{pkgs, ...}:
+  { imports = [ ./config ]
+  ; nix.allowedUnfree = 
+    [ "discord"
       "spotify"
       "spotify-unwrapped"
       "vscode"
@@ -11,119 +9,107 @@ in {
       "steam"
       "steam-run"
       "steam-original"
-      "obsidian"
       "VCV-Rack"
       "cudatoolkit"
-      "aseprite"
-    ];
-
-    nixpkgs.config.permittedInsecurePackages = [
-      "python-2.7.18.6" # needed for aseprite.
-    ];
-    
-    home.packages = with pkgs; [
-      ## Desktop deps.
-      playerctl
-      wlogout
+    ]
+  
+  ; home.packages = with pkgs; 
+    [ ## Desktop deps.
       eww-wayland
+      # Logout screen.
+      wlogout
+      # Notif daemon.
       mako
-      wlsunset
-      rofi-wayland
-      brightnessctl
-      wl-clipboard
+  
+      ## screen utilities. 
       wlr-randr
+      wlsunset
+      brightnessctl
+  
+      wl-clipboard
+  
+      ## Sound utilities.
+      playerctl
       blueman
       pamixer
       pulseaudio
+      pavucontrol
+  
+      ## Screen shot utilities.
       slurp
       grim
+  
+      vlc
+      evince
+      helvum
+      gnupg
+      tuxguitar
+      vscode
+  
+      rofi-wayland
+  
       ## others
       wally-cli
       nvtop
-      fontforge-gtk
-      fontforge
       tenacity
-      socat
       vcv-rack
       libreoffice
-      tiled
-      pciutils
-      obsidian
       discord
-      steam
       spotify
+  
+      ## cli
       bat
+      pciutils
       zoxide
-      neovim
       ripgrep
       starship
-      vscode
       unzip
       wget
-      tuxguitar
-      vlc
-      evince
+      nushell
+      socat
+      neovim
+      gcc # Needed by neovim
+  
+      ## Game dev
+      godot_4
+      tiled
       gimp
       inkscape
       blender
-      gcc
-      pavucontrol
-      godot_4
+  
+      ## Gaming
+      steam
       prismlauncher
-      nushell
-      helvum
-      gnupg
-    ];
-
-    programs = {
-      home-manager.enable = true;
-      obs-studio = {
-        enable = true;
-        plugins = with pkgs.obs-studio-plugins; [
-          wlrobs
-          input-overlay
-          obs-pipewire-audio-capture
-        ];
-      };
-      htop.enable = true;
-
-      starship = {
-        enable = true;
-      };
-
-      git = {
-        enable = true;
-        userName = "AdrienDML";
-        userEmail = "adriendml99@gmail.com";
-        ignores = [".envrc" ".direnv"];
-      };
-
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
-    };
-
-    xsession = {
-      enable = true;
-    };
-
-    # Non nix configfiles.
-    xdg = {
-      configFile = {
-        nvim = {
-          source = ./config/nvim;
-          recursive = true;
-        };
-        nushell = {
-          source = ./config/nushell;
-          recursive = true;
-        };
-        kitty = {
-          source = ./config/kitty;
-          recursive = true;
-        };
-      };
-    };
-  };
-}
+    ]
+  
+  ; programs = 
+    # Home manager manages itself.
+    { home-manager.enable = true
+  
+    ; obs-studio = 
+      { enable = true
+      ; plugins = with pkgs.obs-studio-plugins; [
+        # Wayland plugin
+        wlrobs
+        input-overlay
+        # Sound plugin 
+        obs-pipewire-audio-capture
+      ]
+      ; }
+  
+    ; htop.enable = true
+  
+    ; starship.enable = true
+  
+    ; git = 
+      { enable = true
+      ; userName = "AdrienDML"
+      ; userEmail = "adriendml99@gmail.com"
+      ; ignores = [".envrc" ".direnv"]
+      ; }
+    ; direnv = 
+      { enable = true
+      ; nix-direnv.enable = true
+      ; }
+    ; }
+  ; }

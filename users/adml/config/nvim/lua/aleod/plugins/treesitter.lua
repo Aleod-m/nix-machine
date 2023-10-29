@@ -40,8 +40,6 @@ return {
                 "json",
                 "yaml",
             },
-            sync_install = false,
-            ingore_install = {""},
         })
 
         local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
