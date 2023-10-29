@@ -5,7 +5,7 @@
 }: let inherit (nixpkgs-stable.lib) nixosSystem
   # Function to create a computer with some users.
   ; mkComputer = 
-    { hostname
+    { hostName
     , modules
     , users 
     , homeManager ? false
@@ -13,19 +13,23 @@
     , system
     } : let 
       nixos-argset = 
-        { modules = 
-          (__attrValues self.nixosModules)
-          ++ (__attrValues self.mixedModules)
-          ++ [ ./${hostname} 
-            { nixpkgs.hostPlatform = system; }
+        { inherit system
+        ; modules = 
+          [ ./${hostName} 
+            { networking.hostName = hostName; }
             hyprland.nixosModules.default
-          ]
-          # add all the selected modules
+          ] 
+          # Add my custom nixos + mixed modules. 
+          ++ (__attrValues self.nixosModules)
+          ++ (__attrValues self.mixedModules)
+
+          # add all the selected configuration modules. 
           ++ (map (mod: import ./modules/${mod}) modules)
           # add all the selected users 
           ++ (map (user: import ../users/${user}) users)
+
         ; }
-    ; in { ${hostname} = nixosSystem nixos-argset; }
+    ; in { ${hostName} = nixosSystem nixos-argset; }
 
   # Conveignance function to create all my systems
   ; mkComputers = computers:
@@ -34,7 +38,7 @@
 
 ; in mkComputers 
   # My laptop (i know its caled pc but its a laptop that doesn't move much).
-  [ { hostname = "nixos-pc"
+  [ { hostName = "nixos-pc"
     ; system = "x86_64-linux" 
     ; users = [ "adml" ]
     ; modules = 
@@ -42,6 +46,7 @@
         "sound.nix"
         "ssh.nix"
         "nix.nix"
+        "net.nix"
         "nvidia.nix"
         "hyprland.nix"
         "lightdm.nix"

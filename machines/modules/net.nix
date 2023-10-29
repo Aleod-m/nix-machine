@@ -1,5 +1,7 @@
 {...}: {
   networking = {
+    resolvconf.dnsExtensionMechanism = false;
+    dhcpcd.enable = false;
     firewall = {
       checkReversePath = "loose";
       enable = true;
@@ -22,9 +24,9 @@
       ];
     };
 
-    resolvconf.dnsExtensionMechanism = false;
-    dhcpcd.enable = false;
-    networkmanager.enable = true;
+    networkmanager = {
+        enable = true;
+        wifi.powersave = false;
+    };
   };
-  programs.nm-applet.enable = true;
 }
