@@ -6,8 +6,17 @@
     { url = "github:nix-community/home-manager/release-23.05"
     ; inputs.nixpkgs.follows = "nixpkgs"
     ; }
-  ; flake-utils.url = "github:numtide/flake-utils"
-  ; hyprland.url = "github:hyprwm/Hyprland?tag=v0.31.0"
+    
+  ; flake-utils = 
+    { url = "github:numtide/flake-utils"
+    ; inputs.nixpkgs.follows = "nixpkgs"
+    ; }
+
+  ; hyprland = 
+    { url = "github:hyprwm/Hyprland?tag=v0.31.0"
+    ; inputs.nixpkgs.follows = "nixpkgs"
+    ; }
+
   ; }
 
 ; outputs = { self, nixpkgs, ...} @ inputs: 
