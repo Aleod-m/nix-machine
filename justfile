@@ -1,6 +1,6 @@
 set shell := ["nu", "-c"]
 
-show-trace := if env("SHOW_TRACE", "0") == "1" {
+show-trace := if env_var_or_default("SHOW_TRACE", "0") == "1" {
     "--show-trace" 
 } else { 
     "" 

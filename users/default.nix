@@ -1,13 +1,13 @@
 { home-manager
 , self
+, nixpkgs
 , hyprland
-, nixpkgs-unstable
 , ... 
 } @ inputs: let inherit (home-manager.lib) homeManagerConfiguration
 
   ; mkUserHm = 
     { name
-    , pkgs ? nixpkgs-unstable
+    , pkgs ? nixpkgs
     , overlays ? [ ]
     , system ? "x86_64-linux"
     }: 

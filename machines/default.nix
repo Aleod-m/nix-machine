@@ -1,8 +1,8 @@
-{ nixpkgs-stable 
+{ nixpkgs
 , hyprland
 , self
 , ...
-}: let inherit (nixpkgs-stable.lib) nixosSystem
+}: let inherit (nixpkgs.lib) nixosSystem
   # Function to create a computer with some users.
   ; mkComputer = 
     { hostName

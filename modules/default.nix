@@ -3,6 +3,6 @@ let mkMods = base: mnames:
     ; in  __zipAttrsWith (_: v: __head v) mods 
 ; in 
 { nixosModules = mkMods "nixos" [ "nix" ]
-; homeManagerModules = mkMods "hm" [ ]
-; mixedModules = mkMods "mixed" [ "nixpred" ]
+; homeManagerModules = mkMods "hm" [ "nixpred" ]
+; mixedModules = mkMods "mixed" [ ]
 ; }

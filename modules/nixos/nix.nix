@@ -9,7 +9,12 @@ let cfg = config.nix
 ; in 
 { options = 
   { nix = 
-    { flakes.enable = lib.mkOption 
+    { allowedUnfree = lib.mkOption 
+      { type = types.listOf types.string
+      ; default = []
+      ; }
+    
+    ; flakes.enable = lib.mkOption 
       { type = types.bool
       ; default = true
       ; description = ''
@@ -61,5 +66,11 @@ let cfg = config.nix
       ; nix.gc.automatic = lib.mkDefault true
       ; nix.gc.options = lib.mkDefault "--delete-older-than 10d"
       ; }) 
+    (lib.mkIf (cfg.allowedUnfree != []) 
+      { nixpkgs.config.allowUnfree = true
+      ; nixpkgs.config.allowUnfreePredicate = 
+        pkgs: __elem (lib.getName pkgs) config.allowedUnfree
+      ; }
+    )
   ]
 ; }
