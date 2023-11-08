@@ -25,8 +25,8 @@
     };
 
     networkmanager = {
-        enable = true;
-        wifi.powersave = false;
+      enable = true;
+      wifi.powersave = false;
     };
   };
 }
