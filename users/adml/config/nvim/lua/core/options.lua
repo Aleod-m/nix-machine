@@ -41,7 +41,7 @@ function M.set_for_ft(ft, options)
         group = group,
         pattern = ft,
         callback = function(args)
-          for k, v in pairs(option) do 
+          for k, v in pairs(options) do 
             vim.bo[k] = v
           end
         end
@@ -52,7 +52,7 @@ function M.set_for_ft(ft, options)
       group = group,
       pattern = ft,
       callback = function(args)
-        for k, v in pairs(option) do 
+        for k, v in pairs(options) do 
           vim.bo[k] = v
         end
       end
