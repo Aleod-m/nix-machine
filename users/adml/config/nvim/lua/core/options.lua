@@ -60,5 +60,4 @@ function M.set_for_ft(ft, options)
   end
 end
 
-
 return M

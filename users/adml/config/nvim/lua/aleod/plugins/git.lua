@@ -1,4 +1,5 @@
 return {  
+  -- TODO: Fix keymaps when issue resolved: https://github.com/NeogitOrg/neogit/issues/847
     { 'TimUntersberger/neogit'
     , dependencies = 'nvim-lua/plenary.nvim'
     , cmd = 'Neogit'
