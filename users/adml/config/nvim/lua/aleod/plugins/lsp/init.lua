@@ -6,7 +6,6 @@ return {
         { "antosha417/nvim-lsp-file-operations", config = true }
     },
     config = function()
-
         vim.api.nvim_create_autocmd('LspAttach', 
             { group = vim.api.nvim_create_augroup('UserLspConfig', {})
             , callback = function(ev)

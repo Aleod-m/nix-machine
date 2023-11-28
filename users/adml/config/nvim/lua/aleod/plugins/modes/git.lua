@@ -7,7 +7,7 @@ return
         }
     , keys = "<Space>g"
     , config = function()
-        require'gitsigns'
+        local gitsigns = require'gitsigns'
         require'hydra'
             { name = "Git"
             , hint = [[

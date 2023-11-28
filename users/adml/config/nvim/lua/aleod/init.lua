@@ -8,16 +8,15 @@ vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
   command = "checktime",
 })
 
+-- Equalize the splits if terminal get resized. 
+-- Usefull for hyprland users when switching 
+-- from nvim to another app in fullscreen.
 vim.api.nvim_create_autocmd({"VimResized"}, {
   group = group,
   command = "wincmd ="
 })
 
-vim.api.nvim_create_autocmd({"FileType"}, {
-  group = group,
-  pattern = "nix",
-  callback = function(args)
-    vim.bo.ts = 2
-    vim.bo.sw = 2
-  end
+-- Add the justfile file type. (XD)
+vim.filetype.add({
+  filename = { ["justfile"] = "justfile" }
 })

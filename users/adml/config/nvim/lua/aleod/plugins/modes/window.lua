@@ -1,10 +1,9 @@
 -- Todo setup kitty splits & integration with smart-splits.
 return 
-    { 'anuvyklack/hydra.nvim' 
-    , name = "window"
+    { "mrjones2014/smart-splits.nvim"
     , dependencies = 
-        { 'nvim-telescope/telescope.nvim'
-        , "mrjones2014/smart-splits.nvim"
+        { 'anuvyklack/hydra.nvim'
+        , 'nvim-telescope/telescope.nvim'
         }
     , key = "<space>s"
     , config = function()

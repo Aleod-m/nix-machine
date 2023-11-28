@@ -1,5 +1,5 @@
-local M = {}
-M.options = { 
+local opts = require('core.options')
+opts.set_many({
     -- Set My shell as nushell
     sh = "nu",
     -- allow unlimited undos.
@@ -37,8 +37,6 @@ M.options = {
     -- Usefull options for reloading the buffers.
     autoread = true,
     ut = 1000, -- 1 sec without moving will triger CursorHold
-}
+})
 
-require('core.options').set_options(M.options)
-
-return M
+opts.set_for_ft({ "nix", "html", "css", "lua" }, { tabstop = 2, shiftwidth = 2 })

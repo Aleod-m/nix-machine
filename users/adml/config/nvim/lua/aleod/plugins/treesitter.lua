@@ -56,7 +56,14 @@ return {
                 url = "szebniok/tree-sitter-wgsl",
                 files = {"src/parser.c"}
             },
-            filetype = "wgsl"
+            filetype = "justfile"
+        }
+        parser_config.just = {
+            install_info = {
+                files = { "src/parser.c", "src/scanner.c" },
+                branch = "main",
+            },
+            filetype = "justfile"
         }
     end
 }
