@@ -54,14 +54,15 @@ return {
     parser_config.wgsl = {
       install_info = {
         url = "szebniok/tree-sitter-wgsl",
-        files = {"src/parser.c"}
+        files = {"src/parser.c"},
+        branch = "main",
       },
       filetype = "wgsl"
     }
     parser_config.just = {
       install_info = {
         url = "https://github.com/IndianBoy42/tree-sitter-just",
-        files = { "src/parser.c", "src/scanner.c" },
+        files = { "src/parser.c", "src/scanner.cc" },
         branch = "main",
       },
       filetype = "justfile"
