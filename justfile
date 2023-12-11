@@ -11,6 +11,9 @@ default:
     @just ball
     @just sall
 
+check:
+    nix flake check
+
 # build commands
 ball:
     @just hm build

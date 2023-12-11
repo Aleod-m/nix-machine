@@ -19,6 +19,7 @@ alias mv = mv --verbose
 
 # Git aliases.
 alias gs = git status
+alias gd = git diff 
 alias gl = git log --oneline
 
 # Commit with message.
