@@ -20,16 +20,18 @@
         import ./${name}/home.nix
         # Known informations.
         ;
-      known = {config = {
-        nixpkgs.overlays =
-          overlays;
-        home = {
-          homeDirectory = "/home/${name}";
-          username =
-            name;
-          stateVersion = "22.11";
+      known = {
+        config = {
+          nixpkgs.overlays =
+            overlays;
+          home = {
+            homeDirectory = "/home/${name}";
+            username =
+              name;
+            stateVersion = "22.11";
+          };
         };
-      };};
+      };
       hm-argset = {
         pkgs =
           pkgs.legacyPackages.${system};

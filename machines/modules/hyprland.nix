@@ -1,12 +1,6 @@
-{
-  hyprland,
-  pkgs,
-  ...
-}: {programs.hyprland = {
-  enable =
-    true;
-  package =
-    hyprland.packages.${pkgs.system}.hyprland;
-  nvidiaPatches =
-    true;
-};}
+{ hyprland, pkgs, ... }: {
+  programs.hyprland = {
+    enable = true;
+    package = hyprland.packages.${pkgs.system}.hyprland;
+  };
+}

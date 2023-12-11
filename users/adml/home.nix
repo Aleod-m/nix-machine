@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [./config];
+  imports = [ ./config ];
   nix.allowedUnfree = [
     "discord"
     "spotify"
@@ -49,6 +49,7 @@
 
     ## others
     wally-cli
+
     nvtop
     tenacity
     vcv-rack
@@ -83,11 +84,9 @@
   programs =
     # Home manager manages itself.
     {
-      home-manager.enable =
-        true;
+      home-manager.enable = true;
       obs-studio = {
-        enable =
-          true;
+        enable = true;
         plugins = with pkgs.obs-studio-plugins; [
           # Wayland plugin
           wlrobs
@@ -96,22 +95,17 @@
           obs-pipewire-audio-capture
         ];
       };
-      htop.enable =
-        true;
-      starship.enable =
-        true;
+      htop.enable = true;
+      starship.enable = true;
       git = {
-        enable =
-          true;
+        enable = true;
         userName = "AdrienDML";
         userEmail = "adriendml99@gmail.com";
         ignores = [".envrc" ".direnv"];
       };
       direnv = {
-        enable =
-          true;
-        nix-direnv.enable =
-          true;
+        enable = true;
+        nix-direnv.enable = true;
       };
     };
 }

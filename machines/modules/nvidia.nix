@@ -18,10 +18,12 @@ in {
       driSupport32Bit =
         true;
     };
-    nvidia = {prime = {
-      sync.enable =
-        true;
-    };};
+    nvidia = {
+      prime = {
+        sync.enable =
+          true;
+      };
+    };
   };
   services.xserver.videoDrivers = ["nvidia"];
   environment.sessionVariables =

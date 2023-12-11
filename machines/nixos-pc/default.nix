@@ -12,7 +12,7 @@ in
   # Imports the hardware configuration
   {
     imports = [./hardware.nix];
-    fonts.fonts = with pkgs; [nerdfonts];
+    fonts.packages = with pkgs; [nerdfonts];
     console = {
       font = "Lat2-Terminus16";
       keyMap = "us";
@@ -21,4 +21,5 @@ in
   // enableServices
   [
     "flatpak"
+    "ratbagd" # For my mouse.
   ]
