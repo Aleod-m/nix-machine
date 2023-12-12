@@ -6,6 +6,7 @@ km.mapleader " "
 km.maplleader ","
 
 local ctrl = km.ctrl
+local alt = km.alt
 local leader = km.leader
 
 km.set_keymaps 
@@ -76,6 +77,9 @@ km.set_keymaps
     , { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next  }
     , { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev  }
     , { mode="n", keymap= leader "dl",  action= vim.diagnostic.open_float }
+
+    -- digraphs input
+    , {mode="i", keymap= alt "k", action= ctrl "k" }
     }
 
 local M = {}

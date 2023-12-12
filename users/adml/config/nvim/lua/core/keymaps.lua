@@ -36,4 +36,8 @@ function M.ctrl(key)
     return "<C-" .. key .. ">"
 end
 
+function M.alt(key)
+    return "<A-" .. key .. ">"
+end
+
 return M
