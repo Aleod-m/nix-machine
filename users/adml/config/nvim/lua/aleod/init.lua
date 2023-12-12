@@ -15,11 +15,6 @@ vim.api.nvim_create_autocmd({"VimResized"}, {
   group = group,
   command = "wincmd ="
 })
--- Expand all folds in vim enter.
-vim.api.nvim_create_autocmd({"BufEnter"}, {
-  group = group,
-  command = "foldopen!"
-})
 
 -- Add the justfile file type. (XD)
 vim.filetype.add({
