@@ -12,8 +12,8 @@ return
             { name = "Git"
             , hint = [[
                  _n_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
-                 _p_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full 
-                 ^ ^              _S_: stage buffer      _r_: revert hunk    _/_: show base file
+                 _p_: prev hunk   _u_: undo last stage   _r_: revert hunk    _B_: blame show full 
+                 ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
 
                  ^ ^              _<Enter>_: Neogit              _q_: exit
                 ]]
@@ -45,11 +45,13 @@ return
                     vim.schedule(function() gitsigns.next_hunk() end)
                     return '<Ignore>'
                 end, { expr = true, desc = 'next hunk' } }
-                ,{ 'p', function()
+
+                , { 'p', function()
                     if vim.wo.diff then return '[c' end
                     vim.schedule(function() gitsigns.prev_hunk() end)
                     return '<Ignore>'
                 end, { expr = true, desc = 'prev hunk' } }
+
                 , { 's', ':Gitsigns stage_hunk<CR>', { silent = true, desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
                 , { 'S', gitsigns.stage_buffer, { desc = 'stage buffer' } }

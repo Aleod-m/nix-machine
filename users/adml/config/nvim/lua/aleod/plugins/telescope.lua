@@ -37,7 +37,7 @@ return {
         tele.load_extension("ui-select")
         km.set_keymaps({
             {mode= "n", keymap= leader "ff", action= builtin.find_files},
-            {mode= "n", keymap= leader "gs", action= builtin.live_grep},
+            {mode= "n", keymap= leader "fg", action= builtin.live_grep},
             {mode= "n", keymap= leader "gf", action= builtin.git_files},
             {mode= "n", keymap= leader "gb", action= builtin.git_branches},
             {mode= "n", keymap= leader "fb", action= builtin.buffers},
