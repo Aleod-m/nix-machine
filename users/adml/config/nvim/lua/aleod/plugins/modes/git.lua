@@ -10,18 +10,14 @@ return
         local gitsigns = require'gitsigns'
         require'hydra'
             { name = "Git"
-            , hint = [[
-                 _n_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
-                 _p_: prev hunk   _u_: undo last stage   _r_: revert hunk    _B_: blame show full 
-                 ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
-
-                 ^ ^              _<Enter>_: Neogit              _q_: exit
-                ]]
+            , mode = 'n'
+            , body = '<leader>g'
             , config = 
                 { buffer = bufnr
-                , color = 'pink'
                 , invoke_on_body = true
-                , hint = { border = 'rounded'}
+                , foreign_keys = "warn"
+                , exit = false
+                , timeout = false
                 , on_enter = function()
                     vim.cmd 'mkview'
                     vim.cmd 'silent! %foldopen!'
@@ -37,8 +33,6 @@ return
                 end
                 , 
                 }
-            , mode = { 'n', 'x' }
-            , body = '<leader>g'
             , heads =
                 { { 'n', function()
                     if vim.wo.diff then return ']c' end

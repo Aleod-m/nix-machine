@@ -78,7 +78,7 @@ km.set_keymaps
     , { mode="v", keymap= leader "Y",  action="\"+y" }
     , { mode="n", keymap= leader "P",  action="\"+p" }
     , { mode="n", keymap= leader "P",  action="\"+p" }
-    , { mode="n", keymap= leader "gp", action="'[v']" }
+    , { mode="n", keymap= leader "vp", action="'[v']" }
 
 
     -- Diagnostics
