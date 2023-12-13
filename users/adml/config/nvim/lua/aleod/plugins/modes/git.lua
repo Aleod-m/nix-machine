@@ -11,10 +11,10 @@ return
         require'hydra'
             { name = "Git"
             , hint = [[
-                 _J_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
-                 _K_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full 
-                 ^ ^              _S_: stage buffer      ^ ^                 _/_: show base file
-                 ^
+                 _n_: next hunk   _s_: stage hunk        _d_: show deleted   _b_: blame line
+                 _p_: prev hunk   _u_: undo last stage   _p_: preview hunk   _B_: blame show full 
+                 ^ ^              _S_: stage buffer      _r_: revert hunk    _/_: show base file
+
                  ^ ^              _<Enter>_: Neogit              _q_: exit
                 ]]
             , config = 
@@ -40,12 +40,12 @@ return
             , mode = { 'n', 'x' }
             , body = '<leader>g'
             , heads =
-                { { 'J', function()
+                { { 'n', function()
                     if vim.wo.diff then return ']c' end
                     vim.schedule(function() gitsigns.next_hunk() end)
                     return '<Ignore>'
                 end, { expr = true, desc = 'next hunk' } }
-                ,{ 'K', function()
+                ,{ 'p', function()
                     if vim.wo.diff then return '[c' end
                     vim.schedule(function() gitsigns.prev_hunk() end)
                     return '<Ignore>'
@@ -53,6 +53,7 @@ return
                 , { 's', ':Gitsigns stage_hunk<CR>', { silent = true, desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
                 , { 'S', gitsigns.stage_buffer, { desc = 'stage buffer' } }
+                , { 'r', gitsigns.revert_hunk, { desc = 'stage buffer' } }
                 , { 'p', gitsigns.preview_hunk, { desc = 'preview hunk' } }
                 , { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } }
                 , { 'b', gitsigns.blame_line, { desc = 'blame' } }

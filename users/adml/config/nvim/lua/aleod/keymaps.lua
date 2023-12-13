@@ -45,6 +45,8 @@ km.set_keymaps
     , { mode="i", keymap="{<CR>", action="{<CR>}<ESC>O" }
     , { mode="i", keymap="[<CR>", action="[<CR>]<ESC>O" }
     , { mode="i", keymap="(<CR>", action="(<CR>)<ESC>O" }
+    -- digraphs input
+    , {mode="i", keymap= alt "k", action= ctrl "k" }
 
     -- Moving lines of text
     -- Insert mode with the ctrl key
@@ -65,11 +67,17 @@ km.set_keymaps
     , { mode="v", keymap= ctrl "h", action="<" }
     , { mode="v", keymap= ctrl "l", action=">" }
 
+    -- Register 1 yanking and pasting. 
+    -- Usefull when you want yank something delete something else and paste the firs.
+    , { mode="n", keymap= leader "y",  action="\"1y" }
+    , { mode="v", keymap= leader "y",  action="\"1y" }
+    , { mode="n", keymap= leader "p",  action="\"1p" }
+    , { mode="n", keymap= leader "p",  action="\"1p" }
     -- Clipboard integration
-    , { mode="n", keymap= leader "y",  action="\"+y" }
-    , { mode="v", keymap= leader "y",  action="\"+y" }
-    , { mode="n", keymap= leader "p",  action="\"+p" }
-    , { mode="n", keymap= leader "P",  action="\"+P" }
+    , { mode="n", keymap= leader "Y",  action="\"+y" }
+    , { mode="v", keymap= leader "Y",  action="\"+y" }
+    , { mode="n", keymap= leader "P",  action="\"+p" }
+    , { mode="n", keymap= leader "P",  action="\"+p" }
     , { mode="n", keymap= leader "gp", action="'[v']" }
 
 
@@ -77,9 +85,6 @@ km.set_keymaps
     , { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next  }
     , { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev  }
     , { mode="n", keymap= leader "dl",  action= vim.diagnostic.open_float }
-
-    -- digraphs input
-    , {mode="i", keymap= alt "k", action= ctrl "k" }
     }
 
 local M = {}
