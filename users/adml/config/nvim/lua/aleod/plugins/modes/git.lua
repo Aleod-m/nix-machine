@@ -16,7 +16,7 @@ return
                 { buffer = bufnr
                 , color = "amaranth"
                 , invoke_on_body = true
-                , timeout = false
+                , on_key = function() vim.wait(50) end
                 , on_enter = function()
                     vim.cmd 'mkview'
                     vim.cmd 'silent! %foldopen!'
@@ -27,17 +27,18 @@ return
                     vim.cmd 'loadview'
                     vim.api.nvim_win_set_cursor(0, cursor_pos)
                     vim.cmd 'normal zv'
+                    gitsigns.toggle_deleted(false)
                 end
                 , 
                 }
             , heads =
                 { { 'n', gitsigns.next_hunk, { desc = 'next hunk' } }
                 , { 'p', gitsigns.prev_hunk, { desc = 'prev hunk' } }
-                , { 's', ":Gitsigns stage_hunk", { desc = 'stage hunk' } }
+                , { 's', gitsigns.stage_hunk, { nowait = true desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
                 , { 'S', gitsigns.stage_buffer, { desc = 'stage buffer' } }
                 , { 'r', gitsigns.revert_hunk, { desc = 'revert hunk' } }
-                , { 'd', gitsigns.toggle_deleted, { desc = 'toggle deleted' } }
+                , { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } }
                 , { 'b', gitsigns.blame_line, { desc = 'blame' } }
                 , { 'B', function() gitsigns.blame_line{ full = true } end, { desc = 'blame show full' } }
                 , { '/', gitsigns.show, { exit = true, desc = 'show base file' } } -- show the base of the file
