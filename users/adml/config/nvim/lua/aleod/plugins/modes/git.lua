@@ -14,9 +14,8 @@ return
             , body = '<leader>g'
             , config = 
                 { buffer = bufnr
+                , color = "amaranth"
                 , invoke_on_body = true
-                , foreign_keys = "warn"
-                , exit = false
                 , timeout = false
                 , on_enter = function()
                     vim.cmd 'mkview'
