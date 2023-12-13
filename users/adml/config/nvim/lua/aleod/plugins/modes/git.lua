@@ -53,8 +53,7 @@ return
                 , { 's', ':Gitsigns stage_hunk<CR>', { silent = true, desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
                 , { 'S', gitsigns.stage_buffer, { desc = 'stage buffer' } }
-                , { 'r', gitsigns.revert_hunk, { desc = 'stage buffer' } }
-                , { 'p', gitsigns.preview_hunk, { desc = 'preview hunk' } }
+                , { 'r', gitsigns.revert_hunk, { desc = 'revert hunk' } }
                 , { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } }
                 , { 'b', gitsigns.blame_line, { desc = 'blame' } }
                 , { 'B', function() gitsigns.blame_line{ full = true } end, { desc = 'blame show full' } }
