@@ -32,16 +32,12 @@ return
                 }
             , heads =
                 { { 'n', function()
-                    if vim.wo.diff then return ']c' end
                     vim.schedule(function() gitsigns.next_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true, desc = 'next hunk' } }
+                end, { desc = 'next hunk' } }
 
                 , { 'p', function()
-                    if vim.wo.diff then return '[c' end
                     vim.schedule(function() gitsigns.prev_hunk() end)
-                    return '<Ignore>'
-                end, { expr = true, desc = 'prev hunk' } }
+                end, { desc = 'prev hunk' } }
 
                 , { 's', ':Gitsigns stage_hunk<CR>', { silent = true, desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
