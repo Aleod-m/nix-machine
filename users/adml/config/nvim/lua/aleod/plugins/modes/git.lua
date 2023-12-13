@@ -22,14 +22,12 @@ return
                     vim.cmd 'mkview'
                     vim.cmd 'silent! %foldopen!'
                     vim.bo.modifiable = false
-                    gitsigns.toggle_linehl(true)
                 end
                 , on_exit = function()
                     local cursor_pos = vim.api.nvim_win_get_cursor(0)
                     vim.cmd 'loadview'
                     vim.api.nvim_win_set_cursor(0, cursor_pos)
                     vim.cmd 'normal zv'
-                    gitsigns.toggle_linehl(false)
                 end
                 , 
                 }
