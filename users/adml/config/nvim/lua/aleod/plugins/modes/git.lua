@@ -34,7 +34,7 @@ return
             , heads =
                 { { 'n', gitsigns.next_hunk, { desc = 'next hunk' } }
                 , { 'p', gitsigns.prev_hunk, { desc = 'prev hunk' } }
-                , { 's', gitsigns.stage_hunk, { nowait = true desc = 'stage hunk' } }
+                , { 's', gitsigns.stage_hunk, { nowait = true, desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
                 , { 'S', gitsigns.stage_buffer, { desc = 'stage buffer' } }
                 , { 'r', gitsigns.revert_hunk, { desc = 'revert hunk' } }
