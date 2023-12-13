@@ -31,19 +31,13 @@ return
                 , 
                 }
             , heads =
-                { { 'n', function()
-                    vim.schedule(function() gitsigns.next_hunk() end)
-                end, { desc = 'next hunk' } }
-
-                , { 'p', function()
-                    vim.schedule(function() gitsigns.prev_hunk() end)
-                end, { desc = 'prev hunk' } }
-
-                , { 's', ':Gitsigns stage_hunk<CR>', { silent = true, desc = 'stage hunk' } }
+                { { 'n', gitsigns.next_hunk, { desc = 'next hunk' } }
+                , { 'p', gitsigns.prev_hunk, { desc = 'prev hunk' } }
+                , { 's', gitsigns.stage_hunk, { desc = 'stage hunk' } }
                 , { 'u', gitsigns.undo_stage_hunk, { desc = 'undo last stage' } }
                 , { 'S', gitsigns.stage_buffer, { desc = 'stage buffer' } }
                 , { 'r', gitsigns.revert_hunk, { desc = 'revert hunk' } }
-                , { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } }
+                , { 'd', gitsigns.toggle_deleted, { desc = 'toggle deleted' } }
                 , { 'b', gitsigns.blame_line, { desc = 'blame' } }
                 , { 'B', function() gitsigns.blame_line{ full = true } end, { desc = 'blame show full' } }
                 , { '/', gitsigns.show, { exit = true, desc = 'show base file' } } -- show the base of the file
