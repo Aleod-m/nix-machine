@@ -27,6 +27,8 @@
       DIRENV_LOG_FORMAT = "";
     };
 
+    lib = import ./lib nixpkgs;
+
     inherit
       (import ./modules)
       nixosModules

@@ -1,9 +1,7 @@
 lib:
-let 
-  callLibs = file: (import file) lib;
-lib.makeExtensible (self: {
+lib.makeExtensible (self: let 
+  callLibs = file: (import file) {lib = self;};
+in {
   utils = callLibs ./utils.nix;
-  colors = callLibs ./colors.nix;
-
-  inherit (utils) mkModOpt MkTypedOpt;
+  inherit (self.utils) mkModOpt MkTypedOpt;
 })
