@@ -16,13 +16,15 @@
   } @ inputs: let
     devPkgs = (import nixpkgs) {system = "x86_64-linux";};
   in {
+    # All the programs i need to edit my config.
     devShells.x86_64-linux.default = devPkgs.mkShell {
       packages = with devPkgs; [
-        alejandra
-        git
+        # The nix lsp i use.
         rnix-lsp
+        # to run the nix flake commands.
         just
       ];
+      DIRENV_LOG_FORMAT = "";
     };
 
     inherit
