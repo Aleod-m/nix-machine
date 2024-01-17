@@ -64,8 +64,8 @@ km.set_keymaps
     -- In visual mode with ctrl key
     , { mode="v", keymap= ctrl "k", action=":m'>+<CR>gv"}
     , { mode="v", keymap= ctrl "t", action=":m-2<CR>gv" }
-    , { mode="v", keymap= ctrl "h", action="<" }
-    , { mode="v", keymap= ctrl "l", action=">" }
+    , { mode="v", keymap= ctrl "h", action="<gv" }
+    , { mode="v", keymap= ctrl "l", action=">gv" }
 
     -- Register 1 yanking and pasting. 
     -- Usefull when you want yank something delete something else and paste the firs.
