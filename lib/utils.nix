@@ -1,4 +1,4 @@
-lib: let
+{ lib }: let
   l = lib;
   t = lib.types;
 in {
