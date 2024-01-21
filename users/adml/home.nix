@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  imports = [ ./config ];
+  imports = [./config];
   nix.allowedUnfree = [
     "discord"
     "spotify"
@@ -82,8 +82,8 @@
     prismlauncher
   ];
   programs =
-    # Home manager manages itself.
     {
+      # Home manager manages itself.
       home-manager.enable = true;
       obs-studio = {
         enable = true;
