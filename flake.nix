@@ -21,6 +21,8 @@
       packages = with devPkgs; [
         # The nix lsp i use.
         rnix-lsp
+        # The lua lsp for my neovim config
+        lua-language-server
         # to run the nix flake commands.
         just
       ];

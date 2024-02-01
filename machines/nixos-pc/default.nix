@@ -21,5 +21,4 @@ in
   // enableServices
   [
     "flatpak"
-    "ratbagd" # For my mouse.
   ]

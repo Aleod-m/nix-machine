@@ -4,12 +4,13 @@
   ...
 } @ inputs: let
   inherit (nixpkgs.lib) nixosSystem;
+  lib = self.lib;
 
   # Function to create a computer with some users.
   mkComputer = {
     hostName,
-    modules,
     users,
+    modules ? [],
     homeManager ? false,
     pkgs ? nixpkgs,
     system,
@@ -24,7 +25,7 @@
           ./${hostName}
           {networking.hostName = hostName;}
         ]
-        # Add my custom nixos + mixed modules.
+        # Add my custom nixos and mixed modules.
         ++ (__attrValues self.nixosModules)
         ++ (__attrValues self.mixedModules)
         # add all the selected configuration modules.
@@ -35,10 +36,11 @@
   in {${hostName} = nixosSystem nixos-argset;};
 
   # Conveignance function to create all my systems
-  mkComputers = computers: let
-    comps = map mkComputer computers;
-  in
-    __zipAttrsWith (_: v: __head v) comps;
+  mkComputers = computers: 
+    lib.pipe computers [
+      (map mkComputer)
+      (__zipAttrsWith (_: v: __head v))
+    ];
 in
   mkComputers
   # My laptop (i know its caled pc but its a laptop that doesn't move much).

@@ -9,5 +9,5 @@
     shell = pkgs.nushell;
     extraGroups = ["docker" "wheel" "input" "video" "uinput" "networkmanager"];
   };
-  environement.shells = [pkgs.nushell];
+  environment.shells = [pkgs.nushell];
 }
