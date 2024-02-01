@@ -1,7 +1,8 @@
 {...}: {
   networking = {
-    resolvconf.dnsExtensionMechanism = false;
-    dhcpcd.enable = false;
+    # Per interface useDHCP are to be disabled in the hardware.nix file.
+    useDHCP = false;
+
     firewall = {
       checkReversePath = "loose";
       enable = true;
@@ -26,7 +27,6 @@
 
     networkmanager = {
       enable = true;
-      wifi.powersave = false;
     };
   };
 }

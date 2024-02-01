@@ -32,29 +32,20 @@
     nvidiaBusId = "PCI:1:0:0";
     intelBusId = "PCI:0:2:0";
   };
-  hardware.keyboard.zsa.enable =
-    true;
-  hardware.enableRedistributableFirmware =
-    true;
-  powerManagement.cpuFreqGovernor =
-    lib.mkDefault "powersave";
+  hardware.keyboard.zsa.enable = true;
+  hardware.enableRedistributableFirmware = true;
+  powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {
-    cpu.intel.updateMicrocode =
-      lib.mkDefault config.hardware.enableRedistributableFirmware;
-    bluetooth.enable =
-      true;
+    cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+    bluetooth.enable = true;
   };
   boot.loader = {
-    systemd-boot.enable =
-      true;
-    efi.canTouchEfiVariables =
-      true;
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
   };
 
   networking.interfaces = {
-    enp4s0.useDHCP =
-      false;
-    wlp3s0.useDHCP =
-      false;
+    enp4s0.useDHCP = false;
+    wlp3s0.useDHCP = false;
   };
 }
