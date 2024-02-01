@@ -10,6 +10,7 @@
 
   mkUserHm = {
     name,
+    modules ? [],
     pkgs ? nixpkgs,
     overlays ? [],
     system ? "x86_64-linux",
@@ -25,22 +26,32 @@
             username = name;
             stateVersion = "22.11";
           };
+          # Home manager manages itself.
+          programs.home-manager.enable = true;
         };
       };
 
       # The argument to pass to homeManagerConfiguration.
       hm-argset = {
         pkgs = pkgs.legacyPackages.${system};
-        modules = [homeDecl known hyprland.homeManagerModules.default] ++ (__attrValues self.homeManagerModules) ++ (__attrValues self.mixedModules);
+        modules = [homeDecl known hyprland.homeManagerModules.default] 
+          # Add my custom home-manager and mixed modules.
+          ++ (__attrValues self.homeManagerModules) 
+          ++ (__attrValues self.mixedModules)
+          # add all the selected configuration modules.
+          ++ (map (mod: import ./modules/${mod}) modules);
       };
 
     in {${name} = homeManagerConfiguration hm-argset;} ;
 
-  mkUsers = users: let
-    userHms = map mkUserHm users;
-  in
+  mkUsers = users: 
     lib.pipe users [
+      (map mkUserHm)
       (__zipAttrsWith (_: v: __head v))
-      (mkUserHm)
     ];
-in mkUsers [{name = "adml";}]
+in mkUsers [
+  {
+    name = "adml";
+    modules = ["nvim"];
+  }
+]
