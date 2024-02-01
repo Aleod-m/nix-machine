@@ -13,62 +13,59 @@
     "cudatoolkit"
   ];
   home.packages = with pkgs; [
-    ## Desktop deps.
-    eww-wayland
+    #--- Desktop deps. ---#
     # Logout screen.
     wlogout
     # Notif daemon.
     mako
-
-    ## screen utilities.
-    wlr-randr
-    wlsunset
-    brightnessctl
-
-    wl-clipboard
-
-    ## Sound utilities.
-    playerctl
+    # Launcher.
+    rofi-wayland
+    # Bluetooth.
     blueman
+    # Sound.
+    playerctl
     pamixer
     pulseaudio
     pavucontrol
-
-    ## Screen shot utilities.
+    # Clip board.
+    wl-clipboard
+    # Screen and brightness.
+    wlr-randr
+    wlsunset
+    brightnessctl
+    # Screen recording.
     slurp
     grim
 
+    gnupg # Not setup yet.
+
+    #--- Software. ---#
+    tenacity
+    vcv-rack
+    spotify
     vlc
     evince
     helvum
-    gnupg
     tuxguitar
     vscode
 
-    rofi-wayland
+    wally-cli # needed for my kbd.
 
-    ## others
-    wally-cli
-
-    nvtop
-    tenacity
-    vcv-rack
     libreoffice
     discord
-    spotify
 
-    ## cli
+    #--- Command Line utilities. ---#
     bat
     pciutils
     zoxide
+    zellij
     ripgrep
     starship
     unzip
     wget
     nushell
     socat
-    neovim
-    gcc # Needed by neovim
+    nvtop
 
     ## Game dev
     godot_4
@@ -81,31 +78,28 @@
     steam
     prismlauncher
   ];
-  programs =
-    {
-      # Home manager manages itself.
-      home-manager.enable = true;
-      obs-studio = {
-        enable = true;
-        plugins = with pkgs.obs-studio-plugins; [
-          # Wayland plugin
-          wlrobs
-          input-overlay
-          # Sound plugin
-          obs-pipewire-audio-capture
-        ];
-      };
-      htop.enable = true;
-      starship.enable = true;
-      git = {
-        enable = true;
-        userName = "AdrienDML";
-        userEmail = "adriendml99@gmail.com";
-        ignores = [".envrc" ".direnv"];
-      };
-      direnv = {
-        enable = true;
-        nix-direnv.enable = true;
-      };
+  programs = {
+    obs-studio = {
+      enable = true;
+      plugins = with pkgs.obs-studio-plugins; [
+        # Wayland plugin
+        wlrobs
+        input-overlay
+        # Sound plugin
+        obs-pipewire-audio-capture
+      ];
     };
+    htop.enable = true;
+    starship.enable = true;
+    git = {
+      enable = true;
+      userName = "AdrienDML";
+      userEmail = "adriendml99@gmail.com";
+      ignores = [".envrc" ".direnv"];
+    };
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
+  };
 }
