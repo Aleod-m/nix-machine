@@ -7,7 +7,7 @@ return {
   },
   config = function()
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+      group = vim.api.nvim_create_augroup('AleodConfig', {clear = false}),
       callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
@@ -18,7 +18,6 @@ return {
         vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
         vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
         vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', '<C-K>', vim.lsp.buf.signature_help, opts)
         vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
         vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, opts)
         vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
@@ -37,6 +36,7 @@ return {
       "wgsl_analyzer",
       "zls",
       "nushell",
+      "rust_analyzer"
     }
     for _, lsp in ipairs(servers) do 
       lsp_conf[lsp].setup { capabilities = capabilities }

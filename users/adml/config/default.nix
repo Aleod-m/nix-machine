@@ -6,12 +6,6 @@
       recursive =
         true;
     };
-    nvim = {
-      source =
-        ./nvim;
-      recursive =
-        true;
-    };
     nushell = {
       source =
         ./nushell;

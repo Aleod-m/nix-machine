@@ -1,8 +1,4 @@
-
-def nv [p: path = .] {
-    nvim $p
-}
-
+alias nv = nvim
 alias la = ls -a
 alias ll = ls -l
 alias ld = ls --du

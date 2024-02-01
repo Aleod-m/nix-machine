@@ -1,0 +1,19 @@
+return {
+  {
+    'saecki/crates.nvim',
+    dependencies = "hrsh7th/nvim-cmp",
+    ft = "toml",
+    config = function(_, opts)
+      local crates = require('crates')
+      crates.setup(opts)
+      require('cmp').setup.buffer({ sources = {{ name = "crates" }} })
+      crates.show()
+    end
+  },
+  -- Rust lsp setup.
+  {
+    'mrcjkb/rustaceanvim',
+    version = '^4', -- Recommended
+    ft = { 'rust' },
+  },
+}
