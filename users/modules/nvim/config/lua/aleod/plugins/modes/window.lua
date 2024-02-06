@@ -1,7 +1,7 @@
 -- Todo setup kitty splits & integration with smart-splits.
-return 
+return
     { "mrjones2014/smart-splits.nvim"
-    , dependencies = 
+    , dependencies =
         { 'anuvyklack/hydra.nvim'
         , 'nvim-telescope/telescope.nvim'
         }
@@ -14,11 +14,11 @@ return
             { name = "Window"
             , mode = "n"
             , body = "<Space>s"
-            , config = 
+            , config =
                 { timeout = false
                 , invoke_on_body = true
                 }
-            , heads = 
+            , heads =
                 -- Move arround Splits
                 { { "h", ss.move_cursor_left}
                 , { "t", ss.move_cursor_up   }
@@ -34,13 +34,13 @@ return
                 , { '<C-k>', function() ss.resize_down(2)  end }
                 , { '<C-t>', function() ss.resize_up(2)    end }
                 , { '<C-l>', function() ss.resize_right(2) end }
-                , { '='    , ctrl('w') .. '=', { desc = 'equalize'   } }
+                , { '='    , ctrl'w' .. '=', { desc = 'equalize'   } }
                 -- Create and close splits
-                , { 's', ctrl('w') .. 's'                      }
-                , { 'v', ctrl('w') .. 'v'                      }
+                , { 's', ctrl'w' .. 's'                      }
+                , { 'v', ctrl'w' .. 'v'                      }
                 , { "q", cmd.try 'close'                       }
-                , { "b", require'telescope.builtin'.buffers    }
-                , { "F", require'telescope.builtin'.find_files }
+                , { "b", require'telescope.builtin'.buffers, {exit = true}   }
+                , { "F", require'telescope.builtin'.find_files, {exit = true} }
                 -- Manage Tabs
                 , { 'n', cmd 'tabn'                               }
                 , { 'p', cmd 'tabp'                               }

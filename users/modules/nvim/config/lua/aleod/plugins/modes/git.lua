@@ -41,9 +41,8 @@ return {
         { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } },
         { 'b', gitsigns.blame_line, { desc = 'blame' } },
         { 'B', function() gitsigns.blame_line{ full = true } end, { desc = 'blame show full' } },
-        { '/', gitsigns.show, { exit = true, desc = 'show base file' } }, -- show the base of the file
         { '<Enter>', '<Cmd>Neogit<CR>', { exit = true, desc = 'Neogit' } },
-        { 'q', nil, { exit = true, nowait = true, desc = 'exit' } }
+        { '<Esc>', nil, { exit = true, nowait = true, desc = 'exit' } }
       }
     })
   end
