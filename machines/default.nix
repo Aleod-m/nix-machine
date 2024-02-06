@@ -54,7 +54,7 @@ in
         "sound.nix"
         "ssh.nix"
         "nix.nix"
-        "mouse.nix"
+        "devices.nix"
         "net.nix"
         "nvidia.nix"
         "hyprland.nix"

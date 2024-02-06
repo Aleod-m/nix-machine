@@ -23,6 +23,7 @@
     # Bluetooth.
     blueman
     # Sound.
+    helvum
     playerctl
     pamixer
     pulseaudio
@@ -45,12 +46,8 @@
     spotify
     vlc
     evince
-    helvum
     tuxguitar
     vscode
-
-    wally-cli # needed for my kbd.
-
     libreoffice
     discord
 

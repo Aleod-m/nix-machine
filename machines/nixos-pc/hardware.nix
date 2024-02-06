@@ -34,7 +34,6 @@
     intelBusId = "PCI:0:2:0";
   };
 
-  hardware.keyboard.zsa.enable = true;
   hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {
