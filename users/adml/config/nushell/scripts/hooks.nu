@@ -1,6 +1,6 @@
 export def main [] { 
      { pre_prompt: [{ ||
-        let direnv = (direnv export json | from json | default {})
+        let direnv = (direnv export json | from json | default {});
         if ($direnv | is-empty) {
             return
         }

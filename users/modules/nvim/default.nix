@@ -3,7 +3,7 @@
     enable = true;
     withPython3 = false;
     withRuby = false;
-    withNodeJs= false;
+    withNodeJs = false;
   };
   xdg.configFile.nvim = {
     source = ./config;

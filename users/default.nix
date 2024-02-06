@@ -15,43 +15,44 @@
     overlays ? [],
     system ? "x86_64-linux",
   }: let
-      # User hm config.
-      homeDecl = import ./${name}/home.nix;
-      # Known informations.
-      known = {
-        config = {
-          nixpkgs.overlays = overlays;
-          home = {
-            homeDirectory = "/home/${name}";
-            username = name;
-            stateVersion = "22.11";
-          };
-          # Home manager manages itself.
-          programs.home-manager.enable = true;
+    # User hm config.
+    homeDecl = import ./${name}/home.nix;
+    # Known informations.
+    known = {
+      config = {
+        nixpkgs.overlays = overlays;
+        home = {
+          homeDirectory = "/home/${name}";
+          username = name;
+          stateVersion = "22.11";
         };
+        # Home manager manages itself.
+        programs.home-manager.enable = true;
       };
+    };
 
-      # The argument to pass to homeManagerConfiguration.
-      hm-argset = {
-        pkgs = pkgs.legacyPackages.${system};
-        modules = [homeDecl known hyprland.homeManagerModules.default] 
-          # Add my custom home-manager and mixed modules.
-          ++ (__attrValues self.homeManagerModules) 
-          ++ (__attrValues self.mixedModules)
-          # add all the selected configuration modules.
-          ++ (map (mod: import ./modules/${mod}) modules);
-      };
+    # The argument to pass to homeManagerConfiguration.
+    hm-argset = {
+      pkgs = pkgs.legacyPackages.${system};
+      modules =
+        [homeDecl known hyprland.homeManagerModules.default]
+        # Add my custom home-manager and mixed modules.
+        ++ (__attrValues self.homeManagerModules)
+        ++ (__attrValues self.mixedModules)
+        # add all the selected configuration modules.
+        ++ (map (mod: import ./modules/${mod}) modules);
+    };
+  in {${name} = homeManagerConfiguration hm-argset;};
 
-    in {${name} = homeManagerConfiguration hm-argset;} ;
-
-  mkUsers = users: 
+  mkUsers = users:
     lib.pipe users [
       (map mkUserHm)
       (__zipAttrsWith (_: v: __head v))
     ];
-in mkUsers [
-  {
-    name = "adml";
-    modules = ["nvim"];
-  }
-]
+in
+  mkUsers [
+    {
+      name = "adml";
+      modules = ["nvim"];
+    }
+  ]

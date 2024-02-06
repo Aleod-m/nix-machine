@@ -28,10 +28,12 @@
     fsType = "ext4";
   };
   swapDevices = [{device = "/dev/disk/by-label/swap";}];
+
   hardware.nvidia.prime = {
     nvidiaBusId = "PCI:1:0:0";
     intelBusId = "PCI:0:2:0";
   };
+
   hardware.keyboard.zsa.enable = true;
   hardware.enableRedistributableFirmware = true;
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";

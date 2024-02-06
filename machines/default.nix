@@ -36,7 +36,7 @@
   in {${hostName} = nixosSystem nixos-argset;};
 
   # Conveignance function to create all my systems
-  mkComputers = computers: 
+  mkComputers = computers:
     lib.pipe computers [
       (map mkComputer)
       (__zipAttrsWith (_: v: __head v))
