@@ -34,7 +34,7 @@ def gco [branch] {
 
 # Add a path 
 def ga [...path: string] {
-    git add $path
+    git add ...$path
 }
 
 # Add all changes. 

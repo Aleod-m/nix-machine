@@ -1,13 +1,10 @@
 {
   description = "AdrienDML nixos config";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-23.11";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     flake-utils.url = "github:numtide/flake-utils";
-    hyprland.url = "github:hyprwm/Hyprland?tag=v0.33.1";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    hyprland.url = "github:hyprwm/Hyprland?tag=v0.35.0";
   };
   outputs = {
     self,

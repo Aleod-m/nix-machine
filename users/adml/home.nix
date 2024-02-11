@@ -11,6 +11,7 @@
     "steam-original"
     "VCV-Rack"
     "cudatoolkit"
+    "warsow"
   ];
   home.packages = with pkgs; [
     #--- Desktop deps. ---#
@@ -73,7 +74,9 @@
 
     ## Gaming
     steam
+    steam-run
     prismlauncher
+    warsow
   ];
   programs = {
     obs-studio = {
