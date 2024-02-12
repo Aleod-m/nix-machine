@@ -1,7 +1,7 @@
 return {
     'lervag/vimtex',
     ft = "tex",
-    setup = function()
+    config = function(_, _)
         vim.g.vimtex_mappings_enabled = false
     end,
 }

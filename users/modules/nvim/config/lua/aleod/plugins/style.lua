@@ -5,7 +5,7 @@ return { {
   dependencies = {
     'rktjmp/lush.nvim',
   },
-  config = function() vim.cmd [[colorscheme konokai]] end,
+  config = function(_, _) vim.cmd [[colorscheme konokai]] end,
 }, {
   -- Status bar theme
   'nvim-lualine/lualine.nvim',
@@ -50,7 +50,7 @@ return { {
   -- Tab bar theme
   'seblj/nvim-tabline',
   event = "TabNew",
-  otps = {
+  opts = {
     no_name = '[No Name]',    -- Name for buffers with no name
     modified_icon = '',      -- Icon for showing modified buffer
     close_icon = '',         -- Icon for closing tab with mouse
@@ -63,7 +63,8 @@ return { {
   }
 }, {
   "folke/noice.nvim",
-  deps = {
+  lazy = false,
+  dependencies = {
     "MunifTanjim/nui.nvim",
     "rcarriga/nvim-notify",
   },
