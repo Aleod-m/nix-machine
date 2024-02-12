@@ -5,6 +5,10 @@
     withRuby = false;
     withNodeJs = false;
   };
+  home.packages = with pkgs; [
+    ripgrep
+    fd
+  ];
   xdg.configFile.nvim = {
     source = ./config;
     recursive = true;

@@ -15,30 +15,13 @@
   ];
   home.packages = with pkgs; [
     #--- Desktop deps. ---#
-    # Logout screen.
-    wlogout
-    # Notif daemon.
-    mako
-    # Launcher.
-    rofi-wayland
     # Bluetooth.
     blueman
     # Sound.
     helvum
-    playerctl
-    pamixer
-    pulseaudio
     pavucontrol
     # Clip board.
     wl-clipboard
-    # Screen and brightness.
-    wlr-randr
-    wlsunset
-    brightnessctl
-    # Screen recording.
-    slurp
-    grim
-
     gnupg # Not setup yet.
 
     #--- Software. ---#

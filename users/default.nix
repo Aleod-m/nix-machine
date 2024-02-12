@@ -53,6 +53,6 @@ in
   mkUsers [
     {
       name = "adml";
-      modules = ["nvim"];
+      modules = ["nvim" "hyprland"];
     }
   ]
