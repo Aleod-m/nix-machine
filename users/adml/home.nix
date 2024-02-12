@@ -58,6 +58,7 @@
     zoxide
     zellij
     ripgrep
+    fd
     starship
     unzip
     wget

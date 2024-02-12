@@ -12,13 +12,16 @@ return {
 
       indent = { enable = true, },
       ensure_installed = {
-        -- Main languages.
+        -- Noice
+        "vim",
+        "regex",
+        "markdown",
+        "markdown_inline",
+
+        -- Programming languages.
         "rust",
         "nix",
         "lua",
-        --"Godot",
-
-        -- Secondary languages.
         "c",
         "cpp",
         "bash",
@@ -33,6 +36,7 @@ return {
         "css",
         "scss",
         "javascript",
+        "typescript",
 
         -- Data formats.
         "toml",
