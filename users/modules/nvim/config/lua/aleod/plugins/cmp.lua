@@ -1,6 +1,5 @@
 return {
   'hrsh7th/nvim-cmp',
-  event = "InsertEnter",
   dependencies = {
     'hrsh7th/cmp-path',
     'hrsh7th/cmp-buffer',
@@ -10,10 +9,10 @@ return {
     'L3MON4D3/LuaSnip'
   },
   event = {"InsertEnter", "CmdlineEnter"},
-  config = function(_, opts)
+  config = function(_, _)
     local cmp = require('cmp')
-    cmp.setup({ 
-      snippet = { 
+    cmp.setup({
+      snippet = {
         expand = function(args)
           require'luasnip'.lsp_expand(args.body) -- For `luasnip` users.
         end
@@ -30,18 +29,18 @@ return {
         },
         -- Accept currently selected item. If none selected, `select` first item.
         -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm { select = true } 
+        ["<CR>"] = cmp.mapping.confirm { select = true }
       },
-      sources = cmp.config.sources( { 
+      sources = cmp.config.sources({
         { name = 'nvim_lsp' },
-        { name = 'luasnip' } 
+        { name = 'luasnip' }
       }, {
-        { name = 'buffer' } 
+        { name = 'buffer' }
       }),
       formatting = { fields = { "kind", "abbr", "menu" } },
       view = { entries = { name = 'custom', selection_order = 'near_cursor' } }
     })
-    cmp.setup.cmdline(':', 
+    cmp.setup.cmdline(':',
       { mapping = cmp.mapping.preset.cmdline()
         , sources = cmp.config.sources({
           { name = 'path' } 

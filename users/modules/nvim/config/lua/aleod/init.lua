@@ -20,3 +20,5 @@ vim.api.nvim_create_autocmd({"VimResized"}, {
 vim.filetype.add({
   filename = { ["justfile"] = "justfile" }
 })
+
+return group
