@@ -1,22 +1,31 @@
 {
-  description = "AdrienDML nixos config";
+  description = "Aleod nixos config";
   inputs = {
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
     hyprland.url = "github:hyprwm/Hyprland?tag=v0.35.0";
+    nixvim = {
+      url = "path:./nixvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-utils.follows = "flake-utils";
+      };
+    };
   };
+
   outputs = {
     self,
     nixpkgs,
     flake-utils,
+    nixvim,
     ...
   } @ inputs: let
-    devPkgs = (import nixpkgs) {system = "x86_64-linux";};
+    pkgs = (import nixpkgs) {system = "x86_64-linux";};
     generic = flake-utils.lib.eachDefaultSystem (system: {
-      devShells.default = devPkgs.mkShell {
+      devShells.default = pkgs.mkShell {
         # All the programs i need to edit my config.
-        packages = with devPkgs; [
+        packages = with pkgs; [
           # The nix lsp i use.
           rnix-lsp
           # The lua lsp for my neovim config
@@ -27,7 +36,11 @@
         DIRENV_LOG_FORMAT = "";
       };
 
-      formatter = devPkgs.alejandra;
+      formatter = pkgs.alejandra;
+
+      pkgs = {
+        nixvim = nixvim.packages.${system}.nixvim;
+      };
     });
   in generic // {
     inherit (import ./modules) nixosModules homeManagerModules mixedModules;
