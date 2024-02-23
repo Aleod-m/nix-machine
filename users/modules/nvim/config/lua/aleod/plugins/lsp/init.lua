@@ -36,7 +36,6 @@ return {
       "wgsl_analyzer",
       "zls",
       "nushell",
-      "rust_analyzer"
     }
     for _, lsp in ipairs(servers) do 
       lsp_conf[lsp].setup { capabilities = capabilities }

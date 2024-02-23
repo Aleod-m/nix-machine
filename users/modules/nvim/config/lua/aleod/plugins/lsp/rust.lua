@@ -15,5 +15,15 @@ return {
     'mrcjkb/rustaceanvim',
     version = '^4', -- Recommended
     ft = { 'rust' },
+    config = function ()
+      vim.g.rustaceanvim = {
+        server = {
+          on_attach = function(_, bufnr)
+            -- you can also put keymaps in here
+            vim.lsp.inlay_hint(bufnr, true)
+          end,
+        },
+      }
+    end
   },
 }
