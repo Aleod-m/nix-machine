@@ -23,17 +23,26 @@
   } @ inputs: let
     pkgs = (import nixpkgs) {system = "x86_64-linux";};
     generic = flake-utils.lib.eachDefaultSystem (system: {
-      devShells.default = pkgs.mkShell {
-        # All the programs i need to edit my config.
-        packages = with pkgs; [
-          # The nix lsp i use.
-          rnix-lsp
-          # The lua lsp for my neovim config
-          lua-language-server
-          # to run the nix flake commands.
-          just
-        ];
-        DIRENV_LOG_FORMAT = "";
+      devShells = {
+        default = pkgs.mkShell {
+          # All the programs i need to edit my config.
+          packages = with pkgs; [
+            # The nix lsp i use.
+            rnix-lsp
+            # to run the nix flake commands.
+            just
+          ];
+          DIRENV_LOG_FORMAT = "";
+        };
+        # A simple rust shell
+        # `nix shell github:Aleod-m/nix-machine#simple-rust`
+        simple-rust = pkgs.mkShell {
+          packages = with pkgs; [
+            rustc
+            cargo
+            rust-analyzer
+          ];
+        };
       };
 
       formatter = pkgs.alejandra;
