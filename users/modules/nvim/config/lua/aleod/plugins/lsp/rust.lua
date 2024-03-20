@@ -22,7 +22,12 @@ return {
             -- you can also put keymaps in here
             vim.lsp.inlay_hint(bufnr, true)
           end,
-          load_vscode_settings = true,
+          settings = function(project_root)
+            local ra = require('rustaceanvim.config.server')
+            return ra.load_rust_analyzer_settings(project_root, {
+              settings_file_pattern = 'rust-analyzer.json'
+            })
+          end,
         },
       }
     end
