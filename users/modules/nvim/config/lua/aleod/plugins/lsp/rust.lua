@@ -22,6 +22,7 @@ return {
             -- you can also put keymaps in here
             vim.lsp.inlay_hint(bufnr, true)
           end,
+          load_vscode_settings = true,
         },
       }
     end
