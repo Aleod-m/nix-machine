@@ -1,4 +1,4 @@
-return {
+return { {
   'nvim-treesitter/nvim-treesitter',
   event = { "BufReadPre", "BufNewFile" },
   build = ':TSUpdate',
@@ -47,14 +47,6 @@ return {
     })
 
     local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-    parser_config.nu = {
-      install_info = {
-        url = "https://github.com/nushell/tree-sitter-nu",
-        files = { "src/parser.c" },
-        branch = "main",
-      },
-      filetype = "nu",
-    }
     parser_config.wgsl = {
       install_info = {
         url = "szebniok/tree-sitter-wgsl",
@@ -72,4 +64,10 @@ return {
       filetype = "justfile"
     }
   end
+}, {
+  "nushell/tree-sitter-nu"
+  dependencies = { 
+    'nvim-treesitter/nvim-treesitter',
+  }
+  build = ":TSUpdate",
 }
