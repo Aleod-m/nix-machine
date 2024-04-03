@@ -29,7 +29,7 @@ return {
     local lsp_conf = require'lspconfig'
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
     local servers = {
-      "rnix",
+      "nil",
       "ccls",
       "elmls",
       "svelte",
