@@ -28,8 +28,8 @@ opts.set_many({
     -- Set scrolloff to see bellow easily.
     scrolloff = 15,
     -- Folds
-    foldmethod = "expr",
-    foldexpr = "nvim_treesitter#foldexpr()",
+    --foldmethod = "expr",
+    --foldexpr = "nvim_treesitter#foldexpr()",
 
     -- ?
     scl = "yes",

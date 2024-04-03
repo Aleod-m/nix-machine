@@ -18,7 +18,8 @@ vim.api.nvim_create_autocmd({"VimResized"}, {
 
 -- Add the justfile file type. (XD)
 vim.filetype.add({
-  filename = { ["justfile"] = "justfile" }
+  filename = {
+    ["justfile"] = "justfile",
+  },
 })
-
 return group

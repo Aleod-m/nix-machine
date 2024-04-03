@@ -65,9 +65,9 @@ return { {
     }
   end
 }, {
-  "nushell/tree-sitter-nu"
+  "nushell/tree-sitter-nu",
+  build = ":TSUpdate",
   dependencies = { 
     'nvim-treesitter/nvim-treesitter',
-  }
-  build = ":TSUpdate",
-}
+  },
+} }
