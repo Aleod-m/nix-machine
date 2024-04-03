@@ -4,7 +4,7 @@
     flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
-    hyprland.url = "github:hyprwm/Hyprland?tag=v0.35.0";
+    hyprland.url = "github:hyprwm/Hyprland?tag=v0.38.0";
     #nixvim = {
     #  url = "path:./nixvim";
     #  inputs = {
