@@ -52,7 +52,7 @@
     wget
     nushell
     socat
-    nvtop
+    nvtopPackages.full
 
     ## Game dev
     godot_4
