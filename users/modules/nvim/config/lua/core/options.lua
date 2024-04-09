@@ -1,37 +1,38 @@
 local M = {}
-local group = vim.api.nvim_create_augroup('FtOpts', {clear = true})
 
-function M.set(option, value)
-  vim.o[option] = value
+function M.get(option)
+  return vim.opt[option]
 end
 
-function M.set_many(options)
-  if type(options) ~= "table" then
-    return
-  end
-  for k, v in pairs(options) do
-    vim.o[k] = v
+function M.get_local(option)
+  return vim.opt_local[option]
+end
+
+function M.set(option, value)
+  if type(option) ~= "table" and value ~= nil then
+    vim.o[option] = value
+  elseif type(option) == "table" then
+    for k, v in pairs(option) do
+      vim.o[k] = v
+    end
   end
 end
 
 function M.set_local(option, value)
-  vim.bo[option] = value
-end
-
-function M.set_many_local(options)
-  if type(options) ~= "table" then
-    return
-  end
-
-  for k, v in pairs(options) do
-    vim.bo[k] = v
+  if type(option) ~= "table" and value ~= nil then
+    vim.bo[option] = value
+  elseif type(option) ~= "table" then
+    for k, v in pairs(option) do
+      vim.bo[option] = v
+    end
   end
 end
 
 -- Set options per filetypes.
-function M.set_for_ft(ft, options)
-  -- If opts is not table 
-  if type(options) ~= "table" or ft == nil then
+local group = vim.api.nvim_create_augroup('FtOpts', {clear = true})
+function M.set_for_ft(ft, option, value)
+  -- If no filetype do nothing.
+  if ft == nil then
     return
   end
 
@@ -41,9 +42,7 @@ function M.set_for_ft(ft, options)
         group = group,
         pattern = ft,
         callback = function(args)
-          for k, v in pairs(options) do 
-            vim.bo[k] = v
-          end
+          M.set_local(option, value)
         end
       })
     end
@@ -53,7 +52,7 @@ function M.set_for_ft(ft, options)
       pattern = ft,
       callback = function(args)
         for k, v in pairs(options) do 
-          vim.bo[k] = v
+          M.set_local(option, value)
         end
       end
     })
