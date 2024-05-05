@@ -72,4 +72,4 @@ source aliases.nu
 
 source ~/.config/nushell/starship/init.nu
 source ~/.config/nushell/zoxide/zoxide.nu
-source ~/.config/nushell/nuFetch.nu
+#source ~/.config/nushell/nuFetch.nu

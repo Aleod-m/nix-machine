@@ -6,12 +6,16 @@ show-trace := if env_var_or_default("SHOW_TRACE", "0") == "1" {
     "" 
 }
 
-update:
-    @nix flake update
-
 default: 
-    @just ball
-    @just sall
+    just --list
+
+update input:
+    @if {{input}} == "all" { \
+        nix flake update \
+    } else { \
+        nix flake lock --update-input {{input}} \
+    }
+
 
 check:
     nix flake check
@@ -29,5 +33,8 @@ hm cmd:
     home-manager {{cmd}} {{show-trace}} --flake .
 
 nos cmd:
-    {{ if cmd =~ "switch|boot" {"sudo"} else {""} }} nixos-rebuild {{cmd}} {{show-trace}} --flake .#nixos-pc
-    
+    @if {{cmd}} =~ "switch|boot" { \
+        #sudo nixos-rebuild {{cmd}} {{show-trace}} --flake .#nixos-pc \
+    } else { \
+        nixos-rebuild {{cmd}} {{show-trace}} --flake .#nixos-pc \
+    } 

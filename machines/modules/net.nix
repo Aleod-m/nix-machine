@@ -1,4 +1,4 @@
-{...}: {
+{lib, ...}: {
   networking = {
     # Per interface useDHCP are to be disabled in the hardware.nix file.
     useDHCP = false;
@@ -29,4 +29,6 @@
       enable = true;
     };
   };
+  systemd.services.NetworkManager-wait-online.enable = lib.mkForce false;
+  systemd.services.systemd-networkd-wait-online.enable = lib.mkForce false;
 }

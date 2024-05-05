@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [./config];
   nix.allowedUnfree = [
     "discord"
@@ -10,9 +14,36 @@
     "steam-run"
     "steam-original"
     "VCV-Rack"
-    "cudatoolkit"
+    "cuda_cuobjdump"
+    "cuda_gdb"
+    "cuda_nvcc"
+    "cuda_nvdisasm"
+    "cuda_nvprune"
+    "cuda_cccl"
+    "cuda_cudart"
+    "cuda_cupti"
+    "cuda_cuxxfilt"
+    "cuda_nvml_dev"
+    "cuda_nvrtc"
+    "cuda_nvtx"
+    "cuda_profiler_api"
+    "cuda_sanitizer_api"
+    "libcublas"
+    "libcufft"
+    "libcurand"
+    "libcusolver"
+    "libnvjitlink"
+    "libcusparse"
+    "libnpp"
     "warsow"
   ];
+
+  nixpkgs.config.allowlistedLicenses = with lib.licenses; [nvidiaCuda nvidiaCudaRedist];
+
+  nixpkgs.config.permittedInsecurePackages = [
+    "freeimage-unstable-2021-11-01"
+  ];
+
   home.packages = with pkgs; [
     #--- Desktop deps. ---#
     # Bluetooth.
@@ -54,12 +85,15 @@
     socat
     nvtopPackages.full
 
+    zed-editor
+
     ## Game dev
     godot_4
     tiled
     gimp
     inkscape
     blender
+    trenchbroom
 
     ## Gaming
     steam
