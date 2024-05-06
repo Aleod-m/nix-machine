@@ -22,4 +22,5 @@ vim.filetype.add({
     ["justfile"] = "justfile",
   },
 })
+
 return group

@@ -1,11 +1,9 @@
 return {
-  'anuvyklack/hydra.nvim',
-  name = "Git mode",
   dependencies = {
     'TimUntersberger/neogit',
     'lewis6991/gitsigns.nvim',
   },
-  keys = "<Space>g",
+  keys = {"<Space>g"},
   config = function()
     local gitsigns = require'gitsigns'
     local neogit = require'neogit'

@@ -22,10 +22,11 @@ return {
             vim.lsp.inlay_hint(bufnr, true)
           end,
           settings = function(project_root)
-            local ra = require('rustaceanvim.config.server')
-            return ra.load_rust_analyzer_settings(project_root, {
+            local settings = require('rustaceanvim.config.server').load_rust_analyzer_settings(project_root, {
               settings_file_pattern = 'rust-analyzer.json'
             })
+            settings.inlay_hint = { enable = true }
+            return settings
           end,
         },
       }
