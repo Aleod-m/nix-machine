@@ -14,6 +14,6 @@ return {
       },
     },
   },
-    -- Config 
-    { 'lewis6991/gitsigns.nvim', event = "BufRead", opts = { numhl = true, } },
+   -- Config 
+  { 'lewis6991/gitsigns.nvim', event = "BufRead", opts = { numhl = true, } },
 }

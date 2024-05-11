@@ -17,10 +17,6 @@ return {
     config = function ()
       vim.g.rustaceanvim = {
         server = {
-          on_attach = function(_, bufnr)
-            -- you can also put keymaps in here
-            vim.lsp.inlay_hint(bufnr, true)
-          end,
           settings = function(project_root)
             local settings = require('rustaceanvim.config.server').load_rust_analyzer_settings(project_root, {
               settings_file_pattern = 'rust-analyzer.json'

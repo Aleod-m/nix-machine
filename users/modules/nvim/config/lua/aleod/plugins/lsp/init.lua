@@ -12,6 +12,11 @@ return {
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
+        -- Enable Inlay Hints.
+        local client = vim.lsp.get_client_by_id(ev.data.client_id)
+        if client.server_capabilities.inlayHintProvider then
+            vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
+        end
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
@@ -38,6 +43,7 @@ return {
       "zls",
       "nushell",
     }
+
     for _, lsp in ipairs(servers) do 
       lsp_conf[lsp].setup { capabilities = capabilities }
     end
