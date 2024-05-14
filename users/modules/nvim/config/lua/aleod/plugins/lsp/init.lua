@@ -7,59 +7,63 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function(_, _)
-    local km = require "core.keymaps"
-    local leader = km.leader
 
+    -- Setup Autocommand for lsp keymaps and such.
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('AleodConfig', {clear = false}),
       callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+        vim.g.fmt_on_save = false
+
+        vim.api.nvim_create_autocmd('BufWritePre', {
+          group = vim.api.nvim_create_augroup('FmtOnSave', { clear = true }),
+          callback = function(ev) 
+            if vim.g.fmt_on_save then
+              vim.lsp.buf.format({ bufnr = ev.buf }) 
+            end
+          end,
+        })
 
         -- Enable Inlay Hints.
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
         if client.server_capabilities.inlayHintProvider then
             vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
         end
+
         -- Buffer local mappings.
-        -- See `:help vim.lsp.*` for documentation on any of the below functions
+        local km = require "core.keymaps"
+        local leader = km.leader
         local opts = { buffer = ev.buf }
         km.set_keymaps({
-            {mode = 'n', keymap='gD', action = vim.lsp.buf.declaration, opts},
-            {mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opts},
-            {mode = 'n', keymap='gr', action = vim.lsp.buf.references, opts},
-            {mode = 'n', keymap='K', action = vim.lsp.buf.hover, opts},
-            {mode = 'n', keymap='<space>D', action = vim.lsp.buf.type_definition, opts},
+            { mode = 'n', keymap='gD', action = vim.lsp.buf.declaration, opt = opts, },
+            { mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opt = opts, },
+            { mode = 'n', keymap='gr', action = vim.lsp.buf.references, opt = opts, },
+            { mode = 'n', keymap='K', action = vim.lsp.buf.hover, opt = opts, },
+            { mode = 'n', keymap='<space>D', action = vim.lsp.buf.type_definition, opt = opts, },
             -- Format.
-            {mode = 'n', keymap='<space>F', action = function() vim.lsp.buf.format { async = true } end, opts},
+            { mode = 'n', keymap='<space>F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
             -- Toogle format on save.
             {
               mode = 'n',
               keymap='<space>ft',
               action = function()
-                if vim.g.fmt_on_save ~= nil && vim.g.fmt_on_save then 
-                  -- Fmt on save is active disable it.
-                  vim.api.nvim_clear_autocmds({group = 'FmtOnSave'})
-                  vim.g.fmt_on_save = false 
-                else 
-                  -- Fmt on save is inactive enable it.
-                  vim.api.nvim_create_autocmd('BufWritePre', {
-                    group = vim.api.nvim_create_augroup('FmtOnSave', { clear = true })
-                    callback = function(ev) vim.lsp.buf.format({bufnr = ev.buf }) end
-                  })
-                  vim.g.fmt_on_save = true 
-                end
+                vim.g.fmt_on_save = not vim.g.fmt_on_save
+                local state = nil;
+                if vim.g.fmt_on_save then
+                  state = "enabled."
+                else
+                  state = "disabled."
+                 end
+                 print ("Format on save " .. state)
               end,
-              opts
+              opt = opts,
             },
-            {mode = 'n', keymap='<space>rn', action = vim.lsp.buf.rename, opts},
-            {mode = { 'n', 'v' }, '<space>ca', action = vim.lsp.buf.code_action, opts},
+              
+            { mode = 'n', keymap='<space>rn', action = vim.lsp.buf.rename, opt = opts, },
+            { mode = 'n', keymap = '<space>ca', action = vim.lsp.buf.code_action, opt = opts, },
         })
-    })
-
-    -- Toggle format on save.
-    vim.api.nvim_create_autocmd('BufWritePre', {
-      group = vim.api.nvim
+      end,
     })
 
     -- Servers using default config.

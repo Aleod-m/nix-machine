@@ -29,7 +29,7 @@ function M.maplleader(key)
 end
 
 function M.leader(keys)
-    return "<leader>" .. keys
+    return "<Leader>" .. keys
 end
 
 function M.ctrl(key)
