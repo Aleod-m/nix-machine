@@ -1,3 +1,4 @@
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -6,6 +7,9 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
   config = function(_, _)
+    local km = require "core.keymaps"
+    local leader = km.leader
+
     vim.api.nvim_create_autocmd('LspAttach', {
       group = vim.api.nvim_create_augroup('AleodConfig', {clear = false}),
       callback = function(ev)
@@ -20,15 +24,42 @@ return {
         -- Buffer local mappings.
         -- See `:help vim.lsp.*` for documentation on any of the below functions
         local opts = { buffer = ev.buf }
-        vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-        vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-        vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-        vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-        vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
-        vim.keymap.set('n', '<space>F', function() vim.lsp.buf.format { async = true } end, opts)
-        vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
-        vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
-      end
+        km.set_keymaps({
+            {mode = 'n', keymap='gD', action = vim.lsp.buf.declaration, opts},
+            {mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opts},
+            {mode = 'n', keymap='gr', action = vim.lsp.buf.references, opts},
+            {mode = 'n', keymap='K', action = vim.lsp.buf.hover, opts},
+            {mode = 'n', keymap='<space>D', action = vim.lsp.buf.type_definition, opts},
+            -- Format.
+            {mode = 'n', keymap='<space>F', action = function() vim.lsp.buf.format { async = true } end, opts},
+            -- Toogle format on save.
+            {
+              mode = 'n',
+              keymap='<space>ft',
+              action = function()
+                if vim.g.fmt_on_save ~= nil && vim.g.fmt_on_save then 
+                  -- Fmt on save is active disable it.
+                  vim.api.nvim_clear_autocmds({group = 'FmtOnSave'})
+                  vim.g.fmt_on_save = false 
+                else 
+                  -- Fmt on save is inactive enable it.
+                  vim.api.nvim_create_autocmd('BufWritePre', {
+                    group = vim.api.nvim_create_augroup('FmtOnSave', { clear = true })
+                    callback = function(ev) vim.lsp.buf.format({bufnr = ev.buf }) end
+                  })
+                  vim.g.fmt_on_save = true 
+                end
+              end,
+              opts
+            },
+            {mode = 'n', keymap='<space>rn', action = vim.lsp.buf.rename, opts},
+            {mode = { 'n', 'v' }, '<space>ca', action = vim.lsp.buf.code_action, opts},
+        })
+    })
+
+    -- Toggle format on save.
+    vim.api.nvim_create_autocmd('BufWritePre', {
+      group = vim.api.nvim
     })
 
     -- Servers using default config.

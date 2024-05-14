@@ -12,16 +12,12 @@ local leader = km.leader
 km.set_keymaps {
   -- Remaps for my keyboard layout (workman-p)
   -- also move cursor in the column
-  { mode="n", keymap="t", action="gk" },
-  { mode="v", keymap="t", action="gk" },
-  { mode="n", keymap="k", action="gj" },
-  { mode="v", keymap="k", action="gj" },
+  { mode={"n", "v"}, keymap="t", action="gk" },
+  { mode={"n", "v"}, keymap="k", action="gj" },
 
   -- H/L to jump to the start/end of a line 
-  { mode="n", keymap="H", action="^" },
-  { mode="v", keymap="H", action="^" },
-  { mode="n", keymap="L", action="$" },
-  { mode="v", keymap="L", action="$" },
+  { mode={"n", "v"}, keymap="H", action="^" },
+  { mode={"n", "v"}, keymap="L", action="$" },
   -- cH/cL
   { mode="n", keymap="cH", action="c^" },
   { mode="n", keymap="cL", action="c$" },
@@ -35,22 +31,17 @@ km.set_keymaps {
   { mode="n", keymap="yL", action="y$" },
 
   -- Remap leader x to go to the black hole register.
-  { mode="n", keymap=leader "x", action="\"_x" },
-  { mode="v", keymap=leader "x", action="\"_x" },
+  { mode={"n", "v"}, keymap=leader "x", action="\"_x" },
 
   -- Register yanking and pasting. 
   -- Usefull when you want yank something delete something else and paste the firs.
   -- I use the "p register but you can use any letter register.
-  { mode="n", keymap= leader "y",  action="\"py" },
-  { mode="v", keymap= leader "y",  action="\"py" },
-  { mode="n", keymap= leader "p",  action="\"pp" },
-  { mode="v", keymap= leader "p",  action="\"pp" },
+  { mode={"n", "v"}, keymap= leader "y",  action="\"py" },
+  { mode={"n", "v"}, keymap= leader "p",  action="\"pp" },
 
   -- Clipboard integration.
-  { mode="n", keymap= leader "Y",  action="\"+y" },
-  { mode="v", keymap= leader "Y",  action="\"+y" },
-  { mode="n", keymap= leader "P",  action="\"+p" },
-  { mode="n", keymap= leader "P",  action="\"+p" },
+  { mode={"n", "v"}, keymap= leader "Y",  action="\"+y" },
+  { mode={"n", "v"}, keymap= leader "P",  action="\"+p" },
 
   -- go to last paste.
   { mode="n", keymap= leader "vp", action="'[v']" },
