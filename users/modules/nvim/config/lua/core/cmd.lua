@@ -2,7 +2,7 @@ local M = {}
 
 -- Run a command that can fail.
 M.try = function(cmd)
-  vim.cmd[cmd]({mods = {emsg_silent = true}})
+  return function() vim.cmd[cmd]({mods = {emsg_silent = true}}) end
 end
 
 -- Add the colon and the cariage return on the cmd.

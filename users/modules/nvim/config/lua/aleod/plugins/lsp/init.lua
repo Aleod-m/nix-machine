@@ -40,10 +40,11 @@ return {
             { mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opt = opts, },
             { mode = 'n', keymap='gr', action = vim.lsp.buf.references, opt = opts, },
             { mode = 'n', keymap='K', action = vim.lsp.buf.hover, opt = opts, },
-            { mode = 'n', keymap='<space>D', action = vim.lsp.buf.type_definition, opt = opts, },
+            { mode = 'n', keymap=leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
             -- Format.
-            { mode = 'n', keymap='<space>F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
+            { mode = 'n', keymap=leader 'F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
             -- Toogle format on save.
+            { mode = 'n', keymap=leader 'ti', action = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opt = opts},
             {
               mode = 'n',
               keymap='<space>ft',

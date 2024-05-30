@@ -1,6 +1,5 @@
 {pkgs, system, ... } @ inputs: {
   programs.neovim = {
-    package = inputs.nvim-nightly.packages.${system}.default;
     enable = true;
     withPython3 = false;
     withRuby = false;

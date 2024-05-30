@@ -1,8 +1,7 @@
 return {
   -- Load lsp configs
   { import = "aleod.plugins.lsp" },
-  -- Load custom modes configurations
-  -- { import = "aleod.plugins.modes" },
+  { 'mrjones2014/smart-splits.nvim', opts = {} },
 
   -- Plugins without specific configurations
   { 'RRethy/nvim-align', cmd = "Align" },

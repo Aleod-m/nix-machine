@@ -10,21 +10,18 @@ local M = {
 }
 
 for _, mode in ipairs(modes) do
-    if mode.dependecies ~= nil then
-        M.dependencies = vim.list_extend(M.dependecies, mode.dependecies)
-    end
-    if mode.keys ~= nil then
-        M.keys = vim.list_extend(M.keys, mode.keys)
-    end
+    M.dependencies = vim.list_extend(M.dependencies, mode.dependencies) 
+    M.keys = vim.list_extend(M.keys, mode.keys)
 end
 
---return {
---  'anuvyklack/hydra.nvim',
---  dependecies = dependecies,
---  keys = keys,
---  config = function()
---    for _, mode in ipairs(modes) do
---        mode.config()
---    end
---  end,
---}
+return {
+  'nvimtools/hydra.nvim',
+  dependecies = M.dependencies,
+  keys = M.keys,
+  config = function()
+    local hydra = require('hydra')
+    for _, mode in ipairs(modes) do
+        hydra(mode.mode())
+    end
+  end,
+}

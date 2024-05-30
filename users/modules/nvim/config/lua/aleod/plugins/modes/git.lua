@@ -3,11 +3,12 @@ return {
     'TimUntersberger/neogit',
     'lewis6991/gitsigns.nvim',
   },
-  keys = {"<Space>g"},
-  config = function()
-    local gitsigns = require'gitsigns'
-    local neogit = require'neogit'
-    require('hydra')({
+  keys = { "<Space>g" },
+  mode = function()
+    local gitsigns = require('gitsigns')
+    local cmd = require('core.cmd')
+    local neogit = require('neogit')
+    return {
       name = "Git",
       mode = 'n',
       body = '<leader>g',
@@ -39,9 +40,9 @@ return {
         { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } },
         { 'b', gitsigns.blame_line, { desc = 'blame' } },
         { 'B', function() gitsigns.blame_line{ full = true } end, { desc = 'blame show full' } },
-        { '<Enter>', '<Cmd>Neogit<CR>', { exit = true, desc = 'Neogit' } },
+        { '<Enter>', cmd 'Neogit', { exit = true, desc = 'Neogit' } },
         { '<Esc>', nil, { exit = true, nowait = true, desc = 'exit' } }
-      }
-    })
-  end
+      },
+    }
+  end,
 }

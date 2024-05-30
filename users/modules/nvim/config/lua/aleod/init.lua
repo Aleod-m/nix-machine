@@ -15,5 +15,3 @@ vim.api.nvim_create_autocmd({"VimResized"}, {
   group = group,
   command = "wincmd ="
 })
-
-return group
