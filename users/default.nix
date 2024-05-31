@@ -3,7 +3,6 @@
   self,
   nixpkgs,
   hyprland,
-  nvim-nightly,
   ...
 } @ inputs: let
   inherit (home-manager.lib) homeManagerConfiguration;
@@ -36,7 +35,7 @@
     hm-argset = {
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit nvim-nightly system;
+        inherit system;
       };
       modules =
         [homeDecl known hyprland.homeManagerModules.default]

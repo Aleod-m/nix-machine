@@ -33,8 +33,8 @@ hm cmd:
     home-manager {{cmd}} {{show-trace}} --flake .
 
 nos cmd:
-    @if {{cmd}} =~ "switch|boot" { \
-        #sudo nixos-rebuild {{cmd}} {{show-trace}} --flake .#nixos-pc \
-    } else { \
-        nixos-rebuild {{cmd}} {{show-trace}} --flake .#nixos-pc \
-    } 
+    @match {{cmd}} { \
+        "switch" | "boot" => { sudo nixos-rebuild {{cmd}} {{show-trace}} --flake ".#nixos-pc" }, \
+        _ => { nixos-rebuild {{cmd}} {{show-trace}} --flake ".#nixos-pc" } \
+    } \
+
