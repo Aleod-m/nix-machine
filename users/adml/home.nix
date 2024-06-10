@@ -93,14 +93,14 @@
     gimp
     inkscape
     blender
-    trenchbroom
+    # trenchbroom
 
     ## Gaming
     steam
     steam-run
     prismlauncher
-    warsow
   ];
+
   programs = {
     obs-studio = {
       enable = true;

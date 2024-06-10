@@ -20,9 +20,12 @@ export def loc [ext: string, p: path = .] {
 
 export def timer [task, time: duration = 1sec, --loop = true] {
     do $task;
-    sleep $time;
     while $loop {
-        do $task;
         sleep $time;
+        do $task;
     }
+}
+
+export def psf [names] {
+    $in | where {|$proc| not ($names | reduce --fold false {|name, acc| $acc or $name =~ $proc.name}) } 
 }
