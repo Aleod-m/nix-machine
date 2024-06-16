@@ -1,4 +1,8 @@
-{pkgs, system, ... } @ inputs: {
+{
+  pkgs,
+  system,
+  ...
+} @ inputs: {
   programs.neovim = {
     enable = true;
     withPython3 = false;
