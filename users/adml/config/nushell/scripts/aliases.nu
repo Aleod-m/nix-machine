@@ -18,6 +18,10 @@ alias gs = git status
 alias gd = git diff 
 alias gl = git log --oneline
 
+def nvl [pipe_name: string] {
+    nvim --listen $"/tmp/nvim.($pipe_name).pipe"
+}
+
 # Commit with message.
 def gcm [message: string] {
     git commit -m $message

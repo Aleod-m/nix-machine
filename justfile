@@ -7,7 +7,7 @@ show-trace := if env_var_or_default("SHOW_TRACE", "0") == "1" {
 }
 
 default: 
-    just --list
+    @just --list
 
 update input:
     @if {{input}} == "all" { \

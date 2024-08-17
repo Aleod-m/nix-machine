@@ -36,6 +36,7 @@
     "libcusparse"
     "libnpp"
     "warsow"
+    "unityhub"
   ];
 
   nixpkgs.config.allowlistedLicenses = with lib.licenses; [nvidiaCuda nvidiaCudaRedist];
@@ -60,6 +61,8 @@
     brightnessctl
     gnupg # Not setup yet.
 
+    unityhub
+
     #--- Software. ---#
     tenacity
     vcv-rack
@@ -79,6 +82,7 @@
     ripgrep
     fd
     starship
+    zip
     unzip
     wget
     nushell

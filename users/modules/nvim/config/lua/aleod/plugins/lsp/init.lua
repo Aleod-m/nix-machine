@@ -78,6 +78,7 @@ return {
       "wgsl_analyzer",
       "zls",
       "nushell",
+      "omnisharp",
     }
 
     for _, lsp in ipairs(servers) do 

@@ -19,4 +19,11 @@ pkgs: {
       rust-analyzer
     ];
   };
+
+  csharp.net9 = pkgs.mkShell {
+    packages = with pkgs; [
+        dotnetCoprePackages.sdk_9_0
+        omnisharp-roslyn
+    ];
+  };
 }
