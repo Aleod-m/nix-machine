@@ -78,12 +78,21 @@ return {
       "wgsl_analyzer",
       "zls",
       "nushell",
-      "omnisharp",
+      "csharp_ls",
     }
 
     for _, lsp in ipairs(servers) do 
       lsp_conf[lsp].setup { capabilities = capabilities }
     end
+
+    -- local omnisharp = vim.iter(vim.gsplit(vim.fn.deepcopy(vim.env.PATH), ":"))
+    --         :filter(function(path) local m = path:match(".*omnisharp.*") return m ~= nil end):next()
+    --
+    -- lsp_conf.omnisharp.setup {
+    --     capabilities = capabilities,
+    --     root_dir = lsp_conf.util.root_pattern("*.sln", "*.csproj", "*.git"),
+    --     cmd = {omnisharp, "--languageserver", "--hostPID", tostring(vim.fn.getpid())},
+    -- }
 
     -- Servers using custom config.
     lsp_conf.lua_ls.setup({
