@@ -22,6 +22,7 @@ pkgs: {
 
   csharp9 = pkgs.mkShell {
     packages = with pkgs; [
+        dotnetCorePackages.sdk_8_0
         csharp-ls
     ];
   };
