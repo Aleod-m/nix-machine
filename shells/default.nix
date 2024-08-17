@@ -20,7 +20,7 @@ pkgs: {
     ];
   };
 
-  csharp.net9 = pkgs.mkShell {
+  csharp9 = pkgs.mkShell {
     packages = with pkgs; [
         dotnetCorePackages.sdk_9_0
         omnisharp-roslyn
