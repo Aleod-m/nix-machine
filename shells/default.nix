@@ -17,6 +17,7 @@ pkgs: {
       rustc
       cargo
       rust-analyzer
+      rustfmt
     ];
   };
 
