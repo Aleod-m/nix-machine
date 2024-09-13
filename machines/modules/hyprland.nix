@@ -5,8 +5,10 @@
 }: {
   programs.hyprland = {
     enable = true;
+    xwayland.enable = true;
     package = hyprland.packages.${pkgs.system}.hyprland;
   };
+
   nix.settings = {
     substituters = [
       "https://hyprland.cachix.org"

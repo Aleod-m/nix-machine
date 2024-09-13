@@ -31,7 +31,7 @@ km.set_keymaps {
   { mode="n", keymap="yL", action="y$" },
 
   -- Remap leader x to go to the black hole register.
-  { mode={"n", "v"}, keymap=leader "x", action="\"_x" },
+  { mode={"n", "v"}, keymap=leader "x", action="\"_d" },
 
   -- Register yanking and pasting. 
   -- Usefull when you want yank something delete something else and paste the firs.

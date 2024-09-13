@@ -35,7 +35,7 @@
     hm-argset = {
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit system;
+        inherit system inputs;
       };
       modules =
         [homeDecl known hyprland.homeManagerModules.default]
@@ -56,6 +56,6 @@ in
   mkUsers [
     {
       name = "adml";
-      modules = ["nvim" "hyprland"];
+      modules = ["nvim" "hyprland" "nushell"];
     }
   ]

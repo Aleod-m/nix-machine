@@ -4,6 +4,7 @@
   ...
 }: {
   imports = [./config];
+
   nix.allowedUnfree = [
     "discord"
     "spotify"
@@ -61,7 +62,6 @@
     brightnessctl
     gnupg # Not setup yet.
 
-    unityhub
 
     #--- Software. ---#
     tenacity
@@ -73,6 +73,7 @@
     vscode
     libreoffice
     discord
+    webcord
 
     #--- Command Line utilities. ---#
     bat
@@ -85,13 +86,13 @@
     zip
     unzip
     wget
-    nushell
     socat
     nvtopPackages.full
 
     zed-editor
 
     ## Game dev
+    unityhub
     godot_4
     tiled
     gimp
@@ -100,6 +101,7 @@
     # trenchbroom
 
     ## Gaming
+    itch
     steam
     steam-run
     prismlauncher
@@ -116,6 +118,7 @@
         obs-pipewire-audio-capture
       ];
     };
+
     htop.enable = true;
     starship.enable = true;
     git = {
@@ -124,6 +127,7 @@
       userEmail = "adriendml99@gmail.com";
       ignores = [".envrc" ".direnv"];
     };
+
     direnv = {
       enable = true;
       nix-direnv.enable = true;

@@ -6,6 +6,12 @@ alias ld = ls --du
 # Nix aliases
 alias nf = nix flake
 alias ns = nix store 
+alias nr = nix registry
+
+def "nr list" [] {
+    nix registry list | parse "{type} flake:{name} {pathtype}:{path}"
+        | update type { $in | str trim }
+}
 
 # be more verbose
 alias cp = cp --verbose
@@ -45,3 +51,5 @@ def ga [...path: string] {
 def gA [] {
     git add --all
 }
+
+alias reset-env-scripts = rmdir ~/.config/nushell/gen

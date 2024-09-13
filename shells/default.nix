@@ -8,8 +8,6 @@ pkgs: {
       just
       nushell
     ];
-
-    DIRENV_LOG_FORMAT = "";
   };
 
   simple-rust = pkgs.mkShell {

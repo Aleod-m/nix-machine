@@ -37,14 +37,32 @@ $env.NU_PLUGIN_DIRS = [
     ($nu.config-path | path dirname | path join 'plugins')
 ]
 
+# setup gen for shell integrations dir.
+if not ($nu.cache-dir| path join gen | path exists) {
+    mkdir ($nu.cache-dir | path join gen)
+}
+
+if not ($nu.cache-dir| path join gen mod.nu | path exists) {
+    touch ($nu.cache-dir | path join gen mod.nu)
+}
+
 # Starship
-if not ('~/.config/nushell/starship/init.nu' | path exists) {
-    mkdir ~/.config/nushell/starship/
-    starship init nu | save ~/.config/nushell/starship/init.nu
+if not ($nu.cache-dir | path join gen starship.nu | path exists) {
+    starship init nu 
+        | save ($nu.cache-dir | path join gen starship.nu)
+
+    open ($nu.cache-dir | path join gen mod.nu) 
+        | lines 
+        | append "source zoxide.nu"
+        | save -f ($nu.cache-dir | path join gen mod.nu)
 }
 
 # Zoxide
-if not ('~/.config/nushell/zoxide/zoxide.nu' | path exists) {
-    mkdir ~/.config/nushell/zoxide
-    zoxide init nushell --hook prompt | save ~/.config/nushell/zoxide/zoxide.nu
+if not ($nu.cache-dir | path join gen zoxide.nu | path exists) {
+    zoxide init nushell --hook prompt 
+        | save ($nu.cache-dir | path join gen zoxide.nu)
+    open ($nu.cache-dir | path join gen mod.nu) 
+        | lines 
+        | append "source starship.nu"
+        | save -f ($nu.cache-dir | path join gen mod.nu)
 }
