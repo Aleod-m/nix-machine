@@ -9,7 +9,7 @@
     switchworkspacebinds = 
       map (ws: script "" "${toString (lib.trivial.mod ws 10)}" "swk" ws) [1 2 3 4 5 6 7 8 9 10] ;
     moveworkspacebinds = 
-      map (ws: script "SHIFT" "(${toString (lib.trivial.mod ws 10)}" "mwk" ws) [1 2 3 4 5 6 7 8 9 10] ;
+      map (ws: script "SHIFT" "${toString (lib.trivial.mod ws 10)}" "mwk" ws) [1 2 3 4 5 6 7 8 9 10] ;
 
 in {
 

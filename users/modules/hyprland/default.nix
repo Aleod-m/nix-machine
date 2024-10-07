@@ -142,24 +142,24 @@
     style = ''
       * {
         background: none;
+        color: #f6f6ee;
       }
 
       window {
-      	background-color: rgba(0, 0, 0, .5);
+      	background-color: #191919;
       }
 
       button {
-        background: rgba(0, 0, 0, .05);
-        border-radius: 8px;
-        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 0 rgba(0, 0, 0, .5);
         margin: 1rem;
+        background-color: #474747;
         background-repeat: no-repeat;
         background-position: center;
         background-size: 25%;
+        border-radius: 8px;
       }
 
       button:focus, button:active, button:hover {
-        background-color: rgba(255, 255, 255, 0.2);
+        box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1), 0 0 rgba(0, 0, 0, .5);
         outline-style: none;
       }
 
