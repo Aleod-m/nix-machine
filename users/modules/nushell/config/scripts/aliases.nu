@@ -13,6 +13,10 @@ def "nr list" [] {
         | update type { $in | str trim }
 }
 
+def "nr update" [] {
+    $in | each { nr pin $in.name $"($in.pathtype):($in.path)" }
+}
+
 # be more verbose
 alias cp = cp --verbose
 alias rm = rm --verbose
@@ -26,6 +30,10 @@ alias gl = git log --oneline
 
 def nvl [pipe_name: string] {
     nvim --listen $"/tmp/nvim.($pipe_name).pipe"
+}
+
+def nvs [pipe_name: string] {
+    nvim --server $"/tmp/nvim.($pipe_name).pipe"
 }
 
 # Commit with message.
