@@ -79,6 +79,7 @@ return {
       "zls",
       "nushell",
       "csharp_ls",
+      "gdscript",
     }
 
     for _, lsp in ipairs(servers) do 

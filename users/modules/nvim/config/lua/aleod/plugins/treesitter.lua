@@ -38,6 +38,11 @@ return { {
         "javascript",
         "typescript",
 
+        -- Godot.
+        "gdscript",
+        "gdresource",
+        "gdshader",
+
         -- Data formats.
         "toml",
         "xml",
