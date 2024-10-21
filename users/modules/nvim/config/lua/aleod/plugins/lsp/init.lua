@@ -33,18 +33,28 @@ return {
 
         -- Buffer local mappings.
         local km = require "core.keymaps"
+        local cmd = require "core.cmd"
         local leader = km.leader
+        local ctrl = km.ctrl
         local opts = { buffer = ev.buf }
         km.set_keymaps({
             { mode = 'n', keymap='gD', action = vim.lsp.buf.declaration, opt = opts, },
             { mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opt = opts, },
-            { mode = 'n', keymap='gr', action = vim.lsp.buf.references, opt = opts, },
-            { mode = 'n', keymap='K', action = vim.lsp.buf.hover, opt = opts, },
-            { mode = 'n', keymap=leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
+            { 
+              mode = 'n',
+              keymap='gs',
+              action = function()
+                vim.api.nvim_input("<C-W>v<C-W>lgd<C-W>p")
+              end,
+              opt = opts,
+            },
+            { mode = 'n', keymap = 'gr', action = vim.lsp.buf.references, opt = opts, },
+            { mode = 'n', keymap = 'K', action = vim.lsp.buf.hover, opt = opts, },
+            { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
             -- Format.
-            { mode = 'n', keymap=leader 'F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
+            { mode = 'n', keymap = leader 'F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
             -- Toogle format on save.
-            { mode = 'n', keymap=leader 'ti', action = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opt = opts},
+            { mode = 'n', keymap = leader 'ti', action = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opt = opts},
             {
               mode = 'n',
               keymap='<space>ft',
@@ -60,9 +70,8 @@ return {
               end,
               opt = opts,
             },
-              
-            { mode = 'n', keymap='<space>rn', action = vim.lsp.buf.rename, opt = opts, },
-            { mode = 'n', keymap = '<space>ca', action = vim.lsp.buf.code_action, opt = opts, },
+            { mode = 'n', keymap = leader 'rn', action = vim.lsp.buf.rename, opt = opts, },
+            { mode = 'n', keymap = leader 'ca', action = vim.lsp.buf.code_action, opt = opts, },
         })
       end,
     })

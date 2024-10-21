@@ -8,6 +8,7 @@ return {
     config = function()
         local nvt = require('nvterm')
         local km = require('core.keymaps')
+        local cmd = require('core.cmd')
         nvt.setup {
             terminals = {
                 shell = "nu",
@@ -30,15 +31,13 @@ return {
                     confirm = true,
                 },
                 close_on_exit = true,
-                auto_insert = true,
+                auto_insert = false,
             },
         }
         local T = require("nvterm.terminal")
+        km.set("t", km.leader "<Esc>", cmd 'stopinsert')
         km.set("n", km.leader "tf", function() T.toggle "float" end)
         km.set("n", km.leader "th", function() T.toggle "horizontal" end)
         km.set("n", km.leader "tv", function() T.toggle "vertical" end)
-        km.set("t", km.leader "tf", function() T.toggle "float" end)
-        km.set("t", km.leader "th", function() T.toggle "horizontal" end)
-        km.set("t", km.leader "tv", function() T.toggle "vertical" end)
     end,
 }

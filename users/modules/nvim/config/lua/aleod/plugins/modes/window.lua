@@ -44,19 +44,19 @@ return {
         { "L", function() ss.swap_buf_right({move_cursor = true}) end },
         
         -- Resize splits
-        { '='    , ctrl'w' .. '=' },
+        { '='    , ctrl 'w' .. '=' },
         --{ '<C-h>', ctrl'w' .. '<' },
         --{ '<C-k>', ctrl'w' .. '+' },
         --{ '<C-t>', ctrl'w' .. '-' },
         --{ '<C-l>', ctrl'w' .. '>' },
-        { '<C-h>', function() ss.resize_left(2)  end },
-        { '<C-k>', function() ss.resize_down(2)  end },
-        { '<C-t>', function() ss.resize_up(2)    end },
-        { '<C-l>', function() ss.resize_right(2) end },
+        { ctrl 'h', function() ss.resize_left(2)  end },
+        { ctrl 'k', function() ss.resize_down(2)  end },
+        { ctrl 't', function() ss.resize_up(2)    end },
+        { ctrl 'l', function() ss.resize_right(2) end },
                 --
         -- Create and close splits
-        { 's', ctrl'w' .. 's'  },
-        { 'v', ctrl'w' .. 'v'  },
+        { 's', ctrl 'w' .. 's'  },
+        { 'v', ctrl 'w' .. 'v'  },
         { "q", cmd.try 'close'     },
         { "x", cmd.try 'x'     },
         { "w", cmd.try 'w'     },

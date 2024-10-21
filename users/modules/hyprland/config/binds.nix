@@ -1,10 +1,10 @@
-{lib, pkgs, ...}: let
+{lib, ...}: let
   mkbind = mod: key: action: args: "$mod ${mod}, ${key}, ${action}, ${args}";
   exec = mod: key: cmd: mkbind mod key "exec" cmd;
   action = mod: key: action: mkbind mod key action "";
   layout = mod: key: action: mkbind mod key "layoutmsg" action;
 
-  script = mod: key: name: args: (exec mod key "${pkgs.nushell}/bin/nu $scripts/${name}.nu ${toString args}");
+  script = mod: key: name: args: (exec mod key "nu $scripts/${name}.nu ${toString args}");
   switchworkspacebinds =
     map (ws: script "" "${toString (lib.trivial.mod ws 10)}" "swk" ws) [1 2 3 4 5 6 7 8 9 10];
   moveworkspacebinds =
