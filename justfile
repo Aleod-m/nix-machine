@@ -1,11 +1,5 @@
 set shell := ["nu", "-c"]
 
-show-trace := if env_var_or_default("SHOW_TRACE", "0") == "1" {
-    "--show-trace" 
-} else { 
-    "" 
-}
-
 default: 
     @just --list
 
@@ -15,7 +9,6 @@ update input:
     } else { \
         nix flake lock --update-input {{input}} \
     }
-
 
 check:
     nix flake check
@@ -30,11 +23,11 @@ sall:
     @just nos switch
 
 hm cmd:
-    home-manager {{cmd}} {{show-trace}} --flake .
+    home-manager {{cmd}} --flake .
 
 nos cmd:
     @match {{cmd}} { \
-        "switch" | "boot" => { sudo nixos-rebuild {{cmd}} {{show-trace}} --flake ".#nixos-pc" }, \
-        _ => { nixos-rebuild {{cmd}} {{show-trace}} --flake ".#nixos-pc" } \
+        "switch" | "boot" => { sudo nixos-rebuild {{cmd}} --flake ".#nixos-pc" }, \
+        _ => { nixos-rebuild {{cmd}} --flake ".#nixos-pc" } \
     } \
 
