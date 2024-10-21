@@ -8,16 +8,14 @@
     config.nix;
 in {
   options = {
-    nix.allowedUnfree =
-      lib.mkOption
-      {
-        type =
-          lib.types.listOf lib.types.string;
-        default = [];
-        description = ''
-          Allows for  unfree packages by their name.
-        '';
-      };
+    nix.allowedUnfree = lib.mkOption {
+      type =
+        lib.types.listOf lib.types.str;
+      default = [];
+      description = ''
+        Allows for unfree packages by their name.
+      '';
+    };
   };
   config = {
     nixpkgs.config.allowUnfreePredicate =

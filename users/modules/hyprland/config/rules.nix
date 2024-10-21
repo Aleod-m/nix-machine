@@ -1,5 +1,8 @@
-{...}: let 
-  mkworkspacerule = nb: if nb <= 10 then "workspace=${toString nb}, monitor:DP-1" else "workspace=${toString nb}, monitor:HDMI-A-2"; 
+{...}: let
+  mkworkspacerule = nb:
+    if nb <= 10
+    then "workspace=${toString nb}, monitor:DP-1"
+    else "workspace=${toString nb}, monitor:HDMI-A-2";
 in {
   wayland.windowManager.hyprland.settings = {
     # window rules

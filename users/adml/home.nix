@@ -62,7 +62,6 @@
     brightnessctl
     gnupg # Not setup yet.
 
-
     #--- Software. ---#
     tenacity
     vcv-rack
