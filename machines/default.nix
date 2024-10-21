@@ -69,6 +69,7 @@ in
       users = ["adrien"];
       modules = [
         "base.nix"
+        "graphics.nix"
         "hyprland.nix"
         "nix.nix"
         "ssh.nix"

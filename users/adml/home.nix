@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-
   nix.allowedUnfree = [
     "discord"
     "spotify"
