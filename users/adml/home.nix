@@ -72,6 +72,7 @@
     tuxguitar
     vscode
     libreoffice
+    onlyoffice-bin
     discord
     webcord
 
