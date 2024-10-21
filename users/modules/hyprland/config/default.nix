@@ -1,4 +1,5 @@
 { pkgs, config, ...}: let
+
   green  = "rgb(97e023)";
   orange = "rgb(fa8419)";
   yellow = "rgb(dfd561)";
@@ -16,6 +17,7 @@ in {
     ./binds.nix
     ./rules.nix
   ];
+
   xdg.configFile = {
     hyprScripts= {
       target = "./hypr/scripts/";

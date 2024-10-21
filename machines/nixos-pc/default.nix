@@ -17,6 +17,13 @@ in
       font = "Lat2-Terminus16";
       keyMap = "us";
     };
+
+    boot.loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+
+    system.stateVersion = "21.11";
   }
   // enableServices
   [

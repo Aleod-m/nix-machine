@@ -39,12 +39,12 @@
   mkComputers = computers:
     lib.pipe computers [
       (map mkComputer)
-      (__zipAttrsWith (_: v: __head v))
+      (__foldl' (a: b: a // b) {})
     ];
 in
   mkComputers
-  # My laptop (i know its caled pc but its a laptop that doesn't move much).
   [
+    # My laptop (i know its caled pc but its a laptop that doesn't move much).
     {
       hostName = "nixos-pc";
       system = "x86_64-linux";
@@ -60,6 +60,20 @@ in
         "hyprland.nix"
         "docker.nix"
         "tailscale.nix"
+      ];
+    }
+
+    {
+      hostName = "nixos-dell";
+      system = "x86_64-linux";
+      users = ["adrien"];
+      modules = [
+        "base.nix"
+        "hyprland.nix"
+        "nix.nix"
+        "ssh.nix"
+        "sound.nix"
+        "devices.nix"
       ];
     }
   ]

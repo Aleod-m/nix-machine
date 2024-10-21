@@ -5,7 +5,7 @@
 }: {
   nix.allowedUnfree = ["nvidia-x11"];
   hardware = {
-    graphics= {
+    graphics = {
       enable = true;
       enable32Bit = true;
     };

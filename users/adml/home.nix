@@ -3,7 +3,6 @@
   lib,
   ...
 }: {
-  imports = [./config];
 
   nix.allowedUnfree = [
     "discord"
@@ -61,7 +60,6 @@
     wlsunset
     brightnessctl
     gnupg # Not setup yet.
-
 
     #--- Software. ---#
     tenacity

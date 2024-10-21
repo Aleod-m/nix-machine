@@ -56,6 +56,10 @@ in
   mkUsers [
     {
       name = "adml";
-      modules = ["nvim" "hyprland" "nushell"];
+      modules = ["nvim" "hyprland" "nushell" "kitty wallpapers"];
+    }
+    {
+      name = "adrien";
+      modules = ["nvim" "hyprland" "nushell" "wallpapers" "kitty"];
     }
   ]
