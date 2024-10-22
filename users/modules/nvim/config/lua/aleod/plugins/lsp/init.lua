@@ -2,7 +2,6 @@ return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
   dependencies = {
-    "nvim-java/nvim-java",
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
   },
@@ -94,8 +93,6 @@ return {
     for _, lsp in ipairs(servers) do 
       lsp_conf[lsp].setup { capabilities = capabilities }
     end
-    require('java').setup()
-    lsp_conf.jdtls.setup({})
     -- local omnisharp = vim.iter(vim.gsplit(vim.fn.deepcopy(vim.env.PATH), ":"))
     --         :filter(function(path) local m = path:match(".*omnisharp.*") return m ~= nil end):next()
     --
