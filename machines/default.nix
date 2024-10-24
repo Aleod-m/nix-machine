@@ -74,6 +74,7 @@ in
         "nix.nix"
         "ssh.nix"
         "sound.nix"
+        "docker.nix"
         "devices.nix"
       ];
     }
