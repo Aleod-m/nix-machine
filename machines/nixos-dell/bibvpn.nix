@@ -6,7 +6,7 @@
 }: {
   age.secrets = {
     "bibvpn_ca.crt".file = ./secrets/bibvpn_ca.crt.age;
-    "bibvpn_cert.crt".file = ./secrets/bibvpn_cert.crt.age;
+    "bibvpn_crt.crt".file = ./secrets/bibvpn_crt.crt.age;
     "bibvpn_key.key".file = ./secrets/bibvpn_key.key.age;
     "bibvpn_ta.key".file = ./secrets/bibvpn_ta.key.age;
   };
@@ -16,9 +16,9 @@
       config = ''
         client
         remote bs-acces.biblibre.com
-        remote-cert-tls server
+        remote-crt-tls server
         ca ${config.age.secrets."bibvpn_ca.crt".path}
-        cert ${config.age.secrets."bibvpn_cert.crt".path}
+        crt ${config.age.secrets."bibvpn_crt.crt".path}
         key ${config.age.secrets."bibvpn_key.key".path}
         comp-lzo yes
         dev tun
