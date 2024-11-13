@@ -17,7 +17,7 @@
       config = ''
         client
         remote bs-acces.biblibre.com
-        remote-crt-tls server
+        remote-cert-tls server
         ca ${config.age.secrets."bibvpn_ca.crt".path}
         crt ${config.age.secrets."bibvpn_crt.crt".path}
         key ${config.age.secrets."bibvpn_key.key".path}
