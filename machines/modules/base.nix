@@ -18,5 +18,4 @@
   services.printing.enable = true;
 
   xdg.portal.enable = true;
-
 }

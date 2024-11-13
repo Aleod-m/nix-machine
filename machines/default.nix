@@ -23,7 +23,7 @@
       modules =
         [
           ./${hostName}
-          { networking.hostName = hostName; }
+          {networking.hostName = hostName;}
           inputs.agenix.nixosModules.default
         ]
         # Add my custom nixos and mixed modules.
