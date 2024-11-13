@@ -1,6 +1,6 @@
 let
   workKey = __readFile ./work.key.pub;
-  nixos-dellKey = __readFile ./work.key.pub;
+  nixos-dellKey = __readFile ./work_host.key.pub;
   # persoKey = __readFile ./perso.key.pub;
 in {
   "bibvpn_ca.crt.age".publicKeys = [workKey nixos-dellKey];
