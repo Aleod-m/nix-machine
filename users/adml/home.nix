@@ -51,13 +51,6 @@
     # Sound.
     helvum
     pavucontrol
-    # Clip board.
-    wl-clipboard
-    # Screen and brightness.
-    wlr-randr
-    wl-gammactl
-    wlsunset
-    brightnessctl
     gnupg # Not setup yet.
 
     #--- Software. ---#
