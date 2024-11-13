@@ -2,7 +2,7 @@
   programs.bash = {
     enable = true;
     bashrcExtra = __readFile ./extra.sh;
-    shellAliasses = let
+    shellAliases = let
       eza = "${pkgs.eza}/bin/eza ";
       git = "${pkgs.git}/bin/git ";
     in {
