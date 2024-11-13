@@ -20,6 +20,17 @@
   ];
 
   programs = {
+    ssh = {
+        enable = true;
+        addKeysToAgent = "ask 1h";
+    };
+    tmate = {
+        enable = true;
+        host = "tmate.biblibre.com";
+        port = 2223;
+        rsaFingerprint = "SHA256:HSH4PfoThYNtkrRZ7Zyw9HXkITkhT/ZksmFf2nZX/Ag";
+        dsaFingerprint = "SHA256:62b9/JSA1j1yisZkbFvK2Uk/BG/uQQpws6FDY6iFCfc";
+    };
     htop.enable = true;
     starship.enable = true;
     git = {
