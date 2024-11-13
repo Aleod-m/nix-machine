@@ -13,6 +13,7 @@
 
   services.openvpn.servers = {
     bibvpn = {
+      autoStart = false;
       config = ''
         client
         remote bs-acces.biblibre.com
