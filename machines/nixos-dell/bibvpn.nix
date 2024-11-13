@@ -19,7 +19,7 @@
         remote bs-acces.biblibre.com
         remote-cert-tls server
         ca ${config.age.secrets."bibvpn_ca.crt".path}
-        crt ${config.age.secrets."bibvpn_crt.crt".path}
+        cert ${config.age.secrets."bibvpn_crt.crt".path}
         key ${config.age.secrets."bibvpn_key.key".path}
         comp-lzo yes
         dev tun

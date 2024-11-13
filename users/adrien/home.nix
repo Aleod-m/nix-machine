@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     bat
     pciutils
@@ -17,6 +19,7 @@
     thunderbird
     seafile-client
     rocketchat-desktop
+    vscode
   ];
 
   programs = {
