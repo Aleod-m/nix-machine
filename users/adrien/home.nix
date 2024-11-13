@@ -25,7 +25,7 @@
   programs = {
     ssh = {
       enable = true;
-      addKeysToAgent = "ask 1h";
+      addKeysToAgent = "yes";
     };
     tmate = {
       enable = true;

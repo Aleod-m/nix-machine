@@ -60,6 +60,6 @@ in
     }
     {
       name = "adrien";
-      modules = ["nvim" "hyprland" "nushell" "wallpapers" "kitty"];
+      modules = ["nvim" "hyprland" "nushell" "wallpapers" "kitty" "bash"];
     }
   ]
