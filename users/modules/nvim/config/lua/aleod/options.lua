@@ -44,4 +44,12 @@ opts.set({
 -- Remove comments on new line with o in normal mode.
 opts.get("formatoptions"):remove({'o'})
 
-opts.set_for_ft({ "nix", "html", "css", "lua" }, { tabstop = 2, shiftwidth = 2 })
+opts.set_for_ft({
+  "nix",
+  "html",
+  "css",
+  "lua"
+}, {
+  tabstop = 2,
+  shiftwidth = 2 
+})
