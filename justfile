@@ -27,7 +27,7 @@ hm cmd:
 
 nos cmd:
     @match {{cmd}} { \
-        "switch" | "boot" => { sudo nixos-rebuild {{cmd}} --flake ".#nixos-pc" }, \
+        "switch" | "boot" => { sudo nixos-rebuild {{cmd}} --flake ".#" }, \
         _ => { nixos-rebuild {{cmd}} --flake ".#nixos-pc" } \
     } \
 

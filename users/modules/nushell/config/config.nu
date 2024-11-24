@@ -56,7 +56,7 @@ $env.config = {
       metric: true
       format: "auto"
   }
-  footer_mode: "25" # always, never, number_of_rows, auto
+  footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2
   buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctr+e
   use_ansi_coloring: true

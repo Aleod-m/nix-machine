@@ -3,8 +3,6 @@
   lib,
   ...
 }: {
-  imports = [./config];
-
   nix.allowedUnfree = [
     "discord"
     "spotify"

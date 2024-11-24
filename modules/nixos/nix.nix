@@ -52,7 +52,6 @@ in {
   };
   config = lib.mkMerge [
     (lib.mkIf cfg.flakes.enable {
-      nix.package = pkgs.nixFlakes;
       nix.extraOptions = let
         keep-outputs = boolToString cfg.flakes.keep-outputs;
         keep-derivations = boolToString cfg.flakes.keep-derivations;

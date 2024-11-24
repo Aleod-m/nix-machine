@@ -1,4 +1,3 @@
-
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -94,7 +93,6 @@ return {
     for _, lsp in ipairs(servers) do 
       lsp_conf[lsp].setup { capabilities = capabilities }
     end
-
     -- local omnisharp = vim.iter(vim.gsplit(vim.fn.deepcopy(vim.env.PATH), ":"))
     --         :filter(function(path) local m = path:match(".*omnisharp.*") return m ~= nil end):next()
     --
