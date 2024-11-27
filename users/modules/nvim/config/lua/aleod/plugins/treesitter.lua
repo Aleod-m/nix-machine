@@ -40,7 +40,7 @@ return { {
 
         -- Godot.
         "gdscript",
-        "gdresource",
+        -- "gdresource", Causes an error for some reason.
         "gdshader",
 
         -- Data formats.

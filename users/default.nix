@@ -3,28 +3,29 @@
   self,
   nixpkgs,
   hyprland,
+  agenix,
   ...
 } @ inputs: let
   inherit (home-manager.lib) homeManagerConfiguration;
   lib = self.lib;
 
   mkUserHm = {
-    name,
+    username,
     modules ? [],
     pkgs ? nixpkgs,
     overlays ? [],
     system ? "x86_64-linux",
   }: let
     # User hm config.
-    homeDecl = import ./${name}/home.nix;
+    homeDecl = import ./${username}/home.nix;
     # Known informations.
     known = {
       config = {
         nixpkgs.overlays = overlays;
         home = {
-          homeDirectory = "/home/${name}";
-          username = name;
+          homeDirectory = "/home/${username}";
           stateVersion = "22.11";
+          inherit username;
         };
         # Home manager manages itself.
         programs.home-manager.enable = true;
@@ -37,15 +38,18 @@
       extraSpecialArgs = {
         inherit system inputs;
       };
-      modules =
-        [homeDecl known hyprland.homeManagerModules.default]
+      modules = [
+        known 
+        homeDecl 
+        hyprland.homeManagerModules.default 
+        agenix.homeManagerModules.default
         # Add my custom home-manager and mixed modules.
-        ++ (__attrValues self.homeManagerModules)
+      ] ++ (__attrValues self.homeManagerModules)
         ++ (__attrValues self.mixedModules)
         # add all the selected configuration modules.
         ++ (map (mod: import ./modules/${mod}) modules);
     };
-  in {${name} = homeManagerConfiguration hm-argset;};
+  in {${username} = homeManagerConfiguration hm-argset;};
 
   mkUsers = users:
     lib.pipe users [
@@ -55,11 +59,26 @@
 in
   mkUsers [
     {
-      name = "adml";
-      modules = ["nvim" "hyprland" "nushell" "kitty wallpapers"];
+      username = "adml";
+      modules = [
+        "nvim"
+        "hyprland"
+        "nushell"
+        "kitty"
+        "wallpapers"
+      ];
     }
     {
-      name = "adrien";
-      modules = ["nvim" "hyprland" "nushell" "wallpapers" "kitty" "bash"];
+      username = "adrien";
+      modules = [
+        "nvim"
+        "hyprland"
+        "nushell"
+        "wallpapers"
+        "kitty"
+        "bash"
+        "shell-utils"
+        "tmux"
+      ];
     }
   ]

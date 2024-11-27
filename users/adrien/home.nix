@@ -1,12 +1,16 @@
 {pkgs, ...}: {
-
   nixpkgs.config.allowUnfree = true;
+
+  home.shells = {
+    default = "bash";
+    enabled = ["bash" "nushell"];
+  };
+
   home.packages = with pkgs; [
+    spotify
     bat
     pciutils
     zoxide
-    tmux
-    ripgrep
     zip
     unzip
     wget
@@ -26,25 +30,23 @@
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
+      remoterc = {
+        enable = true;
+        text = __readFile ../modules/bash/extra.sh;
+      };
     };
     tmate = {
-      enable = true;
       host = "tmate.biblibre.com";
       port = 2223;
       rsaFingerprint = "SHA256:HSH4PfoThYNtkrRZ7Zyw9HXkITkhT/ZksmFf2nZX/Ag";
       dsaFingerprint = "SHA256:62b9/JSA1j1yisZkbFvK2Uk/BG/uQQpws6FDY6iFCfc";
     };
     htop.enable = true;
-    starship.enable = true;
     git = {
       enable = true;
       userName = "Adrien Derobert-Mazure";
       userEmail = "adrien.derobertmazure@biblibre.com";
       ignores = [".envrc" ".direnv"];
-    };
-    direnv = {
-      enable = true;
-      nix-direnv.enable = true;
     };
   };
 }
