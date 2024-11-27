@@ -52,6 +52,7 @@
     helvum
     pavucontrol
     gnupg # Not setup yet.
+    chromium
 
     #--- Software. ---#
     tenacity
@@ -65,6 +66,7 @@
     onlyoffice-bin
     discord
     webcord
+    protonmail-desktop
 
     #--- Command Line utilities. ---#
     bat
