@@ -1,5 +1,8 @@
 return { {
   'nvim-treesitter/nvim-treesitter',
+  dependencies = { 
+    "tadmccorkle/markdown.nvim",
+  },
   event = { "BufReadPre", "BufNewFile" },
   build = ':TSUpdate',
   config = function()
@@ -9,6 +12,7 @@ return { {
         enable = true,
         disable = {""},
       },
+      markdown = { enable = true, },
 
       indent = { enable = true, },
       ensure_installed = {
