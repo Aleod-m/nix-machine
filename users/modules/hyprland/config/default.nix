@@ -52,7 +52,7 @@ in {
     general = {
       border_size = 1;
       gaps_in = 2;
-      gaps_out = 5;
+      gaps_out = 0;
 
       "col.active_border" = "${cyan} ${green} 90deg";
       "col.inactive_border" = grey;
