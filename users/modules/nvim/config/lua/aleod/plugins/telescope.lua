@@ -36,7 +36,7 @@ return {
         prompt_prefix = ' ',
       },
     })
+    tele.load_extension('live_grep_args')
     tele.load_extension('ui-select')
-    tele.load_extension('telescope-live-grep-args')
   end,
 }
