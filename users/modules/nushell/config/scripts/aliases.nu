@@ -1,7 +1,11 @@
-alias nv = nvim
 alias la = ls -a
 alias ll = ls -l
 alias ld = ls --du
+
+# Be more verbose.
+alias cp = cp --verbose
+alias rm = rm --verbose
+alias mv = mv --verbose
 
 # Nix aliases
 alias nf = nix flake
@@ -17,16 +21,8 @@ def "nr update" [] {
     $in | each { nr pin $in.name $"($in.pathtype):($in.path)" }
 }
 
-# be more verbose
-alias cp = cp --verbose
-alias rm = rm --verbose
-alias mv = mv --verbose
-
-
-# Git aliases.
-alias gs = git status
-alias gd = git diff 
-alias gl = git log --oneline
+# Nvim aliases
+alias nv = nvim
 
 def nvl [pipe_name: string] {
     nvim --listen $"/tmp/nvim.($pipe_name).pipe"
@@ -35,6 +31,14 @@ def nvl [pipe_name: string] {
 def nvs [pipe_name: string] {
     nvim --server $"/tmp/nvim.($pipe_name).pipe"
 }
+
+# Git aliases.
+alias gs = git status
+alias gd = git diff 
+alias gl = git log --oneline -n 10
+alias gll = git log --oneline
+alias gf = git fetch
+
 
 # Commit with message.
 def gcm [message: string] {

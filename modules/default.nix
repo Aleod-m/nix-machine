@@ -8,7 +8,7 @@ in {
   nixosModules =
     mkMods "nixos" ["nix"];
   homeManagerModules =
-    mkMods "hm" ["nixpred"];
+    mkMods "hm" ["nixpred" "shells" "remoterc"];
   mixedModules =
     mkMods "mixed" [];
 }

@@ -1,6 +1,6 @@
 local opts = require('core.options')
 opts.set({
-    -- Set My shell as nushell
+    -- Set My shell as nushell TODO: Make 
     sh = "nu",
     -- allow unlimited undos.
     undofile = true,
@@ -43,5 +43,3 @@ opts.set({
 
 -- Remove comments on new line with o in normal mode.
 opts.get("formatoptions"):remove({'o'})
-
-opts.set_for_ft({ "nix", "html", "css", "lua" }, { tabstop = 2, shiftwidth = 2 })

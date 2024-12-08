@@ -19,11 +19,12 @@
       inherit
         system
         ;
-      specialArgs = {inherit (inputs) hyprland;};
+      specialArgs = {inherit (inputs) hyprland agenix;};
       modules =
         [
           ./${hostName}
           {networking.hostName = hostName;}
+          inputs.agenix.nixosModules.default
         ]
         # Add my custom nixos and mixed modules.
         ++ (__attrValues self.nixosModules)
@@ -71,6 +72,7 @@ in
         "base.nix"
         "graphics.nix"
         "hyprland.nix"
+        "gnome.nix"
         "nix.nix"
         "ssh.nix"
         "sound.nix"

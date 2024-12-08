@@ -8,7 +8,7 @@ return { {
   -- Optional dependencies
   dependencies = { 'nvim-tree/nvim-web-devicons' },
   keys = {
-    {mode= 'n', '-',  cmd 'Oil' },
+    { mode= 'n', '-',  cmd 'Oil' },
   },
   config = true,
 }, }

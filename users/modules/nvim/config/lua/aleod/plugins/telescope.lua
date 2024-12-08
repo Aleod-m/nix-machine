@@ -5,11 +5,12 @@ return {
   dependencies = { 
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
+    "nvim-telescope/telescope-live-grep-args.nvim" ,
   },
   keys = {
     { mode= 'n', leader 'ff',  require('telescope.builtin').find_files  },
     { mode= 'n', leader 'fs',  require('telescope.builtin').lsp_dynamic_workspace_symbols},
-    { mode= 'n', leader 'fgs',  require('telescope.builtin').live_grep  },
+    { mode= 'n', leader 'fgs',  require('telescope').extensions.live_grep_args.live_grep_args },
     { mode= 'n', leader 'fgf', require('telescope.builtin').git_files   },
     { mode= 'n', leader 'fgb', require('telescope.builtin').git_branches},
     { mode= 'n', leader 'fb',  require('telescope.builtin').buffers     },
@@ -34,5 +35,6 @@ return {
       },
     })
     tele.load_extension('ui-select')
+    tele.load_extension('telescope-live-grep-args')
   end,
 }

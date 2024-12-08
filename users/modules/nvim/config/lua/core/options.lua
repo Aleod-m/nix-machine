@@ -21,7 +21,7 @@ end
 function M.set_local(option, value)
   if type(option) ~= "table" and value ~= nil then
     vim.bo[option] = value
-  elseif type(option) ~= "table" then
+  elseif type(option) == "table" then
     for k, v in pairs(option) do
       vim.bo[option] = v
     end
