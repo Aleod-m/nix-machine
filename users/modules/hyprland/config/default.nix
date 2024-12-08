@@ -106,6 +106,9 @@ in {
       workspace_swipe_distance = 300;
       workspace_swipe_forever = true;
     };
+    misc = {
+      focus_on_activate = true;
+    };
 
     animations.enabled = false;
   };
