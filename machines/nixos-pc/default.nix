@@ -12,7 +12,7 @@ in
   # Imports the hardware configuration
   {
     imports = [./hardware.nix];
-    fonts.packages = with pkgs; [nerdfonts];
+    fonts.packages = with pkgs.nerd-fonts; [ zed-mono jetbrains-mono  ];
     console = {
       font = "Lat2-Terminus16";
       keyMap = "us";
