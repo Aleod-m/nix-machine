@@ -3,46 +3,7 @@
   lib,
   ...
 }: {
-  nix.allowedUnfree = [
-    "discord"
-    "spotify"
-    "spotify-unwrapped"
-    "vscode"
-    "vcv-rack"
-    "steam"
-    "steam-run"
-    "steam-original"
-    "VCV-Rack"
-    "cuda_cuobjdump"
-    "cuda_gdb"
-    "cuda_nvcc"
-    "cuda_nvdisasm"
-    "cuda_nvprune"
-    "cuda_cccl"
-    "cuda_cudart"
-    "cuda_cupti"
-    "cuda_cuxxfilt"
-    "cuda_nvml_dev"
-    "cuda_nvrtc"
-    "cuda_nvtx"
-    "cuda_profiler_api"
-    "cuda_sanitizer_api"
-    "libcublas"
-    "libcufft"
-    "libcurand"
-    "libcusolver"
-    "libnvjitlink"
-    "libcusparse"
-    "libnpp"
-    "warsow"
-    "unityhub"
-  ];
-
-  nixpkgs.config.allowlistedLicenses = with lib.licenses; [nvidiaCuda nvidiaCudaRedist];
-
-  nixpkgs.config.permittedInsecurePackages = [
-    "freeimage-unstable-2021-11-01"
-  ];
+  nixpkgs.config.allowedUnfree = true;
 
   home.packages = with pkgs; [
     #--- Desktop deps. ---#
@@ -56,7 +17,7 @@
 
     #--- Software. ---#
     tenacity
-    vcv-rack
+#vcv-rack
     spotify
     vlc
     evince
