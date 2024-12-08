@@ -78,11 +78,7 @@ in {
         new_optimizations = true;
       };
 
-      drop_shadow = false;
-      shadow_ignore_window = false;
-      shadow_range = 5; 
-      shadow_render_power = 1;
-      "col.shadow" = blue; 
+      shadow.enabled = false;
     };
 
     input = {
