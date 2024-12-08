@@ -3,7 +3,12 @@
   lib,
   ...
 }: {
-  nixpkgs.config.allowedUnfree = true;
+  nixpkgs.config.allowUnfree = true;
+
+  home.shells = {
+    default = "nushell";
+    enabled = ["bash" "nushell"];
+  };
 
   home.packages = with pkgs; [
     #--- Desktop deps. ---#
