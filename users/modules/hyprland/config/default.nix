@@ -72,17 +72,13 @@ in {
       active_opacity = 1.;
 
       blur = {
-	    enabled = true;
+        enabled = true;
         size = 3;
         passes = 3;
         new_optimizations = true;
       };
 
-      drop_shadow = false;
-      shadow_ignore_window = false;
-      shadow_range = 5; 
-      shadow_render_power = 1;
-      "col.shadow" = blue; 
+      shadow.enabled = false;
     };
 
     input = {
