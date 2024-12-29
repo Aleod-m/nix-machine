@@ -1,7 +1,7 @@
 local cmd = require'core.cmd'
 local group = require('aleod')
 
-return { {
+return {
   'stevearc/oil.nvim',
   lazy = false,
 
@@ -11,7 +11,7 @@ return { {
     { mode= 'n', '-',  cmd 'Oil' },
   },
   config = true,
-}, }
+}
 --    {
 --  'natecraddock/workspaces.nvim',
 --  lazy = false,

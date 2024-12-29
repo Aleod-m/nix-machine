@@ -4,6 +4,8 @@ pkgs: {
     packages = with pkgs; [
       # The nix lsp i use.
       nil
+      # Lua lsp for nvim.
+      lua-language-server
       # to run the nix flake commands.
       just
       nushell

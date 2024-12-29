@@ -70,12 +70,10 @@
       pkgs = nixpkgs.legacyPackages.${system};
     in {
       devShells = import ./shells pkgs;
-
       formatter = pkgs.alejandra;
     });
   in
-    generic
-    // {
+    generic // {
       inherit (import ./modules) nixosModules homeManagerModules mixedModules;
 
       # Extend nixpkgs library.

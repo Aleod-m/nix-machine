@@ -1,58 +1,27 @@
 return {
-  'hrsh7th/nvim-cmp',
-  dependencies = {
-    'hrsh7th/cmp-path',
-    'hrsh7th/cmp-buffer',
-    'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-cmdline',
-    'saadparwaiz1/cmp_luasnip',
-    'L3MON4D3/LuaSnip'
-  },
-  event = {"InsertEnter", "CmdlineEnter"},
-  config = function(_, _)
-    local cmp = require('cmp')
-    cmp.setup({
-      snippet = {
-        expand = function(args)
-          require'luasnip'.lsp_expand(args.body) -- For `luasnip` users.
-        end
-      },
-      mapping = cmp.mapping.preset.insert {
-        ["<C-n>"] = cmp.mapping.select_prev_item(),
-        ["<C-p>"] = cmp.mapping.select_next_item(),
-        ["<C-u>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
-        ["<C-d>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
-        ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-        ["<C-e>"] = cmp.mapping {
-          i = cmp.mapping.abort(),
-          c = cmp.mapping.close()
-        },
-        -- Accept currently selected item. If none selected, `select` first item.
-        -- Set `select` to `false` to only confirm explicitly selected items.
-        ["<CR>"] = cmp.mapping.confirm { select = true }
-      },
-      sources = cmp.config.sources({
-        { name = 'nvim_lsp' },
-        { name = 'luasnip' }
-      }, {
-        { name = 'buffer' }
-      }),
-      formatting = { fields = { "kind", "abbr", "menu" } },
-      view = { entries = { name = 'custom', selection_order = 'near_cursor' } }
-    })
-    cmp.setup.cmdline(':',
-      { mapping = cmp.mapping.preset.cmdline()
-        , sources = cmp.config.sources({
-          { name = 'path' } 
-        }, {
-            { name = 'cmdline' } 
-        })
-      }
-    )
+  'saghen/blink.cmp',
+  -- optional: provides snippets for the snippet source
+  dependencies = 'rafamadriz/friendly-snippets',
 
-    cmp.setup.cmdline({'/', '?'}, { 
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = { { name = 'buffer' } }
-    })
-  end
+  -- use a release tag to download pre-built binaries
+  version = '*',
+
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    -- 'default' for mappings similar to built-in completion
+    -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
+    -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
+    -- See the full "keymap" documentation for information on defining your own keymap.
+    keymap = { preset = 'enter' },
+
+    appearance = {
+      use_nvim_cmp_as_default = true,
+      nerd_font_variant = 'mono'
+    },
+    sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
+    },
+  },
+  opts_extend = { "sources.default" }
 }

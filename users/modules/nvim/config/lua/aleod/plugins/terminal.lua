@@ -1,14 +1,14 @@
+local km = require('core.keymaps')
+local cmd = require('core.cmd')
 return {
     "NvChad/nvterm",
     keys = {
-        "<Leader>tf",
-        "<Leader>th",
-        "<Leader>tv",
+        km.leader "tf",
+        km.leader "th",
+        km.leader "tv",
     },
     config = function()
         local nvt = require('nvterm')
-        local km = require('core.keymaps')
-        local cmd = require('core.cmd')
         nvt.setup {
             terminals = {
                 shell = "nu",
