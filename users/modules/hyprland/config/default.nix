@@ -72,7 +72,7 @@ in {
       active_opacity = 1.;
 
       blur = {
-	    enabled = true;
+        enabled = true;
         size = 3;
         passes = 3;
         new_optimizations = true;
