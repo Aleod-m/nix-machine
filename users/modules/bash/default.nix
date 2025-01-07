@@ -1,4 +1,8 @@
-{pkgs, config, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: {
   programs.bash = {
     enable = __elem "bash" config.home.shells.enabled;
     bashrcExtra = __readFile ./extra.sh;
@@ -11,8 +15,8 @@
       ld = eza + "-d";
       la = eza + "-a -l";
       lg = eza + "-l --git --header";
-      lga = eza +"-a -l --git --header";
-      
+      lga = eza + "-a -l --git --header";
+
       # nvim
       nv = "nvim";
       # git

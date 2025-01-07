@@ -7,7 +7,7 @@
   # Imports the hardware configuration
   imports = [./hardware.nix ./bibvpn.nix];
   environment.systemPackages = with pkgs; [ecryptfs];
-  fonts.packages = with pkgs.nerd-fonts; [ zed-mono jetbrains-mono  ];
+  fonts.packages = with pkgs.nerd-fonts; [zed-mono jetbrains-mono];
   console = {
     font = "Lat2-Terminus16";
     keyMap = "fr";

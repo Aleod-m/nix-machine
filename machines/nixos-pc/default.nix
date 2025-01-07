@@ -1,31 +1,26 @@
 {
   pkgs,
   lib,
+  self,
+  mlib,
   ...
-}: let
-  ## Enable services without any other configuration needed.
-  enableServices = ss: let
-    paths = map (s: lib.setAttrByPath ["services" s "enable"] true) ss;
-  in
-    lib.lists.foldl lib.attrsets.recursiveUpdate {} paths;
-in
+}:
+{
   # Imports the hardware configuration
-  {
-    imports = [./hardware.nix];
-    fonts.packages = with pkgs.nerd-fonts; [ zed-mono jetbrains-mono  ];
-    console = {
-      font = "Lat2-Terminus16";
-      keyMap = "us";
-    };
+  imports = [./hardware.nix];
+  fonts.packages = with pkgs.nerd-fonts; [zed-mono jetbrains-mono];
+  console = {
+    font = "Lat2-Terminus16";
+    keyMap = "us";
+  };
 
-    boot.loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
-    };
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
 
-    system.stateVersion = "21.11";
-  }
-  // enableServices
-  [
-    "flatpak"
-  ]
+  system.stateVersion = "21.11";
+
+} // mlib.enable.services [
+  "flatpak"
+]

@@ -22,16 +22,16 @@ in {
     };
   };
 
-  config = let 
+  config = let
     bashEnabled = __elem "bash" cfg.enabled;
     zshEnabled = __elem "zsh" cfg.enabled;
     nushellEnabled = __elem "nushell" cfg.enabled;
     fishEnabled = __elem "fish" cfg.enabled;
     integrations = {
-        enableBashIntegration = bashEnabled;
-        enableFishIntegration = fishEnabled;
-        enableZshIntegration = zshEnabled;
-        enableNushellIntegration = nushellEnabled;
+      enableBashIntegration = bashEnabled;
+      enableFishIntegration = fishEnabled;
+      enableZshIntegration = zshEnabled;
+      enableNushellIntegration = nushellEnabled;
     };
   in {
     programs = {

@@ -61,26 +61,93 @@
   };
 
   outputs = {
-    self,
     nixpkgs,
     flake-utils,
+    self,
     ...
-  } @ inputs: let
-    generic = flake-utils.lib.eachDefaultSystem (system: let
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      devShells = import ./shells pkgs;
-      formatter = pkgs.alejandra;
-    });
+  } @ _inputs: let
+    # Own lib.
+    mlib = import ./lib _inputs;
+    inputs = _inputs // {inherit mlib;};
   in
-    generic // {
-      inherit (import ./modules) nixosModules homeManagerModules mixedModules;
+    # System dependent flake outputs.
+    flake-utils.lib.eachDefaultSystem (
+      system: let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in {
+        devShells = import ./shells pkgs;
+        formatter = pkgs.alejandra;
+      }
+    )
+    // {
+      # System independent flake outputs.
 
-      # Extend nixpkgs library.
-      lib = import ./lib nixpkgs;
+      # Authored Modules.
+      nixosModules = mlib.mk.modules "nixos" ["nix"];
+      homeManagerModules = mlib.mk.modules "hm" ["shells" "remoterc"];
 
-      homeConfigurations = import ./users inputs;
+      # Configurations.
+      homeConfigurations = mlib.mk.users inputs [
+        {
+          username = "adml";
+          modules = [
+            "nvim"
+            "hyprland"
+            "nushell"
+            "kitty"
+            "wallpapers"
+          ];
+        }
+        {
+          username = "adrien";
+          modules = [
+            "nvim"
+            "hyprland"
+            "nushell"
+            "wallpapers"
+            "kitty"
+            "bash"
+            "shell-utils"
+            "tmux"
+          ];
+        }
+      ];
 
-      nixosConfigurations = import ./machines inputs;
+      nixosConfigurations = mlib.mk.computers inputs [
+        # My laptop (i know its caled pc but its a laptop that doesn't move much).
+        {
+          hostName = "nixos-pc";
+          system = "x86_64-linux";
+          users = ["adml"];
+          modules = [
+            "base"
+            "sound"
+            "ssh"
+            "nix"
+            "devices"
+            "net"
+            "nvidia"
+            "hyprland"
+            "docker"
+            "tailscale"
+          ];
+        }
+        {
+          hostName = "nixos-dell";
+          system = "x86_64-linux";
+          users = ["adrien"];
+          modules = [
+            "base"
+            "graphics"
+            "hyprland"
+            "gnome"
+            "nix"
+            "ssh"
+            "sound"
+            "docker"
+            "devices"
+          ];
+        }
+      ];
     };
 }
