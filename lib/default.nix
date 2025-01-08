@@ -1,4 +1,7 @@
-nixpkgs: let
-  blib = nixpkgs.lib.extend (_: _: builtins);
-in
-  blib.extend (_: _: (import ./lib.nix blib))
+_inputs: let
+  inputs = _inputs // {rootPath = ../.;};
+in {
+  inherit (inputs) rootPath;
+  mk = import ./mk.nix inputs;
+  enable = import ./enable.nix inputs;
+}

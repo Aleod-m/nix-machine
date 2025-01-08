@@ -22,7 +22,7 @@
 
     #--- Software. ---#
     tenacity
-#vcv-rack
+    #vcv-rack
     spotify
     vlc
     evince
@@ -51,13 +51,9 @@
     zed-editor
 
     ## Game dev
-    unityhub
-    godot_4
-    tiled
     gimp
     inkscape
     blender
-    # trenchbroom
 
     ## Gaming
     itch
