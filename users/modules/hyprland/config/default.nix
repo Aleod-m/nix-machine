@@ -1,14 +1,17 @@
-{ pkgs, config, ...}: let
-
-  green  = "rgb(97e023)";
+{
+  pkgs,
+  config,
+  ...
+}: let
+  green = "rgb(97e023)";
   orange = "rgb(fa8419)";
   yellow = "rgb(dfd561)";
   purple = "rgb(9c64fe)";
-  red    = "rgb(f3005f)";
-  cyan   = "rgb(57d1ea)";
-  blue   = "rgb(0e6172)";
-  grey   = "rgb(929276)";
-  white  = "rgb(f6f6ee)";
+  red = "rgb(f3005f)";
+  cyan = "rgb(57d1ea)";
+  blue = "rgb(0e6172)";
+  grey = "rgb(929276)";
+  white = "rgb(f6f6ee)";
 
   pointer = config.home.pointerCursor;
   cursorName = "Bibata-Modern-Classic-Hyprcursor";
@@ -19,7 +22,7 @@ in {
   ];
 
   xdg.configFile = {
-    hyprScripts= {
+    hyprScripts = {
       target = "./hypr/scripts/";
       source = ./scripts;
       recursive = true;
@@ -30,8 +33,8 @@ in {
     "$mod" = "SUPER";
     "$scripts" = "~/.config/hypr/scripts";
     monitor = [
-        "eDP-1, preferred, 1920x0, 1"
-        "HDMI-A-2, preferred, 0x0, 1"
+      "eDP-1, preferred, 1920x0, 1"
+      "HDMI-A-2, preferred, 0x0, 1"
     ];
 
     env = [
@@ -62,14 +65,14 @@ in {
     };
 
     master = {
-        mfact = 0.7;
-        new_status = "slave";
-        new_on_top= "true";
+      mfact = 0.7;
+      new_status = "slave";
+      new_on_top = "true";
     };
 
     decoration = {
       rounding = 1;
-      active_opacity = 1.;
+      active_opacity = 1.0;
 
       blur = {
         enabled = true;

@@ -14,7 +14,6 @@
     overlays ? [],
     system ? "x86_64-linux",
   }: let
-
     # User hm config.
     homeDecl = import (rootPath + /users/${username}/home.nix);
 
@@ -36,7 +35,7 @@
     hm-argset = {
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit (inputs) hyprland agenix mlib system;
+        inherit (inputs) hyprland hyprlock agenix mlib system;
       };
       modules =
         [

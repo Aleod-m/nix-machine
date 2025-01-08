@@ -1,4 +1,14 @@
 {...}: let
+  green = "rgb(97e023)";
+  orange = "rgb(fa8419)";
+  yellow = "rgb(dfd561)";
+  purple = "rgb(9c64fe)";
+  red = "rgb(f3005f)";
+  cyan = "rgb(57d1ea)";
+  blue = "rgb(0e6172)";
+  grey = "rgb(929276)";
+  white = "rgb(f6f6ee)";
+
   mkworkspacerule = nb:
     if nb <= 10
     then "workspace=${toString nb}, monitor:DP-1"
@@ -27,6 +37,8 @@ in {
       "center, title:Rofi"
       "dimaround, title:Rofi"
 
+      "bordercolor ${cyan} ... ${green} 90deg ${grey}, fullscreen:1"
+
       # "float, viewnior"
       "float, class:feh"
       "float, class:file-roller"
@@ -38,6 +50,6 @@ in {
       "float, title:^(Picture-in-Picture)$"
     ];
 
-    workspace = map mkworkspacerule [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20];
+    workspace = map mkworkspacerule (__genList (x: x + 1) 20);
   };
 }

@@ -1,6 +1,6 @@
 {
   pkgs,
-  inputs,
+  hyprlock,
   ...
 }: {
   imports = [
@@ -18,14 +18,6 @@
     systemd.variables = ["--all"];
   };
 
-  # Copy hyprland config.
-  # xdg.configFile = {
-  #   hypr = {
-  #     source = ./hypr;
-  #     recursive = true;
-  #   };
-  # };
-
   # Cursor.
   home.pointerCursor = {
     package = pkgs.bibata-cursors;
@@ -38,8 +30,6 @@
   home.packages = with pkgs; [
     # Logout screen.
     wlogout
-    # Notif daemon.
-    mako
     # Launcher.
     rofi-wayland
     playerctl
@@ -52,9 +42,14 @@
     grimblast
   ];
 
+  services.mako = {
+    enable = true;
+    layer = "overlay";
+  };
+
   programs.hyprlock = {
     enable = true;
-    package = inputs.hyprlock.packages.${pkgs.system}.hyprlock;
+    package = hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       general = {
         disable_loading_bar = true;

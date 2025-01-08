@@ -45,8 +45,12 @@ def gcm [message: string] {
     git commit -m $message
 }
 
-def gca [message: string] {
-    git commit --amend -m $message
+def gca [message?: string] {
+    if ($message == null) {
+        git commit --amend --no-edit
+    } else {
+        git commit --amend -m $message
+    }
 }
 
 # Checkout to branch.
@@ -55,8 +59,12 @@ def gco [branch] {
 }
 
 # Add a path 
-def ga [...path: string] {
-    git add ...$path
+def ga [...path: string, --update (-u)] {
+    if ($update) {
+        git add --update ...$path
+    } else {
+        git add ...$path
+    }
 }
 
 # Add all changes. 

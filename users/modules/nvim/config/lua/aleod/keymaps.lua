@@ -1,6 +1,7 @@
 local km = require "core.keymaps"
 
 -- Set my leader to space
+km.set("n", "<Space>", "<Nop>")
 km.mapleader " "
 -- Set my local leader to comma 
 km.maplleader ","
@@ -75,8 +76,8 @@ km.set_keymaps {
   { mode="n", keymap= ctrl "l", action=">>" },
 
   -- In visual mode with ctrl key
-  { mode="v", keymap= ctrl "k", action=":m'>+<CR>gv"},
-  { mode="v", keymap= ctrl "t", action=":m-2<CR>gv" },
+  { mode="v", keymap= ctrl "k", action="<Cmd>m'>+<CR>gv"},
+  { mode="v", keymap= ctrl "t", action="<Cmd>m-2<CR>gv" },
   { mode="v", keymap= ctrl "h", action="<gv" },
   { mode="v", keymap= ctrl "l", action=">gv" },
 

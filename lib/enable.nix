@@ -1,13 +1,13 @@
 {nixpkgs, ...}: let
   lib = nixpkgs.lib;
 in {
-  services = ss: let
+  services = ss: rest: let
     enableService = map (s: lib.setAttrByPath ["services" s "enable"] true) ss;
   in
-    lib.lists.foldl lib.attrsets.recursiveUpdate {} enableService;
+    lib.lists.foldl lib.attrsets.recursiveUpdate rest enableService;
 
-  programs = ss: let
-    enableProgram = map (s: lib.setAttrByPath ["programs" s "enable"] true) ss;
+  programs = ps: rest: let
+    enableProgram = map (s: lib.setAttrByPath ["programs" s "enable"] true) ps;
   in
-    lib.lists.foldl lib.attrsets.recursiveUpdate {} enableProgram;
+    lib.lists.foldl lib.attrsets.recursiveUpdate rest enableProgram;
 }

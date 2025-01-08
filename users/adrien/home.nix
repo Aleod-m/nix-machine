@@ -25,6 +25,8 @@
     seafile-client
     rocketchat-desktop
     vscode
+    chromium
+    jetbrains.idea-community
   ];
 
   programs = {

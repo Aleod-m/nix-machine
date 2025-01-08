@@ -5,7 +5,7 @@
   mlib,
   ...
 }:
-{
+mlib.enable.services [ "flatpak" ] {
   # Imports the hardware configuration
   imports = [./hardware.nix];
   fonts.packages = with pkgs.nerd-fonts; [zed-mono jetbrains-mono];
@@ -20,7 +20,4 @@
   };
 
   system.stateVersion = "21.11";
-
-} // mlib.enable.services [
-  "flatpak"
-]
+}

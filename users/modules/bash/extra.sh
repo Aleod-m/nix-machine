@@ -24,15 +24,24 @@ up() {
 }
 
 mkcd() {
-    mkdir $1
-    cd $1
+    mkdir $1; cd $1
+}
+
+sshexec() {
+    if ! command -v ssh 2>&1 > /dev/null 
+    then
+        echo "The up command needs nvim on the system."
+        exit 1
+    fi
+    host=$1; shift
+    ssh -t $host -o RemoteCommand=none -- $@
 }
 
 nvl() {
     if ! command -v nvim 2>&1 > /dev/null
     then
-    echo "The up command needs nvim on the system."
-    exit 1
+        echo "The up command needs nvim on the system."
+        exit 1
     fi
     nvim --listen "/tmp/nvim.{$pipe_name}.pipe"
 }
