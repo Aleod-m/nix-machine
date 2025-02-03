@@ -74,13 +74,9 @@ in {
       rounding = 1;
       active_opacity = 1.0;
 
-      blur = {
-        enabled = true;
-        size = 3;
-        passes = 3;
-        new_optimizations = true;
-      };
+      dim_around = 0.3;
 
+      blur.enabled = false;
       shadow.enabled = false;
     };
 

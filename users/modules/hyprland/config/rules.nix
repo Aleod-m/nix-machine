@@ -18,8 +18,9 @@ in {
     # window rules
     windowrulev2 = [
       # make Firefox PiP window floating and sticky
-      "float, title:^(Picture-in-Picture)$"
-      "pin, title:^(Picture-in-Picture)$"
+      "float, title:^(Incrustation vidéo)$"
+      "keepaspectratio, title:^(Incrustation vidéo)$"
+      "pin, title:^(Incrustation vidéo)$"
 
       "float, class:file_progress"
       "float, class:confirm"
@@ -33,21 +34,20 @@ in {
       "float, class:branchdialog"
       "float, title:^(Firefox - Sharing Indicator)$"
 
+      "float, initialTitle:^()$, class:thunderbird"
+      "center, initialTitle:^()$, class:thunderbird"
+
       "float, title:Rofi"
       "center, title:Rofi"
       "dimaround, title:Rofi"
 
       "bordercolor ${cyan} ... ${green} 90deg ${grey}, fullscreen:1"
 
-      # "float, viewnior"
       "float, class:feh"
       "float, class:file-roller"
       "fullscreen, title:wlogout"
       "float, title:wlogout"
       "fullscreen, title:wlogout"
-      "idleinhibit fullscreen, class:firefox"
-      "float, title:^(Media viewer)$"
-      "float, title:^(Picture-in-Picture)$"
     ];
 
     workspace = map mkworkspacerule (__genList (x: x + 1) 20);
