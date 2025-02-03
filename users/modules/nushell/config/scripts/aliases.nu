@@ -1,3 +1,4 @@
+
 alias la = ls -a
 alias ll = ls -l
 alias ld = ls --du
@@ -13,7 +14,8 @@ alias ns = nix store
 alias nr = nix registry
 
 def "nr list" [] {
-    nix registry list | parse "{type} flake:{name} {pathtype}:{path}"
+    nix registry list 
+        | parse "{type} flake:{name} {pathtype}:{path}"
         | update type { $in | str trim }
 }
 
@@ -35,12 +37,16 @@ def nvs [pipe_name: string] {
 # Git aliases.
 alias gs = git status
 alias gd = git diff 
-alias gl = git log --oneline -n 10
+alias gdc = git diff --cached 
+alias gl = git log  -n 10 --oneline
 alias gll = git log --oneline
+alias gla = git log -n 10 --pretty=format:"%h%x09%an%x09%ad%x09%s"
+alias glla = git log --pretty=format:"%h%x09%an%x09%ad%x09%s"
 alias gf = git fetch
+alias gpr = git pull --rebase
+alias gA = git add --all
 
 
-# Commit with message.
 def gcm [message: string] {
     git commit -m $message
 }
@@ -65,11 +71,6 @@ def ga [...path: string, --update (-u)] {
     } else {
         git add ...$path
     }
-}
-
-# Add all changes. 
-def gA [] {
-    git add --all
 }
 
 alias reset-env-scripts = rmdir ~/.config/nushell/gen

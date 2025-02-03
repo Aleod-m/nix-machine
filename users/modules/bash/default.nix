@@ -31,6 +31,7 @@
       gf = git + "fetch";
       gp = git + "pull";
       gd = git + "diff";
+      gdc = git + "diff --cached";
     };
   };
 }
