@@ -2,9 +2,21 @@
   pkgs,
   hyprlock,
   ...
-}: {
+}: let 
+  bg = "rgb(191919)";
+  green  = "97e023";
+  orange = "fa8419";
+  yellow = "dfd561";
+  purple = "9c64fe";
+  red    = "f3005f";
+  cyan   = "57d1ea";
+  blue   = "0e6172";
+  grey   = "929276";
+  white  = "f6f6ee";
+in {
   imports = [
     ./config/default.nix
+    ./mako/default.nix
   ];
   # make stuff work on wayland
   home.sessionVariables = {
@@ -28,8 +40,6 @@
   };
 
   home.packages = with pkgs; [
-    # Logout screen.
-    wlogout
     # Launcher.
     rofi-wayland
     playerctl
@@ -54,7 +64,6 @@
       general = {
         disable_loading_bar = true;
         hide_cursor = false;
-        no_fade_in = true;
       };
 
       background = [
@@ -72,9 +81,9 @@
 
           outline_thickness = 1;
 
-          outer_color = "rgb(97e023)";
-          inner_color = "rgb(191919)";
-          font_color = "rgb(f6f6ee)";
+          outer_color = green;
+          inner_color = bg;
+          font_color = white;
 
           fade_on_empty = false;
           placeholder_text = ''Password...'';
@@ -89,9 +98,9 @@
 
           outline_thickness = 1;
 
-          outer_color = "rgb(97e023)";
-          inner_color = "rgb(191919)";
-          font_color = "rgb(f6f6ee)";
+          outer_color = green;
+          inner_color = bg;
+          font_color = white;
 
           fade_on_empty = false;
 
@@ -107,7 +116,7 @@
           monitor = "";
           text = "$TIME";
           font_size = 50;
-          color = "rgb(#f6f6ee)";
+          color = white;
 
           position = "0, 150";
 
@@ -118,7 +127,7 @@
           monitor = "";
           text = "cmd[update:3600000] date +'%a %b %d'";
           font_size = 20;
-          color = "rgb(f6f6ee)";
+          color = white;
 
           position = "0, 50";
 
@@ -141,11 +150,11 @@
     style = ''
       * {
         background: none;
-        color: #f6f6ee;
+        color: #${white};
       }
 
       window {
-      	background-color: #191919;
+      	background-color: #${bg};
       }
 
       button {
