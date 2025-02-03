@@ -1,6 +1,6 @@
 return { {
   'nvim-treesitter/nvim-treesitter',
-  dependencies = { 
+  dependencies = {
     "tadmccorkle/markdown.nvim",
   },
   event = { "BufReadPre", "BufNewFile" },
@@ -34,6 +34,7 @@ return { {
         "sql",
         "wgsl",
         "wgsl_bevy",
+        "java",
 
         -- Web.
         "html",
@@ -55,15 +56,8 @@ return { {
       },
     })
 
+    ---@class ParserInfo[]
     local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-    parser_config.wgsl = {
-      install_info = {
-        url = "szebniok/tree-sitter-wgsl",
-        files = {"src/parser.c"},
-        branch = "main",
-      },
-      filetype = "wgsl"
-    }
     parser_config.just = {
       install_info = {
         url = "https://github.com/IndianBoy42/tree-sitter-just",
@@ -76,7 +70,7 @@ return { {
 }, {
   "nushell/tree-sitter-nu",
   build = ":TSUpdate",
-  dependencies = { 
+  dependencies = {
     'nvim-treesitter/nvim-treesitter',
   },
 } }

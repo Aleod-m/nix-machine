@@ -8,12 +8,12 @@
     withPython3 = false;
     withRuby = false;
     withNodeJs = false;
+    extraPackages = with pkgs; [
+      ripgrep
+      fd
+      gcc
+    ];
   };
-
-  home.packages = with pkgs; [
-    ripgrep
-    fd
-  ];
 
   xdg.configFile.nvim = {
     source = ./config;
