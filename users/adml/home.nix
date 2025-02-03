@@ -80,7 +80,7 @@
       enable = true;
       userName = "AdrienDML";
       userEmail = "adriendml99@gmail.com";
-      ignores = [".envrc" ".direnv"];
+      ignores = [".envrc" ".direnv" ".devenv"];
     };
 
     direnv = {

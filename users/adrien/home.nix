@@ -27,17 +27,38 @@
     vscode
     chromium
     jetbrains.idea-community
+    signal-desktop
   ];
 
   programs = {
     ssh = {
       enable = true;
       addKeysToAgent = "yes";
-      remoterc = {
-        enable = true;
-        text = __readFile ../modules/bash/extra.sh;
-      };
+      extraConfig = let 
+        tmuxCmd = __concatStringsSep " " [
+          "/usr/bin/tmux -L ADM"
+          "set-option -g mode-keys vi \\;"
+          "set-option -g base-index 1 \\;"
+          "new-session -A \\;"
+        ];
+        prodTmuxCmd = __concatStringsSep " " [ tmuxCmd "set-option -g status-bg red \\;" ];
+      in ''
+        Host bib-proxy
+          HostName bs-support.biblibre.com
+          User biblibre
+
+        Host bs-numahop* aderobert-*
+          RequestTTY force
+
+        Host aderobert-*
+          ProxyJump bib-proxy
+          RemoteCommand ${tmuxCmd}
+
+        Host bs-numahop*
+          RemoteCommand ${prodTmuxCmd}
+      '';
     };
+
     tmate = {
       host = "tmate.biblibre.com";
       port = 2223;
@@ -49,7 +70,7 @@
       enable = true;
       userName = "Adrien Derobert-Mazure";
       userEmail = "adrien.derobertmazure@biblibre.com";
-      ignores = [".envrc" ".direnv"];
+      ignores = [".envrc" ".direnv" ".devenv"];
     };
   };
 }
