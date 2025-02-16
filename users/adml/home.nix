@@ -1,6 +1,7 @@
 {
   pkgs,
   lib,
+  zen-browser,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
@@ -18,6 +19,7 @@
     helvum
     pavucontrol
     gnupg # Not setup yet.
+
     chromium
 
     #--- Software. ---#
@@ -26,11 +28,8 @@
     spotify
     vlc
     evince
-    tuxguitar
     vscode
     libreoffice
-    onlyoffice-bin
-    discord
     webcord
     protonmail-desktop
 
@@ -38,7 +37,6 @@
     bat
     pciutils
     zoxide
-    zellij
     ripgrep
     fd
     starship
@@ -51,8 +49,6 @@
     zed-editor
 
     ## Game dev
-    gimp
-    inkscape
     blender
 
     ## Gaming
@@ -60,7 +56,7 @@
     steam
     steam-run
     prismlauncher
-  ];
+  ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {
     obs-studio = {

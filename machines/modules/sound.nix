@@ -7,6 +7,6 @@
       jack.enable = true;
       alsa.support32Bit = true;
     };
+    pulseaudio.enable = false;
   };
-  hardware.pulseaudio.enable = false;
 }

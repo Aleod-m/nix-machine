@@ -58,6 +58,11 @@
         systems.follows = "hyprland/systems";
       };
     };
+
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
@@ -92,7 +97,7 @@
           username = "adml";
           modules = [
             "nvim"
-            "hyprland"
+            "hyprdesk"
             "nushell"
             "kitty"
             "wallpapers"
@@ -102,7 +107,7 @@
           username = "adrien";
           modules = [
             "nvim"
-            "hyprland"
+            "hyprdesk"
             "nushell"
             "wallpapers"
             "kitty"
@@ -139,11 +144,11 @@
           modules = [
             "base"
             "graphics"
+            "sound"
             "hyprland"
             "gnome"
             "nix"
             "ssh"
-            "sound"
             "docker"
             "devices"
           ];

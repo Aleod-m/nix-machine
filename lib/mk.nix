@@ -35,7 +35,7 @@
     hm-argset = {
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit (inputs) hyprland agenix mlib system hyprland-plugins hyprlock hyprpaper hypridle;
+        inherit (inputs) hyprland agenix mlib system hyprland-plugins hyprlock hyprpaper hypridle zen-browser;
       };
       modules =
         [
