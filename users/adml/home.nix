@@ -46,8 +46,6 @@
     socat
     nvtopPackages.full
 
-    zed-editor
-
     ## Game dev
     blender
 
