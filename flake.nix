@@ -150,6 +150,7 @@
             "nix"
             "ssh"
             "docker"
+            "lxd"
             "devices"
           ];
         }

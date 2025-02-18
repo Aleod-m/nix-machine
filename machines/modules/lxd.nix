@@ -1,0 +1,3 @@
+{...}: {
+  virtualisation.lxd.enable = true;
+}

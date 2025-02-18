@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  zen-browser,
+  ...
+}: {
   nixpkgs.config.allowUnfree = true;
 
   home.shells = {
@@ -28,7 +32,7 @@
     chromium
     jetbrains.idea-community
     signal-desktop
-  ];
+  ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {
     ssh = {

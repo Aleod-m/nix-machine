@@ -6,6 +6,6 @@
 }: {
   users.users.adrien = {
     isNormalUser = true;
-    extraGroups = ["docker" "networkmanager" "wheel"];
+    extraGroups = ["docker" "networkmanager" "wheel" "lxd"];
   };
 }

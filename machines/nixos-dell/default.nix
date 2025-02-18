@@ -35,7 +35,7 @@
     pkgs.brgenml1lpr #  — Generic drivers for more Brother printers [1]
     pkgs.brgenml1cupswrapper  # — Generic drivers for more Brother printers [1]
     pkgs.cnijfilter2 # — Drivers for some Canon Pixma devices (Proprietary driver)
-    pkgs.canon-cups-ufr2
+    # pkgs.canon-cups-ufr2
 	]; 
 
   services.avahi = {

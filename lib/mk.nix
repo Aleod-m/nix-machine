@@ -6,6 +6,20 @@
 }: let
   lib = nixpkgs.lib;
 
+  loadModule = basePath: mods:
+    let 
+      mkModfs = mod:
+        let 
+          filePath = basePath + /${mod}.nix;
+          folderPath = basePath + /${mod}/.;
+        in [filePath folderPath];
+    in lib.pipe mods [
+        (map mkModfs)
+        lib.lists.flatten
+        (lib.filter (p: (lib.filesystem.pathIsDirectory p) || (lib.filesystem.pathIsRegularFile p)))
+        (map (mod: import mod))
+    ];
+
   # Util function for creating a user.
   mkUserHm = inputs: {
     username,
@@ -47,7 +61,7 @@
         ]
         ++ (__attrValues inputs.self.homeManagerModules)
         # add all the selected configuration modules.
-        ++ (map (mod: import (rootPath + /users/modules/${mod})) modules);
+        ++ (loadModule (rootPath + /users/modules/.) (lib.traceVal modules));
     };
   in {${username} = home-manager.lib.homeManagerConfiguration hm-argset;};
 
@@ -72,9 +86,9 @@
         # Add my custom nixos and mixed modules.
         ++ (__attrValues inputs.self.nixosModules)
         # add all the selected configuration modules.
-        ++ (map (mod: import (rootPath + /machines/modules/${mod}.nix)) modules)
+        ++ (loadModule (rootPath + /machines/modules/.) modules)
+        ++ (loadModule (rootPath + /users/.) users);
         # add all the selected users
-        ++ (map (user: import (rootPath + /users/${user})) users);
     };
   in {${hostName} = lib.nixosSystem nixos-argset;};
 in {
