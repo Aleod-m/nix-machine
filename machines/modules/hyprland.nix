@@ -10,6 +10,8 @@
     portalPackage = hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
+  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+
   environment.systemPackages = with pkgs; [
     # Clip board.
     wl-clipboard

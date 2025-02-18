@@ -3,7 +3,7 @@
   hyprlock,
   ...
 }: let 
-  bg = "rgb(191919)";
+  bg = "191919";
   green  = "97e023";
   orange = "fa8419";
   yellow = "dfd561";
@@ -141,7 +141,7 @@ in {
   programs.wlogout = let
     bgImageSection = name: ''
       #${name} {
-        background-image: image(url("${pkgs.wlogout}/share/wlogout/icons/${name}.png"));
+        background-image: image(-gtk-recolor(url('${pkgs.wlogout}/share/wlogout/assets/${name}.svg'), success #${cyan}, warning #${cyan}, error #${cyan}));
       }
     '';
   in {

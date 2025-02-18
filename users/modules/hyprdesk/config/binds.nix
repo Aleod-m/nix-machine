@@ -52,7 +52,7 @@ in {
 
         # Locking and logout.
         (exec "" "L" "hyprlock")
-        (exec "SHIFT ALT" "Q" "wlogout -p layer-shell")
+        (exec "SHIFT ALT" "Q" "wlogout -s -p layer-shell")
         (script "ALT" "left" "decwk" "")
         (script "ALT" "right" "incwk" "")
       ]

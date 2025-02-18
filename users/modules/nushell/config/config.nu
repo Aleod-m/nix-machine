@@ -52,10 +52,7 @@ $env.config = {
       }
   }
   color_config: (colors default)
-  filesize: {
-      metric: true
-      format: "auto"
-  }
+  filesize: { unit: "metric" }
   footer_mode: 25 # always, never, number_of_rows, auto
   float_precision: 2
   buffer_editor: "emacs" # command that will be used to edit the current line buffer with ctr+e
