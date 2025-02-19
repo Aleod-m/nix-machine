@@ -14,6 +14,12 @@ return {
       },
     },
   },
-   -- Config 
-  { 'lewis6991/gitsigns.nvim', event = "BufRead", opts = { numhl = true, } },
+  {
+    'lewis6991/gitsigns.nvim',
+    event = "BufRead",
+    opts = {
+      numhl = true,
+      current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    }
+  },
 }
