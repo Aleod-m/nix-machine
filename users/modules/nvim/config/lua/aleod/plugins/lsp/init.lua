@@ -33,6 +33,7 @@ return {
       "csharp_ls",
       "gdscript",
       "ts_ls",
+      "jdtls",
     }
 
     for _, lsp in ipairs(servers) do

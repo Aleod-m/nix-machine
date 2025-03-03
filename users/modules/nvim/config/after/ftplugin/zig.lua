@@ -1,1 +1,1 @@
-vim.g.zig_fmt_autosame = 0;
+vim.g.zig_fmt_autosave = 0;

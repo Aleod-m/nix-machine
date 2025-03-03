@@ -10,50 +10,48 @@ end
 
 function M.set(option, value)
   if type(option) ~= "table" and value ~= nil then
-    vim.o[option] = value
+    vim.opt[option] = value
   elseif type(option) == "table" then
     for k, v in pairs(option) do
-      vim.o[k] = v
+      vim.opt[k] = v
     end
   end
 end
 
 function M.set_local(option, value)
   if type(option) ~= "table" and value ~= nil then
-    vim.bo[option] = value
+    vim.opt_local[option] = value
   elseif type(option) == "table" then
-    for k, v in pairs(option) do
-      vim.bo[option] = v
+    for _, v in pairs(option) do
+      vim.opt_local[option] = v
     end
   end
 end
 
 -- Set options per filetypes.
 local group = vim.api.nvim_create_augroup('FtOpts', {clear = true})
-function M.set_for_ft(ft, option, value)
+function M.set_for_ft(filetype, option, value)
   -- If no filetype do nothing.
-  if ft == nil then
+  if filetype == nil then
     return
   end
 
-  if type(ft) == "table" then 
-    for _, ft in ipairs(ft) do
+  if type(filetype) == "table" then
+    for _, ft in ipairs(filetype) do
       vim.api.nvim_create_autocmd({"FileType"}, {
         group = group,
         pattern = ft,
-        callback = function(args)
+        callback = function()
           M.set_local(option, value)
         end
       })
     end
-  elseif type(ft) == "string" then
+  elseif type(filetype) == "string" then
     vim.api.nvim_create_autocmd({"FileType"}, {
       group = group,
-      pattern = ft,
-      callback = function(args)
-        for k, v in pairs(options) do 
-          M.set_local(option, value)
-        end
+      pattern = filetype,
+      callback = function()
+        M.set_local(option, value)
       end
     })
   end
