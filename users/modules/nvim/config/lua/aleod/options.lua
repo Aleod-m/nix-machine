@@ -20,14 +20,6 @@ opts.set({
     smartcase = true,
     gdefault = true,
 
-    --see whitespace
-    list=true,
-    lcs= {
-      leadmultispace="\\u258F\\u2E31",
-      tab="\\u258F\\u2E31",
-      eol="\\u23CE",
-      space="\\u2E31",
-    },
 
     -- Relative Numbers on the side
     number = true,

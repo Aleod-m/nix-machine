@@ -2,9 +2,8 @@ local group = vim.api.nvim_create_augroup('AleodConfig', {clear = true})
 
 vim.api.nvim_create_autocmd({"BufEnter"}, {
   group = group,
-  filetype = "help",
-  callback = function()
-    if vim.bo.filetype ~= "help" then return end
+  callback = function(event)
+    if vim.bo[event.buf].filetype ~= "help" then return end
     vim.cmd.wincmd('L')
   end
 })
