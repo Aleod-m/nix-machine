@@ -7,9 +7,9 @@ opts.set({
     mouse = 'a',
 
     -- Indentation at 4 space by default
+    expandtab = true,
     tabstop = 4,
     shiftwidth = 4,
-    expandtab = true,
     autoindent = true,
     smartindent = true,
 
@@ -22,7 +22,12 @@ opts.set({
 
     --see whitespace
     list=true,
-    lcs= { tab="\\u258F\\u2E31", eol="\\u23CE", space="\\u2E31" },
+    lcs= {
+      leadmultispace="\\u258F\\u2E31",
+      tab="\\u258F\\u2E31",
+      eol="\\u23CE",
+      space="\\u2E31",
+    },
 
     -- Relative Numbers on the side
     number = true,

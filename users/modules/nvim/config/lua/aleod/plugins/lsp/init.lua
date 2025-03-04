@@ -39,15 +39,46 @@ return {
     for _, lsp in ipairs(servers) do
       lsp_conf[lsp].setup { capabilities = capabilities }
     end
+    lsp_conf.jdtls.setup {
+      capabilities = capabilities,
+      root_dir = function(fname)
+        local root_files = {
+          -- Single-module projects
+          {
+            'build.xml', -- Ant
+            'pom.xml', -- Maven
+            'settings.gradle', -- Gradle
+            'settings.gradle.kts', -- Gradle
+          },
+          -- Multi-module projects
+          { '.git', 'build.gradle', 'build.gradle.kts' },
+        }
+        for _, patterns in ipairs(root_files) do
+          local root = require'lspconfig.util'.root_pattern(unpack(patterns))(fname)
+          if root then
+            return root
+          end
+        end
+      end,
+    }
+    autocmd_group = vim.api.nvim_create_augroup('AleodConfig', {clear = false})
+    vim.api.nvim_create_autocmd("LspAttach", {
+      group = autocmd_group,
+      callback = function(args)
+        local client = vim.lsp.get_client_by_id(args.data.client_id)
+        client.server_capabilities.semanticTokensProvider = nil
+      end,
+    });
 
     -- Setup Autocommand for lsp keymaps and such.
     vim.api.nvim_create_autocmd('LspAttach', {
-      group = vim.api.nvim_create_augroup('AleodConfig', {clear = false}),
+      group = autocmd_group,
       callback = function(ev)
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
         vim.g.fmt_on_save = false
 
+        -- Toggle format on save.
         vim.api.nvim_create_autocmd('BufWritePre', {
           group = vim.api.nvim_create_augroup('FmtOnSave', { clear = true }),
           callback = function(event)
@@ -59,7 +90,7 @@ return {
 
         -- Enable Inlay Hints.
         local client = vim.lsp.get_client_by_id(ev.data.client_id)
-        if client.server_capabilities.inlayHintProvider then
+        if client ~= nil and client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
         end
 
