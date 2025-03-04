@@ -61,7 +61,7 @@
         ]
         ++ (__attrValues inputs.self.homeManagerModules)
         # add all the selected configuration modules.
-        ++ (loadModule (rootPath + /users/modules/.) (lib.traceVal modules));
+        ++ (loadModule (rootPath + /users/modules/.) modules);
     };
   in {${username} = home-manager.lib.homeManagerConfiguration hm-argset;};
 
