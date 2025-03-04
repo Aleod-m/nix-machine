@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd({"WinNew", "BufEnter"}, {
   once = true,
   callback = function ()
     -- Check if this is a help buffer.
-    if not (vim.bo.bufftype == 'help' or vim.bo.filetype == 'man') then
+    if not (vim.bo.buftype == 'help' or vim.bo.filetype == 'man') then
       return
     end
 
