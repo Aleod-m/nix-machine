@@ -1,18 +1,18 @@
-  # Custom completions for external commands (those outside of Nushell)
-  # Each completions has two parts: the form of the external command, including its flags and parameters
-  # and a helper command that knows how to complete values for those flags and parameters
-  #
-  # This is a simplified version of completions for git branches and git remotes
-  def "nu-complete git branches" [] {
+# Custom completions for external commands (those outside of Nushell)
+# Each completions has two parts: the form of the external command, including its flags and parameters
+# and a helper command that knows how to complete values for those flags and parameters
+#
+# This is a simplified version of completions for git branches and git remotes
+def "nu-complete git branches" [] {
     ^git branch | lines | each { |line| $line | str replace '[\*\+] ' '' | str trim }
-  }
+}
 
-  def "nu-complete git remotes" [] {
+def "nu-complete git remotes" [] {
     ^git remote | lines | each { |line| $line | str trim }
-  }
+}
 
-  # Download objects and refs from another repository
-  export extern "git fetch" [
+# Download objects and refs from another repository
+export extern "git fetch" [
     repository?: string@"nu-complete git remotes" # name of the branch to fetch
     --all                                         # Fetch all remotes
     --append(-a)                                  # Append ref names and object names to .git/FETCH_HEAD
@@ -57,10 +57,10 @@
     --no-show-forced-updates                      # Don't check if a branch is force-updated
     -4                                            # Use IPv4 addresses, ignore IPv6 addresses
     -6                                            # Use IPv6 addresses, ignore IPv4 addresses
-  ]
+]
 
-  # Check out git branches and files
-  export extern "git checkout" [
+# Check out git branches and files
+export extern "git checkout" [
     ...targets: string@"nu-complete git branches"   # name of the branch or files to checkout
     --conflict: string                              # conflict style (merge or diff3)
     --detach(-d)                                    # detach HEAD at named commit
@@ -83,10 +83,10 @@
     -b: string                                      # create and checkout a new branch
     -B: string                                      # create/reset and checkout a branch
     -l                                              # create reflog for new branch
-  ]
+]
 
-  # Push changes
-  export extern "git push" [
+# Push changes
+export extern "git push" [
     remote?: string@"nu-complete git remotes",      # the name of the remote
     ...refs: string@"nu-complete git branches"      # the branch / refspec
     --all                                           # push all refs
@@ -114,4 +114,4 @@
     --tags                                          # push tags (can't be used with --all or --mirror)
     --thin                                          # use thin pack
     --verbose(-v)                                   # be more verbose
-  ]
+]

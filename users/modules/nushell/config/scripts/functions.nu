@@ -10,12 +10,10 @@ export def --env mkcd [name: path] {
 
 # nix utilities. used to develop using nu as the shell.
 export def loc [ext: string, p: path = .] {
-    ls ($p + /**/*) 
-        | where type == file 
-        | filter { $in | get name | str ends-with $ext }
-        | get name 
-        | each { open $in | lines | length }
-        | reduce {|a, b| $a + $b}
+    glob $"($p)/**/*.($ext)"
+        | each {|it| print $it; open $it | lines | filter {is-not-empty} | length }
+        | do {print $in; $in}
+        | reduce --fold 0 {|a, b| $a + $b}
 }
 
 export def timer [task, time: duration = 1sec, --loop = true] {
@@ -23,6 +21,19 @@ export def timer [task, time: duration = 1sec, --loop = true] {
     while $loop {
         sleep $time;
         do $task;
+    }
+}
+
+export def rr [
+    task: closure,
+    --clear(-c) = true,
+] {
+    mut exit = false;
+    while not $exit {
+        clear;
+        try { do $task } catch {};
+
+        $exit =  (input "\nexit? (y/n)") == "y";
     }
 }
 

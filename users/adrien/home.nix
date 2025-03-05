@@ -32,6 +32,7 @@
     chromium
     jetbrains.idea-community
     signal-desktop
+    meld
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {
