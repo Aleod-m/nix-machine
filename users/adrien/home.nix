@@ -43,6 +43,7 @@
           "/usr/bin/tmux -L ADM"
           "set-option -g mode-keys vi \\;"
           "set-option -g base-index 1 \\;"
+          "set-option -g renumber-windows on \\;"
           "new-session -A \\;"
         ];
         prodTmuxCmd = __concatStringsSep " " [ tmuxCmd "set-option -g status-bg red \\;" ];
@@ -53,6 +54,10 @@
 
         Host bs-numahop* aderobert-*
           RequestTTY force
+
+        Host mmeusburger-*
+          ProxyJump bib-proxy
+          RemoteCommand ${tmuxCmd}
 
         Host aderobert-*
           ProxyJump bib-proxy
