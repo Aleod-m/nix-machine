@@ -35,14 +35,9 @@ km.set_keymaps {
   { mode={"n", "v"}, keymap=leader "x", action="\"_d" },
 
   -- Register yanking and pasting. 
-  -- Usefull when you want yank something delete something else and paste the firs.
-  -- I use the "p register but you can use any letter register.
-  { mode={"n", "v"}, keymap= leader "y",  action="\"py" },
-  { mode={"n", "v"}, keymap= leader "p",  action="\"pp" },
-
-  -- Clipboard integration.
-  { mode={"n", "v"}, keymap= leader "Y",  action="\"+y" },
-  { mode={"n", "v"}, keymap= leader "P",  action="\"+p" },
+  { mode={"n", "v"}, keymap= leader "y",  action="\"+y" },
+  { mode={"n", "v"}, keymap= leader "p",  action="\"+p" },
+  { mode={"n", "v"}, keymap= leader "P",  action="\"+P" },
 
   -- go to last paste.
   { mode="n", keymap= leader "vp", action="'[v']" },
@@ -66,8 +61,8 @@ km.set_keymaps {
   -- Insert mode with the ctrl key
   { mode="i", keymap= ctrl "h", action="<C-D>" },
   { mode="i", keymap= ctrl "l", action="<C-T>" },
-  { mode="i", keymap= ctrl "k", action="<ESC><Cmd>m .+1<CR>i"},
-  { mode="i", keymap= ctrl "t", action="<ESC><Cmd>m .-2<CR>i" },
+  { mode="i", keymap= ctrl "k", action="<C-O><Cmd>m .+1<CR>"},
+  { mode="i", keymap= ctrl "t", action="<C-O><Cmd>m .-2<CR>" },
 
   -- Normal mode with the ctrl key
   { mode="n", keymap= ctrl "k", action="<Cmd>m .+1<CR>" },
@@ -76,8 +71,8 @@ km.set_keymaps {
   { mode="n", keymap= ctrl "l", action=">>" },
 
   -- In visual mode with ctrl key
-  { mode="v", keymap= ctrl "k", action="<Cmd>m'>+<CR>gv"},
-  { mode="v", keymap= ctrl "t", action="<Cmd>m-2<CR>gv" },
+  { mode="v", keymap= ctrl "k", action="<Cmd>'<,'>m'>+<CR>gv"},
+  { mode="v", keymap= ctrl "t", action="<Cmd>'<,'>m-2<CR>gv" },
   { mode="v", keymap= ctrl "h", action="<gv" },
   { mode="v", keymap= ctrl "l", action=">gv" },
 
