@@ -1,10 +1,8 @@
-{...}: {
-  services.openssh.enable =
-    true;
+{ pkgs, ...}: {
+  services.openssh.enable = true;
   programs.gnupg.agent = {
-    enable =
-      true;
-    enableSSHSupport =
-      true;
+    enable = true;
+    enableSSHSupport = true;
+    #pinentryPackage = pkgs.
   };
 }
