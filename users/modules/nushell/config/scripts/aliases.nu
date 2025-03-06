@@ -73,4 +73,4 @@ def ga [...path: string, --update (-u)] {
     }
 }
 
-alias reset-env-scripts = rmdir ([$nu.cache-dir gen] | path join)
+alias reset-env-scripts = rm -r ([$nu.cache-dir gen] | path join)
