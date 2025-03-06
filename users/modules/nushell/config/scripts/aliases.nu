@@ -73,4 +73,4 @@ def ga [...path: string, --update (-u)] {
     }
 }
 
-alias reset-env-scripts = rmdir ~/.config/nushell/gen
+alias reset-env-scripts = rmdir ([$nu.cache-dir gen] | path join)
