@@ -98,6 +98,7 @@
           modules = [
             "nvim"
             "hyprdesk"
+            "starship"
             "nushell"
             "kitty"
             "wallpapers"
@@ -114,6 +115,7 @@
             "bash"
             "shell-utils"
             "tmux"
+            "starship"
           ];
         }
       ];
