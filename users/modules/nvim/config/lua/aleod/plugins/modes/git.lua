@@ -17,17 +17,17 @@ return {
         invoke_on_body = true,
         on_key = function() vim.wait(50) end,
         on_enter = function()
-            vim.cmd 'mkview'
-            vim.cmd 'silent! %foldopen!'
-            vim.bo.modifiable = false
-          end,
+          vim.cmd 'mkview'
+          vim.cmd 'silent! %foldopen!'
+          vim.bo.modifiable = false
+        end,
         on_exit = function()
-            local cursor_pos = vim.api.nvim_win_get_cursor(0)
-            vim.cmd 'loadview'
-            vim.api.nvim_win_set_cursor(0, cursor_pos)
-            vim.cmd 'normal zv'
-            gitsigns.toggle_deleted(false)
-          end,
+          local cursor_pos = vim.api.nvim_win_get_cursor(0)
+          vim.cmd 'loadview'
+          vim.api.nvim_win_set_cursor(0, cursor_pos)
+          vim.cmd 'normal zv'
+          gitsigns.toggle_deleted(false)
+        end,
       },
       heads = {
         { 'c', function() neogit.open({"commit"}) end, { exit = true } },
@@ -40,6 +40,8 @@ return {
         { 'd', gitsigns.toggle_deleted, { nowait = true, desc = 'toggle deleted' } },
         { 'b', gitsigns.blame_line, { desc = 'blame' } },
         { 'B', function() gitsigns.blame_line{ full = true } end, { desc = 'blame show full' } },
+        { 'w', function() neogit.action('worktree', 'visit') end, {desc = 'changes worktree'} },
+        { '/', gitsigns.show, { exit = true, desc = 'show base file' } }, -- show the base of the file
         { '<Enter>', cmd 'Neogit', { exit = true, desc = 'Neogit' } },
         { '<Esc>', nil, { exit = true, nowait = true, desc = 'exit' } }
       },

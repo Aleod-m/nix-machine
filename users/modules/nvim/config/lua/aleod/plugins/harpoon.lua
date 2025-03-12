@@ -5,7 +5,7 @@ return {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
   },
-  config = function() 
+  config = function()
     require('harpoon').setup({})
     local km = require('core.keymaps')
     km.set_keymaps({
