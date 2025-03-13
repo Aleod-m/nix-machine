@@ -60,7 +60,7 @@ return {
         end
       end,
     }
-    autocmd_group = vim.api.nvim_create_augroup('AleodConfig', {clear = false})
+    local autocmd_group = vim.api.nvim_create_augroup('AleodConfig', {clear = false})
     vim.api.nvim_create_autocmd("LspAttach", {
       group = autocmd_group,
       callback = function(args)
@@ -92,6 +92,11 @@ return {
         if client ~= nil and client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
         end
+        local function exec_mapping(action, mode)
+          local keys = vim.api.nvim_replace_termcodes(action, true, false, false)
+          vim.api.nvim_feedkeys(keys, mode, false)
+        end
+
 
         -- Buffer local mappings.
         local opts = { buffer = ev.buf }
@@ -102,10 +107,10 @@ return {
             mode = 'n',
             keymap='gs',
             action = function()
-              vim.api.nvim_input("<C-W>v")
-              vim.api.nvim_input("<C-W>l")
-              vim.api.nvim_input("gd")
-              vim.api.nvim_input("<C-W>p")
+              exec_mapping("<C-W>v", 'n')
+              exec_mapping("<C-W>l", 'n')
+              exec_mapping("gd", 'n')
+              exec_mapping("<C-W>p", 'n')
             end,
             opt = opts,
           },
