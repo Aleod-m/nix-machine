@@ -101,6 +101,7 @@
             "starship"
             "nushell"
             "kitty"
+            "ghostty"
             "wallpapers"
           ];
         }
@@ -112,6 +113,7 @@
             "nushell"
             "wallpapers"
             "kitty"
+            "ghostty"
             "bash"
             "shell-utils"
             "tmux"

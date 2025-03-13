@@ -1,0 +1,35 @@
+headerbar {
+  margin: 0;
+  padding: 0;
+  padding-bottom: 3px;
+}
+
+tabbar tabbox {
+  margin: 0;
+  padding: 0;
+  margin-top: 3px;
+  min-height: 10px;
+  background-color: #191919;
+  font-family: monospace;
+}
+
+tabbar tabbox tab {
+  margin: 0;
+  padding: 0;
+  color: #f6f6ee;
+  min-height: 10px;
+  /* border-right: 2px solid #757575; */
+  border-bottom: 1px solid #757575;
+  border-radius: 99999px;
+}
+
+tabbar tabbox tab:selected {
+  background-color: #303030;
+  border-bottom: 1px solid #57d1ea;
+  color: #f6f6ee;
+}
+
+tabbar tabbox tab label {
+  font-size: 13px;
+  min-height: 10px;
+}
