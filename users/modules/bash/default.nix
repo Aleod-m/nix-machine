@@ -32,6 +32,7 @@
       gp = git + "pull";
       gd = git + "diff";
       gdc = git + "diff --cached";
+      gw = git + "worktree";
     };
   };
 }

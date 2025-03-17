@@ -1,9 +1,6 @@
 export LS_COLORS='auto'
 
 alias lessc='less -r'
-alias ll='ls -l'
-alias la='ls -A'
-alias lla='ls -lA'
 
 up() {
     if ! command -v sed 2>&1 > /dev/null
@@ -73,3 +70,7 @@ function git_sparse_clone() (
 
   git pull origin master
 )
+
+function gwc() {
+    git worktree add "../$1" -B "$1"
+}
