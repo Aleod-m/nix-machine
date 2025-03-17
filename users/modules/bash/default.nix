@@ -33,6 +33,7 @@
       gd = git + "diff";
       gdc = git + "diff --cached";
       gw = git + "worktree";
+      gbl = git + "branch -vv";
     };
   };
 }
