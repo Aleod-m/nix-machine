@@ -8,7 +8,6 @@ export def --env mkcd [name: path] {
     mkdir $name; cd $name; $name
 }
 
-# nix utilities. used to develop using nu as the shell.
 export def loc [ext: string, p: path = .] {
     glob $"($p)/**/*.($ext)"
         | each {|it| print $it; open $it | lines | filter {is-not-empty} | length }

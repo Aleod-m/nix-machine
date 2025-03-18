@@ -3,17 +3,17 @@
 # and a helper command that knows how to complete values for those flags and parameters
 #
 # This is a simplified version of completions for git branches and git remotes
-def "nu-complete git branches" [] {
-    ^git branch | lines | each { |line| $line | str replace '[\*\+] ' '' | str trim }
+export def "branches" [] {
+    git branch --format "%(refname:lstrip=-1)" 
 }
 
-def "nu-complete git remotes" [] {
+export def "remotes" [] {
     ^git remote | lines | each { |line| $line | str trim }
 }
 
 # Download objects and refs from another repository
 export extern "git fetch" [
-    repository?: string@"nu-complete git remotes" # name of the branch to fetch
+    repository?: string@"remotes" # name of the branch to fetch
     --all                                         # Fetch all remotes
     --append(-a)                                  # Append ref names and object names to .git/FETCH_HEAD
     --atomic                                      # Use an atomic transaction to update local refs.
@@ -61,7 +61,7 @@ export extern "git fetch" [
 
 # Check out git branches and files
 export extern "git checkout" [
-    ...targets: string@"nu-complete git branches"   # name of the branch or files to checkout
+    ...targets: string@"branches"   # name of the branch or files to checkout
     --conflict: string                              # conflict style (merge or diff3)
     --detach(-d)                                    # detach HEAD at named commit
     --force(-f)                                     # force checkout (throw away local modifications)
@@ -87,8 +87,8 @@ export extern "git checkout" [
 
 # Push changes
 export extern "git push" [
-    remote?: string@"nu-complete git remotes",      # the name of the remote
-    ...refs: string@"nu-complete git branches"      # the branch / refspec
+    remote?: string@"remotes",      # the name of the remote
+    ...refs: string@"branches"      # the branch / refspec
     --all                                           # push all refs
     --atomic                                        # request atomic transaction on remote side
     --delete(-d)                                    # delete refs

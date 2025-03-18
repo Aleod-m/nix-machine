@@ -6,7 +6,7 @@
 # Nushell Config File
 
 # Get just the extern definitions without the custom completion commands
-use completions.nu *
+use git-completions.nu *
 use hooks.nu
 use menus.nu 
 use keybinds.nu 
