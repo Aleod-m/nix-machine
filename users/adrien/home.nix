@@ -54,14 +54,11 @@
           HostName bs-support.biblibre.com
           User biblibre
 
-        Host bs-numahop* aderobert-*
+        Host bs-numahop* aderobert-* mmeusburger-*
+          SetEnv TERM=xterm
           RequestTTY force
 
-        Host mmeusburger-*
-          ProxyJump bib-proxy
-          RemoteCommand ${tmuxCmd}
-
-        Host aderobert-*
+        Host aderobert-* mmeusburger-*
           ProxyJump bib-proxy
           RemoteCommand ${tmuxCmd}
 
