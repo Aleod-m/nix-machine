@@ -14,7 +14,7 @@
   white  = "f6f6ee";
 in {
   imports = [
-    ./config/default.nix
+    ./hypr/default.nix
     ./mako.nix
     ./hyprlock.nix
     ./wlogout.nix

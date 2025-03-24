@@ -11,6 +11,7 @@
     map (ws: script "SHIFT" "${toString (lib.trivial.mod ws 10)}" "mwk" ws) [1 2 3 4 5 6 7 8 9 10];
 in {
   wayland.windowManager.hyprland.settings = {
+    "$mod" = "SUPER";
     # Mouse binds.
     bindm = [
       "$mod, mouse:272, movewindow"
@@ -24,7 +25,7 @@ in {
 
         (action "" "mouse:274" "killactive")
         # Programs
-        (exec "" "return" "kitty")
+        (exec "" "return" "ghostty")
         (exec "" "b" "firefox")
         (exec "" "space" "rofi -show drun")
         (exec "SHIFT" "space" "rofi -show run")
@@ -55,6 +56,8 @@ in {
         (exec "SHIFT ALT" "Q" "wlogout -s -p layer-shell")
         (script "ALT" "left" "decwk" "")
         (script "ALT" "right" "incwk" "")
+        (script "" "mouse_up" "incwk" "")
+        (script "" "mouse_up" "decwk" "")
       ]
       ++ switchworkspacebinds
       ++ moveworkspacebinds;
