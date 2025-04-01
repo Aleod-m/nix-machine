@@ -3,7 +3,7 @@ local cmd = require('core.cmd')
 return {
   'nvim-telescope/telescope.nvim',
   lazy = false,
-  dependencies = { 
+  dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope-ui-select.nvim',
     "nvim-telescope/telescope-live-grep-args.nvim" ,
@@ -16,8 +16,9 @@ return {
     { mode= 'n', leader 'fgb', require('telescope.builtin').git_branches},
     { mode= 'n', leader 'fb',  require('telescope.builtin').buffers     },
     { mode= 'n', leader 'dl',  require('telescope.builtin').diagnostics },
+    { mode= 'n', 'z=',  require('telescope.builtin').spell_suggest },
   },
-  config = function() 
+  config = function()
     local tele = require('telescope')
     tele.setup({
       extensions = {
