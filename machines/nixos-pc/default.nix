@@ -18,6 +18,7 @@ mlib.enable.services [ "flatpak" ] {
     systemd-boot.enable = true;
     efi.canTouchEfiVariables = true;
   };
+  hardware.xone.enable = true;
 
   system.stateVersion = "21.11";
 }
