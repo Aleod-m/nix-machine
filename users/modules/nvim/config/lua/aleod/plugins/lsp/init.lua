@@ -92,11 +92,11 @@ return {
         if client ~= nil and client.server_capabilities.inlayHintProvider then
           vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
         end
+
         local function exec_mapping(action, mode)
           local keys = vim.api.nvim_replace_termcodes(action, true, false, false)
           vim.api.nvim_feedkeys(keys, mode, false)
         end
-
 
         -- Buffer local mappings.
         local opts = { buffer = ev.buf }

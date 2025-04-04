@@ -3,12 +3,19 @@ local opts = { noremap = true, silent = true }
 
 local M = {}
 M.keymaps = {}
-M.leaderkey = vim.g.mapleader 
+M.leaderkey = vim.g.mapleader
 M.localleaderkey = vim.g.maploclalleader
 
+
+M.remove = vim.keymap.del
+function M.remove_keymaps(keymaps)
+    for _, map in ipairs(keymaps) do
+        M.remove(map.mode, map.keymap, map.opt)
+    end
+end
+
 function M.set(mode, key, action, options)
-    options = options or opts
-    M.keymaps[#M.keymaps + 1] = {mode, key, action, options}
+    options = vim.tbl_extend('force', opts, options)
     vim.keymap.set(mode, key, action, options)
 end
 

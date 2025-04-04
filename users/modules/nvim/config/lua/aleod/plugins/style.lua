@@ -1,15 +1,15 @@
-return { 
+return {
+  -- My theme
   {
-    -- My theme
-    'AdrienDML/konokai',
+    'Aleod-m/konokai',
     lazy = false,
     dependencies = {
       'rktjmp/lush.nvim',
     },
     config = function(_, _) vim.cmd [[colorscheme konokai]] end,
   },
+  -- Status bar theme
   {
-    -- Status bar theme
     'nvim-lualine/lualine.nvim',
     lazy = false,
     opts = {
@@ -49,8 +49,8 @@ return {
       },
     }
   },
+  -- Tab bar theme
   {
-    -- Tab bar theme
     'seblj/nvim-tabline',
     event = "TabNew",
     opts = {

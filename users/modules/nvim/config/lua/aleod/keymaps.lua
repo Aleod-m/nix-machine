@@ -1,4 +1,5 @@
 local km = require "core.keymaps"
+local cmd = require 'core.cmd'
 
 -- Set my leader to space
 km.set("n", "<Space>", "<Nop>")
@@ -10,15 +11,21 @@ local ctrl = km.ctrl
 local alt = km.alt
 local leader = km.leader
 
+km.remove_keymaps {
+  -- I use dH for that
+  {mode="n", keymap = "D"},
+  {mode="n", keymap = "C"},
+}
+
 km.set_keymaps {
   -- Remaps for my keyboard layout (workman-p)
-  -- also move cursor in the column
   { mode={"n", "v"}, keymap="t", action="gk" },
   { mode={"n", "v"}, keymap="k", action="gj" },
 
   -- H/L to jump to the start/end of a line 
   { mode={"n", "v"}, keymap="H", action="^" },
   { mode={"n", "v"}, keymap="L", action="$" },
+
   -- cH/cL
   { mode="n", keymap="cH", action="c^" },
   { mode="n", keymap="cL", action="c$" },
@@ -39,15 +46,14 @@ km.set_keymaps {
   { mode={"n", "v"}, keymap= leader "p",  action="\"+p" },
   { mode={"n", "v"}, keymap= leader "P",  action="\"+P" },
 
-  -- go to last paste.
+  -- Select last paste.
   { mode="n", keymap= leader "vp", action="'[v']" },
 
-
   -- Remove highlights 
-  { mode="n", keymap= leader "nh", action="<cmd>noh<Cr>" },
+  { mode="n", keymap= leader "nh", action=cmd "noh" },
 
   -- quick save
-  { mode="n", keymap= leader "w", action=":w<CR>zR" },
+  { mode="n", keymap= leader "w", action= (cmd "w") .. "zR" },
 
   -- Nice feature to have for blocks languages
   { mode="i", keymap="{<CR>", action="{<CR>}<ESC>O" },
@@ -57,27 +63,27 @@ km.set_keymaps {
   -- Insert accents with alt k rather than ctrl k in insert mode.
   { mode="i", keymap= alt "k", action= ctrl "k" },
 
-  -- Moving lines of text
+  -- Moving/Indenting lines of text
   -- Insert mode with the ctrl key
   { mode="i", keymap= ctrl "h", action="<C-D>" },
-  { mode="i", keymap= ctrl "l", action="<C-T>" },
-  { mode="i", keymap= ctrl "k", action="<C-O><Cmd>m .+1<CR>"},
   { mode="i", keymap= ctrl "t", action="<C-O><Cmd>m .-2<CR>" },
+  { mode="i", keymap= ctrl "k", action="<C-O><Cmd>m .+1<CR>"},
+  { mode="i", keymap= ctrl "l", action="<C-T>" },
 
   -- Normal mode with the ctrl key
-  { mode="n", keymap= ctrl "k", action="<Cmd>m .+1<CR>" },
-  { mode="n", keymap= ctrl "t", action="<Cmd>m .-2<CR>" },
   { mode="n", keymap= ctrl "h", action="<<" },
+  { mode="n", keymap= ctrl "t", action= cmd "m .-2" },
+  { mode="n", keymap= ctrl "k", action= cmd "m .+1" },
   { mode="n", keymap= ctrl "l", action=">>" },
 
   -- In visual mode with ctrl key
-  { mode="v", keymap= ctrl "k", action="<Cmd>'<,'>m'>+<CR>gv"},
-  { mode="v", keymap= ctrl "t", action="<Cmd>'<,'>m-2<CR>gv" },
   { mode="v", keymap= ctrl "h", action="<gv" },
+  { mode="v", keymap= ctrl "k", action= (cmd "'<,'>m+") .. "gv"},
+  { mode="v", keymap= ctrl "t", action= (cmd "'<,'>m-2") .. "gv" },
   { mode="v", keymap= ctrl "l", action=">gv" },
 
   -- Diagnostics
-  { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next  },
-  { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev  },
+  { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next },
+  { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev },
   { mode="n", keymap= leader "dl",  action= vim.diagnostic.open_float }
 }

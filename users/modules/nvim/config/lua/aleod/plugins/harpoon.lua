@@ -1,18 +1,26 @@
-local leader = require('core.keymaps').leader
+local km = require('core.keymaps')
+local leader = km.leader
+local alt = km.alt
+
 return {
-  'ThePrimeagen/harpoon',
+  "ThePrimeagen/harpoon",
+  branch = "harpoon2",
   dependencies = {
     'nvim-lua/plenary.nvim',
     'nvim-telescope/telescope.nvim',
   },
   config = function()
-    require('harpoon').setup({})
-    local km = require('core.keymaps')
+    local harp = require('harpoon')
+    harp:setup()
     km.set_keymaps({
-      { mode = 'n', keymap = leader 'hh', action = require('harpoon.mark').add_file },
-      { mode = 'n', keymap = leader 'hn', action = require('harpoon.ui').nav_next },
-      { mode = 'n', keymap = leader 'hp', action = require('harpoon.ui').nav_prev },
-      { mode = 'n', keymap = leader 'hu', action = require('harpoon.ui').toggle_quick_menu },
-    })
+      { mode = 'n', keymap = leader 'ha', action = function() harp:list():add() end },
+      { mode = 'n', keymap = leader 'hn', action = function() harp:list():next() end },
+      { mode = 'n', keymap = leader 'hp', action = function() harp:list():prev() end },
+      { mode = 'n', keymap = alt 'n', action = function() harp:list():select(1) end },
+      { mode = 'n', keymap = alt 'e', action = function() harp:list():select(2) end },
+      { mode = 'n', keymap = alt 'o', action = function() harp:list():select(3) end },
+      { mode = 'n', keymap = alt 'i', action = function() harp:list():select(4) end },
+      { mode = 'n', keymap = leader 'hf', action = function() harp.ui:toggle_quick_menu(harp:list()) end},
+   })
   end,
 }

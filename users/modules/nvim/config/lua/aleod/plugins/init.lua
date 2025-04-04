@@ -13,7 +13,8 @@ return {
   -- Comments
   { 'numToStr/Comment.nvim', opts = {} },
   {
-    'norcalli/nvim-colorizer.lua',
+    "catgoose/nvim-colorizer.lua",
+    enable = false,
     keys = {
       { mode = 'n', leader 'tc', cmd 'ColorizerToggle' },
       { mode = 'n', leader 'cr', cmd 'ColorizerReloadAllBuffers' },
@@ -25,9 +26,9 @@ return {
       user_default_options = {
         css = true,
         mode = "virtualtext",
-        virtualtext = "■",
+        virtualtext = "     ",
         virtualtext_inline = 'after',
-        virtualtext_mode = "foreground",
+        virtualtext_mode = "background",
       },
     },
   },
