@@ -54,6 +54,7 @@
     steam
     steam-run
     prismlauncher
+    signal-desktop
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {

@@ -33,7 +33,6 @@
     jetbrains.idea-community
     signal-desktop
     meld
-    ghostty
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {

@@ -3,7 +3,7 @@
   pkgs,
   ...
 }: {
-  nix.allowedUnfree = ["nvidia-x11"];
+  nix.allowedUnfree = [ "nvidia-x11" ];
   hardware = {
     graphics = {
       enable = true;

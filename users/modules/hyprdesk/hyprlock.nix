@@ -1,5 +1,4 @@
 {
-  hyprlock,
   pkgs,
   ...
 }: let 
@@ -16,7 +15,6 @@
 in {
   programs.hyprlock = {
     enable = true;
-    package = hyprlock.packages.${pkgs.system}.hyprlock;
     settings = {
       general = {
         disable_loading_bar = true;

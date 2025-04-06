@@ -49,13 +49,12 @@
     hm-argset = {
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit (inputs) hyprland agenix mlib system hyprland-plugins hyprlock hyprpaper hypridle zen-browser;
+        inherit (inputs) agenix mlib system hyprland-plugins hyprpaper zen-browser;
       };
       modules =
         [
           known
           homeDecl
-          inputs.hyprland.homeManagerModules.default
           inputs.agenix.homeManagerModules.default
           # Add my custom home-manager and mixed modules.
         ]
@@ -76,7 +75,7 @@
   }: let
     nixos-argset = {
       inherit system;
-      specialArgs = {inherit (inputs) hyprland agenix mlib;};
+      specialArgs = {inherit (inputs) agenix mlib;};
       modules =
         [
           (rootPath + /machines/${hostName})
