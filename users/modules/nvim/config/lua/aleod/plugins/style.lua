@@ -1,4 +1,28 @@
+local km = require('core.keymaps')
+local leader = km.leader
+local cmd = require('core.cmd')
 return {
+  -- Color 
+  {
+    "catgoose/nvim-colorizer.lua",
+    enable = false,
+    keys = {
+      { mode = 'n', leader 'tc', cmd 'ColorizerToggle' },
+      { mode = 'n', leader 'cr', cmd 'ColorizerReloadAllBuffers' },
+    },
+    --@type colorizer.config
+    opts = {
+      filetypes = {},
+      user_commands = { "ColorizerToggle", "ColorizerReloadAllBuffers" },
+      user_default_options = {
+        css = true,
+        mode = "virtualtext",
+        virtualtext = "     ",
+        virtualtext_inline = 'after',
+        virtualtext_mode = "background",
+      },
+    },
+  },
   -- My theme
   {
     'Aleod-m/konokai',

@@ -10,6 +10,10 @@
     enabled = ["bash" "nushell"];
   };
 
+  home.sessionVariables = {
+    NVIM_DEV_PLUGIN_PATH = "/home/adrien/Documents/perso/nvim-plugins";
+  };
+
   home.packages = with pkgs; [
     spotify
     pavucontrol

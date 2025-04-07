@@ -15,7 +15,7 @@ function M.remove_keymaps(keymaps)
 end
 
 function M.set(mode, key, action, options)
-    options = vim.tbl_extend('force', opts, options)
+    options = vim.tbl_extend('force', opts, options or {})
     vim.keymap.set(mode, key, action, options)
 end
 

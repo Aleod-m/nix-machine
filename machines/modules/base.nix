@@ -1,5 +1,6 @@
 {pkgs, ...} @ inputs: {
   time.timeZone = "Europe/Paris";
+  users.defaultUserShell = pkgs.bash;
   i18n = {
     defaultLocale = "en_US.UTF-8";
   };

@@ -7,9 +7,10 @@ opts.set({
     mouse = 'a',
 
     -- Indentation at 4 space by default
-    expandtab = true,
     tabstop = 4,
     shiftwidth = 4,
+
+    -- Keep indentation level on newline.
     autoindent = true,
     smartindent = true,
 

@@ -93,4 +93,55 @@ $env.config = {
 
 source aliases.nu
 
+# Environement configuration.
+let esep_list = {
+    from_string: { |s| $s | split row (char esep) }
+    to_string: { |v| $v | str join (char esep) }
+}
+
+$env.ENV_CONVERSIONS = $env.ENV_CONVERSIONS | merge {
+    "XDG_CONFIG_DIRS": $esep_list
+    "XCURSOR_PATH": $esep_list
+    "GIO_EXTRA_MODULES": $esep_list
+    "INFOPATH": $esep_list
+    "GTK_PATH": $esep_list
+    "QTWEBKIT_PLUGIN_PATH": $esep_list
+    "QML2_IMPORT_PATH": $esep_list
+    "TERMINFO_DIRS": $esep_list
+    "XDG_DATA_DIRS": $esep_list
+    "LIBEXEC_PATH": $esep_list
+    "PATH": $esep_list
+    "QT_PLUGIN_PATH": $esep_list
+}
+
+# setup gen for shell integrations dir.
+if not ($nu.cache-dir| path join gen | path exists) {
+    mkdir ($nu.cache-dir | path join gen)
+}
+
+if not ($nu.cache-dir| path join gen mod.nu | path exists) {
+    touch ($nu.cache-dir | path join gen mod.nu)
+}
+
+# Starship
+if not ($nu.cache-dir | path join gen starship.nu | path exists) {
+    starship init nu 
+        | save ($nu.cache-dir | path join gen starship.nu)
+
+    open ($nu.cache-dir | path join gen mod.nu) 
+        | lines 
+        | append "source zoxide.nu"
+        | save -f ($nu.cache-dir | path join gen mod.nu)
+}
+
+# Zoxide
+if not ($nu.cache-dir | path join gen zoxide.nu | path exists) {
+    zoxide init nushell --hook prompt 
+        | save ($nu.cache-dir | path join gen zoxide.nu)
+    open ($nu.cache-dir | path join gen mod.nu) 
+        | lines 
+        | append "source starship.nu"
+        | save -f ($nu.cache-dir | path join gen mod.nu)
+}
+
 source ($nu.cache-dir | path join gen mod.nu)

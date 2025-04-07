@@ -11,11 +11,6 @@ local ctrl = km.ctrl
 local alt = km.alt
 local leader = km.leader
 
-km.remove_keymaps {
-  -- I use dH for that
-  {mode="n", keymap = "D"},
-  {mode="n", keymap = "C"},
-}
 
 km.set_keymaps {
   -- Remaps for my keyboard layout (workman-p)

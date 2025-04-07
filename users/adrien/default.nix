@@ -6,6 +6,7 @@
 }: {
   users.users.adrien = {
     isNormalUser = true;
-    extraGroups = ["docker" "networkmanager" "wheel" "lxd"];
+    shell = pkgs.bash;
+    extraGroups = ["docker" "wheel" "input" "video" "uinput" "networkmanager" "lxd"];
   };
 }

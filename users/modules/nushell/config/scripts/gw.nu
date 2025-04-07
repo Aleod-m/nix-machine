@@ -3,7 +3,7 @@ export def main [] {
 }
 
 export def l [-v] {
-    git worktree list 
+    ^git worktree list 
         | lines 
         | skip 1
         | each {
@@ -14,16 +14,16 @@ export def l [-v] {
 }
 
 def branches [] {
-    git branch --format "%(refname:lstrip=-1)" 
+    ^git branch --format "%(refname:lstrip=-1)" 
 }
 
-export def clone [url:string, path: path] {
-    git clone --bare url path
+export def clone [url:string, p: path] {
+    ^git clone --bare $url $p
 }
 
 export def root [] {
     let worktree_root: path = try {
-        git rev-parse --show-prefix 
+        ^git rev-parse --show-toplevel
             | str trim 
             | do { if ($in | is-empty) {pwd} else {$in}}
     } catch {
@@ -31,7 +31,10 @@ export def root [] {
     };
 
     let gitdir = ($worktree_root | path join ".git");
-    if ((gitdir | path type) == dir) {
+    if (not ($gitdir | path join ".git" | path exists)) {
+        return $gitdir
+    }
+    if (($gitdir | path type) == dir) {
         return $worktree_root
     } else {
         open $gitdir | from yaml | get gitdir

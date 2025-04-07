@@ -30,10 +30,10 @@ function M.load(paths)
       -- Directory where you store your local plugin projects. If a function is used,
       -- the plugin directory (e.g. `~/projects/plugin-name`) must be returned.
       ---@type string | fun(plugin: LazyPlugin): string
-      path = vim.env.NVIM_PLUGIN_PATH or "",
+      path = vim.env.NVIM_DEV_PLUGIN_PATH or "",
       ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
       patterns = {"Aleod-m"}, -- For example {"folke"}
-      fallback = false, -- Fallback to git when local plugin doesn't exist
+      fallback = true, -- Fallback to git when local plugin doesn't exist
     },
   })
 end

@@ -51,6 +51,8 @@ in {
   };
 
   home.packages = with pkgs; [
+		# jq for interacting with hyprctl
+		jq
     # Launcher.
     rofi-wayland
     playerctl

@@ -34,6 +34,9 @@ in {
       enableNushellIntegration = nushellEnabled;
     };
   in {
+    home.packages = lib.mkIf bashEnabled [
+      pkgs.bash-language-server
+    ];
     programs = {
       bash.enable = bashEnabled;
       zsh.enable = zshEnabled;

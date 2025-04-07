@@ -74,3 +74,5 @@ function git_sparse_clone() (
 function gwc() {
     git worktree add "../$1" -B "$1"
 }
+
+source ~/.profile
