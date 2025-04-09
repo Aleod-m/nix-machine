@@ -12,5 +12,5 @@ return {
   { 'numToStr/Comment.nvim', opts = {} },
 
   -- Markdown
-  { 'Aleod-m/md.nvim', opts = {} },
+  { 'Aleod-m/md.nvim', enabled = false, opts = {} },
 }

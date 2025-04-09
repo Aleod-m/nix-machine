@@ -7,6 +7,7 @@ return { {
   build = ':TSUpdate',
   config = function()
     local configs = require("nvim-treesitter.configs")
+    ---@diagnostic disable-next-line: missing-fields
     configs.setup({
       highlight = {
         enable = true,
@@ -38,6 +39,7 @@ return { {
 
         -- Web.
         "html",
+        "angular",
         "css",
         "scss",
         "javascript",
