@@ -35,6 +35,7 @@ palette = 14=#57d1ea
 palette = 15=#f6f6ee
 
 # === Keybinds === #
+keybind = clear
 keybind = ctrl+comma=open_config
 keybind = ctrl+shift+comma=reload_config
 
@@ -54,8 +55,7 @@ keybind = shift+page_up=scroll_page_up
 keybind = shift+end=scroll_to_bottom
 
 # Tabs
-keybind = ctrl+shift+o=new_tab
-keybind = ctrl+shift+q=close_tab
+keybind = ctrl+shift+t=new_tab
 keybind = ctrl+tab=next_tab
 keybind = ctrl+shift+tab=previous_tab
 
@@ -67,12 +67,14 @@ keybind = ctrl+alt+five=goto_tab:5
 keybind = ctrl+alt+six=goto_tab:6
 keybind = ctrl+alt+seven=goto_tab:7
 keybind = ctrl+alt+eight=goto_tab:8
-keybind = ctrl+alt+nine=last_tab
+keybind = ctrl+alt+nine=goto_tab:9
+keybind = ctrl+alt+zero=last_tab
 
 
 # Splits
 keybind = ctrl+shift+o=new_split:right
 keybind = ctrl+shift+e=new_split:down
+keybind = ctrl+shift+q=close_surface
 
 keybind = ctrl+shift+left=resize_split:left,10
 keybind = ctrl+shift+up=resize_split:up,10
