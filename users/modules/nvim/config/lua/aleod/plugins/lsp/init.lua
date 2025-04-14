@@ -21,6 +21,8 @@ return {
   config = function()
     local lsp_conf = require'lspconfig'
     local capabilities = require("blink.cmp").get_lsp_capabilities()
+
+    -- Servers with default configuration
     local servers = {
       "nil",
       "bashls",
@@ -33,12 +35,14 @@ return {
       "nushell",
       "csharp_ls",
       "gdscript",
+      "pyright",
       "ts_ls",
-      "jdtls",
     }
     for _, lsp in ipairs(servers) do
       lsp_conf[lsp].setup { capabilities = capabilities }
     end
+
+    -- Servers with customized configuration
     lsp_conf.jdtls.setup {
       capabilities = capabilities,
       root_dir = function(fname)
@@ -61,7 +65,9 @@ return {
         end
       end,
     }
+
     local autocmd_group = vim.api.nvim_create_augroup('AleodConfig', {clear = false})
+    -- Disable highlights provided by the lsp to use treesitter code highlighting.
     vim.api.nvim_create_autocmd("LspAttach", {
       group = autocmd_group,
       callback = function(args)
@@ -72,7 +78,7 @@ return {
       end,
     });
 
-    -- Setup Autocommand for lsp keymaps and such.
+    -- Setup Autocommand for lsp keymaps and completions.
     vim.api.nvim_create_autocmd('LspAttach', {
       group = autocmd_group,
       callback = function(ev)
@@ -122,8 +128,16 @@ return {
           { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
           -- Format.
           { mode = 'n', keymap = leader 'F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
+          -- Toogle inlay_hints on save.
+          {
+            mode = 'n',
+            keymap = leader 'ti',
+            action = function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) 
+            end,
+            opt = opts
+          },
           -- Toogle format on save.
-          { mode = 'n', keymap = leader 'ti', action = function() vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) end, opt = opts},
           {
             mode = 'n',
             keymap='<space>ft',

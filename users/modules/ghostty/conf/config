@@ -9,9 +9,7 @@ gtk-wide-tabs= false
 
 background = #191919
 foreground = #f6f6ee
-
-selection-foreground = #3a3b4b
-selection-background = #eaf2f1
+selection-invert-fg-bg = true
 minimum-contrast = 1
 
 cursor-color = #f6f6ee
