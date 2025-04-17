@@ -1,25 +1,33 @@
-format = """ [\uE0B6[$directory$git_branch$git_commit](bold 14 inverted)\uE0B4](14) $rust
- $character
+format = """
+ [\uE0B6[ $directory$git_branch$git_commit ](bold 14 inverted)\uE0B4](14) $rust $fill [\uE0B6[ $time ](white inverted)\uE0B4](white)
+ [\uE0B6[ $shell$direnv ](green inverted)\uE0B4](green) $character 
 """
 
-right_format="""$time
-"""
+[fill]
+symbol=" "
+
+[time]
+format="$time"
+disabled = false
+
+[shell]
+format ='$indicator'
+disabled = false
+bash_indicator = "bash"
 
 # Replace the "❯" symbol in the prompt with "➜"
 [character]                            # The name of the module we are configuring is "character"
-success_symbol = "[\uf444❯](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
-error_symbol = "[\uf444](bold red)"
+format = "$symbol"
+success_symbol = "[❯](bold green)"
+error_symbol = "[](bold red)"
 
 [directory]
-truncation_length = 3
-truncation_symbol = "../"
-style = "bold cyan"
-format = "[\uF07B $path ](bold 14 inverted)"
-truncate_to_repo = true
+truncate_to_repo = false
+format = "[\uF07B $path ](bold cyan inverted)"
 
 [git_branch]
 symbol=""
-format="[\uE0b1 $symbol $branch](bold 14 inverted)"
+format="[\uE0b1 $symbol $branch](bold cyan inverted)"
 
 [git_commit]
 commit_hash_length = 7
@@ -28,9 +36,16 @@ tag_disabled = false
 tag_symbol = " "
 format="[  $hash$tag](bold 14 inverted)"
 
+[direnv]
+disabled = false
+format = " \uE0b1 $symbol $allowed $loaded"
+symbol = "env"
+not_allowed_msg = "\uf057"
+allowed_msg  = "\uf058"
+loaded_msg = "󰇚"
+unloaded_msg = "󱂰"
+
+
 [rust]
 symbol=""
 format="[\uE0B6[$symbol ($version)](bold 9 inverted)\uE0B4](bold 9)"
-
-[fill]
-symbol = " "
