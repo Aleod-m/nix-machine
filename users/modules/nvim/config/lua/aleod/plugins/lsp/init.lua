@@ -35,7 +35,7 @@ return {
       "nushell",
       "csharp_ls",
       "gdscript",
-      "pyright",
+      "pylsp",
       "ts_ls",
     }
     for _, lsp in ipairs(servers) do
