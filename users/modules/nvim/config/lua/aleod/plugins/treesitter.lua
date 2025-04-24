@@ -36,6 +36,7 @@ return { {
         "wgsl",
         "wgsl_bevy",
         "java",
+        "javadoc",
 
         -- Web.
         "html",
