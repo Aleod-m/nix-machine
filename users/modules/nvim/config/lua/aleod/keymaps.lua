@@ -48,7 +48,7 @@ km.set_keymaps {
   { mode="n", keymap= leader "nh", action=cmd "noh" },
 
   -- quick save
-  { mode="n", keymap= leader "w", action= (cmd "w") .. "zR" },
+  { mode="n", keymap= leader "w", action= cmd "w" },
 
   -- Nice feature to have for blocks languages
   { mode="i", keymap="{<CR>", action="{<CR>}<ESC>O" },
