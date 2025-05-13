@@ -27,6 +27,7 @@ return { {
         "rust",
         "nix",
         "lua",
+        "luadoc",
         "c",
         "cpp",
         "bash",

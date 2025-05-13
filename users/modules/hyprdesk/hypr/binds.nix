@@ -46,7 +46,7 @@ in {
         (layout "SHIFT" "m" "swapwithmaster")
 
         # Screen Shot.
-        (exec "" "Print" "grimblast --notify --cursor copysave area")
+        (exec "" "Print" "grimblast --notify copysave area")
         (exec "CTRL" "Print" "grimblast --notify --cursor copysave active")
         (exec "ALT" "Print" "grimblast --notify --cursor copysave output")
         (exec "SHIFT" "Print" "grimblast --notify --cursor copysave screen")
