@@ -27,6 +27,7 @@ return {
   {
     'Aleod-m/konokai',
     lazy = false,
+    dev = true,
     dependencies = {
       'rktjmp/lush.nvim',
     },
