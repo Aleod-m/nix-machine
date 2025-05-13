@@ -29,7 +29,7 @@ return {
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
     opts = {},
     keys = {
-      {mode='n', km.leader "ql", function() require "persistence.nvim".load() end },
+      {mode='n', km.leader "ql", function() require "persistence".load() end },
     }
   },
 }
