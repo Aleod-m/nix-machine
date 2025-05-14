@@ -37,6 +37,8 @@
     jetbrains.idea-community
     signal-desktop
     meld
+    qutebrowser
+    inotify-tools
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {
