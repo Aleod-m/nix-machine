@@ -55,6 +55,8 @@
     steam-run
     prismlauncher
     signal-desktop
+
+    qutebrowser
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {
