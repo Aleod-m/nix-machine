@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
 
+# Store orignaly focused monitor
 focused_monitor=$(hyprctl activewindow -j | jq '.monitor')
-while read -r id; do
-    echo "focus $id"
-    hyprctl dispatch -- focusmonitor "$id"
-    echo "change $((id * 10 + $1))"
-    hyprctl dispatch -- workspace "$((id * 10 + $1))"
-done < <(hyprctl monitors -j | jq ".[] | .id")
-echo "restore focus"
+while read -r mid; do
+    # Focus monitor
+    hyprctl dispatch -- focusmonitor "$mid"
+    # Change workspace of monitor
+    hyprctl dispatch -- workspace "$((mid * 10 + $1))"
+done < <(hyprctl monitors -j | jq ".[].id")
+# Restore orignaly focused monitor
 hyprctl dispatch -- focusmonitor "$focused_monitor"

@@ -55,6 +55,7 @@ in {
 		jq
     # Launcher.
     rofi-wayland
+    # Sound.
     playerctl
     pamixer
     pulseaudio
@@ -62,6 +63,7 @@ in {
     wlr-randr
     wlsunset
     brightnessctl
+    # Screen shot utility.
     grimblast
   ];
 }
