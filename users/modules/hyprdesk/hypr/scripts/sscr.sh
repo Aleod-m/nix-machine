@@ -1,4 +1,6 @@
 #!/usr/bin/env bash
-monitor=$(hyprctl activewindow -j | jq '.monitor')
-monitor=$(((monitor + 1) % 2))
-hyprctl dispatch -- focusmonitor $monitor
+# Cycle monitors in increasing id order.
+m_nb=$(hyprctl monitor -j | jq 'length')
+m_id=$(hyprctl monitor -j | jq 'map(select(.focused)).[0].id')
+m_focus_id=$(((m_id + 1) % m_nb))
+hyprctl dispatch -- focusmonitor "$m_focus_id"
