@@ -23,6 +23,9 @@ return { {
         "markdown",
         "markdown_inline",
 
+        "php",
+        "perl",
+
         -- Programming languages.
         "rust",
         "nix",
