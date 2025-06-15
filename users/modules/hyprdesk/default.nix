@@ -16,6 +16,7 @@ in {
   imports = [
     ./hypr/default.nix
     ./mako.nix
+    ./rofi.nix
     ./hyprlock.nix
     ./wlogout.nix
   ];
@@ -53,8 +54,6 @@ in {
   home.packages = with pkgs; [
 		# jq for interacting with hyprctl
 		jq
-    # Launcher.
-    rofi-wayland
     # Sound.
     playerctl
     pamixer
