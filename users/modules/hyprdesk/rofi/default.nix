@@ -182,4 +182,11 @@
       };
     };
   }; 
+  xdg.configFile = {
+    rofiScripts = {
+      source = ./scripts;
+      target = "rofi/scripts";
+      recursive = true;
+    };
+  };
 }
