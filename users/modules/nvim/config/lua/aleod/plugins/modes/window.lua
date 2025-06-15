@@ -58,7 +58,6 @@ return {
         { 's', ctrl 'w' .. 's'  },
         { 'v', ctrl 'w' .. 'v'  },
         { "q", cmd.try 'close'     },
-        { "x", cmd.try 'x'     },
         { "w", cmd.try 'w'     },
 
         -- Change current split.

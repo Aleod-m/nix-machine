@@ -39,6 +39,8 @@
     meld
     qutebrowser
     inotify-tools
+    blueman
+    aider-chat
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
   programs = {
@@ -86,4 +88,5 @@
       ignores = [".envrc" ".direnv" ".devenv"];
     };
   };
+  services.nextcloud-client.enable = true; 
 }
