@@ -1,5 +1,6 @@
 {
   pkgs,
+  mlib,
   ...
 }: let 
   bg = "191919";
@@ -13,12 +14,12 @@
   grey   = "929276";
   white  = "f6f6ee";
 in {
-  imports = [
-    ./hypr/default.nix
-    ./mako.nix
-    ./rofi.nix
-    ./hyprlock.nix
-    ./wlogout.nix
+  imports = mlib.import ./. [
+    "hypr"
+    "mako"
+    "rofi"
+    "hyprlock"
+    "wlogout"
   ];
   # make stuff work on wayland
   home.sessionVariables = {
