@@ -26,7 +26,7 @@ in {
         (action "" "mouse:274" "killactive")
         # Programs
         (exec "" "return" "ghostty")
-        (exec "" "b" "firefox")
+        (exec "" "b" "rofi -modes qute-sesh -show qute-sesh")
         (exec "" "space" "rofi -show drun")
         (exec "SHIFT" "space" "rofi -show run")
 
