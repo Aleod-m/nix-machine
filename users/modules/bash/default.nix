@@ -17,6 +17,8 @@
       lg = eza + "-l --git --header";
       lga = eza + "-a -l --git --header";
 
+      disks = "lsblk -o NAME,LABEL,MOUNTPOINTS,TYPE,SIZE,FSUSE%,FSAVAIL";
+      disksj = "lsblk -J -O";
       # nvim
       nv = "nvim";
       # git
@@ -28,6 +30,8 @@
       gs = git + "status";
       gl = git + "log --oneline -n 10";
       gll = git + "log --oneline";
+      glg = git + "log --graph --oneline";
+      glgl = git + "log --graph";
       gf = git + "fetch";
       gp = git + "pull";
       gd = git + "diff";

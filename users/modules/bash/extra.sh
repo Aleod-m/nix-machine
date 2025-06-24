@@ -3,13 +3,13 @@ export LS_COLORS='auto'
 alias lessc='less -r'
 
 up() {
-    if ! command -v sed 2>&1 > /dev/null
+    if ! command -v sed 1>/dev/null 2>&1 
     then
         echo "The up command needs sed on the system."
         exit 1
     fi
     local d=""
-    limit=$1    
+    limit=$1
     for ((i=1 ; i <= limit ; i++)) do
         d=$d/..
     done
@@ -17,46 +17,58 @@ up() {
     if [ -z "$d" ]; then
         d=..
     fi
-    cd $d
+    cd "$d" || echo "Cannot go higher."
 }
 
 mkcd() {
-    mkdir $1; cd $1
+    mkdir "$1"; cd "$1" || exit 1 
 }
 
 sshexec() {
-    if ! command -v ssh 2>&1 > /dev/null 
+    if ! command -v ssh 1>/dev/null 2>&1 
     then
         echo "The up command needs nvim on the system."
         exit 1
     fi
-    host=$1; shift
-    ssh -t $host -o RemoteCommand=none -- $@
+    host=$1 && shift;
+    ssh -t "$host" -o RemoteCommand=none -- "$@"
 }
 
 nvl() {
-    if ! command -v nvim 2>&1 > /dev/null
+    if ! command -v nvim 1>/dev/null 2>&1 
     then
         echo "The up command needs nvim on the system."
-        exit 1
+        exit 1;
     fi
-    nvim --listen "/tmp/nvim.{$pipe_name}.pipe"
+    if [[ $# -lt 1 ]];
+    then
+        echo "Needs at least the pipe name to listen to."
+        exit 1;
+    fi
+    pipe_name=$1 && shift;
+    nvim --listen "/tmp/nvim.{$pipe_name}.pipe" "$@"
 }
 
 nvs() {
-    if ! command -v nvim 2>&1 > /dev/null
+    if ! command -v nvim 1>/dev/null 2>&1
     then
         echo "The up command needs nvim on the system."
         exit 1
     fi
+    if [[ $# -lt 1 ]];
+    then
+        echo "Needs an argument."
+        exit 1
+    fi
+    pipe_name=$1; shift;
     nvim --server "/tmp/nvim.{$pipe_name}.pipe"
 }
 
 function git_sparse_clone() (
-  rurl="$1" localdir="$2" && shift 2
+  rurl="$1" localdir="$2" && shift 2;
 
   mkdir -p "$localdir"
-  cd "$localdir"
+  cd "$localdir" || return
 
   git init
   git remote add -f origin "$rurl"
@@ -71,8 +83,4 @@ function git_sparse_clone() (
   git pull origin master
 )
 
-function gwc() {
-    git worktree add "../$1" -B "$1"
-}
-
-source ~/.profile
+source $HOME/.profile
