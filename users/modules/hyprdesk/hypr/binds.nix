@@ -5,10 +5,11 @@
   layout = mod: key: action: mkbind mod key "layoutmsg" action;
 
   script = mod: key: name: args: (exec mod key "$scripts/${name}.sh ${toString args}");
+  workspaces = __genList (x: x + 1) 10;
   switchworkspacebinds =
-    map (ws: script "" "${toString (lib.trivial.mod ws 10)}" "swk" ws) [1 2 3 4 5 6 7 8 9 10];
+    map (ws: script "" "${toString (lib.trivial.mod ws 10)}" "swk" ws) workspaces;
   moveworkspacebinds =
-    map (ws: script "SHIFT" "${toString (lib.trivial.mod ws 10)}" "mwk" ws) [1 2 3 4 5 6 7 8 9 10];
+    map (ws: script "SHIFT" "${toString (lib.trivial.mod ws 10)}" "mwk" ws) workspaces;
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -20,6 +21,7 @@ in {
 
     bind =
       [
+        # Switch screen / Move window to other screen.
         (script "" "o" "sscr" "")
         (script "Shift" "O" "mscr" "")
 
@@ -54,6 +56,8 @@ in {
         # Locking and logout.
         (exec "" "L" "hyprlock")
         (exec "SHIFT ALT" "Q" "wlogout -s -p layer-shell")
+
+        # Workspace increment / decrement.
         (script "ALT" "left" "decwk" "")
         (script "ALT" "right" "incwk" "")
         (script "" "mouse_up" "incwk" "")

@@ -41,9 +41,12 @@ in {
       "center, title:Rofi"
       "dimaround, title:Rofi"
 
+      "float, class:feh"
+      "center, class:feh"
+      "dimaround, title:Rofi"
+
       "bordercolor ${cyan} ... ${green} 90deg ${grey}, fullscreen:1"
 
-      "float, class:feh"
       "float, class:file-roller"
       "fullscreen, title:wlogout"
       "float, title:wlogout"
