@@ -73,7 +73,7 @@ nvs() {
     nvim --server "/tmp/nvim.{$pipe_name}.pipe"
 }
 
-function git_sparse_clone() (
+git_sparse_clone() {
   rurl="$1" localdir="$2" && shift 2;
 
   mkdir -p "$localdir"
@@ -90,6 +90,6 @@ function git_sparse_clone() (
   done
 
   git pull origin master
-)
+}
 
 source $HOME/.profile
