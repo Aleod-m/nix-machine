@@ -15,7 +15,7 @@ in {
     anchor = "top-center";
     groupBy = "app-name";
     defaultTimeout = 3000;
-    ignore-timeout = true;
+    ignoreTimeout = true;
     maxVisible = 3;
 
     height = 40;
