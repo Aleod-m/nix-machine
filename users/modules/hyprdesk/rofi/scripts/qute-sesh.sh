@@ -2,6 +2,7 @@
 QUTE_SESSIONS_DIR="$HOME/.local/share/qutebrowser/sessions"
 
 # TODO: delete / rename sessions.
+# Create new session.
 
 row () {
     echo -en "$1"; shift;
@@ -22,6 +23,8 @@ if [ "$ROFI_RETV" = 1 ]; then
     coproc qutebrowser -s session.default_name "$1" -r "$1" 1>/dev/null 2>&1;
     # echo "coproc qutebrowser -s session.default_name \"$1\" -s auto_save.session true -r \"$1\" 1>/dev/null 2>&1;"
     exit 0;
+elif [ "$ROFI_RETV" = 2 ]; then
+    coproc qutebrowser -s session.default_name "$1" ":w" 1>/dev/null 2>&1;
 fi
 
 set_opt "prompt" "Select session";
