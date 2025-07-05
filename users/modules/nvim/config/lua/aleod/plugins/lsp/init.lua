@@ -19,7 +19,6 @@ return {
     },
   },
   config = function()
-    local lsp_conf = require'lspconfig'
     local capabilities = require("blink.cmp").get_lsp_capabilities()
 
     -- Servers with default configuration
@@ -37,34 +36,11 @@ return {
       "gdscript",
       "pylsp",
       "ts_ls",
+      "jdtls",
     }
     for _, lsp in ipairs(servers) do
-      lsp_conf[lsp].setup { capabilities = capabilities }
+      vim.lsp.enable(lsp)
     end
-
-    -- Servers with customized configuration
-    lsp_conf.jdtls.setup {
-      capabilities = capabilities,
-      root_dir = function(fname)
-        local root_files = {
-          -- Single-module projects
-          {
-            'build.xml', -- Ant
-            'pom.xml', -- Maven
-            'settings.gradle', -- Gradle
-            'settings.gradle.kts', -- Gradle
-          },
-          -- Multi-module projects
-          { '.git', 'build.gradle', 'build.gradle.kts' },
-        }
-        for _, patterns in ipairs(root_files) do
-          local root = require'lspconfig.util'.root_pattern(unpack(patterns))(fname)
-          if root then
-            return root
-          end
-        end
-      end,
-    }
 
     local autocmd_group = vim.api.nvim_create_augroup('AleodConfig', {clear = false})
     -- Disable highlights provided by the lsp to use treesitter code highlighting.
@@ -102,27 +78,12 @@ return {
           vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
         end
 
-        local function exec_mapping(action, mode)
-          local keys = vim.api.nvim_replace_termcodes(action, true, false, false)
-          vim.api.nvim_feedkeys(keys, mode, false)
-        end
 
         -- Buffer local mappings.
         local opts = { buffer = ev.buf }
         km.set_keymaps({
           { mode = 'n', keymap='gD', action = vim.lsp.buf.declaration, opt = opts, },
           { mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opt = opts, },
-          {
-            mode = 'n',
-            keymap='gs',
-            action = function()
-              exec_mapping("<C-W>v", 'n')
-              exec_mapping("<C-W>l", 'n')
-              exec_mapping("gd", 'n')
-              exec_mapping("<C-W>p", 'n')
-            end,
-            opt = opts,
-          },
           { mode = 'n', keymap = 'gr', action = vim.lsp.buf.references, opt = opts, },
           { mode = 'n', keymap = 'K', action = vim.lsp.buf.hover, opt = opts, },
           { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
@@ -133,7 +94,7 @@ return {
             mode = 'n',
             keymap = leader 'ti',
             action = function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled()) 
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
             end,
             opt = opts
           },
