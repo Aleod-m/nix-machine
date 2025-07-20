@@ -30,7 +30,6 @@ return {
             },
         }
         local T = require("nvterm.terminal")
-        km.set("t", km.leader "<Esc>", cmd 'stopinsert')
         km.set("n", km.leader "tf", function() T.toggle "float" end)
         km.set("n", km.leader "th", function() T.toggle "horizontal" end)
         km.set("n", km.leader "tv", function() T.toggle "vertical" end)

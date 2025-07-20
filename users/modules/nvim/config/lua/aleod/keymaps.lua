@@ -78,7 +78,10 @@ km.set_keymaps {
   { mode="v", keymap= ctrl "l", action=">gv" },
 
   -- Diagnostics
-  { mode="n", keymap= leader "dn", action= vim.diagnostic.goto_next },
-  { mode="n", keymap= leader "dp", action= vim.diagnostic.goto_prev },
-  { mode="n", keymap= leader "dl",  action= vim.diagnostic.open_float }
+  { mode="n", keymap= leader "dn", action=function() vim.diagnostic.jump({count=1}) end },
+  { mode="n", keymap= leader "dp", action=function() vim.diagnostic.jump({count=-1}) end },
+  { mode="n", keymap= leader "dl", action= vim.diagnostic.open_float },
+
+  -- Terminal 
+  { mode="t", keymap= leader "<Esc>", action= cmd 'stopinsert'},
 }
