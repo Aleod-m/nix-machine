@@ -11,7 +11,7 @@ return {
         local nvt = require('nvterm')
         nvt.setup {
             terminals = {
-                shell = "nu",
+                shell = vim.env.SHELL,
                 type_opts = {
                     float = {
                         relative = 'editor',
@@ -25,12 +25,7 @@ return {
                     vertical = { location = "rightbelow", split_ratio = .5 },
                 },
             },
-            behaviour = {
-                autoclose_on_quit = {
-                    enabled = true,
-                    confirm = true,
-                },
-                close_on_exit = true,
+            behavior = {
                 auto_insert = false,
             },
         }
