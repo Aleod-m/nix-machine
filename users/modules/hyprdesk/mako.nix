@@ -12,26 +12,28 @@
 in {
   services.mako = {
     enable = true;
-    anchor = "top-center";
-    groupBy = "app-name";
-    defaultTimeout = 3000;
-    ignoreTimeout = true;
-    maxVisible = 3;
+    settings = {
+      anchor = "top-center";
+      group-by = "app-name";
+      default-timeout = 3000;
+      ignore-timeout = true;
+      max-visible = 3;
 
-    height = 40;
-    width = 400;
-    backgroundColor = "#${bg}";
+      height = 40;
+      width = 400;
+      background-color = "#${bg}";
 
-    format = "<b>%s</b> : %b";
-    markup = true;
-    textColor = "#${white}";
+      format = "<b>%s</b> : %b";
+      markup = true;
+      text-color = "#${white}";
 
-    icons = true;
-    maxIconSize = 40;
+      icons = true;
+      max-icon-size = 40;
 
-    borderColor = "#${green}";
-    borderRadius = 5;
-    borderSize = 1;
+      border-color = "#${green}";
+      border-radius = 5;
+      border-size = 1;
+    };
 
     extraConfig = ''
       [urgency=low]

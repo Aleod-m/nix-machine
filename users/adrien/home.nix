@@ -25,7 +25,7 @@
     wget
     socat
     libreoffice
-    onlyoffice-bin
+    # onlyoffice-bin
     bitwarden-cli
     bitwarden-desktop
     openvpn
@@ -34,7 +34,7 @@
     rocketchat-desktop
     vscode
     chromium
-    jetbrains.idea-community
+    # jetbrains.idea-community
     signal-desktop
     meld
     qutebrowser

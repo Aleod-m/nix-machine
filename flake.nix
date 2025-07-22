@@ -89,10 +89,10 @@
           modules = [
             "base"
             "sound"
-            "ssh"
-            "nix"
-            "devices"
             "net"
+            "nix"
+            "ssh"
+            "devices"
             "nvidia"
             "hyprland"
             "docker"
@@ -105,15 +105,15 @@
           users = ["adrien"];
           modules = [
             "base"
-            "graphics"
             "sound"
+            "net"
+            "graphics"
+            "devices"
             "hyprland"
-            "gnome"
             "nix"
             "ssh"
             "docker"
             "lxd"
-            "devices"
           ];
         }
       ];
