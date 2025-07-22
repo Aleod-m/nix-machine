@@ -11,6 +11,10 @@ return {
         diffview = true,
       },
       mappings = {
+        rebase_editor = {
+          ["gk"] = "MoveDown",
+          ["gt"] = "MoveUp",
+        },
         status = {
           ["k"] = "MoveDown",
           ["t"] = "MoveUp",

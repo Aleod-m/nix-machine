@@ -1,7 +1,6 @@
-local group = vim.api.nvim_create_augroup('AleodConfig', {clear = true})
+local autocmd = require("core.autocmd")()
 
-vim.api.nvim_create_autocmd({"BufEnter"}, {
-  group = group,
+autocmd("BufEnter", {
   callback = function(event)
     if vim.bo[event.buf].filetype ~= "help" then return end
     vim.cmd.wincmd('L')
@@ -10,13 +9,11 @@ vim.api.nvim_create_autocmd({"BufEnter"}, {
 })
 
 -- Add autocmd to try reloading all buffers on CursorHold.
-vim.api.nvim_create_autocmd({"CursorHold", "CursorHoldI"}, {
-  group = group,
+autocmd({"CursorHold", "CursorHoldI"}, {
   command = "checktime",
 })
 
 -- Equalize the splits if terminal get resized. 
-vim.api.nvim_create_autocmd({"VimResized"}, {
-  group = group,
+autocmd("VimResized", {
   command = "wincmd ="
 })

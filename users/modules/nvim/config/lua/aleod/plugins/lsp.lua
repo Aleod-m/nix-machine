@@ -1,0 +1,23 @@
+return {
+  {
+    "neovim/nvim-lspconfig",
+    lazy = false,
+    event = { "BufReadPre", "BufNewFile" },
+  },
+
+  { "antosha417/nvim-lsp-file-operations", config = true },
+
+  -- For developpement in nvim.
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        -- See the configuration section for more details
+        -- Load luvit types when the `vim.uv` word is found
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
+}
+
