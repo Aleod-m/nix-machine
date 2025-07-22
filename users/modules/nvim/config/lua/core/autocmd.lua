@@ -7,6 +7,7 @@ M.group = vim.api.nvim_create_augroup("AleodConfig", {})
 M.groups[M.group] = true
 
 local scope = {}
+scope.group = M.group
 
 local create = function(_scope, events, opts)
   opts.group = _scope.group
@@ -15,7 +16,7 @@ local create = function(_scope, events, opts)
   return cmd_id
 end
 
-M.delete = function(id)
+scope.del = function(id)
     if M.autcmds[id] or false then
         return
     end
@@ -23,8 +24,11 @@ M.delete = function(id)
 end
 
 return setmetatable({}, {
-  __call = function(_, group)
-    scope.group = group or M.group
+  __call = function(_, scope_name)
+    if scope_name ~= nil then
+      scope.group = vim.api.nvim_create_augroup("AleodConfig." .. scope_name, {})
+      M.groups[scope.group] = true
+    end
     return setmetatable(scope, { __call = create })
   end
 })

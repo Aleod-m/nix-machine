@@ -14,6 +14,7 @@ return {
       body = '<leader>g',
       config = {
         color = "amaranth",
+        hint = false,
         invoke_on_body = true,
         on_key = function() vim.wait(50) end,
         on_enter = function()
