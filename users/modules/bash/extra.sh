@@ -92,4 +92,6 @@ git_sparse_clone() {
   git pull origin master
 }
 
+PATH="$PATH:/$HOME/bin"
+
 source $HOME/.profile
