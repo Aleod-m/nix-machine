@@ -105,6 +105,7 @@
           users = ["adrien"];
           modules = [
             "base"
+            "cosmic"
             "sound"
             "net"
             "graphics"
