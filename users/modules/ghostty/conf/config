@@ -1,9 +1,17 @@
+# === Config options
+#
+clipboard-read = ask
+clipboard-write = allow
+
 # === Theming === #
-font-family = JetBrainsMono Nerd Font
+font-family = JetBrainsMono Nerd Font Propo
 font-style = Bold
 font-size = 9
 
 window-theme=ghostty
+window-padding-x = 0 
+window-padding-y = 0
+window-padding-color = extend 
 gtk-custom-css= ./thin-tabs.css
 gtk-wide-tabs= false
 
@@ -12,6 +20,8 @@ foreground = #f6f6ee
 selection-invert-fg-bg = true
 minimum-contrast = 1
 
+# custom-shader = ./test.glsl
+# custom-shader-animation = true
 cursor-color = #f6f6ee
 cursor-text = #000000
 
@@ -99,11 +109,3 @@ keybind = shift+home=scroll_to_top
 
 keybind = ctrl+shift+i=inspector:toggle
 
-window-padding-x = 0 
-window-padding-y = 0
-
-window-padding-color = extend 
-
-clipboard-read = ask
-
-clipboard-write = allow

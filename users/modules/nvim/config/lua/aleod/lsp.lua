@@ -3,7 +3,7 @@ local km = require('core.keymaps')
 local leader = km.leader
 
 -- Servers with default configuration
-local servers = {
+vim.lsp.enable({
   "nil",
   "bashls",
   "ccls",
@@ -18,11 +18,8 @@ local servers = {
   "pylsp",
   "ts_ls",
   "jdtls",
-}
-
-for _, lsp in ipairs(servers) do
-  vim.lsp.enable(lsp)
-end
+  "spectral",
+})
 
 vim.g.fmt_on_save = false
 
@@ -59,7 +56,12 @@ autocmd("LspAttach", {
       { mode = 'n', keymap = 'K', action = vim.lsp.buf.hover, opt = opts, },
       { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
       -- Format.
-      { mode = 'n', keymap = leader 'F', action = function() vim.lsp.buf.format { async = true } end, opt = opts, },
+      {
+        mode = 'n',
+        keymap = leader 'F',
+        action = function() vim.lsp.buf.format { async = true } end,
+        opt = opts,
+      },
       -- Toogle inlay_hints on save.
       {
         mode = 'n',

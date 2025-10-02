@@ -19,7 +19,6 @@ return {
         mode = "virtualtext",
         virtualtext = "     ",
         virtualtext_inline = 'after',
-        virtualtext_mode = "background",
       },
     },
   },
@@ -52,8 +51,8 @@ return {
             file_status=true,
             path=1,
             symbols= {
-              modified=" ",
-              readonly=" ",
+              modified="",
+              readonly="",
               unnamed="NONAME"
             }
           },

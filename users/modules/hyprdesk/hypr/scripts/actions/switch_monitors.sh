@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+# This script is an action. See the rofi hypr action script to run the actions and the action palette. 
+
+# Allows to swap the right left position of screens.
 
 monitors=$(hyprctl monitors -j)
 

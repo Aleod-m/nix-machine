@@ -73,8 +73,8 @@ km.set_keymaps {
 
   -- In visual mode with ctrl key
   { mode="v", keymap= ctrl "h", action="<gv" },
-  { mode="v", keymap= ctrl "k", action= (cmd "'<,'>m+") .. "gv"},
-  { mode="v", keymap= ctrl "t", action= (cmd "'<,'>m-2") .. "gv" },
+  { mode="v", keymap= ctrl "t", action= (cmd "'<,'>m .-2") .. "gv" },
+  { mode="v", keymap= ctrl "k", action= (cmd "'<,'>m .1") .. "gv" },
   { mode="v", keymap= ctrl "l", action=">gv" },
 
   -- Diagnostics
@@ -84,4 +84,10 @@ km.set_keymaps {
 
   -- Terminal 
   { mode="t", keymap= leader "<Esc>", action= cmd 'stopinsert'},
+
+  -- Special yanks
+  { mode="n", keymap="gyp", action=function() vim.fn.setreg('"', vim.fn.expand("%")) end},
+  { mode="n", keymap="gyP", action=function() vim.fn.setreg('"', vim.fn.expand("%:p")) end},
+  { mode="n", keymap="gYp", action=function() vim.fn.setreg("+", vim.fn.expand("%")) end},
+  { mode="n", keymap="gYP", action=function() vim.fn.setreg("+", vim.fn.expand("%:p")) end},
 }

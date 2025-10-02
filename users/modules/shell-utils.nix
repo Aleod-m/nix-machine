@@ -4,16 +4,16 @@
   mlib,
   ...
 }: let
-  bg = "191919";
-  green  = "97e023";
-  orange = "fa8419";
-  yellow = "dfd561";
-  purple = "9c64fe";
-  red    = "f3005f";
-  cyan   = "57d1ea";
-  blue   = "0e6172";
-  grey   = "929276";
-  white  = "f6f6ee";
+  bg     = "#191919";
+  green  = "#97e023";
+  orange = "#fb7419";
+  yellow = "#dfd561";
+  purple = "#9c64fe";
+  red    = "#f30040";
+  cyan   = "#57d1ea";
+  blue   = "#0e6172";
+  grey   = "#929276";
+  white  = "#f6f6ee";
 in
 mlib.enable.programs ["btop" "zoxide" "starship"] {
   home.packages = with pkgs; [

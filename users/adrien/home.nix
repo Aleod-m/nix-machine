@@ -25,6 +25,7 @@
     wget
     socat
     libreoffice
+    # cyberduck
     # onlyoffice-bin
     bitwarden-cli
     bitwarden-desktop
@@ -40,6 +41,7 @@
     qutebrowser
     inotify-tools
     blueman
+    logseq
     aider-chat
   ] ++ [zen-browser.packages.${pkgs.system}.default];
 
@@ -53,23 +55,37 @@
           "set-option -g mode-keys vi \\;"
           "set-option -g base-index 1 \\;"
           "set-option -g renumber-windows on \\;"
+          "set-option -g default-command \"bash --rcfile ~/tools/numahop/alias.sh\"\\;"
           "new-session -A \\;"
         ];
         prodTmuxCmd = __concatStringsSep " " [ tmuxCmd "set-option -g status-bg red \\;" ];
       in ''
+        # Proxys
         Host bib-proxy
           HostName bs-support.biblibre.com
           User biblibre
 
-        Host bs-numahop* aderobert-* mmeusburger-*
+        Host bib-proxy-stockage
+          HostName bs-stockage.biblibre.com
+          User biblibre
+
+        # Set global env and config.
+        Host bs-numahop* *-numahop
           SetEnv TERM=xterm
           RequestTTY force
 
-        Host aderobert-* mmeusburger-*
+        # Support Instances
+        Host aderobert-* mmeusburger-* cjoyet-* User numahop
           ProxyJump bib-proxy
           RemoteCommand ${tmuxCmd}
 
-        Host bs-numahop*
+        # Production Instances
+        Host bs-numahop* User root
+          ProxyJump bib-proxy
+          RemoteCommand ${prodTmuxCmd}
+
+        Match Host *-numahop User numahop
+          ProxyJump bib-proxy-stockage
           RemoteCommand ${prodTmuxCmd}
       '';
     };

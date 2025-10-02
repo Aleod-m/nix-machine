@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
 
 # On monitor disconnect merge the workspaces.
-
 monitor_nb=$(hyprctl monitors -j | jq 'length')
-
 workspaces=$(hyprctl workspaces -j | jq '.[].id')
 
 clients_in_ws() {

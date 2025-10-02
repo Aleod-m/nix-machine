@@ -38,7 +38,10 @@ opts.set({
 	swapfile = false,
 
 	-- Always have sign column.
-	scl = "yes",
+	signcolumn = "yes",
+
+  -- window border
+  winborder = "rounded",
 
 	-- Usefull options for reloading the buffers.
 	autoread = true,

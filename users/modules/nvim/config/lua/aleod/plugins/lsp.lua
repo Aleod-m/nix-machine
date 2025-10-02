@@ -1,9 +1,4 @@
 return {
-  {
-    "neovim/nvim-lspconfig",
-    lazy = false,
-    event = { "BufReadPre", "BufNewFile" },
-  },
 
   { "antosha417/nvim-lsp-file-operations", config = true },
 
