@@ -1,6 +1,5 @@
 {
   pkgs,
-  zen-browser,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
@@ -43,13 +42,12 @@
     blueman
     logseq
     aider-chat
-  ] ++ [zen-browser.packages.${pkgs.system}.default];
+  ];
 
   programs = {
     ssh = {
       enable = true;
-      addKeysToAgent = "yes";
-      extraConfig = let 
+      matchBlocks = let 
         tmuxCmd = __concatStringsSep " " [
           "/usr/bin/tmux -L ADM"
           "set-option -g mode-keys vi \\;"
@@ -59,35 +57,46 @@
           "new-session -A \\;"
         ];
         prodTmuxCmd = __concatStringsSep " " [ tmuxCmd "set-option -g status-bg red \\;" ];
-      in ''
-        # Proxys
-        Host bib-proxy
-          HostName bs-support.biblibre.com
-          User biblibre
-
-        Host bib-proxy-stockage
-          HostName bs-stockage.biblibre.com
-          User biblibre
-
-        # Set global env and config.
-        Host bs-numahop* *-numahop
-          SetEnv TERM=xterm
-          RequestTTY force
-
-        # Support Instances
-        Host aderobert-* mmeusburger-* cjoyet-* User numahop
-          ProxyJump bib-proxy
-          RemoteCommand ${tmuxCmd}
-
-        # Production Instances
-        Host bs-numahop* User root
-          ProxyJump bib-proxy
-          RemoteCommand ${prodTmuxCmd}
-
-        Match Host *-numahop User numahop
-          ProxyJump bib-proxy-stockage
-          RemoteCommand ${prodTmuxCmd}
-      '';
+      in {
+        # Apply environement.
+        env = {
+          host = "bs-numahop* *-numahop";
+          setEnv = {
+            TERM="xterm";
+          };
+          extraOptions.RequestTTY = "force";
+        };
+        # Proxies
+        bib-proxy = {
+          user = "biblibre";
+          hostname = "bs-support.biblibre.com";
+        };
+        bib-proxy-storage = {
+          user = "biblibre";
+          hostname = "bs-stockage.biblibre.com";
+        };
+        # Instances
+        support-instances = {
+          host = "aderobert-* mmeusburger-* cjoyet-*";
+          user = "numahop";
+          proxyJump = "bib-proxy";
+          extraOptions.RemoteCommand = tmuxCmd;
+          addKeysToAgent = "yes";
+        };
+        prod-1 = {
+          host = "bs-numahop*";
+          user = "root";
+          proxyJump = "bib-proxy";
+          extraOptions.RemoteCommand = prodTmuxCmd;
+          addKeysToAgent = "yes";
+        };
+        prod-2 = {
+          match =  "Host *-numhop User numahop";
+          proxyJump = "bib-proxy-storage";
+          extraOptions.RemoteCommand = prodTmuxCmd;
+          addKeysToAgent = "yes";
+        };
+      };
     };
 
     tmate = {

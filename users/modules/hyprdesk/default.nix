@@ -44,14 +44,14 @@ in {
     };
     x11.enable = true;
   };
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-    style = {
-      name = "gtk2";
-      package = pkgs.libsForQt5.breeze-qt5;
-    };
-  };
+  # qt = {
+  #   enable = true;
+  #   platformTheme.name = "gtk";
+  #   style = {
+  #     name = "gtk2";
+  #     package = pkgs.libsForQt5.breeze-qt5;
+  #   };
+  # };
 
   home.packages = with pkgs; [
 		# jq for interacting with hyprctl

@@ -103,8 +103,7 @@
         "agenix": "agenix",
         "flake-utils": "flake-utils",
         "home-manager": "home-manager_2",
-        "nixpkgs": "nixpkgs",
-        "zen-browser": "zen-browser"
+        "nixpkgs": "nixpkgs"
       }
     },
     "systems": {
@@ -134,26 +133,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "zen-browser": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1759205174,
-        "narHash": "sha256-LMfGQsy3OibEqr3WtLCOqUVdOy5/6DJKWHV8h+1Vapk=",
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
-        "rev": "afd770119e0f9fbb085665738f3fa4c28ff42f78",
-        "type": "github"
-      },
-      "original": {
-        "owner": "youwen5",
-        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

@@ -1,9 +1,6 @@
 local km = require "core.keymaps"
 
 return {
-  -- Load lsp configs
-  { import = "aleod.plugins.lsp" },
-
   -- Splits.
   { 'mrjones2014/smart-splits.nvim', opts = {} },
 

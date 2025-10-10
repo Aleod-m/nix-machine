@@ -1,7 +1,6 @@
 {lib, pkgs, config, ...}: {
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
     terminal = "ghostty";
     font = "JetBrains Mono Nerd Font monospace 10";
     extraConfig = {

@@ -16,11 +16,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
     };
-
-    zen-browser = {
-      url = "github:youwen5/zen-browser-flake";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
