@@ -38,7 +38,18 @@
   powerManagement.cpuFreqGovernor = lib.mkDefault "powersave";
   hardware = {
     cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-    bluetooth.enable = true;
+    bluetooth= {
+      enable = true;
+      powerOnBoot = true; # powers up the default Bluetooth controller on boot
+      settings = {
+        General = {
+          Privacy = "device";
+          JustWorksRepairing = "always";
+          Class = "0x000100";
+          FastConnectable = "true";
+        };
+      };
+    };
   };
 
   networking.interfaces = {
