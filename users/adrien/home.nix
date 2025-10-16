@@ -45,6 +45,10 @@
   ];
 
   programs = {
+    atuin = {
+      enable = true;
+      enableBashIntegration = true;
+    };
     ssh = {
       enable = true;
       matchBlocks = let 
@@ -86,15 +90,14 @@
         prod-1 = {
           host = "bs-numahop*";
           user = "root";
-          proxyJump = "bib-proxy";
-          extraOptions.RemoteCommand = prodTmuxCmd;
           addKeysToAgent = "yes";
+          extraOptions.RemoteCommand = prodTmuxCmd;
         };
         prod-2 = {
           match =  "Host *-numhop User numahop";
           proxyJump = "bib-proxy-storage";
-          extraOptions.RemoteCommand = prodTmuxCmd;
           addKeysToAgent = "yes";
+          extraOptions.RemoteCommand = prodTmuxCmd;
         };
       };
     };
