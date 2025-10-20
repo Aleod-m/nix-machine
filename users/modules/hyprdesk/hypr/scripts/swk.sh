@@ -2,9 +2,6 @@
 
 mon=$(hyprctl monitors -j)
 
-# Sanity checks
-[[ $(echo "$mon" | jq 'length') -ne 2 ]] && exit 1 
-
 # Store orignaly focused monitor
 fmon=$(hyprctl monitors - j | jq 'map(select(.focused)) | first .id')
 while read -r mid; do
