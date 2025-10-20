@@ -18,6 +18,10 @@ in {
       "$mod, mouse:272, movewindow"
       "$mod, mouse:273, resizewindow"
     ];
+    gesture = [
+      "3, left, dispatcher, exec, $scripts/decwk.sh"
+      "3, right, dispatcher, exec, $scripts/incwk.sh"
+    ];
 
     bind =
       [
@@ -30,6 +34,7 @@ in {
         (exec "" "return" "ghostty")
         (exec "" "b" "rofi -show qute-sesh")
         (exec "" "a" "rofi -show hypr-action")
+        (exec "" "w" "rofi -show window")
         (exec "" "space" "rofi -show drun")
         (exec "SHIFT" "space" "rofi -show run")
 

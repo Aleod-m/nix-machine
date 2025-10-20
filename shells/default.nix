@@ -6,10 +6,24 @@ pkgs: {
       nil
       # Lua lsp for nvim.
       lua-language-server
-      # to run the nix flake commands.
-      just
-      nushell
     ];
+  };
+
+  zig = pkgs.mkShell {
+    packages = with pkgs; [
+      zig
+      zls
+    ];
+  };
+
+  java = pkgs.mkShell {
+    packages = with pkgs; [
+      jdt-language-server
+      jdk17
+      maven
+      lombok
+    ];
+    env.JDTLS_JVM_ARGS="-javaagent:${pkgs.lombok}/share/java/lombok.jar";
   };
 
   simple-rust = pkgs.mkShell {
