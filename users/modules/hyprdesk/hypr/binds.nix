@@ -19,8 +19,8 @@ in {
       "$mod, mouse:273, resizewindow"
     ];
     gesture = [
-      "3, left, dispatcher, exec, $scripts/decwk.sh"
-      "3, right, dispatcher, exec, $scripts/incwk.sh"
+      "3, right, dispatcher, exec, $scripts/decwk.sh"
+      "3, left, dispatcher, exec, $scripts/incwk.sh"
     ];
 
     bind =
