@@ -94,7 +94,7 @@
           extraOptions.RemoteCommand = prodTmuxCmd;
         };
         prod-2 = {
-          match =  "Host *-numhop User numahop";
+          match =  "Host *-numahop User numahop";
           proxyJump = "bib-proxy-storage";
           addKeysToAgent = "yes";
           extraOptions.RemoteCommand = prodTmuxCmd;
