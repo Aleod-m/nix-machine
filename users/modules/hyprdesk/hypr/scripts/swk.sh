@@ -3,7 +3,7 @@
 mon=$(hyprctl monitors -j)
 
 # Store orignaly focused monitor
-fmon=$(hyprctl monitors - j | jq 'map(select(.focused)) | first .id')
+fmon=$(hyprctl monitors -j | jq 'map(select(.focused)) | first .id')
 while read -r mid; do
     # Focus monitor
     hyprctl dispatch -- focusmonitor "$mid"
