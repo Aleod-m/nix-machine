@@ -3,6 +3,9 @@ export LS_COLORS='auto'
 alias lessc='less -r'
 
 keya() {
+    if [[ -z "$SSH_AUTH_SOCK" ]]; then
+        eval "$(ssh-agent)";
+    fi
     key_file="$HOME/.ssh/$1" 
     if [[ ! -f "$key_file" ]]; then 
         echo "ssh key not found"
