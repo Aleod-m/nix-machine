@@ -2,7 +2,7 @@ export LS_COLORS='auto'
 
 alias lessc='less -r'
 
-ssha() {
+keya() {
     key_file="$HOME/.ssh/$1" 
     if [[ ! -f "$key_file" ]]; then 
         echo "ssh key not found"
@@ -10,6 +10,23 @@ ssha() {
         ssh-add "$key_file"
     fi
 }
+
+_keya_completion() {
+    local key_dir="$HOME/.ssh";
+    local curr prev;
+    COMPREPLY=();
+    curr="${COMP_WORDS[COMP_CWORD]}";
+    prev="${COMP_WORDS[COMP_CWORD-1]}";
+    if [[ ${prev} == "keya" ]]; then
+        mapfile -t COMPREPLY < <(compgen -f -- "$key_dir/$curr" \
+            | cut -c"$(echo "${key_dir}/" | wc -c)"- \
+            | grep -v -e ".*\.pub" -e "known_host" -e "config" \
+        );
+    fi
+}
+
+complete -F _keya_completion keya
+
 
 up() {
     if ! command -v sed 1>/dev/null 2>&1 
