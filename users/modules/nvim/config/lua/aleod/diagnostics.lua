@@ -1,7 +1,6 @@
-local autocmd = require("core.autocmd")("Diagnostics")
+-- local autocmd = require("core.autocmd")("Diagnostics")
 
-vim.g.cycle_diagnostics_mode = false;
-
-vim.diagnostic.config({virtual_lines = true})
-
--- autocmd("")
+vim.diagnostic.config({
+  virtual_lines = { current_line = true },
+  underline = true,
+})
