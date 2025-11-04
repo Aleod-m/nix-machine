@@ -7,7 +7,7 @@
   nixpkgs.config.allowUnfree = true;
 
   home.shells = {
-    default = "nushell";
+    default = "bash";
     enabled = ["bash" "nushell"];
   };
 
@@ -57,7 +57,7 @@
     signal-desktop
 
     qutebrowser
-  ] ++ [zen-browser.packages.${pkgs.system}.default];
+  ];
 
   programs = {
     obs-studio = {
