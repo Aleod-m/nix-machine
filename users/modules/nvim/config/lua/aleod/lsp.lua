@@ -19,6 +19,7 @@ vim.lsp.enable({
   "ts_ls",
   "jdtls",
   "spectral",
+  "rust_analyzer",
 })
 
 vim.g.fmt_on_save = false
