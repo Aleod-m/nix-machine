@@ -42,6 +42,9 @@
     blueman
     logseq
     aider-chat
+    iftop
+    watchexec
+    proton-pass
   ];
 
   programs = {
@@ -109,7 +112,6 @@
       dsaFingerprint = "SHA256:62b9/JSA1j1yisZkbFvK2Uk/BG/uQQpws6FDY6iFCfc";
     };
     htop.enable = true;
-    iftop.enable = true;
     git = {
       enable = true;
       userName = "Adrien Derobert-Mazure";
