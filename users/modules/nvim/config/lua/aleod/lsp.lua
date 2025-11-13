@@ -56,6 +56,7 @@ autocmd("LspAttach", {
       { mode = 'n', keymap = 'gr', action = vim.lsp.buf.references, opt = opts, },
       { mode = 'n', keymap = 'K', action = vim.lsp.buf.hover, opt = opts, },
       { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
+      { mode = 'n', keymap = leader'I', action = vim.lsp.buf.implementation, opt = opts, },
       -- Format.
       {
         mode = 'n',
