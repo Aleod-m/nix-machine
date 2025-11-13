@@ -11,13 +11,13 @@
       git = "${pkgs.git}/bin/git ";
     in {
       # ls replacement
-      ls = eza;
+      ls = eza + "-x";
       ld = eza + "-d";
       la = eza + "-a -l";
       lg = eza + "-l --git --header";
       lga = eza + "-a -l --git --header";
 
-      disks = "lsblk -o NAME,LABEL,MOUNTPOINTS,TYPE,SIZE,FSUSE%,FSAVAIL";
+      disks = "lsblk -o NAME,LABEL,MOUNTPOINTS,TYPE,SIZE,FSUSE,FSAVAIL";
       disksj = "lsblk -J -O";
       # nvim
       nv = "nvim";
