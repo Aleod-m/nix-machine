@@ -108,7 +108,7 @@
             "hyprland"
             "nix"
             "ssh"
-            "podman"
+            "docker"
             "lxd"
           ];
         }
