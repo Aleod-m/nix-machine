@@ -114,8 +114,10 @@
     htop.enable = true;
     git = {
       enable = true;
-      userName = "Adrien Derobert-Mazure";
-      userEmail = "adrien.derobertmazure@biblibre.com";
+      settings.user = {
+        name = "Adrien Derobert-Mazure";
+        email = "adrien.derobertmazure@biblibre.com";
+      };
       ignores = [".envrc" ".direnv" ".devenv"];
     };
   };

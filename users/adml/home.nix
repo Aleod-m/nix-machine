@@ -75,8 +75,12 @@
     starship.enable = true;
     git = {
       enable = true;
-      userName = "AdrienDML";
-      userEmail = "adriendml99@gmail.com";
+      settings = {
+        user = {
+          name = "AdrienDML";
+          email = "adriendml99@gmail.com";
+        };
+      };
       ignores = [".envrc" ".direnv" ".devenv"];
     };
 
