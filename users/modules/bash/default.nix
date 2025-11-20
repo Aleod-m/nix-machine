@@ -17,7 +17,11 @@
       lg = eza + "-l --git --header";
       lga = eza + "-a -l --git --header";
 
-      disks = "lsblk -o NAME,LABEL,MOUNTPOINTS,TYPE,SIZE,FSUSE,FSAVAIL";
+      nr = "nix registry";
+      nf = "nix flake";
+      ns = "nix shell";
+
+      disks = "lsblk -o NAME,LABEL,MOUNTPOINTS,TYPE,SIZE,FSUSED,FSUSE%";
       disksj = "lsblk -J -O";
       # nvim
       nv = "nvim";
@@ -37,6 +41,7 @@
       gd = git + "diff";
       gdc = git + "diff --cached";
       gw = git + "worktree";
+      gb = git + "branch";
       gbl = git + "branch -vv";
     };
   };

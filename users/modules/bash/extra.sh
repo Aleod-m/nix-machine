@@ -10,6 +10,8 @@ _check_cmd() {
     return 0
 }
 
+## SSH utilities
+
 keya() {
     _check_cmd "keya" "ssh-add" || return;
     if [[ -z "$SSH_AUTH_SOCK" ]]; then
@@ -37,8 +39,20 @@ _keya_completion() {
     fi
 }
 
+ssh-exec() {
+    _check_cmd "ssh-exec" "ssh" || return
+    if ! command -v ssh 1>/dev/null 2>&1 
+    then
+        echo "The up command needs nvim on the system."
+        return
+    fi
+    host=$1 && shift;
+    ssh -t "$host" -o RemoteCommand=none -- "$@"
+}
+
 complete -F _keya_completion keya
 
+## FS utilities
 
 up() {
     _check_cmd "up" "sed" || return;
@@ -58,16 +72,15 @@ mkcd() {
     mkdir "$1"; cd "$1" || return 
 }
 
-ssh-exec() {
-    _check_cmd "ssh-exec" "ssh" || return
-    if ! command -v ssh 1>/dev/null 2>&1 
-    then
-        echo "The up command needs nvim on the system."
-        return
+lt() {
+    _check_cmd "lt" "eza";
+    local level="$1"
+    if [[ "$level" =~ ^[0-9]+$ ]]; then
+        eza --tree --level "$1" --git-ignore --sort extension;
     fi
-    host=$1 && shift;
-    ssh -t "$host" -o RemoteCommand=none -- "$@"
 }
+
+## NVIM utilities
 
 nvl() {
     _check_cmd "nvl" "nvim" || return;
@@ -91,14 +104,29 @@ nvs() {
     nvim --server "/tmp/nvim.{$pipe_name}.pipe"
 }
 
-lt() {
-    _check_cmd "lt" "eza";
-    local level="$1"
-    if [[ "$level" =~ ^[0-9]+$ ]]; then
-        eza --tree --level "$1" --git-ignore --sort extension;
+## Git utilities
+
+# Ammend worktree
+gca() {
+    _check_cmd "gca" "git" || return;
+    if [ $# -lt 1 ]; then
+        git commit --amend --no-edit;
+        return 0;
     fi
+    git commit --amend -m "$@"
 }
 
-PATH="$PATH:/$HOME/bin"
 
+# Switch worktree
+gws() {
+    _check_cmd "gws" "git" || return;
+    _check_cmd "gws" "fzf" || return;
+    common_dir=$(git rev-parse --git-common-dir) || return;
+    worktree_root="$(cd "$common_dir/../.." && pwd)";
+    choice=$(find "$worktree_root" | fzf);
+    cd "$worktree_root/$choice" || return;
+}
+
+
+PATH="$PATH:/$HOME/bin"
 source "$HOME/.profile"
