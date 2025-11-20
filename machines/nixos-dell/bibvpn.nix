@@ -12,29 +12,29 @@
   };
 
   services.openvpn.servers = {
-    bibvpn = {
-      autoStart = false;
-      config = ''
-        client
-        remote bs-acces.biblibre.com
-        remote-cert-tls server
-        comp-lzo yes
-        dev tun
-        proto udp
-        nobind
-        auth-nocache
-        script-security 2
-        persist-key
-        persist-tun
-        user nobody
-        group nogroup
-        data-ciphers AES-256-CBC
-        ca ${config.age.secrets."bibvpn_ca.crt".path}
-        cert ${config.age.secrets."bibvpn_crt.crt".path}
-        key ${config.age.secrets."bibvpn_key.key".path}
-        tls-auth ${config.age.secrets."bibvpn_ta.key".path} 1
-      '';
-    };
+    # bibvpn = {
+    #   autoStart = false;
+    #   config = ''
+    #     client
+    #     remote bs-acces.biblibre.com
+    #     remote-cert-tls server
+    #     comp-lzo yes
+    #     dev tun
+    #     proto udp
+    #     nobind
+    #     auth-nocache
+    #     script-security 2
+    #     persist-key
+    #     persist-tun
+    #     user nobody
+    #     group nogroup
+    #     data-ciphers AES-256-CBC
+    #     ca ${config.age.secrets."bibvpn_ca.crt".path}
+    #     cert ${config.age.secrets."bibvpn_crt.crt".path}
+    #     key ${config.age.secrets."bibvpn_key.key".path}
+    #     tls-auth ${config.age.secrets."bibvpn_ta.key".path} 1
+    #   '';
+    # };
     biblibre = {
       autoStart = false;
       config = ''
