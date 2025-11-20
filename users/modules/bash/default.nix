@@ -33,6 +33,7 @@
       gca = git + "commit --amend -m";
       gs = git + "status";
       gl = git + "log --oneline -n 10";
+      gL = git + "log -n 10";
       gll = git + "log --oneline";
       glg = git + "log --graph --oneline";
       glgl = git + "log --graph";
