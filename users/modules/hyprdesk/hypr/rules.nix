@@ -36,6 +36,7 @@ in {
 
       "float, initialTitle:^()$, class:thunderbird"
       "center, initialTitle:^()$, class:thunderbird"
+      "center, initialTitle:^(Extension : (Gestionnaire de mots de passe Bitwarden) - Bitwarden — Mozilla Firefox)$"
 
       "float, title:Rofi"
       "center, title:Rofi"
