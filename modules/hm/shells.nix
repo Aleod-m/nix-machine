@@ -23,6 +23,7 @@ in {
   };
 
   config = let
+    defaultShell = cfg.default;
     bashEnabled = __elem "bash" cfg.enabled;
     zshEnabled = __elem "zsh" cfg.enabled;
     nushellEnabled = __elem "nushell" cfg.enabled;
@@ -34,9 +35,13 @@ in {
       enableNushellIntegration = nushellEnabled;
     };
   in {
+    
     home.packages = lib.mkIf bashEnabled [
       pkgs.bash-language-server
     ];
+
+    home.sessionVariables.SHELL = pkgs.${defaultShell};
+
     programs = {
       bash.enable = bashEnabled;
       zsh.enable = zshEnabled;
@@ -46,6 +51,7 @@ in {
       zoxide = integrations;
       starship = integrations;
       direnv = integrations;
+      atuin = integrations;
     };
   };
 }

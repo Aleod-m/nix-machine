@@ -7,12 +7,12 @@
 
   environment.systemPackages = with pkgs; [
     firefox
-    kitty
+    ghostty
     evince
     vlc
     nano
-    thunderbird
     feh
+    thunderbird
     nh
     inputs.agenix.packages.${system}.default
   ];

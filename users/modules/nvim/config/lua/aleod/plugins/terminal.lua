@@ -1,5 +1,5 @@
 local km = require('core.keymaps')
-local cmd = require('core.cmd')
+
 return {
     "NvChad/nvterm",
     keys = {

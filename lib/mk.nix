@@ -49,7 +49,7 @@
     hm-argset = {
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
-        inherit (inputs) agenix mlib system hyprland-plugins hyprpaper zen-browser;
+        inherit (inputs) agenix mlib system;
       };
       modules =
         [
@@ -105,6 +105,7 @@ in {
       (__foldl' (a: b: a // b) {})
     ];
 
+  # Conveignance function to expose all the configuration modules in this flake.
   modules = basePath: names: let
     mkModule = mod: {${mod} = import (rootPath + /modules/${basePath}/${mod}.nix);};
   in

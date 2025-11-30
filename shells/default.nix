@@ -1,5 +1,5 @@
 pkgs: {
-  default = pkgs.mkShell {
+  nix = pkgs.mkShell {
     # All the programs i need to edit my config.
     packages = with pkgs; [
       # The nix lsp i use.
@@ -23,6 +23,7 @@ pkgs: {
       maven
       lombok
     ];
+    # Add lombok support.
     env.JDTLS_JVM_ARGS="-javaagent:${pkgs.lombok}/share/java/lombok.jar";
   };
 

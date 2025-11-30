@@ -24,7 +24,7 @@
     self,
     ...
   } @ _inputs: let
-    # Own lib.
+    # My own lib.
     mlib = import ./lib _inputs;
     inputs = _inputs // {inherit mlib;};
   in
@@ -41,7 +41,9 @@
       # System independent flake outputs.
 
       # Authored Modules.
+      # Os modules
       nixosModules = mlib.mk.modules "nixos" ["nix"];
+      # HomeManager modules
       homeManagerModules = mlib.mk.modules "hm" ["shells" "remoterc"];
 
       # Configurations.
@@ -52,10 +54,11 @@
             "nvim"
             "hyprdesk"
             "starship"
-            "nushell"
-            "kitty"
+            "bash"
+            "shell-utils"
             "ghostty"
             "wallpapers"
+            "tmux"
           ];
         }
         {
@@ -90,7 +93,7 @@
             "devices"
             "nvidia"
             "hyprland"
-            "docker"
+            "podman"
             "tailscale"
           ];
         }

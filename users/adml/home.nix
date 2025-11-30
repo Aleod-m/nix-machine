@@ -18,8 +18,6 @@
     # Sound.
     helvum
     pavucontrol
-    gnupg # Not setup yet.
-
     chromium
 
     #--- Software. ---#
@@ -34,16 +32,10 @@
     protonmail-desktop
 
     #--- Command Line utilities. ---#
-    bat
     pciutils
-    zoxide
-    ripgrep
-    fd
-    starship
     zip
     unzip
     wget
-    socat
     nvtopPackages.full
 
     ## Game dev
@@ -72,7 +64,7 @@
     };
 
     htop.enable = true;
-    starship.enable = true;
+
     git = {
       enable = true;
       settings = {

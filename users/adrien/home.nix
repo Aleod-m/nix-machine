@@ -48,10 +48,7 @@
   ];
 
   programs = {
-    atuin = {
-      enable = true;
-      enableBashIntegration = true;
-    };
+    atuin.enable = true;
     ssh = {
       enable = true;
       enableDefaultConfig = false;

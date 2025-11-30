@@ -1,16 +1,4 @@
-{
-  config,
-  pkgs,
-  system,
-  lib,
-  ...
-} @ inputs: 
-let 
-  configDir = if pkgs.stdenv.isDarwin && !config.xdg.enable then
-    "Library/Application Support/nushell"
-  else
-    "${config.xdg.configHome}/nushell";
-in {
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     nushell
   ];
