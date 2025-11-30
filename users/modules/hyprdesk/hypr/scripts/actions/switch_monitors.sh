@@ -5,6 +5,8 @@
 
 monitors=$(hyprctl monitors -j)
 
+focus_current=$(echo "$monitors" | jq "map(select(.focused)) | first .id")
+
 mname() {
     echo "$monitors" | jq -r "map(select(.id == $1)) | first .name"
 }
@@ -32,3 +34,5 @@ new_matz_id=$(echo "$monitors" | jq "map(select(.id != $matz_id)) | first .id");
 # Switch the screens around.
 hyprctl keyword monitor "$(mname "$new_matz_id")",preferred,0x0,1 ;
 hyprctl keyword monitor "$(mname "$matz_id")",preferred,"$(mw "$new_matz_id")"x0,1
+
+hyprctl dispatch focusmonitor "$focus_current"
