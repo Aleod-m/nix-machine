@@ -11,7 +11,7 @@ return {
         local nvt = require('nvterm')
         nvt.setup {
             terminals = {
-                shell = vim.env.SHELL,
+                shell = vim.env.DEFAULT_SHELL,
                 type_opts = {
                     float = {
                         relative = 'editor',

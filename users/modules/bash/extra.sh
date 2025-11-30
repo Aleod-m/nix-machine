@@ -129,4 +129,3 @@ gws() {
 
 
 PATH="$PATH:/$HOME/bin"
-source "$HOME/.profile"

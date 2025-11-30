@@ -40,7 +40,7 @@ in {
       pkgs.bash-language-server
     ];
 
-    home.sessionVariables.SHELL = pkgs.${defaultShell};
+    home.sessionVariables.DEFAULT_SHELL = "${pkgs.${defaultShell}}/bin/${defaultShell}";
 
     programs = {
       bash.enable = bashEnabled;
