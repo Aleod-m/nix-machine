@@ -28,7 +28,7 @@
     evince
     vscode
     libreoffice
-    webcord
+    vencord
     protonmail-desktop
 
     #--- Command Line utilities. ---#
