@@ -24,6 +24,7 @@
     wget
     socat
     libreoffice
+    lorien
     # cyberduck
     # onlyoffice-bin
     bitwarden-cli
