@@ -1,7 +1,6 @@
 local opts = require('core.options')
 opts.set({
-	-- Set My shell as nushell TODO: Make 
-	sh = "nu",
+	sh = vim.env.SHELL,
 	-- allow unlimited undos.
 	undofile = true,
 	mouse = 'a',
@@ -9,7 +8,6 @@ opts.set({
 	-- Indentation at 4 space by default
 	tabstop = 4,
 	shiftwidth = 4,
-	expandtab = true,
 
 	foldmethod = "expr",
 	foldexpr = "nvim_treesitter#foldexpr()",
