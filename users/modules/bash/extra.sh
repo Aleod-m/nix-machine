@@ -113,7 +113,7 @@ gca() {
         git commit --amend --no-edit;
         return 0;
     fi
-    git commit --ammend -m "$@"
+    git commit --amend -m "$@"
 }
 
 
