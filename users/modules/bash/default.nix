@@ -30,7 +30,6 @@
       gA = git + "add --all";
       gcm = git + "commit -m";
       gco = git + "checkout";
-      gca = git + "commit --amend -m";
       gs = git + "status";
       gl = git + "log --oneline -n 10";
       gL = git + "log -n 10";
