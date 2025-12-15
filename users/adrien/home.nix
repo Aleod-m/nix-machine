@@ -55,6 +55,7 @@
       enableDefaultConfig = false;
       matchBlocks = let 
         tmuxCmd = __concatStringsSep " " [
+					"GIT_AUTHOR_NAME=\"Adrien Derobert-Mazure\" GIT_AUTHOR_EMAIL=\"adrien.derobertmazure@biblibre.com\""
           "/usr/bin/tmux -L ADM"
           "set-option -g mode-keys vi \\;"
           "set-option -g base-index 1 \\;"
