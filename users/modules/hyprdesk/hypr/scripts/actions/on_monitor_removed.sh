@@ -15,8 +15,8 @@ mon_disabled() {
 while read -r wsid; do
     mon_id=$(( (wsid - 1) / 10 ))
     echo "$wsid , $mon_id"
-    mon_disabled "$mon_id"
-    if [[ $(mon_disabled "$mon_id") == "true" ]]; then 
+	disabled=$(mon_disabled "$mon_id")
+    if [[ $disabled == "true" || $disabled == "null" ]]; then 
         new_monid=$(echo "$mon" | jq "map(select(.disabled | not)) | first .id")
         new_wsid=$((new_monid * 10 + wsid - mon_id * 10 ))
         while read -r winid; do
