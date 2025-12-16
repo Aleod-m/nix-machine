@@ -117,14 +117,30 @@ gca() {
 }
 
 
+## Git Worktree
+# Expected directory organization:
+# - worktree_root
+#   |- master
+#   |	|-.git
+#   |- branch01
+#   |- branch02
+
 # Switch worktree
 gws() {
     _check_cmd "gws" "git" || return;
     _check_cmd "gws" "fzf" || return;
     common_dir=$(git rev-parse --git-common-dir) || return;
-    worktree_root="$(cd "$common_dir/../.." && pwd)";
-    choice=$(find "$worktree_root" | fzf);
+    worktree_root="$(cd "$common_dir/../.." && pwd)/";
+    choice=$(find "$worktree_root" -maxdepth 1 -mindepth 1 -type d | sed "s@$worktree_root@@" | fzf);
     cd "$worktree_root/$choice" || return;
+}
+
+# Create worktree
+gwa() {
+    _check_cmd "gws" "git" || return;
+    common_dir=$(git rev-parse --git-common-dir) || return;
+	cd "$common_dir/.." || return;
+	git worktree add "../$1"
 }
 
 
