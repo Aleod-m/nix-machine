@@ -20,6 +20,7 @@ vim.lsp.enable({
   "jdtls",
   "spectral",
   "rust_analyzer",
+	"perlnavigator",
 })
 
 vim.g.fmt_on_save = false

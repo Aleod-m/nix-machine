@@ -35,6 +35,7 @@
     rocketchat-desktop
     vscode
     chromium
+		dbeaver-bin
     # jetbrains.idea-community
     signal-desktop
     meld
