@@ -1,7 +1,10 @@
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
-  dependencies = 'rafamadriz/friendly-snippets',
+  dependencies = {
+    'rafamadriz/friendly-snippets',
+    "kristijanhusak/vim-dadbod-completion",
+  },
 
   -- use a release tag to download pre-built binaries
   version = '*',
@@ -41,7 +44,14 @@ return {
       }
     },
     sources = {
+      per_filetype = {
+        sql = { 'dadbod', 'buffer' },
+        mysql = { 'dadbod', 'buffer' },
+      },
       default = { 'lsp', 'path', 'snippets', 'buffer' },
+      providers = {
+        dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+      },
     },
     -- Experimental signature help support
     signature = { enabled = true }
