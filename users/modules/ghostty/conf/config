@@ -20,8 +20,8 @@ foreground = #f6f6ee
 selection-invert-fg-bg = true
 minimum-contrast = 1
 
-# custom-shader = ./test.glsl
-# custom-shader-animation = true
+custom-shader = ./cursor.glsl
+custom-shader-animation = true
 cursor-color = #f6f6ee
 cursor-text = #000000
 
