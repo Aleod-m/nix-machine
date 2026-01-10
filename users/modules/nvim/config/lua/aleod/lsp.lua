@@ -1,6 +1,7 @@
 local autocmd = require('core.autocmd')('Lsp')
 local km = require('core.keymaps')
 local leader = km.leader
+local ctrl = km.ctrl
 
 -- Servers with default configuration
 vim.lsp.enable({
@@ -56,6 +57,7 @@ autocmd("LspAttach", {
       { mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opt = opts, },
       { mode = 'n', keymap = 'gr', action = vim.lsp.buf.references, opt = opts, },
       { mode = 'n', keymap = 'K', action = vim.lsp.buf.hover, opt = opts, },
+      { mode = 'n', keymap = ctrl 'K', action = vim.lsp.buf.signature_help, opt = opts, },
       { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
       { mode = 'n', keymap = leader'I', action = vim.lsp.buf.implementation, opt = opts, },
       -- Format.
@@ -65,7 +67,7 @@ autocmd("LspAttach", {
         action = function() vim.lsp.buf.format { async = true } end,
         opt = opts,
       },
-      -- Toogle inlay_hints on save.
+      -- Toogle inlay_hints.
       {
         mode = 'n',
         keymap = leader 'ti',

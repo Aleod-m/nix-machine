@@ -12,10 +12,7 @@ return {
   ---@module 'blink.cmp'
   ---@type blink.cmp.Config
   opts = {
-    -- 'default' for mappings similar to built-in completion
-    -- 'super-tab' for mappings similar to vscode (tab to accept, arrow keys to navigate)
-    -- 'enter' for mappings similar to 'super-tab' but with 'enter' to accept
-    -- See the full "keymap" documentation for information on defining your own keymap.
+
     keymap = {
       preset = 'enter',
       ['<A-1>'] = { function(cmp) cmp.accept({ index = 1 }) end },
@@ -29,6 +26,7 @@ return {
       ['<A-9>'] = { function(cmp) cmp.accept({ index = 9 }) end },
       ['<A-0>'] = { function(cmp) cmp.accept({ index = 10 }) end },
     },
+
     completion = {
       list = { selection = { preselect = false, auto_insert = true } },
       menu = {
@@ -44,13 +42,23 @@ return {
       }
     },
     sources = {
+      default = { 'lsp', 'path', 'snippets', 'buffer' },
       per_filetype = {
         sql = { 'dadbod', 'buffer' },
         mysql = { 'dadbod', 'buffer' },
       },
-      default = { 'lsp', 'path', 'snippets', 'buffer' },
       providers = {
         dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
+        lsp = {
+          name = 'LSP',
+          module = 'blink.cmp.sources.lsp',
+          transform_items = function(_, items)
+            return vim.table_filter(function (item) 
+              local ty = require('blink.cmp.types').CompletionItemKind
+              return item.kind ~= ty.Keywords or item.kind ~= ty.Snippet
+            end, items)
+          end,
+        }
       },
     },
     -- Experimental signature help support
