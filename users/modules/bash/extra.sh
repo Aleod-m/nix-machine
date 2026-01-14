@@ -90,7 +90,7 @@ nvl() {
         return
     fi
     pipe_name=$1 && shift;
-    nvim --listen "/tmp/nvim.{$pipe_name}.pipe" "$@"
+    nvim --listen "/tmp/nvim.${pipe_name}.pipe" "$@"
 }
 
 nvs() {
@@ -101,10 +101,15 @@ nvs() {
         return
     fi
     pipe_name=$1; shift;
-    nvim --server "/tmp/nvim.{$pipe_name}.pipe"
+    nvim --server "/tmp/nvim.${pipe_name}.pipe"
 }
 
 ## Git utilities
+
+gl() {
+	git log --oneline | fzf --preview 'git show {+1} --color' \
+		--bind 'enter:become(git rev-parse {+1} | git show),ctrl-d:preview-down,ctrl-u:preview-up'
+}
 
 # Ammend worktree
 gca() {
@@ -115,7 +120,6 @@ gca() {
     fi
     git commit --amend -m "$@"
 }
-
 
 ## Git Worktree
 # Expected directory organization:

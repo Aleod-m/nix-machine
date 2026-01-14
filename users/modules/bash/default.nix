@@ -32,11 +32,8 @@
       gcm = git + "commit -m";
       gco = git + "checkout";
       gs = git + "status";
-      gl = git + "log --oneline -n 10";
       gL = git + "log -n 10";
-      gll = git + "log --oneline";
-      glg = git + "log --graph --oneline";
-      glgl = git + "log --graph";
+      glg = git + "log --graph";
       gf = git + "fetch";
       gp = git + "pull";
       gd = git + "diff";
