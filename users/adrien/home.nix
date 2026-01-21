@@ -46,6 +46,7 @@
     aider-chat
     iftop
     watchexec
+		tldr
     proton-pass
   ];
 
