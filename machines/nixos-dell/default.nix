@@ -25,7 +25,7 @@
 		};
 	};
 
-  services { 
+  services = { 
 		fwupd.enable = true;
   	printing.enable = true;
   	avahi = {
