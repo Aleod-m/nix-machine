@@ -17,6 +17,7 @@
   system.stateVersion = "24.05";
 
   # Bootloader.
+	boot.enableContainers = true; 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
   services.fwupd.enable = true;
