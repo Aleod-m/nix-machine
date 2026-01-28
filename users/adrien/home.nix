@@ -48,6 +48,7 @@
     watchexec
 		tldr
     proton-pass
+		drone-cli
   ];
 
   programs = {
