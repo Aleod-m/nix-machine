@@ -1,9 +1,10 @@
 {
   pkgs,
   lib,
+  mlib,
   config,
   ...
-}: {
+}: mlib.enable.services [ "flatpak" ] {
   nixpkgs.config.allowUnfree = true;
   # Imports the hardware configuration
   imports = [./hardware.nix ./bibvpn.nix];

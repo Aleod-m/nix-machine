@@ -13,9 +13,8 @@ return {
       parser_config.ebnf = {
         install_info = {
           url = 'https://github.com/Aleod-m/tree-sitter-ebnf', -- local path or git repo
-          location = 'parser',
-          generate_requires_npm = false, -- if stand-alone parser without npm dependencies
-          requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
+          files = { 'src/parser.c' },
+          queries = 'queries',
         },
         filetype = "ebnf", -- if filetype does not match the parser name
       }

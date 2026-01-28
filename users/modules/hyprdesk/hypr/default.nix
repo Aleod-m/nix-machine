@@ -70,9 +70,7 @@ in {
     decoration = {
       rounding = 1;
       active_opacity = 1.0;
-
       dim_around = 0.3;
-
       blur.enabled = false;
       shadow.enabled = false;
     };
