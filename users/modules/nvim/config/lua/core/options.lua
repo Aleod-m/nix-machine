@@ -4,6 +4,23 @@ function M.get(option)
   return vim.opt[option]
 end
 
+function M.toggle(option)
+  vim.opt[option] = not vim.opt[option]
+end
+
+function M.cycle(option, values)
+  local current = vim.opt[option]
+  local next = 0
+  for i, val in ipairs(values) do
+    if val == current then
+      next = i + 1
+      break
+    end
+  end
+  next = next % #values
+  vim.o[option] = values[next]
+end
+
 function M.get_local(option)
   return vim.opt_local[option]
 end
@@ -29,7 +46,7 @@ function M.set_local(option, value)
 end
 
 -- Set options per filetypes.
-local group = vim.api.nvim_create_augroup('FtOpts', {clear = true})
+local group = vim.api.nvim_create_augroup('FtOpts', { clear = true })
 function M.set_for_ft(filetype, option, value)
   -- If no filetype do nothing.
   if filetype == nil then
@@ -38,7 +55,7 @@ function M.set_for_ft(filetype, option, value)
 
   if type(filetype) == "table" then
     for _, ft in ipairs(filetype) do
-      vim.api.nvim_create_autocmd({"FileType"}, {
+      vim.api.nvim_create_autocmd({ "FileType" }, {
         group = group,
         pattern = ft,
         callback = function()
@@ -47,7 +64,7 @@ function M.set_for_ft(filetype, option, value)
       })
     end
   elseif type(filetype) == "string" then
-    vim.api.nvim_create_autocmd({"FileType"}, {
+    vim.api.nvim_create_autocmd({ "FileType" }, {
       group = group,
       pattern = filetype,
       callback = function()

@@ -31,10 +31,18 @@ return {
       list = { selection = { preselect = false, auto_insert = true } },
       menu = {
         draw = {
-          columns = { { 'item_idx' }, { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
+          columns = {
+            { 'item_idx' },
+            { 'kind_icon' },
+            { 'label',    'label_description', gap = 1 },
+          },
           components = {
             item_idx = {
-              text = function(ctx) return ctx.idx == 10 and '0' or ctx.idx >= 10 and ' ' or tostring(ctx.idx) end,
+              text = function(ctx)
+                return ctx.idx == 10 and '0'
+                    or ctx.idx >= 10 and ' '
+                    or tostring(ctx.idx)
+              end,
               highlight = 'BlinkCmpItemIdx' -- optional, only if you want to change its color
             }
           }
@@ -53,9 +61,9 @@ return {
           name = 'LSP',
           module = 'blink.cmp.sources.lsp',
           transform_items = function(_, items)
-            return vim.table_filter(function (item) 
-              local ty = require('blink.cmp.types').CompletionItemKind
-              return item.kind ~= ty.Keywords or item.kind ~= ty.Snippet
+            return vim.table_filter(function(item)
+              local kind = require('blink.cmp.types').CompletionItemKind
+              return item.kind ~= kind.Keywords or item.kind ~= kind.Snippet
             end, items)
           end,
         }
