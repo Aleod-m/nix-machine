@@ -50,23 +50,23 @@ return {
         }
       }
     },
+    cmdline = {
+      keymap = {
+        preset = 'inherit',
+        ['<A-1>'] = { accept_idx(1) },
+        ['<A-2>'] = { accept_idx(2) },
+        ['<A-3>'] = { accept_idx(3) },
+        ['<A-4>'] = { accept_idx(4) },
+        ['<A-5>'] = { accept_idx(5) },
+        ['<A-6>'] = { accept_idx(6) },
+        ['<A-7>'] = { accept_idx(7) },
+        ['<A-8>'] = { accept_idx(8) },
+        ['<A-9>'] = { accept_idx(9) },
+        ['<A-0>'] = { accept_idx(10) },
+      },
+    },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
-      cmdline = {
-        keymap = {
-          preset = 'inherit',
-          ['<A-1>'] = { accept_idx(1) },
-          ['<A-2>'] = { accept_idx(2) },
-          ['<A-3>'] = { accept_idx(3) },
-          ['<A-4>'] = { accept_idx(4) },
-          ['<A-5>'] = { accept_idx(5) },
-          ['<A-6>'] = { accept_idx(6) },
-          ['<A-7>'] = { accept_idx(7) },
-          ['<A-8>'] = { accept_idx(8) },
-          ['<A-9>'] = { accept_idx(9) },
-          ['<A-0>'] = { accept_idx(10) },
-        },
-      },
       per_filetype = {
         sql = { 'dadbod', 'buffer' },
         mysql = { 'dadbod', 'buffer' },
