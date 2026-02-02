@@ -21,7 +21,7 @@ vim.lsp.enable({
   "jdtls",
   "spectral",
   "rust_analyzer",
-	"perlnavigator",
+  "perlnavigator",
 })
 
 vim.g.fmt_on_save = false
@@ -45,7 +45,7 @@ autocmd("LspAttach", {
     if client ~= nil then
       -- If inlay hints are available enable them.
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(true, {bufnr = ev.buf})
+        vim.lsp.inlay_hint.enable(true, { bufnr = ev.buf })
       end
       -- Prefer treesitter highlights, disable lsp highlighting.
       client.server_capabilities.semanticTokensProvider = nil
@@ -53,13 +53,13 @@ autocmd("LspAttach", {
 
     local opts = { buffer = ev.buf }
     km.set_keymaps({
-      { mode = 'n', keymap='gD', action = vim.lsp.buf.declaration, opt = opts, },
-      { mode = 'n', keymap='gd', action = vim.lsp.buf.definition, opt = opts, },
-      { mode = 'n', keymap = 'gr', action = vim.lsp.buf.references, opt = opts, },
-      { mode = 'n', keymap = 'K', action = vim.lsp.buf.hover, opt = opts, },
-      { mode = 'n', keymap = ctrl 'K', action = vim.lsp.buf.signature_help, opt = opts, },
-      { mode = 'n', keymap = leader'D', action = vim.lsp.buf.type_definition, opt = opts, },
-      { mode = 'n', keymap = leader'I', action = vim.lsp.buf.implementation, opt = opts, },
+      { mode = 'n', keymap = 'gD',       action = vim.lsp.buf.declaration,     opt = opts, },
+      { mode = 'n', keymap = 'gd',       action = vim.lsp.buf.definition,      opt = opts, },
+      { mode = 'n', keymap = 'gr',       action = vim.lsp.buf.references,      opt = opts, },
+      { mode = 'n', keymap = 'K',        action = vim.lsp.buf.hover,           opt = opts, },
+      { mode = 'n', keymap = ctrl 'K',   action = vim.lsp.buf.signature_help,  opt = opts, },
+      { mode = 'n', keymap = leader 'D', action = vim.lsp.buf.type_definition, opt = opts, },
+      { mode = 'n', keymap = leader 'I', action = vim.lsp.buf.implementation,  opt = opts, },
       -- Format.
       {
         mode = 'n',
@@ -79,7 +79,7 @@ autocmd("LspAttach", {
       -- Toogle format on save.
       {
         mode = 'n',
-        keymap='<space>ft',
+        keymap = '<space>ft',
         action = function()
           vim.g.fmt_on_save = not vim.g.fmt_on_save
           local state = nil;
@@ -88,11 +88,11 @@ autocmd("LspAttach", {
           else
             state = "disabled."
           end
-          print ("Format on save " .. state)
+          print("Format on save " .. state)
         end,
         opt = opts,
       },
-      { mode = 'n', keymap = leader 'rn', action = vim.lsp.buf.rename, opt = opts, },
+      { mode = 'n', keymap = leader 'rn', action = vim.lsp.buf.rename,      opt = opts, },
       { mode = 'n', keymap = leader 'ca', action = vim.lsp.buf.code_action, opt = opts, },
     })
   end

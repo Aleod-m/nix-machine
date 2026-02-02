@@ -1,3 +1,4 @@
+local accept_idx = function(nb) return function(cmp) cmp.accept({ index = nb }) end end
 return {
   'saghen/blink.cmp',
   -- optional: provides snippets for the snippet source
@@ -15,16 +16,16 @@ return {
 
     keymap = {
       preset = 'enter',
-      ['<A-1>'] = { function(cmp) cmp.accept({ index = 1 }) end },
-      ['<A-2>'] = { function(cmp) cmp.accept({ index = 2 }) end },
-      ['<A-3>'] = { function(cmp) cmp.accept({ index = 3 }) end },
-      ['<A-4>'] = { function(cmp) cmp.accept({ index = 4 }) end },
-      ['<A-5>'] = { function(cmp) cmp.accept({ index = 5 }) end },
-      ['<A-6>'] = { function(cmp) cmp.accept({ index = 6 }) end },
-      ['<A-7>'] = { function(cmp) cmp.accept({ index = 7 }) end },
-      ['<A-8>'] = { function(cmp) cmp.accept({ index = 8 }) end },
-      ['<A-9>'] = { function(cmp) cmp.accept({ index = 9 }) end },
-      ['<A-0>'] = { function(cmp) cmp.accept({ index = 10 }) end },
+      ['<A-1>'] = { accept_idx(1) },
+      ['<A-2>'] = { accept_idx(2) },
+      ['<A-3>'] = { accept_idx(3) },
+      ['<A-4>'] = { accept_idx(4) },
+      ['<A-5>'] = { accept_idx(5) },
+      ['<A-6>'] = { accept_idx(6) },
+      ['<A-7>'] = { accept_idx(7) },
+      ['<A-8>'] = { accept_idx(8) },
+      ['<A-9>'] = { accept_idx(9) },
+      ['<A-0>'] = { accept_idx(10) },
     },
 
     completion = {
@@ -51,6 +52,21 @@ return {
     },
     sources = {
       default = { 'lsp', 'path', 'snippets', 'buffer' },
+      cmdline = {
+        keymap = {
+          preset = 'inherit',
+          ['<A-1>'] = { accept_idx(1) },
+          ['<A-2>'] = { accept_idx(2) },
+          ['<A-3>'] = { accept_idx(3) },
+          ['<A-4>'] = { accept_idx(4) },
+          ['<A-5>'] = { accept_idx(5) },
+          ['<A-6>'] = { accept_idx(6) },
+          ['<A-7>'] = { accept_idx(7) },
+          ['<A-8>'] = { accept_idx(8) },
+          ['<A-9>'] = { accept_idx(9) },
+          ['<A-0>'] = { accept_idx(10) },
+        },
+      },
       per_filetype = {
         sql = { 'dadbod', 'buffer' },
         mysql = { 'dadbod', 'buffer' },
@@ -60,6 +76,7 @@ return {
         lsp = {
           name = 'LSP',
           module = 'blink.cmp.sources.lsp',
+          async = true,
           transform_items = function(_, items)
             return vim.table_filter(function(item)
               local kind = require('blink.cmp.types').CompletionItemKind
