@@ -35,6 +35,7 @@
       gL = git + "log -n 10";
       glg = git + "log --graph";
       gf = git + "fetch";
+      gfh = git + "log -p --";
       gp = git + "pull";
       gd = git + "diff";
       gdc = git + "diff --cached";
