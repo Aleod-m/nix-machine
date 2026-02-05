@@ -5,7 +5,7 @@ vim.g.testfileResolver = {
   end,
 }
 
-vim.api.nvim_create_user_command('Testfile', function(_args)
+vim.api.nvim_create_user_command('Testfile', function(_)
   if vim.g[vim.bo.filetype] ~= nil then
     local findTestFile = vim.g.testfileResolver[vim.bo.filetype]
     vim.cmd {
