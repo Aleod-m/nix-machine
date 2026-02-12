@@ -6,6 +6,7 @@ local ctrl = km.ctrl
 -- Servers with default configuration
 vim.lsp.enable({
   "phpactor",
+  "nixd",
   "bashls",
   "ccls",
   "lua_ls",

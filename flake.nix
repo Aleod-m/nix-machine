@@ -2,8 +2,8 @@
   description = "Aleod nixos config";
 
   inputs = {
-    flake-utils.url = "github:numtide/flake-utils";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+		flake-parts.url = "github:hercules-ci/flake-parts";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -20,24 +20,21 @@
 
   outputs = {
     nixpkgs,
-    flake-utils,
-    self,
+		flake-parts,
     ...
   } @ _inputs: let
     # My own lib.
     mlib = import ./lib _inputs;
+		# Flake parts lib
+		flib = flake-parts.lib;
     inputs = _inputs // {inherit mlib;};
-  in
-    # System dependent flake outputs.
-    flake-utils.lib.eachDefaultSystem (
-      system: let
-        pkgs = nixpkgs.legacyPackages.${system};
-      in {
-        devShells = import ./shells pkgs;
-        formatter = pkgs.alejandra;
-      }
-    )
-    // {
+  in flib.mkFlake { inherit inputs; } ({...}: {
+		imports = [ 
+			(flib.importApply ./shells/default.nix {})
+		];
+		systems = ["x86_64-linux"];
+	  perSystem = {pkgs,...}: { formatter = pkgs.alejandra; };
+    flake = {
       # System independent flake outputs.
 
       # Authored Modules.
@@ -117,4 +114,5 @@
         }
       ];
     };
+	});
 }
