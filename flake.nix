@@ -19,7 +19,6 @@
   };
 
   outputs = {
-    nixpkgs,
 		flake-parts,
     ...
   } @ _inputs: let
@@ -100,6 +99,7 @@
           users = ["adrien"];
           modules = [
             "base"
+						"spelling"
             "cosmic"
             "sound"
             "net"
