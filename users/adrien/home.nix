@@ -131,10 +131,33 @@
     htop.enable = true;
     git = {
       enable = true;
-      settings.user = {
-        name = "Adrien Derobert-Mazure";
-        email = "adrien.derobertmazure@biblibre.com";
-      };
+			settings = {
+				user = {
+					name = "Adrien Derobert-Mazure";
+					email = "adrien.derobertmazure@biblibre.com";
+				};
+
+				core = {
+					whitespace = "error";
+					preloadindex = true;
+				};
+				url = {
+					"ssh://git@git.biblibre.com:2222/".insteadOf = "bibgitea/";
+					"git@gitub.com:biblibre/".insteadOf = "bibgh/";
+					"git@gitub.com:NumaHOP/".insteadOf = "nh/";
+					"git@gitub.com:".insteadOf = "gh:";
+				};
+				status = { 
+					branch = true;
+					showStash = true;
+					showUntrackedFiles = "all";
+				};
+				diff = {
+					context = 3;
+					renames = "copies";
+					interHunkContext = 10;
+				};
+			};
       ignores = [".envrc" ".direnv" ".devenv"];
     };
   };
