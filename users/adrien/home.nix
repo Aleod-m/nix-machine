@@ -15,6 +15,7 @@
 
   home.packages = with pkgs; [
     spotify
+		zotero
     pavucontrol
     bat
     pciutils
