@@ -124,17 +124,6 @@ return {
       },
       providers = {
         dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
-        lsp = {
-          name = 'LSP',
-          module = 'blink.cmp.sources.lsp',
-          async = true,
-          transform_items = function(_, items)
-            return vim.table_filter(function(item)
-              local kind = require('blink.cmp.types').CompletionItemKind
-              return item.kind ~= kind.Keywords or item.kind ~= kind.Snippet
-            end, items)
-          end,
-        }
       },
     },
     -- Experimental signature help support
