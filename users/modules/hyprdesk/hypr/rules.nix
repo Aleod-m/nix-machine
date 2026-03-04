@@ -16,42 +16,38 @@
 in {
   wayland.windowManager.hyprland.settings = {
     # window rules
-    windowrulev2 = [
-      # make Firefox PiP window floating and sticky
-      "float, title:^(Incrustation vidéo)$"
-      "keepaspectratio, title:^(Incrustation vidéo)$"
-      "pin, title:^(Incrustation vidéo)$"
+    windowrule = [
+      # telegram media viewer
+      "match:title ^(Media viewer)$, float on"
 
-      "float, class:file_progress"
-      "float, class:confirm"
-      "float, class:dialog"
-      "float, class:download"
-      "float, class:notification"
-      "float, class:error"
-      "float, class:splash"
-      "float, class:confirmreset"
-      "float, title:Open File"
-      "float, class:branchdialog"
-      "float, title:^(Firefox - Sharing Indicator)$"
+      # Bitwarden extension
+      "match:title ^(.*Bitwarden Password Manager.*)$, float on"
 
-      "float, initialTitle:^()$, class:thunderbird"
-      "center, initialTitle:^()$, class:thunderbird"
-      "center, initialTitle:^(Extension : (Gestionnaire de mots de passe Bitwarden) - Bitwarden — Mozilla Firefox)$"
+      # make Firefox/Zen PiP window float oning and sticky
+      "match:title ^(Picture-in-Picture)$, float on"
+      "match:title ^(Picture-in-Picture)$, pin on"
 
-      "float, title:Rofi"
-      "center, title:Rofi"
-      "dimaround, title:Rofi"
 
-      "float, class:feh"
-      "center, class:feh"
-      "dimaround, title:Rofi"
+      # throw sharing indicators away
+      "match:title ^(Firefox — Sharing Indicator)$, workspace special silent"
+      "match:title ^(Zen — Sharing Indicator)$, workspace special silent"
+      "match:title ^(.*is sharing (your screen|a window)\.)$, workspace special silent"
 
-      "bordercolor ${cyan} ... ${green} 90deg ${grey}, fullscreen:1"
+      "match:class ^(xdg-desktop-portal-gtk)$, dim_around on"
+      "match:title Rofi, dim_around on"
+      "match:class feh, float on"
+      "match:class feh, center on"
 
-      "float, class:file-roller"
-      "fullscreen, title:wlogout"
-      "float, title:wlogout"
-      "fullscreen, title:wlogout"
+
+      "match:initial_title ^()$, match:class thunderbird, float on"
+      "match:initial_title ^()$, match:class thunderbird, center on"
+
+      # "bordercolor ${cyan} ... ${green} 90deg ${grey}, fullscreen:1"
+
+      "match:class file-roller, float on"
+      "match:title wlogout, fullscreen on"
+      "match:title wlogout, float on"
+      "match:title wlogout, fullscreen on"
     ];
 
     workspace = map mkworkspacerule (__genList (x: x + 1) 20);

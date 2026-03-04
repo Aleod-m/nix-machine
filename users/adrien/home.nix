@@ -25,8 +25,8 @@
     wget
     socat
     libreoffice
-    lorien
-    # cyberduck
+		rclone
+		rclone-ui
     # onlyoffice-bin
     bitwarden-cli
     bitwarden-desktop

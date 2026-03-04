@@ -100,7 +100,6 @@
           modules = [
             "base"
 						"spelling"
-            "cosmic"
             "sound"
             "net"
             "graphics"

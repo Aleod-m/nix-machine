@@ -98,6 +98,7 @@ in {
     };
     misc = {
       focus_on_activate = true;
+			on_focus_under_fullscreen = 1;
     };
 
     animations.enabled = false;
