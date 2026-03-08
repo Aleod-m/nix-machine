@@ -27,6 +27,7 @@
 	};
 
   services = { 
+		getty.autologinUser = "adrien";
 		fwupd.enable = true;
   	printing.enable = true;
   	avahi = {
