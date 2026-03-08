@@ -1,4 +1,5 @@
-vim.o.expandtab = false
+vim.bo.expandtab = false
+
 local home = vim.env.HOME
 local root_dir = vim.fs.root(0, { { '.git', 'gradlew', 'mvnw' }, { 'pom.xml' } })
     or vim.fn.fnamemodify(vim.fn.getcwd(), ':p:h:t')
