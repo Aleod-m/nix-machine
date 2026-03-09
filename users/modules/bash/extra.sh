@@ -1,5 +1,3 @@
-export LS_COLORS='auto'
-
 alias lessc='less -r'
 
 _check_cmd() {
