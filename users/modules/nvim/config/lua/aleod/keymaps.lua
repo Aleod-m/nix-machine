@@ -58,6 +58,9 @@ km.set_keymaps {
   -- Insert accents with alt k rather than ctrl k in insert mode.
   { mode="i", keymap= alt "k", action= ctrl "k" },
 
+  -- Map ctrl+T to ctrl+O to use ctrl t for moving code.
+  { mode="n", keymap= ctrl "O", action= ctrl "t" },
+
   -- Moving/Indenting lines of text
   -- Insert mode with the ctrl key
   { mode="i", keymap= ctrl "h", action="<C-D>" },
