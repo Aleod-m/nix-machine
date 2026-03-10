@@ -45,13 +45,29 @@ in {
         (mkbind "SHIFT" "f" "fullscreen" "1")
 
         # Layout
-        (layout "" "n" "cyclenext")
-        (layout "" "p" "cycleprev")
+        (script "" "n" "cyclenext" "")
+        (script "" "p" "cycleprev" "")
         (layout "" "m" "focusmaster")
 
-        (layout "SHIFT" "n" "swapnext")
-        (layout "SHIFT" "p" "swapprev")
+        (script "SHIFT" "n" "swapnext" "")
+        (script "SHIFT" "p" "swapprev" "")
         (layout "SHIFT" "m" "swapwithmaster")
+# Scrolling layout 
+
+# Resize column
+# (layout "" "period" "move +col")
+# (layout "" "comma" "move -col")
+
+# move win
+# (layout "" "h" "movewindowto l")
+# (layout "" "t" "movewindowto u")
+# (layout "" "k" "movewindowto d")
+# (layout "" "l" "movewindowto r")
+
+# (layout "" "?" "promote")
+# (layout "" "?" "togglefit")
+# (layout "" "?" "swapcol r")
+# (layout "" "?" "swapcol l")
 
         # Screen Shot.
         (exec "" "Print" "grimblast --notify copysave area")
@@ -60,7 +76,7 @@ in {
         (exec "SHIFT" "Print" "grimblast --notify --cursor copysave screen")
 
         # Locking and logout.
-        (exec "" "L" "hyprlock")
+        (exec "SHIFT" "L" "hyprlock")
         (exec "SHIFT ALT" "Q" "wlogout -s -p layer-shell")
 
         # Workspace increment / decrement.

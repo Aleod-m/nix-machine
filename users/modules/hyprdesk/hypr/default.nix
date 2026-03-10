@@ -101,6 +101,6 @@ in {
 			on_focus_under_fullscreen = 1;
     };
 
-    animations.enabled = false;
+    animations.enabled = true;
   };
 }
