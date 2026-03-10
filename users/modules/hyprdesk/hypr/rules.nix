@@ -18,10 +18,12 @@ in {
     # window rules
     windowrule = [
       # telegram media viewer
-      "match:title ^(Media viewer)$, float on"
+      "match:title ^Media viewer$, float on"
 
       # Bitwarden extension
-      "match:title ^(.*Bitwarden Password Manager.*)$, float on"
+      "match:title ^.*Bitwarden Password Manager.*$, float on, center on, border_color ${red}"
+
+      "match:class com.mitchellh.ghostty, match:title ^~$, float on, center on"
 
       # make Firefox/Zen PiP window float oning and sticky
       "match:title ^(Picture-in-Picture)$, float on"
