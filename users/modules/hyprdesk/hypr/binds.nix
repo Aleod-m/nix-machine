@@ -7,9 +7,9 @@
   script = mod: key: name: args: (exec mod key "$scripts/${name}.sh ${toString args}");
   workspaces = __genList (x: x + 1) 10;
   switchworkspacebinds =
-    map (ws: script "" "${toString (lib.trivial.mod ws 10)}" "swk" ws) workspaces;
+    map (ws: script "" "${toString (lib.trivial.mod ws 10)}" "wks/switch" ws) workspaces;
   moveworkspacebinds =
-    map (ws: script "SHIFT" "${toString (lib.trivial.mod ws 10)}" "mwk" ws) workspaces;
+    map (ws: script "SHIFT" "${toString (lib.trivial.mod ws 10)}" "wks/move" ws) workspaces;
 in {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
@@ -26,11 +26,17 @@ in {
     bind =
       [
         # Switch screen / Move window to other screen.
-        (script "" "o" "sscr" "")
-        (script "Shift" "O" "mscr" "")
+        (script "" "o" "scr/switch" "")
+        (script "Shift" "O" "scr/move" "")
 
+        # Window
         (action "" "mouse:274" "killactive")
-        # Programs
+        (action "SHIFT" "q" "killactive")
+        (action "" "v" "togglefloating")
+        (action "" "f" "fullscreen")
+        (mkbind "SHIFT" "f" "fullscreen" "1")
+
+        # Runners 
         (exec "" "return" "ghostty")
         (exec "" "b" "rofi -show qute-sesh")
         (exec "" "a" "rofi -show hypr-action")
@@ -38,38 +44,35 @@ in {
         (exec "" "space" "rofi -show drun")
         (exec "SHIFT" "space" "rofi -show run")
 
-        # window state
-        (action "SHIFT" "q" "killactive")
-        (action "" "v" "togglefloating")
-        (action "" "f" "fullscreen")
-        (mkbind "SHIFT" "f" "fullscreen" "1")
 
         # Layout
-				(script "" "|" "toggleLayout" "")
-        (script "" "n" "cyclenext" "")
-        (script "" "p" "cycleprev" "")
-        (layout "" "m" "focusmaster")
+				(script "" "backslash" "layout/toggle" "")
+        (script "" "n" "layout/cyclenext" "")
+        (script "" "p" "layout/cycleprev" "")
 
-        (script "SHIFT" "n" "swapnext" "")
-        (script "SHIFT" "p" "swapprev" "")
+        (script "SHIFT" "n" "layout/swapnext" "")
+        (script "SHIFT" "p" "layout/swapprev" "")
+
+				# Layout master
+        (layout "" "m" "focusmaster")
         (layout "SHIFT" "m" "swapwithmaster")
 
-# Scrolling layout 
+				# Scrolling layout 
+				# (layout "" "?" "togglefit")
+				# (layout "" "?" "swapcol r")
+				# (layout "" "?" "swapcol l")
 
-# Resize column
-# (layout "" "period" "move +col")
-# (layout "" "comma" "move -col")
+				# Resize column
+				# (layout "" "period" "move +col")
+				# (layout "" "comma" "move -col")
 
-# move win
-# (layout "" "h" "movewindowto l")
-# (layout "" "t" "movewindowto u")
-# (layout "" "k" "movewindowto d")
-# (layout "" "l" "movewindowto r")
+				# move win
+				# (layout "" "h" "movewindowto l")
+				# (layout "" "t" "movewindowto u")
+				# (layout "" "k" "movewindowto d")
+				# (layout "" "l" "movewindowto r")
 
-# (layout "" "?" "promote")
-# (layout "" "?" "togglefit")
-# (layout "" "?" "swapcol r")
-# (layout "" "?" "swapcol l")
+				# (layout "" "?" "promote")
 
         # Screen Shot.
         (exec "" "Print" "grimblast --notify copysave area")

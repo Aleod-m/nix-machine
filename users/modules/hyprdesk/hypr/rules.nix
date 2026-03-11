@@ -9,10 +9,6 @@
   grey = "rgb(929276)";
   white = "rgb(f6f6ee)";
 
-  mkworkspacerule = nb:
-    if nb <= 10
-    then "workspace=${toString nb}, monitor:DP-1"
-    else "workspace=${toString nb}, monitor:HDMI-A-2";
 in {
   wayland.windowManager.hyprland.settings = {
     # window rules
@@ -52,6 +48,5 @@ in {
       "match:title wlogout, fullscreen on"
     ];
 
-    workspace = map mkworkspacerule (__genList (x: x + 1) 20);
   };
 }

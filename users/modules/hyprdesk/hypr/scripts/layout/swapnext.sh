@@ -12,15 +12,15 @@ scrolling_next() {
 
 	if [[ "$w_at" == 1 ]]; then
 		if [[ "$w_s" -lt 1050 ]]; then
-			hyprctl dispatch layoutmsg "movewindowto d";
+			hyprctl dispatch layoutmsg "movewindow d";
 		else 
-			hyprctl dispatch layoutmsg "movewindowto r";
+			hyprctl dispatch layoutmsg "movewindow r";
 		fi
 	else
 		if [[ $((w_at + w_s)) -gt 1050 ]]; then
-			hyprctl dispatch layoutmsg "movewindowto r";
+			hyprctl dispatch layoutmsg "promote";
 		else
-			hyprctl dispatch layoutmsg "movewindowto d";
+			hyprctl dispatch layoutmsg "movewindow d";
 		fi
 	fi
 }

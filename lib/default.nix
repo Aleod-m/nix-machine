@@ -7,6 +7,7 @@ in {
   mk = import ./mk.nix inputs;
   enable = import ./enable.nix inputs;
 
+	# fs agnostic import either import `mod.nix` or `mod/default.nix`
   import = basePath: mods:
     let 
       mkModfs = mod:

@@ -1,26 +1,28 @@
 #!/usr/bin/env bash
 # This script is an action. See the rofi hypr action script to run the actions and the action palette. 
 
+
 # Allows to swap the right left position of screens.
 
 monitors=$(hyprctl monitors -j)
 
-focus_current=$(echo "$monitors" | jq "map(select(.focused)) | first .id")
+# More than two monitors not handled. 
+[[ $(echo "$monitors" | jq 'length') -ne 2 ]] && exit 1 
+
+current=$(echo "$monitors" | jq "map(select(.focused)) | first .id")
 
 mname() {
-    echo "$monitors" | jq -r "map(select(.id == $1)) | first .name"
+    jq -r "map(select(.id == $1)) | first .name" <<< "$monitors"
 }
 
 mw() {
-    echo "$monitors" | jq -r "map(select(.id == $1)) | first .width"
+    jq -r "map(select(.id == $1)) | first .width" <<< "$monitors"
 }
 
 mx() {
-    echo "$monitors" | jq -r "map(select(.id == $1)) | first .x"
+    jq -r "map(select(.id == $1)) | first .x" <<< "$monitors"
 }
 
-# More than two monitors not handled. 
-[[ $(echo "$monitors" | jq 'length') -ne 2 ]] && exit 1 
 
 # Find out wich monitor is at x = 0.
 matz_id=$(echo "$monitors" | jq "min_by(.x) | .id")
@@ -35,4 +37,4 @@ new_matz_id=$(echo "$monitors" | jq "map(select(.id != $matz_id)) | first .id");
 hyprctl keyword monitor "$(mname "$new_matz_id")",preferred,0x0,1 ;
 hyprctl keyword monitor "$(mname "$matz_id")",preferred,"$(mw "$new_matz_id")"x0,1
 
-hyprctl dispatch focusmonitor "$focus_current"
+hyprctl dispatch focusmonitor "$current"
