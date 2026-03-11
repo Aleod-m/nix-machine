@@ -91,6 +91,7 @@ pkgs,
 					setEnv = {
 						TERM="xterm";
 					};
+					# IMPORTANT TO DISABLE WHILE USING SFTP
 					extraOptions.RequestTTY = "force";
 				};
 				# Proxies

@@ -45,6 +45,7 @@ in {
         (mkbind "SHIFT" "f" "fullscreen" "1")
 
         # Layout
+				(script "" "|" "toggleLayout" "")
         (script "" "n" "cyclenext" "")
         (script "" "p" "cycleprev" "")
         (layout "" "m" "focusmaster")
@@ -52,6 +53,7 @@ in {
         (script "SHIFT" "n" "swapnext" "")
         (script "SHIFT" "p" "swapprev" "")
         (layout "SHIFT" "m" "swapwithmaster")
+
 # Scrolling layout 
 
 # Resize column
