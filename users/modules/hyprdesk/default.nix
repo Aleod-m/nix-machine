@@ -2,18 +2,7 @@
   pkgs,
   mlib,
   ...
-}: let 
-  bg = "191919";
-  green  = "97e023";
-  orange = "fa8419";
-  yellow = "dfd561";
-  purple = "9c64fe";
-  red    = "f3005f";
-  cyan   = "57d1ea";
-  blue   = "0e6172";
-  grey   = "929276";
-  white  = "f6f6ee";
-in {
+}: {
   imports = mlib.import ./. [
     "hypr"
     "mako"
@@ -27,6 +16,8 @@ in {
     SDL_VIDEODRIVER = "wayland";
     XDG_SESSION_TYPE = "wayland";
   };
+
+	services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -44,6 +35,7 @@ in {
     };
     x11.enable = true;
   };
+
   # qt = {
   #   enable = true;
   #   platformTheme.name = "gtk";
@@ -54,12 +46,11 @@ in {
   # };
 
   home.packages = with pkgs; [
+		hyprpwcenter
 		# jq for interacting with hyprctl
 		jq
     # Sound.
     playerctl
-    pamixer
-    pulseaudio
     # Screen and brightness.
     wlr-randr
     wlsunset
