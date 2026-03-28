@@ -16,7 +16,6 @@
     # Bluetooth.
     blueman
     # Sound.
-    helvum
     pavucontrol
     chromium
 
