@@ -3,6 +3,8 @@
     # Per interface useDHCP are to be disabled in the hardware.nix file.
     useDHCP = false;
 
+		nftables.enable = true;
+
     firewall = {
       checkReversePath = "loose";
       enable = true;

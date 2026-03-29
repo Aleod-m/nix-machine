@@ -6,7 +6,7 @@
 }: let
   lib = nixpkgs.lib;
 
-  loadModule = basePath: mods:
+  loadModules = basePath: mods:
     let 
       mkModfs = mod:
         let 
@@ -60,9 +60,9 @@
         ]
         ++ (__attrValues inputs.self.homeManagerModules)
         # add all the selected configuration modules.
-        ++ (loadModule (rootPath + /users/modules/.) modules);
+        ++ (loadModules (rootPath + /users/modules/.) modules);
     };
-  in {${username} = home-manager.lib.homeManagerConfiguration hm-argset;};
+  in { ${username} = home-manager.lib.homeManagerConfiguration hm-argset; };
 
   # Function to create a computer with some users.
   mkComputer = inputs: {
@@ -75,21 +75,21 @@
   }: let
     nixos-argset = {
       inherit system;
-      specialArgs = {inherit (inputs) agenix mlib;};
+      specialArgs = { inherit (inputs) agenix mlib; };
       modules =
         [
           (rootPath + /machines/${hostName})
-          {networking.hostName = hostName;}
+          { networking.hostName = hostName; }
           inputs.agenix.nixosModules.default
         ]
         # Add my custom nixos and mixed modules.
         ++ (__attrValues inputs.self.nixosModules)
         # add all the selected configuration modules.
-        ++ (loadModule (rootPath + /machines/modules/.) modules)
-        ++ (loadModule (rootPath + /users/.) users);
+        ++ (loadModules (rootPath + /machines/modules/.) modules)
+        ++ (loadModules (rootPath + /users/.) users);
         # add all the selected users
     };
-  in {${hostName} = lib.nixosSystem nixos-argset;};
+  in { ${hostName} = lib.nixosSystem nixos-argset; };
 in {
   # Conveignance function to create all my usesrs.
   users = inputs: users:

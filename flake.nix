@@ -108,7 +108,7 @@
             "nix"
             "ssh"
             "docker"
-            "lxd"
+            "virt"
           ];
         }
       ];
