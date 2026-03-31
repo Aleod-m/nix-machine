@@ -32,10 +32,11 @@
       gcm = git + "commit -m";
       gco = git + "checkout";
       gs = git + "status";
-      gL = git + "log -n 10";
+      gl = git + "log -n 10 --oneline";
+      gL = git + "log";
       glg = git + "log --graph";
-      gf = git + "fetch";
       gfh = git + "log -p --";
+      gf = git + "fetch";
       gp = git + "pull";
       gd = git + "diff";
       gdc = git + "diff --cached";

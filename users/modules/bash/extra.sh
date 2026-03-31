@@ -104,12 +104,14 @@ nvs() {
 
 ## Git utilities
 
-gl() {
+# Fuzzy search commit messges
+grl() {
+	# shellcheck disable=SC2016
 	git log --oneline | fzf --preview 'git show {+1} --color' \
-		--bind 'enter:become(git rev-parse {+1} | git show),ctrl-d:preview-down,ctrl-u:preview-up'
+		--bind 'enter:become(git show $(git rev-parse {+1})),ctrl-d:preview-down,ctrl-u:preview-up'
 }
 
-# Ammend worktree
+# Ammend 
 gca() {
     _check_cmd "gca" "git" || return;
     if [ $# -lt 1 ]; then
@@ -121,11 +123,11 @@ gca() {
 
 ## Git Worktree
 # Expected directory organization:
-# - worktree_root
-#   |- master
-#   |	|-.git
-#   |- branch01
-#   |- branch02
+# |- worktree_root
+# |  |- master
+# |  | 	|-.git
+# |  |- branch01
+# |  |- branch02
 
 # Switch worktree
 gws() {
@@ -133,17 +135,26 @@ gws() {
     _check_cmd "gws" "fzf" || return;
     common_dir=$(git rev-parse --git-common-dir) || return;
     worktree_root="$(cd "$common_dir/../.." && pwd)/";
-    choice=$(find "$worktree_root" -maxdepth 1 -mindepth 1 -type d | sed "s@$worktree_root@@" | fzf);
-    cd "$worktree_root/$choice" || return;
+    choice=$(find "$worktree_root" \
+		-maxdepth 1 -mindepth 1 \
+		-type d \
+		-not -name "\.*" \
+		| sed "s@$worktree_root@@" \
+		| fzf
+	);
+
+	if [ -n "$choice" ]; then
+    	cd "$worktree_root/$choice" || return;
+	else 
+		cd "$common_dir/.." || return
+	fi
 }
 
 # Create worktree
 gwa() {
     _check_cmd "gws" "git" || return;
     common_dir=$(git rev-parse --git-common-dir) || return;
-	cd "$common_dir/.." || return;
 	git worktree add "../$1"
 }
-
 
 PATH="$PATH:/$HOME/bin"
