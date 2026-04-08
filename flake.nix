@@ -107,7 +107,6 @@
             "hyprland"
             "nix"
             "ssh"
-            "docker"
             "virt"
           ];
         }

@@ -26,25 +26,20 @@ pkgs,
 		socat
 		libreoffice
 		rclone
-		rclone-ui
-		# onlyoffice-bin
+		# rclone-ui
 		bitwarden-cli
 		bitwarden-desktop
 		openvpn
 		thunderbird
-		seafile-client
 		rocketchat-desktop
 		vscode
 		chromium
 		dbeaver-bin
-		# jetbrains.idea-community
 		signal-desktop
 		meld
 		qutebrowser
 		inotify-tools
 		blueman
-		logseq
-		aider-chat
 		iftop
 		watchexec
 		tldr
