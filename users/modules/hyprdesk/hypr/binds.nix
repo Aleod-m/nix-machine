@@ -38,7 +38,7 @@ in {
 
         # Runners 
         (exec "" "return" "ghostty")
-        (exec "" "b" "rofi -show qute-sesh")
+        (exec "" "b" "rofi -show qute-sesh -kb-delete-entry 'Alt+D'")
         (exec "" "a" "rofi -show hypr-action")
         (exec "" "w" "rofi -show window")
         (exec "" "space" "rofi -show drun")
