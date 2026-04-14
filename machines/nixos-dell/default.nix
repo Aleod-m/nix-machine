@@ -4,7 +4,8 @@
   mlib,
   config,
   ...
-}: mlib.enable.services [ "flatpak" ] {
+}:
+mlib.enable.services ["flatpak"] {
   nixpkgs.config.allowUnfree = true;
   # Imports the hardware configuration
   imports = [./hardware.nix ./bibvpn.nix];
@@ -17,23 +18,23 @@
 
   # Bootloader.
   boot = {
-		kernelPackages = pkgs.linuxPackages_latest;
-		initrd.systemd.enable = true;
-		enableContainers = true; 
-		loader = {
-			systemd-boot.enable = true;
-			efi.canTouchEfiVariables = true;
-		};
-	};
+    kernelPackages = pkgs.linuxPackages_latest;
+    initrd.systemd.enable = true;
+    enableContainers = true;
+    loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+    };
+  };
 
-  services = { 
-		getty.autologinUser = "adrien";
-		fwupd.enable = true;
-  	printing.enable = true;
-  	avahi = {
-			enable = true;
-			nssmdns4 = true;
-			openFirewall = true;
-		};
-	};
+  services = {
+    getty.autologinUser = "adrien";
+    fwupd.enable = true;
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+  };
 }

@@ -1,1 +1,1 @@
-{ mlib, ... }: { imports = mlib.import ./. [ "general" "binds" "rules" ]; }
+{mlib, ...}: {imports = mlib.import ./. ["general" "binds" "rules"];}

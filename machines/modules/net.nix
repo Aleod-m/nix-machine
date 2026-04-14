@@ -1,7 +1,7 @@
 {lib, ...}: {
   networking = {
     # Per interface useDHCP are to be disabled in the hardware.nix file.
-		nftables.enable = true;
+    nftables.enable = true;
 
     firewall = {
       checkReversePath = "loose";

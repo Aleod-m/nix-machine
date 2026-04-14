@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   users.users.adrien = {
     isNormalUser = true;
     shell = pkgs.bash;

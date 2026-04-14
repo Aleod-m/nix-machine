@@ -1,13 +1,10 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   programs.hyprland = {
     enable = true;
     xwayland.enable = true;
   };
 
-  programs.gdk-pixbuf.modulePackages = [ pkgs.librsvg ];
+  programs.gdk-pixbuf.modulePackages = [pkgs.librsvg];
 
   environment.systemPackages = with pkgs; [
     # Clip board.

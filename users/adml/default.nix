@@ -1,7 +1,4 @@
-{
-  pkgs,
-  ...
-}: {
+{pkgs, ...}: {
   users.users.adml = {
     isNormalUser = true;
     shell = pkgs.bash;

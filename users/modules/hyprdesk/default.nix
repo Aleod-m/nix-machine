@@ -17,7 +17,7 @@
     XDG_SESSION_TYPE = "wayland";
   };
 
-	services.hyprpolkitagent.enable = true;
+  services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true;
@@ -46,9 +46,9 @@
   # };
 
   home.packages = with pkgs; [
-		hyprpwcenter
-		# jq for interacting with hyprctl
-		jq
+    hyprpwcenter
+    # jq for interacting with hyprctl
+    jq
     # Sound.
     playerctl
     # Screen and brightness.

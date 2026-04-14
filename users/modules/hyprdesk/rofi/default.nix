@@ -1,4 +1,9 @@
-{lib, pkgs, config, ...}: {
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}: {
   programs.rofi = {
     enable = true;
     terminal = "ghostty";
@@ -6,10 +11,9 @@
     extraConfig = {
       show-icons = true;
     };
-    theme = let 
+    theme = let
       inherit (config.lib.formats.rasi) mkLiteral;
     in {
-
       "*" = {
         green = mkLiteral "#97e023";
         orange = mkLiteral "#fa8419";
@@ -180,7 +184,7 @@
         text-color = mkLiteral "@normal-foreground";
       };
     };
-  }; 
+  };
   xdg.configFile = {
     rofiScripts = {
       source = ./scripts;

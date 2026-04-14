@@ -1,14 +1,14 @@
-{pkgs, ...}: let 
+{pkgs, ...}: let
   bg = "191919";
-  green  = "97e023";
+  green = "97e023";
   orange = "fa8419";
   yellow = "dfd561";
   purple = "9c64fe";
-  red    = "f3005f";
-  cyan   = "57d1ea";
-  blue   = "0e6172";
-  grey   = "929276";
-  white  = "f6f6ee";
+  red = "f3005f";
+  cyan = "57d1ea";
+  blue = "0e6172";
+  grey = "929276";
+  white = "f6f6ee";
 in {
   programs.wlogout = let
     bgImageSection = name: ''

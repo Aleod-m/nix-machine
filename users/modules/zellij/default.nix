@@ -1,7 +1,7 @@
 {...}: {
-	xdg.configFile = {
-		"zellij" = {
-			source = ./config.kdl;
-		};
-	};
+  xdg.configFile = {
+    "zellij" = {
+      source = ./config.kdl;
+    };
+  };
 }

@@ -51,10 +51,10 @@
   ];
 
   programs = {
-		atuin.enable = true;
-		bash.profileExtra = ''
-			if [ $(tty) == "/dev/tty1" ]; then start-hyprland; fi
-		'';
+    atuin.enable = true;
+    bash.profileExtra = ''
+      if [ $(tty) == "/dev/tty1" ]; then start-hyprland; fi
+    '';
     obs-studio = {
       enable = true;
       plugins = with pkgs.obs-studio-plugins; [

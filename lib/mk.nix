@@ -6,18 +6,17 @@
 }: let
   lib = nixpkgs.lib;
 
-  loadModules = basePath: mods:
-    let 
-      mkModfs = mod:
-        let 
-          filePath = basePath + /${mod}.nix;
-          folderPath = basePath + /${mod}/.;
-        in [filePath folderPath];
-    in lib.pipe mods [
-        (map mkModfs)
-        lib.lists.flatten
-        (lib.filter (p: (lib.filesystem.pathIsDirectory p) || (lib.filesystem.pathIsRegularFile p)))
-        (map (mod: import mod))
+  loadModules = basePath: mods: let
+    mkModfs = mod: let
+      filePath = basePath + /${mod}.nix;
+      folderPath = basePath + /${mod}/.;
+    in [filePath folderPath];
+  in
+    lib.pipe mods [
+      (map mkModfs)
+      lib.lists.flatten
+      (lib.filter (p: (lib.filesystem.pathIsDirectory p) || (lib.filesystem.pathIsRegularFile p)))
+      (map (mod: import mod))
     ];
 
   # Util function for creating a user.
@@ -62,7 +61,7 @@
         # add all the selected configuration modules.
         ++ (loadModules (rootPath + /users/modules/.) modules);
     };
-  in { ${username} = home-manager.lib.homeManagerConfiguration hm-argset; };
+  in {${username} = home-manager.lib.homeManagerConfiguration hm-argset;};
 
   # Function to create a computer with some users.
   mkComputer = inputs: {
@@ -75,11 +74,11 @@
   }: let
     nixos-argset = {
       inherit system;
-      specialArgs = { inherit (inputs) agenix mlib; };
+      specialArgs = {inherit (inputs) agenix mlib;};
       modules =
         [
           (rootPath + /machines/${hostName})
-          { networking.hostName = hostName; }
+          {networking.hostName = hostName;}
           inputs.agenix.nixosModules.default
         ]
         # Add my custom nixos and mixed modules.
@@ -87,9 +86,9 @@
         # add all the selected configuration modules.
         ++ (loadModules (rootPath + /machines/modules/.) modules)
         ++ (loadModules (rootPath + /users/.) users);
-        # add all the selected users
+      # add all the selected users
     };
-  in { ${hostName} = lib.nixosSystem nixos-argset; };
+  in {${hostName} = lib.nixosSystem nixos-argset;};
 in {
   # Conveignance function to create all my usesrs.
   users = inputs: users:

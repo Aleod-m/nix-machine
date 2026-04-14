@@ -1,4 +1,4 @@
-{ pkgs, ... } @ inputs: {
+{pkgs, ...} @ inputs: {
   time.timeZone = "Europe/Paris";
 
   users.defaultUserShell = pkgs.bash;

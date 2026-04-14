@@ -8,7 +8,6 @@
   blue = "rgb(0e6172)";
   grey = "rgb(929276)";
   white = "rgb(f6f6ee)";
-
 in {
   wayland.windowManager.hyprland.settings = {
     # window rules
@@ -25,7 +24,6 @@ in {
       "match:title ^(Picture-in-Picture)$, float on"
       "match:title ^(Picture-in-Picture)$, pin on"
 
-
       # throw sharing indicators away
       "match:title ^(Firefox — Sharing Indicator)$, workspace special silent"
       "match:title ^(Zen — Sharing Indicator)$, workspace special silent"
@@ -35,7 +33,6 @@ in {
       "match:title Rofi, dim_around on"
       "match:class feh, float on"
       "match:class feh, center on"
-
 
       "match:initial_title ^()$, match:class thunderbird, float on"
       "match:initial_title ^()$, match:class thunderbird, center on"
@@ -47,6 +44,5 @@ in {
       "match:title wlogout, float on"
       "match:title wlogout, fullscreen on"
     ];
-
   };
 }

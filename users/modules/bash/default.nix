@@ -25,7 +25,7 @@
       disksj = "lsblk -J -O";
       # nvim
       nv = "nvim";
-			zel = "zellij";
+      zel = "zellij";
       # git
       ga = git + "add";
       gA = git + "add --all";

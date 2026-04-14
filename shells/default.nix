@@ -1,49 +1,49 @@
 args: {
-	perSystem = {pkgs, ...}: { 
-		devShells = {
-			base-nix = pkgs.mkShell {
-				# All the programs i need to edit my config.
-				packages = with pkgs; [
-					# The nix lsp i use.
-					nixd
-					# Lua lsp for nvim.
-					lua-language-server
-				];
-			};
+  perSystem = {pkgs, ...}: {
+    devShells = {
+      base-nix = pkgs.mkShell {
+        # All the programs i need to edit my config.
+        packages = with pkgs; [
+          # The nix lsp i use.
+          nixd
+          # Lua lsp for nvim.
+          lua-language-server
+        ];
+      };
 
-			base-zig = pkgs.mkShell {
-				packages = with pkgs; [
-					zig
-					zls
-				];
-			};
+      base-zig = pkgs.mkShell {
+        packages = with pkgs; [
+          zig
+          zls
+        ];
+      };
 
-			base-java = pkgs.mkShell {
-				packages = with pkgs; [
-					jdt-language-server
-					jdk17
-					maven
-					lombok
-				];
-				# Add lombok support.
-				env.JDTLS_JVM_ARGS="-javaagent:${pkgs.lombok}/share/java/lombok.jar";
-			};
+      base-java = pkgs.mkShell {
+        packages = with pkgs; [
+          jdt-language-server
+          jdk17
+          maven
+          lombok
+        ];
+        # Add lombok support.
+        env.JDTLS_JVM_ARGS = "-javaagent:${pkgs.lombok}/share/java/lombok.jar";
+      };
 
-			simple-rust = pkgs.mkShell {
-				packages = with pkgs; [
-					rustc
-					cargo
-					rust-analyzer
-					rustfmt
-				];
-			};
+      simple-rust = pkgs.mkShell {
+        packages = with pkgs; [
+          rustc
+          cargo
+          rust-analyzer
+          rustfmt
+        ];
+      };
 
-			csharp9 = pkgs.mkShell {
-				packages = with pkgs; [
-					dotnetCorePackages.sdk_8_0
-					csharp-ls
-				];
-			};
-		};
-	};
+      csharp9 = pkgs.mkShell {
+        packages = with pkgs; [
+          dotnetCorePackages.sdk_8_0
+          csharp-ls
+        ];
+      };
+    };
+  };
 }

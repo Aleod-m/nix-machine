@@ -36,7 +36,7 @@ in {
         (action "" "f" "fullscreen")
         (mkbind "SHIFT" "f" "fullscreen" "1")
 
-        # Runners 
+        # Runners
         (exec "" "return" "ghostty")
         (exec "" "b" "rofi -show qute-sesh -kb-delete-entry 'Alt+D'")
         (exec "" "a" "rofi -show hypr-action")
@@ -44,35 +44,34 @@ in {
         (exec "" "space" "rofi -show drun")
         (exec "SHIFT" "space" "rofi -show run")
 
-
         # Layout
-				(script "" "backslash" "layout/toggle" "")
+        (script "" "backslash" "layout/toggle" "")
         (script "" "n" "layout/cyclenext" "")
         (script "" "p" "layout/cycleprev" "")
 
         (script "SHIFT" "n" "layout/swapnext" "")
         (script "SHIFT" "p" "layout/swapprev" "")
 
-				# Layout master
+        # Layout master
         (layout "" "m" "focusmaster")
         (layout "SHIFT" "m" "swapwithmaster")
 
-				# Scrolling layout 
-				# (layout "" "?" "togglefit")
-				# (layout "" "?" "swapcol r")
-				# (layout "" "?" "swapcol l")
+        # Scrolling layout
+        # (layout "" "?" "togglefit")
+        # (layout "" "?" "swapcol r")
+        # (layout "" "?" "swapcol l")
 
-				# Resize column
-				# (layout "" "period" "move +col")
-				# (layout "" "comma" "move -col")
+        # Resize column
+        # (layout "" "period" "move +col")
+        # (layout "" "comma" "move -col")
 
-				# move win
-				# (layout "" "h" "movewindowto l")
-				# (layout "" "t" "movewindowto u")
-				# (layout "" "k" "movewindowto d")
-				# (layout "" "l" "movewindowto r")
+        # move win
+        # (layout "" "h" "movewindowto l")
+        # (layout "" "t" "movewindowto u")
+        # (layout "" "k" "movewindowto d")
+        # (layout "" "l" "movewindowto r")
 
-				# (layout "" "?" "promote")
+        # (layout "" "?" "promote")
 
         # Screen Shot.
         (exec "" "Print" "grimblast --notify copysave area")
