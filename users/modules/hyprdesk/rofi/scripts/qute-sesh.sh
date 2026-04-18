@@ -30,4 +30,4 @@ on_custom() {
 	exit 0;
 }
 
-run_rofi
+run_rofi "$@"

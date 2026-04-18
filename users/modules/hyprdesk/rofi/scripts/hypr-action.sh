@@ -26,4 +26,4 @@ on_select () {
     bash "$HYPRDESC_ACTION_DIR/${script}.sh" 1>/dev/null 2>&1;
 }
 
-run_rofi
+run_rofi "$@"
