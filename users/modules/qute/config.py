@@ -7,6 +7,15 @@ import utils.theme as theme
 ## Remove it to not load settings done via the GUI.
 
 config.load_autoconfig(False)
+config.set("url.searchengines", {
+    'DEFAULT': 'https://duckduckgo.com/?q={}',
+    'gh': 'https://github.com/{}',
+    'sh': 'https://git.sr.ht/~{}',
+    'yt': 'https://www.youtube.com/results?search_query={}',
+    'mp': 'https://www.google.com/maps/search/{}',
+    'wk': 'https://en.wikipedia.org/wiki/{}',
+    'wks': 'https://en.wikipedia.org/w/index.php?search={}',
+})
 
 # Prefer dark theme by default.
 c.colors.webpage.preferred_color_scheme = 'dark'
@@ -38,7 +47,13 @@ theme.set(c, palette)
 ## Aliases for commands. The keys of the given dictionary are the
 ## aliases, while the values are the commands they map to.
 ## Type: Dict
-c.aliases = {'w': 'session-save', 'q': 'close', 'qa': 'quit', 'wq': 'quit --save', 'wqa': 'quit --save'}
+c.aliases = {
+    'w': 'session-save',
+    'q': 'close',
+    'qa': 'quit',
+    'wq': 'quit --save',
+    'wqa': 'quit --save'
+}
 
 
 # with (config.configdir / 'config_opts.yml').open() as f:
