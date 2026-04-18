@@ -1,7 +1,8 @@
 {...}: {
   xdg.configFile = {
     "qutebrowser" = {
-      source = ./config.py;
+      source = ./config;
+			recursive = true;
     };
   };
 }
