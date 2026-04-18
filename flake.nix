@@ -53,7 +53,7 @@
               "ghostty"
               "wallpapers"
               "tmux"
-							"qute"
+              "qute"
             ];
           }
           {
