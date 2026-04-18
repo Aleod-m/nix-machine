@@ -24,6 +24,5 @@ run_rofi() {
 		3) init "$@";;
 	esac
 	echo -en "$OUT";
-
 }
 

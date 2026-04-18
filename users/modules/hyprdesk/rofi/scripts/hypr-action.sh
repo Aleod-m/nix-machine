@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-source ./helper.sh
-
 # Action palette for hypr. Runs the selected script in 
 # $XDG_CONFIG_HOME/hypr/scripts/actions
 
+root="$(dirname "$0")"
+source "$root/helper.sh"
 HYPRDESC_ACTION_DIR="$HOME/.config/hypr/scripts/actions"
 
 
