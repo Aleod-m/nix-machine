@@ -18,6 +18,6 @@
       };
     };
   };
-  services.xserver.videoDrivers = lib.mkDefault ["nvidia"];
+  services.xserver.videoDrivers = ["nvidia"];
   environment.sessionVariables = {__GLX_VENDOR_LIBRARY_NAME = "nvidia";};
 }
