@@ -1,13 +1,13 @@
 -- Module for Keymaps utilities.
-local opts = { noremap = true, silent = true }
 
 local M = {}
+M.default_opts = {noremap = true, silent = true}
 M.keymaps = {}
 M.leaderkey = vim.g.mapleader
 M.localleaderkey = vim.g.maploclalleader
 
-
 M.remove = vim.keymap.del
+
 function M.remove_keymaps(keymaps)
     for _, map in ipairs(keymaps) do
         M.remove(map.mode, map.keymap, map.opt)
@@ -15,7 +15,7 @@ function M.remove_keymaps(keymaps)
 end
 
 function M.set(mode, key, action, options)
-    options = vim.tbl_extend('force', opts, options or {})
+    options = vim.tbl_extend('force', M.default_opts, options or {})
     vim.keymap.set(mode, key, action, options)
 end
 
@@ -46,5 +46,15 @@ end
 function M.alt(key)
     return "<A-" .. key .. ">"
 end
+
+function M.cmd(cmd, no_cr)
+    local no_cr = no_cr or false
+    local cmd = "<Cmd>" .. cmd
+    if no_cr then
+      return cmd
+    end
+    return cmd .. '<Cr>'
+end
+
 
 return M

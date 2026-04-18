@@ -5,14 +5,11 @@ M.try = function(cmd)
   return function() vim.cmd[cmd]({ mods = { emsg_silent = true } }) end
 end
 
+M.win = vim.cmd.wincmd
+
+M.create = vim.api.nvim_create_user_command
+
 -- Add the colon and the cariage return on the cmd.
 return setmetatable(M, {
-  __call = function(tb, cmd, no_cr)
-    local no_cr = no_cr or false
-    local cmd = "<Cmd>" .. cmd
-    if no_cr then
-      return cmd
-    end
-    return cmd .. '<Cr>'
-  end
+  __call = getmetatable(vim.cmd).__call
 })

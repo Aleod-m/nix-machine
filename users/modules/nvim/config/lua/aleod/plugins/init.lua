@@ -1,4 +1,8 @@
-local km = require "core.keymaps"
+local km = require "h.keymaps"
+local cmd = require "h.cmd"
+
+cmd [[packadd nvim.tohtml]]
+cmd [[packadd nvim.undotree]]
 
 return {
   -- Splits.
@@ -9,17 +13,6 @@ return {
 
   -- Comments
   { 'numToStr/Comment.nvim',         opts = {} },
-
-  -- Markdown
-  { 'Aleod-m/md.nvim',               enabled = false, opts = {} },
-
-  -- Ts Diagnostics
-  -- {
-  --   'Aleod-m/ts-diagnostics.nvim',
-  --   keys = {
-  --     { km.leader "tc", require("ts-diagnostics").toggle }
-  --   },
-  -- },
 
   {
     "folke/persistence.nvim",

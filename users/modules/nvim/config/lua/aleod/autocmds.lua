@@ -1,10 +1,11 @@
-local autocmd = require("core.autocmd")()
+local autocmd = require("h.autocmd")()
+local cmd = require'h.cmd'
 
 autocmd("BufEnter", {
   callback = function(event)
     if vim.bo[event.buf].filetype ~= "help" then return end
-    vim.cmd.wincmd('L')
-    vim.cmd({cmd = 'wincmd',  args={'|'}, count=80})
+    cmd.win('L')
+    cmd({cmd = 'wincmd',  args={'|'}, count=80})
   end
 })
 

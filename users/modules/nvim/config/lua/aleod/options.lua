@@ -1,5 +1,6 @@
-local opts = require('core.options')
-opts.set({
+local o = require('h.options')
+
+o.set({
 	sh = vim.env.SHELL,
 	-- allow unlimited undos.
 	undofile = true,
@@ -48,4 +49,4 @@ opts.set({
 })
 
 -- Remove comments on new line with o in normal mode.
-vim.opt.formatoptions:remove({'o'})
+vim.opt.formatoptions:remove('o')
