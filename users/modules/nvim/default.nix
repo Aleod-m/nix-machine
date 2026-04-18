@@ -11,7 +11,7 @@
     withNodeJs = false;
     extraPackages = with pkgs; [
       ripgrep
-			tree-sitter
+      tree-sitter
       fd
       gcc
     ];
