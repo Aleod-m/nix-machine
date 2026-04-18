@@ -29,9 +29,12 @@
   };
   swapDevices = [{device = "/dev/disk/by-label/swap";}];
 
-  hardware.nvidia.prime = {
-    nvidiaBusId = "PCI:1:0:0";
-    intelBusId = "PCI:0:2:0";
+  hardware.nvidia = {
+    prime = {
+      nvidiaBusId = "PCI:1:0:0";
+      intelBusId = "PCI:0:2:0";
+    };
+    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
   };
 
   hardware.enableRedistributableFirmware = true;

@@ -11,12 +11,13 @@
     };
     nvidia = {
       modesetting.enable = true;
+      nvidiaSettings = true;
       open = false;
       prime = {
         sync.enable = true;
       };
     };
   };
-  services.xserver.videoDrivers = ["nvidia"];
+  services.xserver.videoDrivers = lib.mkDefault ["nvidia"];
   environment.sessionVariables = {__GLX_VENDOR_LIBRARY_NAME = "nvidia";};
 }
