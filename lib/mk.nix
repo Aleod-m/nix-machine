@@ -49,6 +49,7 @@
       pkgs = pkgs.legacyPackages.${system};
       extraSpecialArgs = {
         inherit (inputs) agenix mlib system;
+				inherit username;
       };
       modules =
         [

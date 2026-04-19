@@ -4,6 +4,10 @@
 
 # Allows to swap the right left position of screens.
 
+sh() {
+	hyprctl "$@" 1>/dev/null 2>&1;
+}
+
 monitors=$(hyprctl monitors -j)
 
 # More than two monitors not handled. 
@@ -34,7 +38,7 @@ new_matz_id=$(echo "$monitors" | jq "map(select(.id != $matz_id)) | first .id");
 
 
 # Switch the screens around.
-hyprctl keyword monitor "$(mname "$new_matz_id")",preferred,0x0,1 ;
-hyprctl keyword monitor "$(mname "$matz_id")",preferred,"$(mw "$new_matz_id")"x0,1
+sh keyword monitor "$(mname "$new_matz_id")",preferred,0x0,1 ;
+sh keyword monitor "$(mname "$matz_id")",preferred,"$(mw "$new_matz_id")"x0,1
 
-hyprctl dispatch focusmonitor "$current"
+sh dispatch focusmonitor "$current"

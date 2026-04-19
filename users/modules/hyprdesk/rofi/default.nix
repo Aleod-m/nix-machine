@@ -2,8 +2,10 @@
   lib,
   pkgs,
   config,
+	username,
   ...
 }: {
+  home.sessionVariables.ROFI_HELPER = "/home/${username}/.config/rofi/scripts/helper.sh";
   programs.rofi = {
     enable = true;
     terminal = "ghostty";

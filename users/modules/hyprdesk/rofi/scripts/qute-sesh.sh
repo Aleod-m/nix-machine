@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-#shellcheck disable=SC2120
-root="$(dirname "$0")"
-source "$root/helper.sh"
+#shellcheck disable=1090
+source "$ROFI_HELPER"
 QUTE_SESSIONS_DIR="$HOME/.local/share/qutebrowser/sessions"
 
 init() {

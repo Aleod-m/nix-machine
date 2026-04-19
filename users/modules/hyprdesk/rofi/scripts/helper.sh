@@ -6,7 +6,7 @@
 # - on_custom 
 # - init
 
-export OUT=""
+export ROFI_HELPER_OUT=""
 
 # Allow to set options for the mode and row
 #
@@ -36,19 +36,19 @@ export OUT=""
 # - urgent: Set urgent flag on entry (true/false)
 # - active: Set active flag on entry (true/false)
 set_opt () {
-	OUT="$OUT\0$0\x1f$1\n"
+	ROFI_HELPER_OUT="$ROFI_HELPER_OUT\0$1\x1f$2\n"
 }
 
 # Add a row to the selection
 row () {
-	OUT="$OUT$1"; shift;
+	ROFI_HELPER_OUT="$ROFI_HELPER_OUT$1"; shift;
     local delim='\0';
     while [ $# -ge 2 ]; do
-		OUT="$OUT$delim$1\x1f$2";
+		ROFI_HELPER_OUT="$ROFI_HELPER_OUT$delim$1\x1f$2";
         shift 2;
         delim='\x1f';
     done
-	OUT="$OUT\n"
+	ROFI_HELPER_OUT="$ROFI_HELPER_OUT\n"
 }
 
 
@@ -61,6 +61,6 @@ run_rofi() {
 		2) on_custom "$@";;
 		3) on_delete "$@";;
 	esac
-	echo -en "$OUT";
+	echo -en "$ROFI_HELPER_OUT";
 }
 
