@@ -1,12 +1,9 @@
-local cmd = require'core.cmd'
-return {
-  'stevearc/oil.nvim',
-  lazy = false,
-
-  -- Optional dependencies
-  dependencies = { 'nvim-tree/nvim-web-devicons' },
-  keys = {
-    { mode= 'n', '-',  cmd 'Oil' },
-  },
-  config = true,
-}
+local km = require'h.keymaps'
+local cmd = km.cmd
+local M = {}
+M.plugins = {  'gh:stevearc/oil.nvim' }
+M.config = function()
+  require'oil'.setup({})
+  km.set( 'n', '-',  cmd 'Oil')
+end
+return M

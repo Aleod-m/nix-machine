@@ -1,5 +1,5 @@
-local autocmd = require('core.autocmd')('Lsp')
-local km = require('core.keymaps')
+local autocmd = require('h.autocmd')('Lsp')
+local km = require('h.keymaps')
 local leader = km.leader
 local ctrl = km.ctrl
 

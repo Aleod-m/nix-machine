@@ -1,6 +1,0 @@
-require("aleod.keymaps")
-require("aleod.options")
-require("aleod.autocmds")
-require("aleod.lsp")
-require("aleod.cmd")
-require("aleod.diagnostics")

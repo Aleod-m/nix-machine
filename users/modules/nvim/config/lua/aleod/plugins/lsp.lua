@@ -1,19 +1,18 @@
-return {
-  { "neovim/nvim-lspconfig" },
+local M = {}
 
-  { "antosha417/nvim-lsp-file-operations", config = true },
-
-  -- For developpement in nvim.
-  {
-    "folke/lazydev.nvim",
-    ft = "lua",
-    opts = {
-      library = {
-        -- See the configuration section for more details
-        -- Load luvit types when the `vim.uv` word is found
-        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
-      },
-    },
-  },
+M.plugins = {
+  'gh:neovim/nvim-lspconfig',
+  'gh:folke/lazydev.nvim',
 }
 
+M.config = function()
+  require'lazydev'.setup({
+    library = {
+      -- See the configuration section for more details
+      -- Load luvit types when the `vim.uv` word is found
+      { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+    },
+  })
+end
+
+return M

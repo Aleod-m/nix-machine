@@ -1,18 +1,17 @@
-local accept_idx = function(nb) return function(cmp) cmp.accept({ index = nb }) end end
-return {
-  'saghen/blink.cmp',
-  -- optional: provides snippets for the snippet source
-  dependencies = {
-    'rafamadriz/friendly-snippets',
-    "kristijanhusak/vim-dadbod-completion",
-  },
+local M = {}
 
-  -- use a release tag to download pre-built binaries
-  version = '*',
+M.plugins = {
+  'gh:saghen/blink.cmp',
+  'gh:rafamadriz/friendly-snippets',
+  'gh:kristijanhusak/vim-dadbod-completion',
+}
 
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
-  opts = {
+local function accept_idx(nb)
+  return function(cmp) cmp.accept({ index = nb }) end
+end
+
+function M.config()
+  require "blink.cmp".setup{
     keymap = {
       preset = 'enter',
       ['<A-1>'] = { accept_idx(1) },
@@ -91,8 +90,8 @@ return {
             item_idx = {
               text = function(ctx)
                 return ctx.idx == 10 and '0'
-                    or ctx.idx >= 10 and ' '
-                    or tostring(ctx.idx)
+                  or ctx.idx >= 10 and ' '
+                  or tostring(ctx.idx)
               end,
               highlight = 'BlinkCmpItemIdx' -- optional, only if you want to change its color
             }
@@ -128,6 +127,7 @@ return {
     },
     -- Experimental signature help support
     signature = { enabled = true }
-  },
-  opts_extend = { "sources.default" }
-}
+  }
+end
+
+return M

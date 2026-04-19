@@ -1,3 +1,5 @@
+local cmd = require'h.cmd'
+
 vim.g.testfileResolver = {
   -- Todo make relative to cwd
   java = function()
@@ -5,12 +7,12 @@ vim.g.testfileResolver = {
   end,
 }
 
-vim.api.nvim_create_user_command('Testfile', function(_)
+cmd.create('Testfile', function(_)
   if vim.g[vim.bo.filetype] ~= nil then
-    local findTestFile = vim.g.testfileResolver[vim.bo.filetype]
-    vim.cmd {
+    local resolver = vim.g.testfileResolver[vim.bo.filetype]
+    cmd {
       cmd = 'edit',
-      args = {'"'..findTestFile()..'"'}
+      args = {'"'..resolver()..'"' }
     }
   end
 end, {})

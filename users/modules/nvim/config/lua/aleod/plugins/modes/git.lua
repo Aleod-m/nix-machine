@@ -1,12 +1,11 @@
 return {
   dependencies = {
-    'TimUntersberger/neogit',
-    'lewis6991/gitsigns.nvim',
+  'gh:NeogitOrg/neogit',
+    'gh:lewis6991/gitsigns.nvim',
   },
-  keys = { "<Space>g" },
   mode = function()
     local gitsigns = require('gitsigns')
-    local cmd = require('core.cmd')
+    local cmd = require('h.keymaps').cmd
     local neogit = require('neogit')
     return {
       name = "Git",

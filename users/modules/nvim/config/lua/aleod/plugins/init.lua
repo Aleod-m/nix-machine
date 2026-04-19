@@ -1,32 +1,23 @@
-local km = require "core.keymaps"
+local M = {}
+local km = require "h.keymaps"
+local cmd = require "h.cmd"
 
-return {
-  -- Splits.
-  { 'mrjones2014/smart-splits.nvim', opts = {} },
+cmd [[packadd nvim.tohtml]]
+cmd [[packadd nvim.undotree]]
 
-  -- Plugins without specific configurations
-  { 'RRethy/nvim-align',             cmd = "Align" },
-
-  -- Comments
-  { 'numToStr/Comment.nvim',         opts = {} },
-
-  -- Markdown
-  { 'Aleod-m/md.nvim',               enabled = false, opts = {} },
-
-  -- Ts Diagnostics
-  -- {
-  --   'Aleod-m/ts-diagnostics.nvim',
-  --   keys = {
-  --     { km.leader "tc", require("ts-diagnostics").toggle }
-  --   },
-  -- },
-
-  {
-    "folke/persistence.nvim",
-    event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    opts = {},
-    keys = {
-      {mode='n', km.leader "ql", function() require "persistence".load() end },
-    }
-  },
+M.plugins = {
+  'gh:mrjones2014/smart-splits.nvim',
+  'gh:RRethy/nvim-align',
+  'gh:numToStr/Comment.nvim',
+  "gh:folke/persistence.nvim",
 }
+
+M.config = function()
+  ---@diagnostic disable-next-line: missing-fields
+  require'smart-splits'.setup({})
+  require'Comment'.setup()
+  require'persistence'.setup()
+  -- {mode='n', km.leader "ql", function() require "persistence".load() end },
+end
+
+return M

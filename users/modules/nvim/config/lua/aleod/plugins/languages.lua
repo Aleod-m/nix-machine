@@ -1,4 +1,4 @@
 -- Several language specific plugins
 return {
-  { 'mfussenegger/nvim-jdtls' }
+  plugins = { 'gh:mfussenegger/nvim-jdtls' }
 }

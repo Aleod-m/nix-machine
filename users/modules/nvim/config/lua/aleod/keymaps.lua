@@ -1,16 +1,14 @@
-local km = require "core.keymaps"
-local cmd = require 'core.cmd'
+local km =require "h.keymaps"
+
+local ctrl   = km.ctrl
+local alt    = km.alt
+local leader = km.leader
+local cmd    = km.cmd
 
 -- Set my leader to space
 km.set("n", "<Space>", "<Nop>")
 km.mapleader " "
--- Set my local leader to comma 
 km.maplleader ","
-
-local ctrl = km.ctrl
-local alt = km.alt
-local leader = km.leader
-
 
 km.set_keymaps {
   -- Remaps for my keyboard layout (workman-p)
@@ -37,18 +35,18 @@ km.set_keymaps {
   { mode={"n", "v"}, keymap=leader "x", action="\"_d" },
 
   -- Register yanking and pasting. 
-  { mode={"n", "v"}, keymap= leader "y",  action="\"+y" },
-  { mode={"n", "v"}, keymap= leader "p",  action="\"+p" },
-  { mode={"n", "v"}, keymap= leader "P",  action="\"+P" },
+   { mode={"n", "v"}, keymap=leader "y",  action="\"+y" },
+  { mode={"n", "v"}, keymap=leader "p",  action="\"+p" },
+  { mode={"n", "v"}, keymap=leader "P",  action="\"+P" },
 
   -- Select last paste.
-  { mode="n", keymap= leader "vp", action="'[v']" },
+  { mode="n", keymap=leader "vp", action="'[v']" },
 
   -- Remove highlights 
-  { mode="n", keymap= leader "nh", action=cmd "noh" },
+  { mode="n", keymap=leader "nh", action=cmd "noh" },
 
   -- quick save
-  { mode="n", keymap= leader "w", action= cmd "w" },
+  { mode="n", keymap=leader "w", action=cmd "w" },
 
   -- Nice feature to have for blocks languages
   { mode="i", keymap="{<CR>", action="{<CR>}<ESC>O" },
@@ -56,41 +54,43 @@ km.set_keymaps {
   { mode="i", keymap="(<CR>", action="(<CR>)<ESC>O" },
 
   -- Insert accents with alt k rather than ctrl k in insert mode.
-  { mode="i", keymap= alt "k", action= ctrl "k" },
+  { mode="i", keymap=alt "k", action=ctrl "k" },
 
   -- Map ctrl+T to ctrl+O to use ctrl t for moving code.
-  { mode="n", keymap= ctrl "O", action= ctrl "t" },
+  { mode="n", keymap=ctrl "O", action=ctrl "t" },
 
   -- Moving/Indenting lines of text
   -- Insert mode with the ctrl key
-  { mode="i", keymap= ctrl "h", action="<C-D>" },
-  { mode="i", keymap= ctrl "t", action="<C-O><Cmd>m .-2<CR>" },
-  { mode="i", keymap= ctrl "k", action="<C-O><Cmd>m .+1<CR>"},
-  { mode="i", keymap= ctrl "l", action="<C-T>" },
+  { mode="i", keymap=ctrl "h", action=ctrl "D" },
+  { mode="i", keymap=ctrl "t", action=(ctrl "O") .. (cmd "m .-2") },
+  { mode="i", keymap=ctrl "k", action=(ctrl"O") .. (cmd "m .+1")},
+  { mode="i", keymap=ctrl "l", action=ctrl "T" },
 
   -- Normal mode with the ctrl key
-  { mode="n", keymap= ctrl "h", action="<<" },
-  { mode="n", keymap= ctrl "t", action= cmd "m .-2" },
-  { mode="n", keymap= ctrl "k", action= cmd "m .+1" },
-  { mode="n", keymap= ctrl "l", action=">>" },
+  { mode="n", keymap=ctrl "k", action=cmd "m .+1" },
+  { mode="n", keymap=ctrl "h", action="<<" },
+  { mode="n", keymap=ctrl "t", action=cmd "m .-2" },
+  { mode="n", keymap=ctrl "l", action=">>" },
 
   -- In visual mode with ctrl key
-  { mode="v", keymap= ctrl "h", action="<gv" },
-  { mode="v", keymap= ctrl "t", action= (cmd "'<,'>m .-2") .. "gv" },
-  { mode="v", keymap= ctrl "k", action= (cmd "'<,'>m .1") .. "gv" },
-  { mode="v", keymap= ctrl "l", action=">gv" },
+  { mode="v", keymap=ctrl "h", action="<gv" },
+  { mode="v", keymap=ctrl "t", action=(cmd "'<,'>m .-2") .. "gv" },
+  { mode="v", keymap=ctrl "k", action=(cmd "'<,'>m .1") .. "gv" },
+  { mode="v", keymap=ctrl "l", action=">gv" },
 
   -- Diagnostics
-  { mode="n", keymap= leader "dn", action=function() vim.diagnostic.jump({count=1}) end },
-  { mode="n", keymap= leader "dp", action=function() vim.diagnostic.jump({count=-1}) end },
-  { mode="n", keymap= leader "dl", action= vim.diagnostic.open_float },
+  { mode="n", keymap=leader "dn", action=function() vim.diagnostic.jump({count=1}) end },
+  { mode="n", keymap=leader "dp", action=function() vim.diagnostic.jump({count=-1}) end },
+  { mode="n", keymap=leader "dl", action=vim.diagnostic.open_float },
 
   -- Terminal 
-  { mode="t", keymap= leader "<Esc>", action= cmd 'stopinsert'},
+  { mode="t", keymap=leader "<Esc>", action=cmd 'stopinsert'},
 
-  -- Special yanks
+  -- Special yanks for paths
+  -- relative to root
   { mode="n", keymap="gyp", action=function() vim.fn.setreg('"', vim.fn.expand("%")) end},
-  { mode="n", keymap="gyP", action=function() vim.fn.setreg('"', vim.fn.expand("%:p")) end},
   { mode="n", keymap="gYp", action=function() vim.fn.setreg("+", vim.fn.expand("%")) end},
+  -- absolute
+  { mode="n", keymap="gyP", action=function() vim.fn.setreg('"', vim.fn.expand("%:p")) end},
   { mode="n", keymap="gYP", action=function() vim.fn.setreg("+", vim.fn.expand("%:p")) end},
 }
