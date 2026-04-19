@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-	username,
+  username,
   ...
 }: {
   home.sessionVariables.ROFI_HELPER = "/home/${username}/.config/rofi/scripts/helper.sh";
