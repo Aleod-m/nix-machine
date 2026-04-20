@@ -23,7 +23,7 @@
     socat
     libreoffice
     rclone
-    zed
+		zed-editor
     # rclone-ui
     bitwarden-cli
     bitwarden-desktop
