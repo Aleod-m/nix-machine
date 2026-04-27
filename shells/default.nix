@@ -1,11 +1,18 @@
 args: {
   perSystem = {pkgs, ...}: {
     devShells = {
-      base-nix = pkgs.mkShell {
+			base-nix = pkgs.mkShell {
+        packages = with pkgs; [
+          # The nix lsp i use.
+          nixd
+				];
+			};
+      nix-conf = pkgs.mkShell {
         # All the programs i need to edit my config.
         packages = with pkgs; [
           # The nix lsp i use.
           nixd
+					just
           # Lua lsp for nvim.
           lua-language-server
         ];

@@ -10,8 +10,6 @@ M.config = function()
   au('FileType', {
     callback = function()
       if not pcall(vim.treesitter.start) then
-        -- TODO warn if ts failed for file type
-        log.warn("No treesitter grammar found for this file type")
         return
       end
       vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"

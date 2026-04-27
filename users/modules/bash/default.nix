@@ -28,6 +28,7 @@
       zel = "zellij";
       # git
       ga = git + "add";
+      gau = git + "add -u";
       gA = git + "add --all";
       gcm = git + "commit -m";
       gco = git + "checkout";

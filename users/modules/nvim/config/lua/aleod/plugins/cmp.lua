@@ -1,7 +1,7 @@
 local M = {}
 
 M.plugins = {
-  'gh:saghen/blink.cmp',
+  { src = 'gh:saghen/blink.cmp', version = 'v1', },
   'gh:rafamadriz/friendly-snippets',
   'gh:kristijanhusak/vim-dadbod-completion',
 }

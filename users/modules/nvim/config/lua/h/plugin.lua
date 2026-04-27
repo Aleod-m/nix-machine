@@ -83,23 +83,20 @@ function M.__map_pack_specs(spec)
     if spec.src == nil then
       log.error("[plugin] Spec has no src field.")
     end
-    spec.src = M.get_url(spec.src)
+    spec.src = M.__get_url(spec.src)
     return spec
   end
 end
 
 function M.__get_url(prefix_url)
-  log.debug("url", prefix_url)
   if vim.startswith(prefix_url, "https") then return prefix_url end
   local components = vim.split(prefix_url, ':', {plain = true, trimempty = true})
   local prefix = table.remove(components, 1)
-  log.debug("prefix", prefix)
 
   if not M.source_prefixes[prefix] then
     log.error("[plugin] Unknown soure: ", prefix)
   end
 
-  print(vim.inspect(components))
   return M.source_prefixes[prefix] .. table.concat(components, ":")
 end
 

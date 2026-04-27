@@ -1,4 +1,4 @@
-local M = {}
+local M = { }
 
 function M.get(option)
   return vim.opt[option]

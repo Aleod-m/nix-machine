@@ -1,6 +1,7 @@
 local M = {}
 M.plugins = {
   'gh:Aleod-m/konokai',
+  'gh:nvim-tree/nvim-web-devicons',
   'gh:rktjmp/lush.nvim',
   'gh:nvim-lualine/lualine.nvim',
   'gh:seblj/nvim-tabline',

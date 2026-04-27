@@ -19,25 +19,23 @@ M.load_config = function(configs)
       local name, typ = vim.loop.fs_scandir_next(files)
       if not name then
         if not typ then
-          break -- end of iteratio
+          break -- end of iteration
         else
           log.error("Error while scanning lua files for config:", config)
           goto continue
         end
       end
 
-      if typ == "file" then
+      if typ == "file" or typ == "link" then
         ---@diagnostic disable-next-line: param-type-mismatch
         local loaded, err = pcall(require, config .. '.' .. vim.split(name, '.', {plain = true})[1])
 
         if not loaded then
-          log.error("Error while loading file", name, "because", err)
+          log.error("Error while loading file", name, "because of", err)
         end
       end
 
-      log.debug("type", typ, "name", name)
       if typ == "directory" and name == "plugins" then
-        log.debug("loading plugins")
         require"h.plugin".load_all(config)
       end
     end
