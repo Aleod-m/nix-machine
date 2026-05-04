@@ -1,14 +1,12 @@
 {pkgs, ...}: {
   virtualisation.containers.enable = true;
   virtualisation.docker = {
-    enable = false;
-    daemon.settings = {
-      "ip-forward" = true;
-    };
+    enable = true;
   };
   virtualisation.incus = {
     enable = true;
     package = pkgs.incus;
+		bucketSupport = false;
     preseed = {
       networks = [
         {
