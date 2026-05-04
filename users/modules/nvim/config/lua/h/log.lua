@@ -18,7 +18,7 @@ return setmetatable({},  {
           self.level = vim.log.levels.WARN
         elseif index == "trace" then
           self.level = vim.log.levels.TRACE
-        elseif index == "debug" then
+        elseif index == "dbg" then
           self.level = vim.log.levels.DEBUG
         else
           return logger[index]

@@ -1,14 +1,14 @@
 
 alias s := switch
-switch target='all':
-	[[ "i-all i-os" == *"i-{{target}}"* ]] && nh os switch .# || true 
-	[[ "i-all i-home" == *"i-{{target}}"* ]] && nh home switch .# || true
+switch target='all' nixopt='':
+	[[ "i-all i-os" == *"i-{{target}}"* ]] && nh os switch .# -- {{nixopt}} || true 
+	[[ "i-all i-home" == *"i-{{target}}"* ]] && nh home switch .# -- {{nixopt}} || true
 
 alias u := update
-update target='all':
+update target='all' nixopt='':
 	nix flake update
-	[[ "i-all i-os" == *"i-{{target}}"* ]] && nh os switch .#
-	[[ "i-all i-home" == *"i-{{target}}"* ]] && nh home switch .#
+	[[ "i-all i-os" == *"i-{{target}}"* ]] && nh os switch .# -- {{nixopt}} || true
+	[[ "i-all i-home" == *"i-{{target}}"* ]] && nh home switch .# -- {{nixopt}} || true
 	
 
 test-nv:

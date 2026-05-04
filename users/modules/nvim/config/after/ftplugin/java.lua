@@ -9,10 +9,11 @@ local data_dir = home .. "/.cache/jdtls/projects/" .. vim.fn.sha256(root_dir)
 
 local config = {
   name = "jdtls",
-  cmd = cmd.shell('jdtls',  {
-    ["-jvm-arg"] = vim.env.JDTLS_JVM_ARGS,
-    ["-data"] = data_dir
-  }),
+  cmd = {
+    "jdtls",
+    "--jvm-arg="..vim.env.JDTLS_JVM_ARGS,
+    "-data-dir", data_dir
+  },
   root_dir = root_dir,
 }
 
