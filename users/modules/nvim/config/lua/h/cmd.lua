@@ -11,9 +11,9 @@ M.shell = function(cmd, args, arg_val_sep)
   arg_val_sep = arg_val_sep or '='
   for arg, val in ipairs(args) do
     if val and type(val) == "boolean" then
-      cmd = cmd .. arg
+      cmd = cmd .. ' ' .. arg
     elseif type(val) == "string" then
-      cmd = cmd .. arg .. arg_val_sep .. val
+      cmd = cmd .. ' ' .. arg .. arg_val_sep .. val
     else
       goto continue
     end

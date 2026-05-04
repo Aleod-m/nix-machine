@@ -133,6 +133,7 @@
     htop.enable = true;
     git = {
       enable = true;
+			signing.format = null;
       settings = {
         user = {
           name = "Adrien Derobert-Mazure";
