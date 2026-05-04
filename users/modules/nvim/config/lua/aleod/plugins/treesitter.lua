@@ -41,7 +41,7 @@ M.config = function()
     "javadoc",
 
     -- Tools
-    "justfile",
+    "just",
 
     -- Web.
     "html",
