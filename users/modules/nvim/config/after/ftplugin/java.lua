@@ -1,8 +1,6 @@
-vim.bo.expandtab = false
+local cmd = require'h.cmd'
 
-local function build_cmd(args)
-  return vim.tbl_filter(function(arg) return arg ~= nil end, args)
-end
+vim.bo.expandtab = false
 
 local home = vim.env.HOME
 local root_dir = vim.fs.root(0, { { '.git', 'gradlew', 'mvnw' }, { 'pom.xml' } })
@@ -11,7 +9,10 @@ local data_dir = home .. "/.cache/jdtls/projects/" .. vim.fn.sha256(root_dir)
 
 local config = {
   name = "jdtls",
-  cmd = build_cmd{ 'jdtls', vim.env.JDTLS_JVM_ARGS, '-data', data_dir },
+  cmd = cmd.shell('jdtls',  {
+    ["-jvm-arg"] = vim.env.JDTLS_JVM_ARGS,
+    ["-data"] = data_dir
+  }),
   root_dir = root_dir,
 }
 

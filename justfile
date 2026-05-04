@@ -1,4 +1,9 @@
 
+alias s := switch
+switch target='all':
+	[[ "i-all i-os" == *"i-{{target}}"* ]] && nh os switch .# || true 
+	[[ "i-all i-home" == *"i-{{target}}"* ]] && nh home switch .# || true
+
 alias u := update
 update target='all':
 	nix flake update
