@@ -19,7 +19,7 @@ vim.lsp.enable({
   "gdscript",
   "pylsp",
   "ts_ls",
-  "jdtls",
+  -- "jdtls", Handled by nvim-jdtls
   "spectral",
   "rust_analyzer",
   "perlnavigator",

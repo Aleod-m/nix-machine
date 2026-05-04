@@ -1,5 +1,3 @@
-local cmd = require'h.cmd'
-
 vim.bo.expandtab = false
 
 local home = vim.env.HOME
@@ -11,10 +9,16 @@ local config = {
   name = "jdtls",
   cmd = {
     "jdtls",
-    "--jvm-arg="..vim.env.JDTLS_JVM_ARGS,
-    "-data-dir", data_dir
+    "-data-dir", data_dir,
   },
   root_dir = root_dir,
 }
+
+if vim.env.JDTLS_JVM_ARGS then
+  local jvm_args = vim.split(vim.env.JDTLS_JVM_ARGS, ';', {plain = true})
+  for _, arg in ipairs(jvm_args) do
+    config.cmd[#config.cmd+1] = "--jvm-arg="..arg
+  end
+end
 
 require('jdtls').start_or_attach(config)
