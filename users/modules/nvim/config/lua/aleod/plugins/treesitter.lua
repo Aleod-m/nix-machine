@@ -22,10 +22,9 @@ M.config = function()
     "markdown",
     "markdown_inline",
 
+    -- Programming languages.
     "php",
     "perl",
-
-    -- Programming languages.
     "rust",
     "nix",
     "lua",
@@ -40,6 +39,9 @@ M.config = function()
     "wgsl_bevy",
     "java",
     "javadoc",
+
+    -- Tools
+    "justfile",
 
     -- Web.
     "html",

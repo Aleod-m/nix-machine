@@ -21,7 +21,18 @@ M.config = function()
       component_separators = { left = '', right = '' },
     },
     winbar = {
-      lualine_a = { 'mode' },
+      lualine_a = {
+        { -- Hydra or mode
+          function()
+            local hy = require('hydra.satusline')
+            if hy.is_active() then
+              return hy.get_name()
+            else
+              return vim.api.nvim_get_mode()
+            end
+          end
+         }
+      },
       lualine_b = {
         {
           'filename',
