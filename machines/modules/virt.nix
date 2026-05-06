@@ -6,7 +6,7 @@
   virtualisation.incus = {
     enable = true;
     package = pkgs.incus;
-		bucketSupport = false;
+    bucketSupport = false;
     preseed = {
       networks = [
         {

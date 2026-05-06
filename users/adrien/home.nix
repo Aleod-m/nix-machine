@@ -17,13 +17,14 @@
     bat
     pciutils
     zoxide
+    httpie
     zip
     unzip
     wget
     socat
     libreoffice
     rclone
-		zed-editor
+    zed-editor
     # rclone-ui
     bitwarden-cli
     bitwarden-desktop
@@ -133,7 +134,7 @@
     htop.enable = true;
     git = {
       enable = true;
-			signing.format = null;
+      signing.format = null;
       settings = {
         user = {
           name = "Adrien Derobert-Mazure";
