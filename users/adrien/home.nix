@@ -32,8 +32,8 @@
     thunderbird
     rocketchat-desktop
     vscode
+    opencode
     chromium
-    dbeaver-bin
     signal-desktop
     meld
     qutebrowser
