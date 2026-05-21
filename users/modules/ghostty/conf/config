@@ -8,12 +8,12 @@ font-family = JetBrainsMono Nerd Font Propo
 font-style = Bold
 font-size = 9
 
-window-theme=ghostty
+window-theme = ghostty
 window-padding-x = 0 
 window-padding-y = 0
 window-padding-color = extend 
-gtk-custom-css= ./thin-tabs.css
-gtk-wide-tabs= false
+gtk-custom-css = ./thin-tabs.css
+gtk-wide-tabs = false
 
 background = #191919
 foreground = #f6f6ee
